@@ -36,9 +36,17 @@
 ## 🔲 Pendiente
 
 ### Diseño visual (en progreso)
-- [ ] Wireframe de página de modelo individual — **SIGUIENTE PASO**
+- [x] Wireframe de página de modelo individual (handoff Corolla 2026)
+- [x] Página piloto /modelos/corolla implementada según handoff:
+  - Hero full-bleed, intro, highlights, carrusel de 6 versiones,
+    selector de 7 colores, TSS, CTA rojo intermedio, seguridad,
+    galería con lightbox (exterior/interior), rendimiento, CTA final,
+    modelos similares
+  - Fuente ToyotaType integrada (pendiente confirmar licencia web)
+- [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
+- [ ] Pendientes del handoff: viewer 360° real (16 ángulos), PDF ficha técnica,
+      imagen hero mobile diferente (frontal 4:3)
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
-- [ ] Sección a sección hasta completar todas las páginas
 - [ ] Diseño de homepage con hero real (imagen de auto)
 
 ### Contenido
