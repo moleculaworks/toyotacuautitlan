@@ -63,7 +63,7 @@ export default function CorollaPage() {
             alt="Toyota Corolla 2026 · ¾ ángulo frontal"
             fill
             priority
-            className="object-cover object-[right_center] max-[880px]:object-center"
+            className="object-cover object-[right_center]"
             sizes="100vw"
           />
           {/* Gradiente blanco para legibilidad — solo desktop */}
