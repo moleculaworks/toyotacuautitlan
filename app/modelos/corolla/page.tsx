@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
+import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
 import localFont from 'next/font/local'
 import VersionesCarousel from '@/components/corolla/VersionesCarousel'
@@ -52,20 +52,46 @@ function CheckIcon() {
   )
 }
 
+function HeroPicture() {
+  const common = {
+    alt: 'Toyota Corolla 2026 · ¾ ángulo frontal',
+    sizes: '100vw',
+    priority: true,
+  }
+  const {
+    props: { srcSet: mobileSrcSet },
+  } = getImageProps({
+    ...common,
+    width: 1600,
+    height: 1200,
+    src: '/images/corolla/corolla-hero-mobile@2x.webp',
+  })
+  const { props: rest } = getImageProps({
+    ...common,
+    width: 1920,
+    height: 680,
+    src: '/images/corolla/corolla2.webp',
+  })
+
+  return (
+    <picture>
+      <source media="(max-width: 880px)" srcSet={mobileSrcSet} />
+      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+      <img
+        {...rest}
+        className="w-full h-full object-cover object-[right_center] max-[880px]:object-center"
+      />
+    </picture>
+  )
+}
+
 export default function CorollaPage() {
   return (
     <div className={`${toyotaType.className} bg-white text-[#111] antialiased`}>
       {/* § 1 · HERO */}
       <section id="hero" className="relative overflow-hidden bg-[#D8D8D8] max-[880px]:bg-white h-[clamp(420px,42vw,560px)] max-[880px]:h-auto">
         <div className="absolute inset-0 max-[880px]:relative max-[880px]:h-[260px]">
-          <Image
-            src="/images/corolla/corolla2.webp"
-            alt="Toyota Corolla 2026 · ¾ ángulo frontal"
-            fill
-            priority
-            className="object-cover object-[right_center]"
-            sizes="100vw"
-          />
+          <HeroPicture />
           {/* Gradiente blanco para legibilidad — solo desktop */}
           <div
             className="absolute inset-0 pointer-events-none max-[880px]:hidden"
