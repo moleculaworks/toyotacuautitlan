@@ -10,6 +10,17 @@ import { colores, ANGULOS_360, url360 } from '@/lib/data/corolla'
 // Píxeles de arrastre necesarios para avanzar un ángulo
 const PX_POR_ANGULO = 25
 
+function DragIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 3L4 7l4 4" />
+      <path d="M4 7h16" />
+      <path d="M16 21l4-4-4-4" />
+      <path d="M20 17H4" />
+    </svg>
+  )
+}
+
 export default function ExteriorColores() {
   const [activeColor, setActiveColor] = useState('grisMetalico')
   const [angulo, setAngulo] = useState(1) // 1..16
@@ -85,28 +96,44 @@ export default function ExteriorColores() {
           )}
         </div>
 
-        {/* Hint de interacción */}
-        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-[#888] pointer-events-none">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M8 3L4 7l4 4" />
-            <path d="M4 7h16" />
-            <path d="M16 21l4-4-4-4" />
-            <path d="M20 17H4" />
-          </svg>
+        {/* Desktop: flechas flotantes a los lados + hint abajo */}
+        <span className="max-[880px]:hidden absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-[#888] pointer-events-none">
+          <DragIcon />
           Arrastra para girar
         </span>
-
         <button
           onClick={() => rotar(-1)}
           aria-label="Ángulo anterior"
-          className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
+          className="max-[880px]:hidden absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
         >
           ‹
         </button>
         <button
           onClick={() => rotar(1)}
           aria-label="Ángulo siguiente"
-          className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
+          className="max-[880px]:hidden absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* Mobile: fila de controles debajo de la imagen — sin tapar el auto */}
+      <div className="min-[881px]:hidden flex items-center justify-center gap-4 py-3 border-t border-[#EBEBEB] bg-white">
+        <button
+          onClick={() => rotar(-1)}
+          aria-label="Ángulo anterior"
+          className="w-11 h-11 rounded-full bg-[#EB0A1E] border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
+        >
+          ‹
+        </button>
+        <span className="flex items-center gap-2 text-xs text-[#888]">
+          <DragIcon />
+          Arrastra para girar
+        </span>
+        <button
+          onClick={() => rotar(1)}
+          aria-label="Ángulo siguiente"
+          className="w-11 h-11 rounded-full bg-[#EB0A1E] border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
         >
           ›
         </button>
