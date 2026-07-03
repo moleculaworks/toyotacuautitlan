@@ -87,17 +87,25 @@ export interface ColorOption {
   label: string
   hex: string
   needsBorder: boolean
+  carpeta: string // carpeta y prefijo de archivo en /images/corolla/360/
 }
 
+export const ANGULOS_360 = 16
+
 export const colores: ColorOption[] = [
-  { id: 'grisMetalico', label: 'Gris Metálico', hex: '#707070', needsBorder: false },
-  { id: 'grafito', label: 'Grafito', hex: '#3A3A3A', needsBorder: false },
-  { id: 'rojo', label: 'Rojo', hex: '#CC0A18', needsBorder: false },
-  { id: 'plata', label: 'Plata', hex: '#BEBFC1', needsBorder: false },
-  { id: 'blanco', label: 'Blanco', hex: '#FFFFFF', needsBorder: true },
-  { id: 'negro', label: 'Negro', hex: '#111111', needsBorder: false },
-  { id: 'blancoPerlado', label: 'Blanco Perlado', hex: '#F0EDE8', needsBorder: false },
+  { id: 'grisMetalico', label: 'Gris Metálico', hex: '#707070', needsBorder: false, carpeta: 'gris_metalico' },
+  { id: 'grafito', label: 'Grafito', hex: '#3A3A3A', needsBorder: false, carpeta: 'grafito' },
+  { id: 'rojo', label: 'Rojo', hex: '#CC0A18', needsBorder: false, carpeta: 'rojo' },
+  { id: 'plata', label: 'Plata', hex: '#BEBFC1', needsBorder: false, carpeta: 'plata' },
+  { id: 'blanco', label: 'Blanco', hex: '#FFFFFF', needsBorder: true, carpeta: 'blanco' },
+  { id: 'negro', label: 'Negro', hex: '#111111', needsBorder: false, carpeta: 'negro' },
+  { id: 'blancoPerlado', label: 'Blanco Perlado', hex: '#F0EDE8', needsBorder: false, carpeta: 'blanco_perlado' },
 ]
+
+// Ruta del ángulo n (1..16) para un color
+export function url360(carpeta: string, angulo: number): string {
+  return `/images/corolla/360/${carpeta}/${carpeta}${angulo}.webp`
+}
 
 export interface GalleryImage {
   label: string

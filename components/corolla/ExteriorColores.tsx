@@ -1,39 +1,110 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
-import { colores } from '@/lib/data/corolla'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { colores, ANGULOS_360, url360 } from '@/lib/data/corolla'
 
-// El viewer usa una imagen de referencia estática por ahora.
-// Producción (pendiente handoff): secuencia de 16 ángulos por color, 1200×800 WebP.
-const VIEWER_SRC = '/images/corolla/referencia_360.webp'
+// Visor 360: secuencia de 16 ángulos por color que se intercambian
+// al arrastrar (drag/swipe) o con las flechas. Las imágenes ya vienen
+// optimizadas (WebP ~40KB), se sirven directo sin pasar por next/image.
+
+// Píxeles de arrastre necesarios para avanzar un ángulo
+const PX_POR_ANGULO = 25
 
 export default function ExteriorColores() {
   const [activeColor, setActiveColor] = useState('grisMetalico')
+  const [angulo, setAngulo] = useState(1) // 1..16
+  const [cargado, setCargado] = useState<Record<string, boolean>>({})
 
-  const activeLabel = colores.find((c) => c.id === activeColor)?.label ?? ''
+  const dragStart = useRef<{ x: number; angulo: number } | null>(null)
+  const viewerRef = useRef<HTMLDivElement>(null)
+
+  const color = colores.find((c) => c.id === activeColor)!
+
+  // Precarga los 16 ángulos del color activo
+  useEffect(() => {
+    if (cargado[activeColor]) return
+    let pendientes = ANGULOS_360
+    for (let i = 1; i <= ANGULOS_360; i++) {
+      const img = new window.Image()
+      img.onload = img.onerror = () => {
+        pendientes--
+        if (pendientes === 0) setCargado((c) => ({ ...c, [activeColor]: true }))
+      }
+      img.src = url360(color.carpeta, i)
+    }
+  }, [activeColor, color.carpeta, cargado])
+
+  const rotar = useCallback((dir: number) => {
+    setAngulo((a) => ((a - 1 + dir + ANGULOS_360) % ANGULOS_360) + 1)
+  }, [])
+
+  // Drag con pointer events (funciona mouse y touch)
+  function onPointerDown(e: React.PointerEvent) {
+    dragStart.current = { x: e.clientX, angulo }
+    viewerRef.current?.setPointerCapture(e.pointerId)
+  }
+
+  function onPointerMove(e: React.PointerEvent) {
+    if (!dragStart.current) return
+    const delta = e.clientX - dragStart.current.x
+    const pasos = Math.round(delta / PX_POR_ANGULO)
+    const nuevo =
+      ((dragStart.current.angulo - 1 - pasos) % ANGULOS_360 + ANGULOS_360) % ANGULOS_360 + 1
+    setAngulo(nuevo)
+  }
+
+  function onPointerUp() {
+    dragStart.current = null
+  }
 
   return (
     <div className="flex max-[880px]:flex-col items-stretch border border-[#EBEBEB]">
-      {/* Viewer */}
+      {/* Viewer 360 */}
       <div className="flex-1 relative bg-white flex items-center justify-center min-h-[420px] max-[880px]:min-h-[300px] overflow-hidden p-10 max-[880px]:p-4">
-        <div className="w-full max-w-[520px] aspect-[4/3] relative overflow-hidden">
-          <Image
-            src={VIEWER_SRC}
-            alt={`Corolla 360° · ${activeLabel}`}
-            fill
-            className="object-contain"
-            sizes="(max-width: 880px) 100vw, 520px"
+        <div
+          ref={viewerRef}
+          className="w-full max-w-[520px] aspect-[3/2] relative overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          role="img"
+          aria-label={`Corolla ${color.label} · vista 360, ángulo ${angulo} de ${ANGULOS_360}`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={url360(color.carpeta, angulo)}
+            alt=""
+            draggable={false}
+            className="w-full h-full object-contain pointer-events-none"
           />
+          {!cargado[activeColor] && (
+            <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[11px] text-[#999] bg-white/80 px-3 py-1 rounded">
+              Cargando vistas…
+            </span>
+          )}
         </div>
 
+        {/* Hint de interacción */}
+        <span className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-[#888] pointer-events-none">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 3L4 7l4 4" />
+            <path d="M4 7h16" />
+            <path d="M16 21l4-4-4-4" />
+            <path d="M20 17H4" />
+          </svg>
+          Arrastra para girar
+        </span>
+
         <button
+          onClick={() => rotar(-1)}
           aria-label="Ángulo anterior"
           className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
         >
           ‹
         </button>
         <button
+          onClick={() => rotar(1)}
           aria-label="Ángulo siguiente"
           className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
         >
@@ -47,21 +118,21 @@ export default function ExteriorColores() {
           Colores disponibles
         </h3>
         <div className="flex flex-col max-[880px]:flex-row max-[880px]:overflow-x-auto gap-1 max-[880px]:gap-2 max-[880px]:pb-2">
-          {colores.map((color) => {
-            const isActive = color.id === activeColor
+          {colores.map((c) => {
+            const isActive = c.id === activeColor
             return (
               <button
-                key={color.id}
-                onClick={() => setActiveColor(color.id)}
+                key={c.id}
+                onClick={() => setActiveColor(c.id)}
                 className="flex items-center gap-3.5 px-3 py-2.5 border-none cursor-pointer w-full max-[880px]:w-auto max-[880px]:flex-shrink-0 text-left rounded transition-transform hover:bg-[#F4F4F4]"
                 style={{ background: isActive ? '#F8F8F8' : '#fff' }}
               >
                 <span
                   className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center"
                   style={{
-                    background: color.hex,
+                    background: c.hex,
                     border: `1.5px solid ${
-                      isActive ? '#EB0A1E' : color.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
+                      isActive ? '#EB0A1E' : c.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
                     }`,
                   }}
                 >
@@ -81,7 +152,7 @@ export default function ExteriorColores() {
                   className="text-sm text-[#333] max-[880px]:whitespace-nowrap"
                   style={{ fontWeight: isActive ? 700 : 400 }}
                 >
-                  {color.label}
+                  {c.label}
                 </span>
               </button>
             )
