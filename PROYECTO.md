@@ -44,8 +44,8 @@
     modelos similares
   - Fuente ToyotaType integrada (pendiente confirmar licencia web)
 - [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
-- [ ] Pendientes del handoff: viewer 360° real (16 ángulos), PDF ficha técnica,
-      imagen hero mobile diferente (frontal 4:3)
+- [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
+- [ ] Pendientes del handoff: viewer 360° real (16 ángulos), PDF ficha técnica
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
 - [ ] Diseño de homepage con hero real (imagen de auto)
 
