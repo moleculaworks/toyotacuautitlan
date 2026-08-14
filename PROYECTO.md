@@ -80,3 +80,16 @@
 - [ ] Pruebas en mobile (iOS y Android)
 - [ ] Velocidad y Core Web Vitals (objetivo: >90 en PageSpeed)
 - [ ] Reemplazar sitio WordPress actual con el nuevo
+
+### Seguridad — CRÍTICO, pendiente de implementar
+- [ ] Rate limiting en formularios de cotización y cita (evitar spam/saturación al CRM)
+- [ ] Captcha invisible (ej. Cloudflare Turnstile) en formularios públicos
+- [ ] Roles correctos en Sanity al invitar equipo (Editor, no Administrator)
+- [ ] Confirmar política de retención/backups de versiones en Sanity
+- [ ] Activar Dependabot en GitHub (alertas de vulnerabilidades en dependencias)
+- [ ] Revisar permisos de acceso en Vercel al sumar colaboradores
+
+Nota: gran parte de lo básico ya viene resuelto por el stack (sin panel admin público
+tipo wp-admin, sin plugins de terceros, SSL automático, CDN de Vercel filtra tráfico
+malicioso). Lo de arriba es lo que falta configurar activamente antes de manejar
+leads reales de producción.
