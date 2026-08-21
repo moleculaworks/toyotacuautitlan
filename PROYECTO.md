@@ -31,6 +31,11 @@
 - [x] Validación con Zod (cotización y cita)
 - [x] API routes /api/cotizacion y /api/cita (listas para conectar CRMs)
 
+### Equipo
+- [x] Raúl invitado a GitHub (moleculaworks/toyotacuautitlan) — acceso de escritura confirmado
+- [x] Raúl invitado a Sanity (proyecto tuhugumb) — conectado con raulpontones@gmail.com
+- [x] Auditoría del repo: sin archivos ajenos al sitio, limpio para clonar
+
 ---
 
 ## 🔲 Pendiente
@@ -62,15 +67,22 @@
 - [ ] Schema.org (LocalBusiness + AutoDealer)
 - [ ] Meta tags Open Graph por página
 
-### Dominio
+### Dominio — pospuesto a propósito hasta terminar el desarrollo
 - [ ] Conectar toyotacuautitlan.com.mx a Vercel
 - [ ] Configurar DNS en el registrador del dominio
 - [ ] SSL automático (Vercel lo hace solo)
 
-### Formularios y CRM
+### Formularios y CRM — pospuesto a propósito hasta terminar el desarrollo
 - [ ] Definir qué CRMs conectar en el lanzamiento (Zeenvia, Seekop, SaleU, propio)
 - [ ] Integrar API de CRM(s) en /api/cotizacion y /api/cita
 - [ ] Notificación por email al equipo de ventas cuando llega un lead
+
+### Flujo de trabajo con equipo — pendiente de poner en marcha
+- [ ] Compartir .env.local con Raúl por canal seguro
+- [ ] Adoptar ramas por tarea + Pull Requests (hoy todo va directo a main)
+- [ ] Definir revisión cruzada antes de fusionar a main
+- [ ] Confirmar acceso de Raúl a Vercel
+- [ ] Asignar secciones del proyecto para no duplicar esfuerzo entre Beto y Raúl
 
 ### Precios
 - [ ] Definir estructura de versiones por modelo
