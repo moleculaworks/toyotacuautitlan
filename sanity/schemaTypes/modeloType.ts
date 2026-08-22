@@ -110,9 +110,102 @@ export const modeloType = defineType({
       validation: (r) => r.max(160),
       group: 'seo',
     }),
+    defineField({
+      name: 'heroDesktop',
+      title: 'Hero (escritorio)',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'detalle',
+    }),
+    defineField({
+      name: 'heroMobile',
+      title: 'Hero (móvil)',
+      type: 'image',
+      group: 'detalle',
+    }),
+    defineField({
+      name: 'versiones',
+      title: 'Versiones y precios',
+      type: 'array',
+      group: 'detalle',
+      of: [
+        {
+          type: 'object',
+          name: 'version',
+          fields: [
+            { name: 'nombre', title: 'Nombre (ej: LE CVT)', type: 'string', validation: (r) => r.required() },
+            { name: 'precio', title: 'Precio (MXN)', type: 'number', validation: (r) => r.required().min(0) },
+            { name: 'imagen', title: 'Imagen de la versión', type: 'image', options: { hotspot: true } },
+            {
+              name: 'caracteristicas',
+              title: 'Características',
+              type: 'array',
+              of: [{ type: 'string' }],
+            },
+          ],
+          preview: {
+            select: { title: 'nombre', subtitle: 'precio', media: 'imagen' },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'coloresExterior',
+      title: 'Colores y visor 360°',
+      type: 'array',
+      group: 'detalle',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', title: 'Nombre del color', type: 'string', validation: (r) => r.required() },
+            { name: 'hex', title: 'Color (hex, para el swatch)', type: 'string', validation: (r) => r.required() },
+            { name: 'necesitaBorde', title: '¿Necesita borde en el swatch?', type: 'boolean', initialValue: false },
+            {
+              name: 'imagenes360',
+              title: 'Imágenes del giro (en orden)',
+              type: 'array',
+              of: [{ type: 'image' }],
+            },
+          ],
+          preview: {
+            select: { title: 'label' },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'imagenDestacado',
+      title: 'Imagen del destacado (ej: Tecnología / Safety Sense)',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'detalle',
+    }),
+    defineField({
+      name: 'galeriaExteriorDetalle',
+      title: 'Galería exterior',
+      type: 'array',
+      group: 'detalle',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    }),
+    defineField({
+      name: 'galeriaInteriorDetalle',
+      title: 'Galería interior',
+      type: 'array',
+      group: 'detalle',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    }),
+    defineField({
+      name: 'imagenRendimiento',
+      title: 'Imagen de rendimiento',
+      type: 'image',
+      options: { hotspot: true },
+      group: 'detalle',
+    }),
   ],
   groups: [
     { name: 'seo', title: 'SEO' },
+    { name: 'detalle', title: 'Detalle de página (versiones, 360°, galería)' },
   ],
   orderings: [
     {

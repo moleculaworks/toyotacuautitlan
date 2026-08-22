@@ -77,10 +77,13 @@
 - [ ] Integrar API de CRM(s) en /api/cotizacion y /api/cita
 - [ ] Notificación por email al equipo de ventas cuando llega un lead
 
-### Flujo de trabajo con equipo — pendiente de poner en marcha
-- [ ] Compartir .env.local con Raúl por canal seguro
-- [ ] Adoptar ramas por tarea + Pull Requests (hoy todo va directo a main)
-- [ ] Definir revisión cruzada antes de fusionar a main
+### Flujo de trabajo con equipo
+- [x] Compartir .env.local con Raúl por canal seguro
+- [x] Repo clonado por Raúl, npm install + npm run dev verificados
+- [x] Acordar convención de trabajo (21 de agosto de 2026): rama por tarea + `git pull` antes
+      de empezar + registro en CHANGELOG.md — sin Pull Request con aprobación humana obligatoria
+      (descartado a propósito, ninguno de los dos puede revisar código del otro). Documentado en
+      AGENTS.md, CLAUDE.md y RESUMEN-TECNICO.md.
 - [ ] Confirmar acceso de Raúl a Vercel
 - [ ] Asignar secciones del proyecto para no duplicar esfuerzo entre Beto y Raúl
 

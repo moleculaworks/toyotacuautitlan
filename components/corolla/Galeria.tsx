@@ -2,17 +2,28 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import { galeriaExterior, galeriaInterior } from '@/lib/data/corolla'
+
+export interface GaleriaImagen {
+  src: string
+  lqip?: string
+}
 
 type Tab = 'exterior' | 'interior'
 
-export default function Galeria() {
+export default function Galeria({
+  exterior,
+  interior,
+}: {
+  exterior: GaleriaImagen[]
+  interior: GaleriaImagen[]
+}) {
   const [tab, setTab] = useState<Tab>('exterior')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
-  const items = tab === 'exterior' ? galeriaExterior : galeriaInterior
+  const items = tab === 'exterior' ? exterior : interior
   const total = items.length
+  const tabLabel = tab === 'exterior' ? 'Exterior' : 'Interior'
 
   const navLightbox = useCallback(
     (dir: number) => setLightboxIndex((i) => (i + dir + total) % total),
@@ -66,17 +77,17 @@ export default function Galeria() {
       <div className="grid grid-cols-3 max-[880px]:grid-cols-2 gap-2.5">
         {items.map((item, idx) => (
           <button
-            key={item.src}
+            key={idx}
             onClick={() => {
               setLightboxIndex(idx)
               setLightboxOpen(true)
             }}
             className="group aspect-[4/3] relative overflow-hidden cursor-pointer border-none p-0 bg-[#F0F0F0]"
-            aria-label={`Ampliar: ${item.label}`}
+            aria-label={`Ampliar: Corolla ${tabLabel} ${idx + 1}`}
           >
             <Image
               src={item.src}
-              alt={item.label}
+              alt={`Corolla ${tabLabel} ${idx + 1}`}
               fill
               className="object-cover"
               sizes="(max-width: 880px) 50vw, 33vw"
@@ -103,7 +114,7 @@ export default function Galeria() {
           style={{ background: 'rgba(0,0,0,0.93)', animation: 'lbIn .2s ease' }}
           role="dialog"
           aria-modal="true"
-          aria-label={items[lightboxIndex].label}
+          aria-label={`Corolla ${tabLabel} ${lightboxIndex + 1}`}
         >
           <button
             onClick={() => setLightboxOpen(false)}
@@ -125,7 +136,7 @@ export default function Galeria() {
             <div className="w-full aspect-[4/3] relative">
               <Image
                 src={items[lightboxIndex].src}
-                alt={items[lightboxIndex].label}
+                alt={`Corolla ${tabLabel} ${lightboxIndex + 1}`}
                 fill
                 className="object-contain"
                 sizes="88vw"
@@ -142,9 +153,6 @@ export default function Galeria() {
           </button>
 
           <div className="absolute bottom-7 left-1/2 -translate-x-1/2 text-center flex flex-col gap-1.5 items-center pointer-events-none">
-            <span className="text-white/75 text-sm font-medium whitespace-nowrap">
-              {items[lightboxIndex].label}
-            </span>
             <span className="text-white/50 text-xs">
               {lightboxIndex + 1} / {total}
             </span>

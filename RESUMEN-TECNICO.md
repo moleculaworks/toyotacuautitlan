@@ -170,13 +170,15 @@ Este ya es el caso en curso. Estado al 21 de agosto de 2026:
 1. ~~Invitarlo a GitHub~~ ✅ hecho — acceso de escritura confirmado sobre `moleculaworks/toyotacuautitlan`.
 2. ~~Invitarlo a Sanity~~ ✅ hecho — conectado con su propio usuario, rol confirmado.
 3. **Revisar que el repo esté limpio antes de que clone.** Se auditó el repositorio completo (todos los archivos trackeados, tamaños y posibles archivos sueltos tipo `.DS_Store`, capturas de pantalla, documentos personales) y **no se encontró ningún archivo ajeno al sitio** — todo lo que está en el repo es código, configuración, imágenes del Corolla, fuentes y documentación del propio proyecto. Si en algún momento se identifica algo específico que sobra, se puede eliminar puntualmente con `git rm`.
-4. **Compartir el archivo `.env.local`** (ver punto 9) por un canal seguro — no por chat abierto ni email. Sin este archivo, el proyecto no corre en su máquina. **Pendiente.**
-5. **Definir la convención de trabajo antes de que ambos programen en paralelo** — hoy todo el equipo trabaja directo sobre `main`. Con dos personas escribiendo código a la vez, eso genera conflictos. Lo mínimo recomendable, y **pendiente de poner en marcha**:
-   - Cada quien trabaja en su propia rama (`git checkout -b nombre-de-la-tarea`) en vez de directo sobre `main`.
-   - Subir cambios vía Pull Request en vez de push directo.
-   - Revisión cruzada antes de fusionar a `main`.
-   - Esto evita que un `git push` de una persona borre o pise el trabajo de la otra sin que nadie se dé cuenta.
-6. **Que clone el repositorio y corra `npm install`** para instalar las dependencias, y `npm run dev` para levantar el proyecto en su computadora. **Pendiente** — depende de que primero tenga el `.env.local` (paso 4).
+4. ~~Compartir el archivo `.env.local`~~ ✅ hecho — Raúl ya lo tiene configurado en su máquina.
+5. **Convención de trabajo — acordada el 21 de agosto de 2026.** Con dos personas escribiendo código, el riesgo era que un `git push` de una persona pisara sin querer el trabajo de la otra. Se consideró un esquema de Pull Request con revisión y aprobación humana, pero se descartó a propósito: ninguno de los dos tiene el conocimiento técnico para evaluar el código del otro, así que ese paso solo agregaría fricción sin beneficio real. El acuerdo final es más ligero:
+   - `git pull` antes de empezar cualquier tarea.
+   - Rama por tarea (`git checkout -b nombre-de-la-tarea`) — solo para aislar el trabajo, no para que alguien lo revise.
+   - Subir y fusionar a `main` directamente, sin esperar aprobación del otro.
+   - Registrar el cambio en `CHANGELOG.md` — reemplaza el rol que iba a cumplir la revisión de PR: enterarse de qué cambió el otro sin leer código.
+   - Cuando el cambio lo hace Claude Code, la revisión de código sí ocurre — la hace la IA antes de subir el cambio. Esa es la capa de control real.
+   - Este acuerdo también vive en `AGENTS.md`, para que cualquier sesión de Claude Code en este repo lo aplique automáticamente.
+6. ~~Que clone el repositorio y corra `npm install`~~ ✅ hecho — repo clonado, `.env.local` configurado, `npm run dev` verificado funcionando (homepage y `/modelos/corolla`).
 7. **Darle acceso a Vercel** — sin confirmar todavía.
 8. **Que lea `PROYECTO.md`** — el archivo de control del proyecto donde está el checklist completo de qué está hecho y qué falta, para que no reinvente ni repita trabajo ya resuelto.
 
