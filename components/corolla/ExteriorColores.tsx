@@ -1,11 +1,19 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { colores, ANGULOS_360, url360 } from '@/lib/data/corolla'
 
-// Visor 360: secuencia de 16 ángulos por color que se intercambian
-// al arrastrar (drag/swipe) o con las flechas. Las imágenes ya vienen
-// optimizadas (WebP ~40KB), se sirven directo sin pasar por next/image.
+// Visor 360: secuencia de N ángulos por color que se intercambian
+// al arrastrar (drag/swipe) o con las flechas. Las URLs ya vienen
+// redimensionadas desde Sanity (ver lib/sanity/image.ts), se sirven
+// directo sin pasar por next/image.
+
+export interface ColorExterior {
+  id: string
+  label: string
+  hex: string
+  needsBorder: boolean
+  imagenes: string[]
+}
 
 // Píxeles de arrastre necesarios para avanzar un ángulo
 const PX_POR_ANGULO = 25
@@ -21,33 +29,37 @@ function DragIcon() {
   )
 }
 
-export default function ExteriorColores() {
-  const [activeColor, setActiveColor] = useState('grisMetalico')
-  const [angulo, setAngulo] = useState(1) // 1..16
+export default function ExteriorColores({ colores }: { colores: ColorExterior[] }) {
+  const [activeColor, setActiveColor] = useState(colores[0]?.id)
+  const [angulo, setAngulo] = useState(1) // 1..N
   const [cargado, setCargado] = useState<Record<string, boolean>>({})
 
   const dragStart = useRef<{ x: number; angulo: number } | null>(null)
   const viewerRef = useRef<HTMLDivElement>(null)
 
-  const color = colores.find((c) => c.id === activeColor)!
+  const color = colores.find((c) => c.id === activeColor) ?? colores[0]
+  const totalAngulos = color.imagenes.length
 
-  // Precarga los 16 ángulos del color activo
+  // Precarga los ángulos del color activo
   useEffect(() => {
     if (cargado[activeColor]) return
-    let pendientes = ANGULOS_360
-    for (let i = 1; i <= ANGULOS_360; i++) {
+    let pendientes = totalAngulos
+    for (const src of color.imagenes) {
       const img = new window.Image()
       img.onload = img.onerror = () => {
         pendientes--
         if (pendientes === 0) setCargado((c) => ({ ...c, [activeColor]: true }))
       }
-      img.src = url360(color.carpeta, i)
+      img.src = src
     }
-  }, [activeColor, color.carpeta, cargado])
+  }, [activeColor, color.imagenes, totalAngulos, cargado])
 
-  const rotar = useCallback((dir: number) => {
-    setAngulo((a) => ((a - 1 + dir + ANGULOS_360) % ANGULOS_360) + 1)
-  }, [])
+  const rotar = useCallback(
+    (dir: number) => {
+      setAngulo((a) => ((a - 1 + dir + totalAngulos) % totalAngulos) + 1)
+    },
+    [totalAngulos]
+  )
 
   // Drag con pointer events (funciona mouse y touch)
   function onPointerDown(e: React.PointerEvent) {
@@ -60,7 +72,7 @@ export default function ExteriorColores() {
     const delta = e.clientX - dragStart.current.x
     const pasos = Math.round(delta / PX_POR_ANGULO)
     const nuevo =
-      ((dragStart.current.angulo - 1 - pasos) % ANGULOS_360 + ANGULOS_360) % ANGULOS_360 + 1
+      ((dragStart.current.angulo - 1 - pasos) % totalAngulos + totalAngulos) % totalAngulos + 1
     setAngulo(nuevo)
   }
 
@@ -80,11 +92,11 @@ export default function ExteriorColores() {
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
           role="img"
-          aria-label={`Corolla ${color.label} · vista 360, ángulo ${angulo} de ${ANGULOS_360}`}
+          aria-label={`Corolla ${color.label} · vista 360, ángulo ${angulo} de ${totalAngulos}`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={url360(color.carpeta, angulo)}
+            src={color.imagenes[angulo - 1]}
             alt=""
             draggable={false}
             className="w-full h-full object-contain pointer-events-none"

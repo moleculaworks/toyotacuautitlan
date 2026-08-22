@@ -27,6 +27,20 @@ export async function getModeloBySlug(slug: string) {
       descripcionCorta, caracteristicas,
       imagenPrincipal { asset->{ url, metadata { lqip } } },
       galeria[] { asset->{ url, metadata { lqip } } },
+      versiones[] {
+        nombre, precio, caracteristicas,
+        imagen { asset->{ url, metadata { lqip } } }
+      },
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      imagenDestacado { asset->{ url } },
+      imagenRendimiento { asset->{ url } },
+      coloresExterior[] {
+        label, hex, necesitaBorde,
+        imagenes360[] { asset->{ url } }
+      },
+      galeriaExteriorDetalle[] { asset->{ url, metadata { lqip } } },
+      galeriaInteriorDetalle[] { asset->{ url, metadata { lqip } } },
       seoTitulo, seoDescripcion
     }
   `, { slug })

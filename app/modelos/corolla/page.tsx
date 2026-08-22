@@ -3,9 +3,11 @@ import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
 import localFont from 'next/font/local'
 import VersionesCarousel from '@/components/corolla/VersionesCarousel'
-import ExteriorColores from '@/components/corolla/ExteriorColores'
+import ExteriorColores, { type ColorExterior } from '@/components/corolla/ExteriorColores'
 import Galeria from '@/components/corolla/Galeria'
 import { modelosSimilares } from '@/lib/data/corolla'
+import { getModeloBySlug } from '@/lib/sanity/queries'
+import { sanityImgWidth } from '@/lib/sanity/image'
 
 // Fuente de marca — pendiente confirmar licencia web antes del lanzamiento (nota del handoff)
 const toyotaType = localFont({
@@ -52,7 +54,7 @@ function CheckIcon() {
   )
 }
 
-function HeroPicture() {
+function HeroPicture({ desktopUrl, mobileUrl }: { desktopUrl: string; mobileUrl: string }) {
   const common = {
     alt: 'Toyota Corolla 2026 · ¾ ángulo frontal',
     sizes: '100vw',
@@ -64,13 +66,13 @@ function HeroPicture() {
     ...common,
     width: 1600,
     height: 1200,
-    src: '/images/corolla/corolla-hero-mobile@2x.webp',
+    src: mobileUrl,
   })
   const { props: rest } = getImageProps({
     ...common,
     width: 1920,
     height: 680,
-    src: '/images/corolla/corolla2.webp',
+    src: desktopUrl,
   })
 
   return (
@@ -85,13 +87,53 @@ function HeroPicture() {
   )
 }
 
-export default function CorollaPage() {
+export default async function CorollaPage() {
+  const modelo = await getModeloBySlug('corolla')
+  const versiones = modelo?.versiones ?? []
+
+  const coloresExterior: ColorExterior[] = (modelo?.coloresExterior ?? []).map(
+    (c: {
+      label: string
+      hex: string
+      necesitaBorde: boolean
+      imagenes360: { asset?: { url: string } }[]
+    }) => ({
+      id: c.label,
+      label: c.label,
+      hex: c.hex,
+      needsBorder: c.necesitaBorde,
+      imagenes: c.imagenes360
+        .filter((img) => img.asset?.url)
+        .map((img) => sanityImgWidth(img.asset!.url, 700)),
+    })
+  )
+
+  const galeriaExterior = (modelo?.galeriaExteriorDetalle ?? [])
+    .filter((img: { asset?: { url: string } }) => img.asset?.url)
+    .map((img: { asset: { url: string; metadata?: { lqip?: string } } }) => ({
+      src: img.asset.url,
+      lqip: img.asset.metadata?.lqip,
+    }))
+  const galeriaInterior = (modelo?.galeriaInteriorDetalle ?? [])
+    .filter((img: { asset?: { url: string } }) => img.asset?.url)
+    .map((img: { asset: { url: string; metadata?: { lqip?: string } } }) => ({
+      src: img.asset.url,
+      lqip: img.asset.metadata?.lqip,
+    }))
+
+  const heroDesktopUrl = modelo?.heroDesktop?.asset?.url ?? '/images/corolla/corolla2.webp'
+  const heroMobileUrl =
+    modelo?.heroMobile?.asset?.url ?? '/images/corolla/corolla-hero-mobile@2x.webp'
+  const imagenDestacadoUrl = modelo?.imagenDestacado?.asset?.url ?? '/images/corolla/TSS.webp'
+  const imagenRendimientoUrl =
+    modelo?.imagenRendimiento?.asset?.url ?? '/images/corolla/corolla-rendimiento.webp'
+
   return (
     <div className={`${toyotaType.className} bg-white text-[#111] antialiased`}>
       {/* § 1 · HERO */}
       <section id="hero" className="relative overflow-hidden bg-[#D8D8D8] max-[880px]:bg-white h-[clamp(420px,42vw,560px)] max-[880px]:h-auto">
         <div className="absolute inset-0 max-[880px]:relative max-[880px]:h-[260px]">
-          <HeroPicture />
+          <HeroPicture desktopUrl={heroDesktopUrl} mobileUrl={heroMobileUrl} />
           {/* Gradiente blanco para legibilidad — solo desktop */}
           <div
             className="absolute inset-0 pointer-events-none max-[880px]:hidden"
@@ -240,7 +282,7 @@ export default function CorollaPage() {
             </div>
           </div>
 
-          <VersionesCarousel />
+          <VersionesCarousel versiones={versiones} />
 
           <p className="text-xs text-[#777] mt-5 leading-[1.6]">
             Precios y especificaciones sujetos a cambio sin previo aviso. Las imágenes mostradas
@@ -282,7 +324,7 @@ export default function CorollaPage() {
               Diseño que impone
             </h2>
           </div>
-          <ExteriorColores />
+          <ExteriorColores colores={coloresExterior} />
         </div>
       </section>
 
@@ -325,7 +367,7 @@ export default function CorollaPage() {
           </div>
           <div className="aspect-[4/3] bg-white overflow-hidden relative">
             <Image
-              src="/images/corolla/TSS.webp"
+              src={imagenDestacadoUrl}
               alt="Toyota Safety Sense"
               fill
               className="object-cover"
@@ -380,7 +422,7 @@ export default function CorollaPage() {
               El auto más vendido del mundo
             </h2>
           </div>
-          <Galeria />
+          <Galeria exterior={galeriaExterior} interior={galeriaInterior} />
         </div>
       </section>
 
@@ -389,7 +431,7 @@ export default function CorollaPage() {
         <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 grid grid-cols-2 max-[880px]:grid-cols-1 gap-20 max-[880px]:gap-8 items-center">
           <div className="aspect-[4/3] max-[880px]:max-h-[300px] bg-white overflow-hidden relative">
             <Image
-              src="/images/corolla/corolla-rendimiento.webp"
+              src={imagenRendimientoUrl}
               alt="Corolla · vista trasera ¾"
               fill
               className="object-contain"

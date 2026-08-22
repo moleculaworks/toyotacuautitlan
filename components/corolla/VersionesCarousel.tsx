@@ -2,16 +2,22 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { versiones } from '@/lib/data/corolla'
+
+export interface VersionSanity {
+  nombre: string
+  precio: number
+  caracteristicas: string[]
+  imagen?: { asset?: { url: string; metadata?: { lqip?: string } } }
+}
 
 const CARDS_VISIBLE = 4
-const TOTAL_CARDS = versiones.length
-const MAX_INDEX = TOTAL_CARDS - CARDS_VISIBLE
 
-const dotLabels = ['1–4', '2–5', '3–6']
-
-export default function VersionesCarousel() {
+export default function VersionesCarousel({ versiones }: { versiones: VersionSanity[] }) {
   const [index, setIndex] = useState(0)
+
+  const TOTAL_CARDS = versiones.length
+  const MAX_INDEX = Math.max(0, TOTAL_CARDS - CARDS_VISIBLE)
+  const dotLabels = Array.from({ length: MAX_INDEX + 1 }, (_, d) => `${d + 1}–${d + CARDS_VISIBLE}`)
 
   const canPrev = index > 0
   const canNext = index < MAX_INDEX
@@ -102,7 +108,7 @@ function VersionCard({
   isLast,
   mobile,
 }: {
-  version: (typeof versiones)[number]
+  version: VersionSanity
   isLast?: boolean
   mobile?: boolean
 }) {
@@ -120,13 +126,15 @@ function VersionCard({
       }
     >
       <div className="aspect-video bg-white overflow-hidden flex items-center justify-center relative">
-        <Image
-          src={version.imagen}
-          alt={`Corolla ${version.nombre}`}
-          fill
-          className="object-contain"
-          sizes="(max-width: 880px) 264px, 25vw"
-        />
+        {version.imagen?.asset?.url && (
+          <Image
+            src={version.imagen.asset.url}
+            alt={`Corolla ${version.nombre}`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 880px) 264px, 25vw"
+          />
+        )}
       </div>
       <div className="bg-[#F7F7F7] px-[22px] pt-[22px] pb-[18px] border-b border-[#E8E8E8]">
         <h3 className="text-2xl font-semibold text-[#111] tracking-tight leading-[1.1]">
@@ -134,7 +142,7 @@ function VersionCard({
         </h3>
         <div className="mt-2 flex items-baseline gap-1.5">
           <span className="text-[22px] font-semibold text-[#EB0A1E] tracking-tight">
-            {version.precio}
+            ${version.precio.toLocaleString('es-MX')}
           </span>
           <span className="text-xs font-medium text-[#EB0A1E] opacity-70">MXN</span>
         </div>
