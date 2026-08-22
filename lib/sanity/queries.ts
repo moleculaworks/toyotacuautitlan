@@ -26,7 +26,6 @@ export async function getModeloBySlug(slug: string) {
       _id, nombre, slug, categoria, anio, precioDesde, descripcion,
       descripcionCorta, caracteristicas, heroSubtitulo,
       imagenPrincipal { asset->{ url, metadata { lqip } } },
-      galeria[] { asset->{ url, metadata { lqip } } },
       versiones[] {
         nombre, precio, caracteristicas,
         imagen { asset->{ url, metadata { lqip } } }

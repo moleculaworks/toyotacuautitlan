@@ -2,14 +2,18 @@ export interface Modelo {
   _id: string
   nombre: string
   slug: { current: string }
-  categoria: 'sedan' | 'suv' | 'pickup' | 'hatchback' | 'hibrido' | 'van' | 'comercial'
+  categoria:
+    | 'Sedanes & Hatchbacks'
+    | "Suv's & Minivans"
+    | "Pickup's & Comerciales"
+    | 'Toyota Gazoo Racing'
+    | 'Híbridos Eléctricos (HEV y PHEV)'
   precioDesde: number
   descripcionCorta?: string
   descripcion?: unknown[]
   caracteristicas?: { icono?: string; titulo: string; valor: string }[]
   destacado?: boolean
   imagenPrincipal?: { asset: { url: string; metadata: { lqip: string } } }
-  galeria?: { asset: { url: string; metadata: { lqip: string } } }[]
   seoTitulo?: string
   seoDescripcion?: string
 }

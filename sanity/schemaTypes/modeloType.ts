@@ -55,12 +55,6 @@ export const modeloType = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
-      name: 'galeria',
-      title: 'Galería de imágenes',
-      type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
-    }),
-    defineField({
       name: 'descripcionCorta',
       title: 'Descripción corta (para tarjetas)',
       type: 'text',
