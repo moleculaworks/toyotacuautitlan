@@ -29,9 +29,9 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(links).map(([section, items]) => (
             <div key={section}>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
+              <p className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
                 {section}
-              </h3>
+              </p>
               <ul className="space-y-2">
                 {items.map((item) => (
                   <li key={item.href}>

@@ -93,6 +93,29 @@ todo el sitio — 2 en el Corolla, 44 en el resto de las páginas y componentes
 
 ---
 
+## 4. Jerarquía de encabezados (h1–h3)
+
+El nivel del tag (`h1`/`h2`/`h3`) refleja jerarquía semántica del documento,
+nunca tamaño visual — el tamaño se controla con clases de Tailwind. Nunca
+saltar un nivel (ej. `h1` directo a `h3`).
+
+| Nivel | Uso |
+|---|---|
+| `h1` | Una sola vez por página. En páginas de modelo: el nombre del modelo en el Hero. En el resto de páginas: el título principal de la página (ej. "Catálogo de modelos", "Contacto"). |
+| `h2` | Cada sección de contenido con título visible dentro de la página (Versiones, Exterior, Tecnología, Seguridad, Galería, Rendimiento, CTAs, Modelos similares). También el título de cada tarjeta en un listado cuando no hay ningún `h2` de sección entre el `h1` y las tarjetas (ej. catálogo, promociones). |
+| `h3` | Subtítulos o títulos de ítem *dentro* de una sección `h2` (ej. nombre de cada versión dentro de la sección "Versiones", "Colores disponibles" dentro de "Exterior"). |
+
+Secciones sin título propio (intro, barra de highlights justo después del
+Hero) no llevan encabezado — no son secciones nuevas, son continuación visual
+del `h1`.
+
+Encabezados de columna en el Footer (landmark `<footer>`, fuera del flujo de
+contenido principal) no usan tag de heading — son labels visuales de cada
+grupo de links, no secciones del documento; usar un `<p>` con el mismo
+estilo en vez de `h3` para no generar un salto de nivel en cada página.
+
+---
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño
