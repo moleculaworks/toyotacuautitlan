@@ -24,15 +24,22 @@ export const modeloType = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Sedán', value: 'sedan' },
-          { title: 'SUV', value: 'suv' },
-          { title: 'Pick-up', value: 'pickup' },
-          { title: 'Hatchback', value: 'hatchback' },
-          { title: 'Híbrido', value: 'hibrido' },
+          'Sedanes & Hatchbacks',
+          "Suv's & Minivans",
+          "Pickup's & Comerciales",
+          'Toyota Gazoo Racing',
+          'Híbridos Eléctricos (HEV y PHEV)',
         ],
         layout: 'radio',
       },
       validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'anio',
+      title: 'Año del modelo (ej: 2026)',
+      type: 'number',
+      validation: (r) => r.required().min(2020).max(2035),
+      group: 'detalle',
     }),
     defineField({
       name: 'precioDesde',
@@ -62,21 +69,24 @@ export const modeloType = defineType({
     }),
     defineField({
       name: 'descripcion',
-      title: 'Descripción completa',
+      title: 'Texto introductorio (debajo del Hero)',
+      description: 'Párrafo de presentación del modelo, justo debajo del Hero.',
       type: 'array',
       of: [{ type: 'block' }],
     }),
     defineField({
       name: 'caracteristicas',
-      title: 'Características principales',
+      title: 'Barra de datos destacados (debajo del Hero)',
+      description:
+        'Ej: Motor, Pasajeros, Tracción, Tecnología — cada modelo puede tener datos distintos (una pick-up podría usar "Capacidad de carga" en vez de "Pasajeros").',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
-            { name: 'icono', title: 'Ícono (emoji o nombre)', type: 'string' },
-            { name: 'titulo', title: 'Título', type: 'string' },
-            { name: 'valor', title: 'Valor', type: 'string' },
+            { name: 'icono', title: 'Ícono (un emoji, ej: 🔧)', type: 'string' },
+            { name: 'titulo', title: 'Título (ej: Motor)', type: 'string' },
+            { name: 'valor', title: 'Valor (ej: 2.0L · 168 HP)', type: 'string' },
           ],
           preview: {
             select: { title: 'titulo', subtitle: 'valor' },
@@ -122,6 +132,14 @@ export const modeloType = defineType({
       title: 'Hero (móvil)',
       type: 'image',
       group: 'detalle',
+    }),
+    defineField({
+      name: 'heroSubtitulo',
+      title: 'Frase bajo el nombre (Hero)',
+      description: 'Ej: "El sedán más vendido del mundo. Por algo será."',
+      type: 'text',
+      rows: 2,
+      group: 'secciones',
     }),
     defineField({
       name: 'versiones',
@@ -175,11 +193,61 @@ export const modeloType = defineType({
       ],
     }),
     defineField({
+      name: 'exteriorTitulo',
+      title: 'Título de sección "Exterior"',
+      description: 'Ej: "Diseño que impone"',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
       name: 'imagenDestacado',
       title: 'Imagen del destacado (ej: Tecnología / Safety Sense)',
       type: 'image',
       options: { hotspot: true },
       group: 'detalle',
+    }),
+    defineField({
+      name: 'destacadoEyebrow',
+      title: 'Etiqueta del destacado',
+      description: 'Ej: "Tecnología" — puede variar por modelo, no siempre es tecnología.',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'destacadoTitulo',
+      title: 'Título del destacado',
+      description: 'Ej: "Toyota Safety Sense"',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'destacadoTexto',
+      title: 'Texto del destacado',
+      type: 'text',
+      rows: 4,
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'seguridadTitulo',
+      title: 'Título de sección "Seguridad"',
+      description: 'Ej: "Seguridad es mi segundo nombre"',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'seguridadTexto',
+      title: 'Texto de sección "Seguridad"',
+      type: 'text',
+      rows: 3,
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'seguridadItems',
+      title: 'Elementos de seguridad (lista)',
+      description: 'Ej: "8 bolsas de aire", "Frenos ABS + EBD" — el número de elementos puede variar por modelo.',
+      type: 'array',
+      of: [{ type: 'string' }],
+      group: 'secciones',
     }),
     defineField({
       name: 'galeriaExteriorDetalle',
@@ -196,16 +264,66 @@ export const modeloType = defineType({
       of: [{ type: 'image', options: { hotspot: true } }],
     }),
     defineField({
+      name: 'galeriaTitulo',
+      title: 'Título de sección "Galería"',
+      description: 'Ej: "El auto más vendido del mundo"',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
       name: 'imagenRendimiento',
       title: 'Imagen de rendimiento',
       type: 'image',
       options: { hotspot: true },
       group: 'detalle',
     }),
+    defineField({
+      name: 'rendimientoEyebrow',
+      title: 'Etiqueta de sección "Rendimiento"',
+      description: 'Ej: "Modo Ahorro" — en un eléctrico podría ser "Autonomía y Carga".',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'rendimientoTitulo',
+      title: 'Título de sección "Rendimiento"',
+      description: 'Ej: "Muévete, ahorra y contribuye"',
+      type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'rendimientoTexto',
+      title: 'Texto de sección "Rendimiento"',
+      type: 'text',
+      rows: 3,
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'rendimientoFilas',
+      title: 'Tabla de rendimiento (filas)',
+      description:
+        'Ej: Transmisión "CVT" con valor "19.14 KM/L". El número de filas y las unidades pueden variar por modelo.',
+      type: 'array',
+      group: 'secciones',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'transmision', title: 'Transmisión (ej: CVT, HEV)', type: 'string', validation: (r) => r.required() },
+            { name: 'valor', title: 'Valor (ej: 19.14)', type: 'string', validation: (r) => r.required() },
+            { name: 'unidad', title: 'Unidad (ej: KM/L)', type: 'string', initialValue: 'KM/L' },
+          ],
+          preview: {
+            select: { title: 'transmision', subtitle: 'valor' },
+          },
+        },
+      ],
+    }),
   ],
   groups: [
     { name: 'seo', title: 'SEO' },
     { name: 'detalle', title: 'Detalle de página (versiones, 360°, galería)' },
+    { name: 'secciones', title: 'Textos de sección (exterior, destacado, seguridad, galería, rendimiento)' },
   ],
   orderings: [
     {
