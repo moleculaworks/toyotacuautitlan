@@ -54,9 +54,17 @@ function CheckIcon() {
   )
 }
 
-function HeroPicture({ desktopUrl, mobileUrl }: { desktopUrl: string; mobileUrl: string }) {
+function HeroPicture({
+  desktopUrl,
+  mobileUrl,
+  nombreModelo,
+}: {
+  desktopUrl: string
+  mobileUrl: string
+  nombreModelo: string
+}) {
   const common = {
-    alt: 'Toyota Corolla 2026 · ¾ ángulo frontal',
+    alt: `Toyota ${nombreModelo} 2026 · ¾ ángulo frontal`,
     sizes: '100vw',
     priority: true,
   }
@@ -89,6 +97,7 @@ function HeroPicture({ desktopUrl, mobileUrl }: { desktopUrl: string; mobileUrl:
 
 export default async function CorollaPage() {
   const modelo = await getModeloBySlug('corolla')
+  const nombreModelo = modelo?.nombre ?? 'Corolla'
   const versiones = modelo?.versiones ?? []
 
   const coloresExterior: ColorExterior[] = (modelo?.coloresExterior ?? []).map(
@@ -104,7 +113,7 @@ export default async function CorollaPage() {
       needsBorder: c.necesitaBorde,
       imagenes: c.imagenes360
         .filter((img) => img.asset?.url)
-        .map((img) => sanityImgWidth(img.asset!.url, 700)),
+        .map((img) => sanityImgWidth(img.asset!.url, 950)),
     })
   )
 
@@ -133,7 +142,7 @@ export default async function CorollaPage() {
       {/* § 1 · HERO */}
       <section id="hero" className="relative overflow-hidden bg-[#D8D8D8] max-[880px]:bg-white h-[clamp(420px,42vw,560px)] max-[880px]:h-auto">
         <div className="absolute inset-0 max-[880px]:relative max-[880px]:h-[260px]">
-          <HeroPicture desktopUrl={heroDesktopUrl} mobileUrl={heroMobileUrl} />
+          <HeroPicture desktopUrl={heroDesktopUrl} mobileUrl={heroMobileUrl} nombreModelo={nombreModelo} />
           {/* Gradiente blanco para legibilidad — solo desktop */}
           <div
             className="absolute inset-0 pointer-events-none max-[880px]:hidden"
@@ -282,7 +291,7 @@ export default async function CorollaPage() {
             </div>
           </div>
 
-          <VersionesCarousel versiones={versiones} />
+          <VersionesCarousel versiones={versiones} nombreModelo={nombreModelo} />
 
           <p className="text-xs text-[#777] mt-5 leading-[1.6]">
             Precios y especificaciones sujetos a cambio sin previo aviso. Las imágenes mostradas
@@ -324,7 +333,7 @@ export default async function CorollaPage() {
               Diseño que impone
             </h2>
           </div>
-          <ExteriorColores colores={coloresExterior} />
+          <ExteriorColores colores={coloresExterior} nombreModelo={nombreModelo} />
         </div>
       </section>
 
@@ -422,7 +431,7 @@ export default async function CorollaPage() {
               El auto más vendido del mundo
             </h2>
           </div>
-          <Galeria exterior={galeriaExterior} interior={galeriaInterior} />
+          <Galeria exterior={galeriaExterior} interior={galeriaInterior} nombreModelo={nombreModelo} />
         </div>
       </section>
 
@@ -432,7 +441,7 @@ export default async function CorollaPage() {
           <div className="aspect-[4/3] max-[880px]:max-h-[300px] bg-white overflow-hidden relative">
             <Image
               src={imagenRendimientoUrl}
-              alt="Corolla · vista trasera ¾"
+              alt={`${nombreModelo} · vista trasera ¾`}
               fill
               className="object-contain"
               sizes="(max-width: 880px) 100vw, 50vw"

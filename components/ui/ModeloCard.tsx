@@ -24,6 +24,7 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
             src={modelo.imagenPrincipal.asset.url}
             alt={modelo.nombre}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             placeholder={modelo.imagenPrincipal.asset.metadata?.lqip ? 'blur' : 'empty'}
             blurDataURL={modelo.imagenPrincipal.asset.metadata?.lqip}

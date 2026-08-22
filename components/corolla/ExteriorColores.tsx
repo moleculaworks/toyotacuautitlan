@@ -29,13 +29,27 @@ function DragIcon() {
   )
 }
 
-export default function ExteriorColores({ colores }: { colores: ColorExterior[] }) {
+export default function ExteriorColores({
+  colores,
+  nombreModelo,
+}: {
+  colores: ColorExterior[]
+  nombreModelo: string
+}) {
   const [activeColor, setActiveColor] = useState(colores[0]?.id)
   const [angulo, setAngulo] = useState(1) // 1..N
   const [cargado, setCargado] = useState<Record<string, boolean>>({})
+  const [coloresAtEnd, setColoresAtEnd] = useState(false)
 
   const dragStart = useRef<{ x: number; angulo: number } | null>(null)
   const viewerRef = useRef<HTMLDivElement>(null)
+  const coloresScrollRef = useRef<HTMLDivElement>(null)
+
+  function onColoresScroll() {
+    const el = coloresScrollRef.current
+    if (!el) return
+    setColoresAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4)
+  }
 
   const color = colores.find((c) => c.id === activeColor) ?? colores[0]
   const totalAngulos = color.imagenes.length
@@ -92,7 +106,7 @@ export default function ExteriorColores({ colores }: { colores: ColorExterior[] 
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
           role="img"
-          aria-label={`Corolla ${color.label} · vista 360, ángulo ${angulo} de ${totalAngulos}`}
+          aria-label={`${nombreModelo} ${color.label} · vista 360, ángulo ${angulo} de ${totalAngulos}`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -156,46 +170,55 @@ export default function ExteriorColores({ colores }: { colores: ColorExterior[] 
         <h3 className="text-base font-semibold text-[#111] mb-6 max-[880px]:mb-4 tracking-tight">
           Colores disponibles
         </h3>
-        <div className="flex flex-col max-[880px]:flex-row max-[880px]:overflow-x-auto gap-1 max-[880px]:gap-2 max-[880px]:pb-2">
-          {colores.map((c) => {
-            const isActive = c.id === activeColor
-            return (
-              <button
-                key={c.id}
-                onClick={() => setActiveColor(c.id)}
-                className="flex items-center gap-3.5 px-3 py-2.5 border-none cursor-pointer w-full max-[880px]:w-auto max-[880px]:flex-shrink-0 text-left rounded transition-transform hover:bg-[#F4F4F4]"
-                style={{ background: isActive ? '#F8F8F8' : '#fff' }}
-              >
-                <span
-                  className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center"
-                  style={{
-                    background: c.hex,
-                    border: `1.5px solid ${
-                      isActive ? '#EB0A1E' : c.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
-                    }`,
-                  }}
+        <div className="relative">
+          <div
+            ref={coloresScrollRef}
+            onScroll={onColoresScroll}
+            className="flex flex-col max-[880px]:flex-row max-[880px]:overflow-x-auto gap-1 max-[880px]:gap-2 max-[880px]:pb-2"
+          >
+            {colores.map((c) => {
+              const isActive = c.id === activeColor
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => setActiveColor(c.id)}
+                  className="flex items-center gap-3.5 px-3 py-2.5 border-none cursor-pointer w-full max-[880px]:w-auto max-[880px]:flex-shrink-0 text-left rounded transition-transform hover:bg-[#F4F4F4]"
+                  style={{ background: isActive ? '#F8F8F8' : '#fff' }}
                 >
-                  {isActive && (
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path
-                        d="M2.5 7.5L5.5 10.5L11.5 4"
-                        stroke="#fff"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
-                </span>
-                <span
-                  className="text-sm text-[#333] max-[880px]:whitespace-nowrap"
-                  style={{ fontWeight: isActive ? 700 : 400 }}
-                >
-                  {c.label}
-                </span>
-              </button>
-            )
-          })}
+                  <span
+                    className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center"
+                    style={{
+                      background: c.hex,
+                      border: `1.5px solid ${
+                        isActive ? '#EB0A1E' : c.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
+                      }`,
+                    }}
+                  >
+                    {isActive && (
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path
+                          d="M2.5 7.5L5.5 10.5L11.5 4"
+                          stroke="#fff"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </span>
+                  <span
+                    className="text-sm text-[#333] max-[880px]:whitespace-nowrap"
+                    style={{ fontWeight: isActive ? 700 : 400 }}
+                  >
+                    {c.label}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+          {!coloresAtEnd && (
+            <div className="hidden max-[880px]:block absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          )}
         </div>
       </div>
     </div>
