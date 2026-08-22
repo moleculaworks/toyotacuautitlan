@@ -183,6 +183,15 @@ export const modeloType = defineType({
       ],
     }),
     defineField({
+      name: 'versionesTexto',
+      title: 'Texto breve de sección "Versiones"',
+      description: 'Frase corta debajo de "Elige tu versión", ~100-120 caracteres.',
+      type: 'text',
+      rows: 2,
+      validation: (r) => r.max(160),
+      group: 'secciones',
+    }),
+    defineField({
       name: 'coloresExterior',
       title: 'Colores y visor 360°',
       type: 'array',
@@ -212,6 +221,15 @@ export const modeloType = defineType({
       title: 'Título de sección "Exterior"',
       description: 'Ej: "Diseño que impone"',
       type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'exteriorTexto',
+      title: 'Texto breve de sección "Exterior"',
+      description: 'Frase corta debajo del título de Exterior, ~100-120 caracteres.',
+      type: 'text',
+      rows: 2,
+      validation: (r) => r.max(160),
       group: 'secciones',
     }),
     defineField({
@@ -283,6 +301,15 @@ export const modeloType = defineType({
       title: 'Título de sección "Galería"',
       description: 'Ej: "El auto más vendido del mundo"',
       type: 'string',
+      group: 'secciones',
+    }),
+    defineField({
+      name: 'galeriaTexto',
+      title: 'Texto breve de sección "Galería"',
+      description: 'Frase corta debajo del título de Galería, ~100-120 caracteres.',
+      type: 'text',
+      rows: 2,
+      validation: (r) => r.max(160),
       group: 'secciones',
     }),
     defineField({
