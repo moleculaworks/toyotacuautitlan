@@ -5,6 +5,23 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (16)
+
+### Ajustado — tamaño y nitidez del visor 360°
+Tras el cambio anterior (visor sin tope de ancho), Raúl reportó dos cosas:
+el auto quedó demasiado pegado a los botones de flecha, y se ve borrosa en
+escritorio. Se restauró un tope de ancho, ahora en `540px` (~15% más chico
+que el ancho sin tope, ~14% en la práctica: 630px→540px) — deja espacio
+otra vez entre el auto y los botones. Sobre el borroneo: se encontró que el
+código pedía las imágenes redimensionadas a Sanity a 950px de ancho — con
+el visor agrandado a 630px en pantallas retina/2x, hacían falta ~1260px
+reales, muy por encima de lo que se pedía. Los archivos fuente del visor
+360° están subidos a 1200×800px (spec documentada, no un error de carga),
+así que se ajustó la petición a 1200px — el techo real de nitidez
+disponible con los archivos actuales. Pedir más que eso (se probó 1400px)
+no ayuda: Sanity solo interpola/estira la imagen, no agrega detalle real.
+Documentado en la guía de imágenes en Obsidian.
+
 ## 2026-08-22 — Raúl (15)
 
 ### Cambiado — visor 360° más grande
