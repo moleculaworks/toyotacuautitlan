@@ -100,7 +100,7 @@ export default function ExteriorColores({
       <div className="flex-1 relative bg-white flex items-center justify-center min-h-[420px] max-desktop:min-h-[300px] overflow-hidden p-10 max-desktop:p-4">
         <div
           ref={viewerRef}
-          className="w-full max-w-[520px] aspect-[3/2] relative overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y"
+          className="w-full aspect-[3/2] relative overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}

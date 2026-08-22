@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (15)
+
+### Cambiado — visor 360° más grande
+El auto en el visor 360° (`ExteriorColores.tsx`) tenía un tope de
+`max-width: 520px` aunque el contenedor disponible medía 710px en
+desktop, dejando ~190px de espacio blanco sin usar a cada lado. Se quitó
+el tope — ahora el auto usa todo el ancho disponible (710px menos el
+padding existente), ~21% más grande, similar a la referencia de
+Toyota.mx que compartió Raúl. Sin cambios en mobile (el tope nunca
+aplicaba ahí, la pantalla ya es más angosta que 520px).
+
 ## 2026-08-22 — Raúl (14)
 
 ### Agregado — robots.txt de bloqueo temporal
