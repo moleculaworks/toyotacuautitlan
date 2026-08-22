@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 
 export interface VersionSanity {
@@ -11,9 +11,33 @@ export interface VersionSanity {
 }
 
 const CARDS_VISIBLE = 4
+const MOBILE_CARD_WIDTH = 264
+const MOBILE_GAP = 8
 
-export default function VersionesCarousel({ versiones }: { versiones: VersionSanity[] }) {
+export default function VersionesCarousel({
+  versiones,
+  nombreModelo,
+}: {
+  versiones: VersionSanity[]
+  nombreModelo: string
+}) {
   const [index, setIndex] = useState(0)
+  const [mobileIndex, setMobileIndex] = useState(0)
+  const [mobileAtEnd, setMobileAtEnd] = useState(false)
+  const mobileScrollRef = useRef<HTMLDivElement>(null)
+
+  function onMobileScroll() {
+    const el = mobileScrollRef.current
+    if (!el) return
+    const step = MOBILE_CARD_WIDTH + MOBILE_GAP
+    setMobileIndex(Math.round(el.scrollLeft / step))
+    setMobileAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4)
+  }
+
+  function goToMobileCard(d: number) {
+    const step = MOBILE_CARD_WIDTH + MOBILE_GAP
+    mobileScrollRef.current?.scrollTo({ left: d * step, behavior: 'smooth' })
+  }
 
   const TOTAL_CARDS = versiones.length
   const MAX_INDEX = Math.max(0, TOTAL_CARDS - CARDS_VISIBLE)
@@ -62,7 +86,12 @@ export default function VersionesCarousel({ versiones }: { versiones: VersionSan
             }}
           >
             {versiones.map((v, i) => (
-              <VersionCard key={v.nombre} version={v} isLast={i === TOTAL_CARDS - 1} />
+              <VersionCard
+                key={v.nombre}
+                version={v}
+                isLast={i === TOTAL_CARDS - 1}
+                nombreModelo={nombreModelo}
+              />
             ))}
           </div>
         </div>
@@ -92,12 +121,37 @@ export default function VersionesCarousel({ versiones }: { versiones: VersionSan
       </div>
 
       {/* Mobile: scroll horizontal nativo con snap */}
-      <div className="max-[880px]:flex hidden gap-2 overflow-x-auto pb-2 snap-x snap-mandatory">
-        {versiones.map((v) => (
-          <div key={v.nombre} className="w-[264px] min-w-[264px] max-w-[264px] flex-shrink-0 snap-start">
-            <VersionCard version={v} isLast mobile />
+      <div className="hidden max-[880px]:block relative">
+        <div
+          ref={mobileScrollRef}
+          onScroll={onMobileScroll}
+          className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory"
+        >
+          {versiones.map((v) => (
+            <div key={v.nombre} className="w-[264px] min-w-[264px] max-w-[264px] flex-shrink-0 snap-start">
+              <VersionCard version={v} isLast mobile nombreModelo={nombreModelo} />
+            </div>
+          ))}
+        </div>
+        {!mobileAtEnd && (
+          <div className="absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+        )}
+        {TOTAL_CARDS > 1 && (
+          <div className="flex justify-center items-center gap-1.5 mt-3">
+            {versiones.map((_, d) => (
+              <button
+                key={d}
+                onClick={() => goToMobileCard(d)}
+                aria-label={`Ir a la versión ${d + 1}`}
+                className="h-1.5 rounded-full border-none cursor-pointer p-0 transition-all"
+                style={{
+                  width: mobileIndex === d ? 18 : 6,
+                  background: mobileIndex === d ? '#EB0A1E' : '#CCC',
+                }}
+              />
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
@@ -107,10 +161,12 @@ function VersionCard({
   version,
   isLast,
   mobile,
+  nombreModelo,
 }: {
   version: VersionSanity
   isLast?: boolean
   mobile?: boolean
+  nombreModelo: string
 }) {
   return (
     <div
@@ -129,7 +185,7 @@ function VersionCard({
         {version.imagen?.asset?.url && (
           <Image
             src={version.imagen.asset.url}
-            alt={`Corolla ${version.nombre}`}
+            alt={`${nombreModelo} ${version.nombre}`}
             fill
             className="object-contain"
             sizes="(max-width: 880px) 264px, 25vw"

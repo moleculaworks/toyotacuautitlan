@@ -13,9 +13,11 @@ type Tab = 'exterior' | 'interior'
 export default function Galeria({
   exterior,
   interior,
+  nombreModelo,
 }: {
   exterior: GaleriaImagen[]
   interior: GaleriaImagen[]
+  nombreModelo: string
 }) {
   const [tab, setTab] = useState<Tab>('exterior')
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -83,11 +85,11 @@ export default function Galeria({
               setLightboxOpen(true)
             }}
             className="group aspect-[4/3] relative overflow-hidden cursor-pointer border-none p-0 bg-[#F0F0F0]"
-            aria-label={`Ampliar: Corolla ${tabLabel} ${idx + 1}`}
+            aria-label={`Ampliar: ${nombreModelo} ${tabLabel} ${idx + 1}`}
           >
             <Image
               src={item.src}
-              alt={`Corolla ${tabLabel} ${idx + 1}`}
+              alt={`${nombreModelo} ${tabLabel} ${idx + 1}`}
               fill
               className="object-cover"
               sizes="(max-width: 880px) 50vw, 33vw"
@@ -114,7 +116,7 @@ export default function Galeria({
           style={{ background: 'rgba(0,0,0,0.93)', animation: 'lbIn .2s ease' }}
           role="dialog"
           aria-modal="true"
-          aria-label={`Corolla ${tabLabel} ${lightboxIndex + 1}`}
+          aria-label={`${nombreModelo} ${tabLabel} ${lightboxIndex + 1}`}
         >
           <button
             onClick={() => setLightboxOpen(false)}
@@ -136,7 +138,7 @@ export default function Galeria({
             <div className="w-full aspect-[4/3] relative">
               <Image
                 src={items[lightboxIndex].src}
-                alt={`Corolla ${tabLabel} ${lightboxIndex + 1}`}
+                alt={`${nombreModelo} ${tabLabel} ${lightboxIndex + 1}`}
                 fill
                 className="object-contain"
                 sizes="88vw"
