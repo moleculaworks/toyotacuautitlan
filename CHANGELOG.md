@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (9)
+
+### Agregado — regla en AGENTS.md
+Se agregó a `AGENTS.md` la instrucción de consultar `SISTEMA-DE-DISENO.md` antes
+de cualquier decisión de diseño (ancho, breakpoints, colores, tipografía, jerarquía
+de encabezados) o al crear un componente/sección nueva — para que quede como base
+de las decisiones automáticamente, sin tener que pedirlo cada vez.
+
 ## 2026-08-22 — Raúl (8)
 
 ### Cambiado — reorganización de documentación
