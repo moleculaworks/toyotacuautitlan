@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (12)
+
+### Agregado — textos breves en Versiones, Exterior y Galería (SEO)
+A raíz de revisar qué tan delgado es el texto real de la página de modelo
+para SEO, se agregaron 3 campos nuevos al schema (`versionesTexto`,
+`exteriorTexto`, `galeriaTexto` — `text`, máx. 160 caracteres, mismo patrón
+que `seguridadTexto`) y se renderiza cada uno como un párrafo corto debajo
+del título de su sección respectiva, solo si está cargado. Contenido real
+del Corolla ya cargado y publicado en Sanity (~100 caracteres cada uno).
+Es un primer paso, no resuelve el tema de contenido delgado por completo —
+seguirá evaluándose más adelante.
+
 ## 2026-08-22 — Raúl (11)
 
 ### Cambiado — secciones condicionales por datos + sección "destacado" genérica

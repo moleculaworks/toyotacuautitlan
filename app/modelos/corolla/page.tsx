@@ -243,6 +243,11 @@ export default async function CorollaPage() {
                 <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
                   Elige tu versión
                 </h2>
+                {modelo?.versionesTexto && (
+                  <p className="text-base text-[#444] mt-2.5 max-w-[560px] leading-[1.6]">
+                    {modelo.versionesTexto}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -290,6 +295,11 @@ export default async function CorollaPage() {
                 <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
                   {modelo.exteriorTitulo}
                 </h2>
+              )}
+              {modelo?.exteriorTexto && (
+                <p className="text-base text-[#444] mt-2.5 max-w-[560px] leading-[1.6]">
+                  {modelo.exteriorTexto}
+                </p>
               )}
             </div>
             <ExteriorColores colores={coloresExterior} nombreModelo={nombreModelo} />
@@ -400,6 +410,11 @@ export default async function CorollaPage() {
                 <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
                   {modelo.galeriaTitulo}
                 </h2>
+              )}
+              {modelo?.galeriaTexto && (
+                <p className="text-base text-[#444] mt-2.5 max-w-[560px] leading-[1.6]">
+                  {modelo.galeriaTexto}
+                </p>
               )}
             </div>
             <Galeria exterior={galeriaExterior} interior={galeriaInterior} nombreModelo={nombreModelo} />
