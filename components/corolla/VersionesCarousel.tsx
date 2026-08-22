@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 
 export interface VersionSanity {
@@ -25,6 +25,25 @@ export default function VersionesCarousel({
   const [mobileIndex, setMobileIndex] = useState(0)
   const [mobileAtEnd, setMobileAtEnd] = useState(false)
   const mobileScrollRef = useRef<HTMLDivElement>(null)
+  const rowRef = useRef<HTMLDivElement>(null)
+  const [pitch, setPitch] = useState(0)
+
+  // Distancia real en px entre el inicio de una tarjeta y la siguiente
+  // (ancho + gap ya renderizados) — evita el desfase que da calcular el
+  // desplazamiento por porcentaje cuando el ancho de las tarjetas viene
+  // de un cálculo CSS (calc(25% - Npx)).
+  useEffect(() => {
+    function medir() {
+      const row = rowRef.current
+      if (!row || row.children.length < 2) return
+      const primera = row.children[0] as HTMLElement
+      const segunda = row.children[1] as HTMLElement
+      setPitch(segunda.offsetLeft - primera.offsetLeft)
+    }
+    medir()
+    window.addEventListener('resize', medir)
+    return () => window.removeEventListener('resize', medir)
+  }, [versiones.length])
 
   function onMobileScroll() {
     const el = mobileScrollRef.current
@@ -46,6 +65,7 @@ export default function VersionesCarousel({
   const canPrev = index > 0
   const canNext = index < MAX_INDEX
   const offset = -(index * (100 / CARDS_VISIBLE))
+  const transform = pitch ? `translateX(${-(index * pitch)}px)` : `translateX(${offset}%)`
 
   return (
     <div>
@@ -79,19 +99,15 @@ export default function VersionesCarousel({
 
         <div className="overflow-hidden">
           <div
-            className="flex"
+            ref={rowRef}
+            className="flex gap-2"
             style={{
-              transform: `translateX(${offset}%)`,
+              transform,
               transition: 'transform .35s cubic-bezier(.4,0,.2,1)',
             }}
           >
-            {versiones.map((v, i) => (
-              <VersionCard
-                key={v.nombre}
-                version={v}
-                isLast={i === TOTAL_CARDS - 1}
-                nombreModelo={nombreModelo}
-              />
+            {versiones.map((v) => (
+              <VersionCard key={v.nombre} version={v} nombreModelo={nombreModelo} />
             ))}
           </div>
         </div>
@@ -129,7 +145,7 @@ export default function VersionesCarousel({
         >
           {versiones.map((v) => (
             <div key={v.nombre} className="w-[264px] min-w-[264px] max-w-[264px] flex-shrink-0 snap-start">
-              <VersionCard version={v} isLast mobile nombreModelo={nombreModelo} />
+              <VersionCard version={v} mobile nombreModelo={nombreModelo} />
             </div>
           ))}
         </div>
@@ -159,25 +175,22 @@ export default function VersionesCarousel({
 
 function VersionCard({
   version,
-  isLast,
   mobile,
   nombreModelo,
 }: {
   version: VersionSanity
-  isLast?: boolean
   mobile?: boolean
   nombreModelo: string
 }) {
   return (
     <div
-      className="border-[1.5px] border-[#E0E0E0] bg-white flex flex-col h-full"
+      className="border-[1.5px] border-[#E0E0E0] bg-white flex flex-col"
       style={
         mobile
           ? undefined
           : {
               minWidth: 'calc(25% - 6px)',
               flex: '0 0 calc(25% - 6px)',
-              marginRight: isLast ? 0 : 8,
             }
       }
     >

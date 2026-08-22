@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
 import localFont from 'next/font/local'
+import { PortableText } from '@portabletext/react'
 import VersionesCarousel from '@/components/corolla/VersionesCarousel'
 import ExteriorColores, { type ColorExterior } from '@/components/corolla/ExteriorColores'
 import Galeria from '@/components/corolla/Galeria'
@@ -22,22 +23,50 @@ const toyotaType = localFont({
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  title: 'Toyota Corolla 2026 — Versiones y Precios',
-  description:
+// Respaldo del contenido real del Corolla — se usa solo si el campo
+// correspondiente todavía no se ha cargado en Sanity, para que la página
+// nunca se vea vacía. Es el mismo contenido que ya vive en el documento
+// del Corolla en Sanity (ver sección "Textos de sección" en el Studio).
+const FALLBACK = {
+  seoTitulo: 'Toyota Corolla 2026 — Versiones y Precios',
+  seoDescripcion:
     'Toyota Corolla 2026 desde $428,600 MXN. Conoce las 6 versiones CVT e híbridas, colores, galería y Toyota Safety Sense. Cotiza en Toyota Cuautitlán.',
+  categoria: 'Sedanes & Hatchbacks',
+  anio: 2026,
+  heroSubtitulo: 'El sedán más vendido del mundo.\nPor algo será.',
+  caracteristicas: [
+    { icono: '🔧', titulo: 'Motor', valor: '2.0L · 168 HP' },
+    { icono: '👥', titulo: 'Pasajeros', valor: '5' },
+    { icono: '⚙️', titulo: 'Tracción', valor: 'Delantera FWD' },
+    { icono: '🛡️', titulo: 'Tecnología', valor: 'Toyota Safety Sense' },
+  ],
+  exteriorTitulo: 'Diseño que impone',
+  destacadoEyebrow: 'Tecnología',
+  destacadoTitulo: 'Toyota Safety Sense',
+  destacadoTexto:
+    'Corolla incluye Toyota Safety Sense en versiones XLE y SE — un conjunto de sistemas de asistencia activa que detecta peatones, mantiene el carril, alerta cambios de vía y regula la velocidad automáticamente. Tecnología que trabaja contigo antes de que la necesites.',
+  seguridadTitulo: 'Seguridad es mi segundo nombre',
+  seguridadTexto:
+    'Una fama internacional construida con los componentes de seguridad y tecnología de conducción más avanzados.',
+  seguridadItems: [
+    '8 bolsas de aire',
+    'Frenos ABS + EBD',
+    'Seguros eléctricos',
+    'Seguros para niños en puertas traseras',
+    'Sistema ISO-FIX / LATCH',
+    'Alarmas e inmovilizados',
+    'Kit de seguridad',
+    'Control de estabilidad VSC',
+  ],
+  galeriaTitulo: 'El auto más vendido del mundo',
+  rendimientoEyebrow: 'Modo Ahorro',
+  rendimientoTitulo: 'Muévete, ahorra y contribuye',
+  rendimientoTexto: 'Tecnología pensada para maximizar cada gota. Rendimiento real, eficiencia medible.',
+  rendimientoFilas: [
+    { transmision: 'CVT', valor: '19.14', unidad: 'KM/L' },
+    { transmision: 'HEV', valor: '26.3', unidad: 'KM/L' },
+  ],
 }
-
-const seguridadItems = [
-  '8 bolsas de aire',
-  'Frenos ABS + EBD',
-  'Seguros eléctricos',
-  'Seguros para niños en puertas traseras',
-  'Sistema ISO-FIX / LATCH',
-  'Alarmas e inmovilizados',
-  'Kit de seguridad',
-  'Control de estabilidad VSC',
-]
 
 function CheckIcon() {
   return (
@@ -95,10 +124,43 @@ function HeroPicture({
   )
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+  const modelo = await getModeloBySlug('corolla')
+  return {
+    title: modelo?.seoTitulo ?? FALLBACK.seoTitulo,
+    description: modelo?.seoDescripcion ?? FALLBACK.seoDescripcion,
+  }
+}
+
 export default async function CorollaPage() {
   const modelo = await getModeloBySlug('corolla')
   const nombreModelo = modelo?.nombre ?? 'Corolla'
   const versiones = modelo?.versiones ?? []
+  const categoria = modelo?.categoria ?? FALLBACK.categoria
+  const anio = modelo?.anio ?? FALLBACK.anio
+  const heroSubtitulo = modelo?.heroSubtitulo ?? FALLBACK.heroSubtitulo
+  const caracteristicas: { icono?: string; titulo: string; valor: string }[] = modelo
+    ?.caracteristicas?.length
+    ? modelo.caracteristicas
+    : FALLBACK.caracteristicas
+  const exteriorTitulo = modelo?.exteriorTitulo ?? FALLBACK.exteriorTitulo
+  const destacadoEyebrow = modelo?.destacadoEyebrow ?? FALLBACK.destacadoEyebrow
+  const destacadoTitulo = modelo?.destacadoTitulo ?? FALLBACK.destacadoTitulo
+  const destacadoTexto = modelo?.destacadoTexto ?? FALLBACK.destacadoTexto
+  const seguridadTitulo = modelo?.seguridadTitulo ?? FALLBACK.seguridadTitulo
+  const seguridadTexto = modelo?.seguridadTexto ?? FALLBACK.seguridadTexto
+  const seguridadItems: string[] = modelo?.seguridadItems?.length
+    ? modelo.seguridadItems
+    : FALLBACK.seguridadItems
+  const galeriaTitulo = modelo?.galeriaTitulo ?? FALLBACK.galeriaTitulo
+  const rendimientoEyebrow = modelo?.rendimientoEyebrow ?? FALLBACK.rendimientoEyebrow
+  const rendimientoTitulo = modelo?.rendimientoTitulo ?? FALLBACK.rendimientoTitulo
+  const rendimientoTexto = modelo?.rendimientoTexto ?? FALLBACK.rendimientoTexto
+  const rendimientoFilas: { transmision: string; valor: string; unidad?: string }[] = modelo
+    ?.rendimientoFilas?.length
+    ? modelo.rendimientoFilas
+    : FALLBACK.rendimientoFilas
+  const modeloSlug = modelo?.slug?.current ?? 'corolla'
 
   const coloresExterior: ColorExterior[] = (modelo?.coloresExterior ?? []).map(
     (c: {
@@ -156,24 +218,22 @@ export default async function CorollaPage() {
         <div className="relative z-[1] max-w-[1200px] mx-auto px-6 max-[880px]:px-4 h-full flex items-center max-[880px]:h-auto max-[880px]:pt-8 max-[880px]:pb-11">
           <div className="w-[46%] max-[880px]:w-full flex flex-col gap-[18px] max-[880px]:text-center max-[880px]:items-center">
             <div>
-              <span className="inline-block border-[1.5px] border-[#666] text-[#555] text-xs font-semibold tracking-[3.5px] px-[15px] py-[5px]">
-                SEDANES &amp; HATCHBACKS
+              <span className="inline-block border-[1.5px] border-[#666] text-[#555] text-xs font-semibold tracking-[3.5px] px-[15px] py-[5px] uppercase">
+                {categoria}
               </span>
             </div>
             <h1 className="text-[clamp(40px,5.5vw,72px)] font-black tracking-[-.02em] leading-none text-black uppercase">
-              COROLLA
+              {nombreModelo}
             </h1>
-            <p className="text-[clamp(16px,1.6vw,18px)] font-semibold text-[#555] leading-[1.55] max-w-[340px]">
-              El sedán más vendido del mundo.
-              <br />
-              Por algo será.
+            <p className="text-[clamp(16px,1.6vw,18px)] font-semibold text-[#555] leading-[1.55] max-w-[340px] whitespace-pre-line">
+              {heroSubtitulo}
             </p>
             <div>
               <span className="text-[11px] font-semibold text-[#888] uppercase tracking-[1.5px] block mb-[5px]">
                 Desde
               </span>
               <span className="text-[clamp(24px,2.8vw,32px)] font-semibold text-[#111] tracking-tight">
-                $428,600 MXN
+                ${(modelo?.precioDesde ?? 428600).toLocaleString('es-MX')} MXN
               </span>
             </div>
             <div className="flex max-[880px]:flex-col max-[880px]:w-full gap-3">
@@ -199,75 +259,36 @@ export default async function CorollaPage() {
 
       {/* § 1.5 · INTRO */}
       <section id="intro" className="bg-white py-10">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4">
-          <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7]">
-            <span className="font-semibold">
-              Hay autos que funcionan. Y hay autos que te hacen querer manejar.
-            </span>{' '}
-            El Corolla es de los segundos. Con un diseño más definido, una cabina que equilibra
-            confort y tecnología, y un sistema de seguridad activa que trabaja contigo en cada
-            trayecto, es el sedán que combina todo lo que buscas sin sacrificar nada de lo que
-            necesitas.
-          </p>
+        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 [&_p]:text-[clamp(16px,1.2vw,18px)] [&_p]:text-[#1a1a1a] [&_p]:leading-[1.7] [&_strong]:font-semibold">
+          {modelo?.descripcion ? (
+            <PortableText value={modelo.descripcion} />
+          ) : (
+            <p>
+              <span className="font-semibold">
+                Hay autos que funcionan. Y hay autos que te hacen querer manejar.
+              </span>{' '}
+              El {nombreModelo} es de los segundos. Con un diseño más definido, una cabina que
+              equilibra confort y tecnología, y un sistema de seguridad activa que trabaja
+              contigo en cada trayecto, es el sedán que combina todo lo que buscas sin
+              sacrificar nada de lo que necesitas.
+            </p>
+          )}
         </div>
       </section>
 
       {/* § 1.7 · HIGHLIGHTS BAR */}
       <section id="highlights" className="bg-[#F5F5F5] py-5">
         <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 grid grid-cols-4 max-[880px]:grid-cols-2">
-          {[
-            {
-              label: 'Motor',
-              value: '2.0L · 168 HP',
-              icon: (
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EB0A1E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="7" width="20" height="10" rx="2" />
-                  <path d="M6 7V5h4v2" />
-                  <path d="M14 7V5h4v2" />
-                  <path d="M2 12h2M20 12h2" />
-                </svg>
-              ),
-            },
-            {
-              label: 'Pasajeros',
-              value: '5',
-              icon: (
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EB0A1E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="7" r="2.5" />
-                  <circle cx="15" cy="7" r="2.5" />
-                  <path d="M4 19c0-3.3 2.2-5.5 5-5.5h6c2.8 0 5 2.2 5 5.5" />
-                </svg>
-              ),
-            },
-            {
-              label: 'Tracción',
-              value: 'Delantera FWD',
-              icon: (
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EB0A1E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="9" />
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
-                </svg>
-              ),
-            },
-            {
-              label: 'Tecnología',
-              value: 'Toyota Safety Sense',
-              icon: (
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EB0A1E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 3l7 4v5c0 4.4-3 8.5-7 9.5C8 20.5 5 16.4 5 12V7l7-4z" />
-                  <path d="M9 12l2 2 4-4" />
-                </svg>
-              ),
-            },
-          ].map((h, i, arr) => (
-            <div key={h.label} className="relative flex flex-col items-center gap-1.5 px-3 py-4">
-              {h.icon}
+          {caracteristicas.map((h, i, arr) => (
+            <div key={h.titulo} className="relative flex flex-col items-center gap-1.5 px-3 py-4">
+              <span className="text-[28px] leading-none" aria-hidden="true">
+                {h.icono}
+              </span>
               <span className="text-[11px] font-semibold tracking-[2.5px] text-[#888] uppercase">
-                {h.label}
+                {h.titulo}
               </span>
               <span className="text-lg font-semibold text-[#111] tracking-tight text-center">
-                {h.value}
+                {h.valor}
               </span>
               {i < arr.length - 1 && (
                 <div className="absolute right-0 top-[20%] bottom-[20%] w-px bg-[#D8D8D8] max-[880px]:hidden" />
@@ -283,7 +304,7 @@ export default async function CorollaPage() {
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
               <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
-                Versiones 2026
+                Versiones {anio}
               </span>
               <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
                 Elige tu versión
@@ -330,7 +351,7 @@ export default async function CorollaPage() {
               Exterior
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
-              Diseño que impone
+              {exteriorTitulo}
             </h2>
           </div>
           <ExteriorColores colores={coloresExterior} nombreModelo={nombreModelo} />
@@ -349,7 +370,7 @@ export default async function CorollaPage() {
             </p>
           </div>
           <Link
-            href="/cotizacion?modelo=corolla"
+            href={`/cotizacion?modelo=${modeloSlug}`}
             className="flex-shrink-0 inline-block bg-white text-[#EB0A1E] px-11 py-[18px] text-[15px] font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-[#111] hover:text-white max-[880px]:w-full max-[880px]:text-center"
           >
             Solicitar cotización
@@ -362,22 +383,19 @@ export default async function CorollaPage() {
         <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 grid grid-cols-2 max-[880px]:grid-cols-1 gap-16 max-[880px]:gap-8 items-center">
           <div>
             <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
-              Tecnología
+              {destacadoEyebrow}
             </span>
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.05]">
-              Toyota Safety Sense
+              {destacadoTitulo}
             </h2>
             <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7] mt-5">
-              Corolla incluye Toyota Safety Sense en versiones XLE y SE — un conjunto de sistemas
-              de asistencia activa que detecta peatones, mantiene el carril, alerta cambios de vía
-              y regula la velocidad automáticamente. Tecnología que trabaja contigo antes de que
-              la necesites.
+              {destacadoTexto}
             </p>
           </div>
           <div className="aspect-[4/3] bg-white overflow-hidden relative">
             <Image
               src={imagenDestacadoUrl}
-              alt="Toyota Safety Sense"
+              alt={`${nombreModelo} · ${destacadoTitulo}`}
               fill
               className="object-cover"
               sizes="(max-width: 880px) 100vw, 50vw"
@@ -394,11 +412,10 @@ export default async function CorollaPage() {
               Seguridad
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-2 text-white leading-[1.05]">
-              Seguridad es mi segundo nombre
+              {seguridadTitulo}
             </h2>
             <p className="text-base text-white mt-3.5 max-w-[560px] leading-[1.6]">
-              Una fama internacional construida con los componentes de seguridad y tecnología de
-              conducción más avanzados.
+              {seguridadTexto}
             </p>
           </div>
 
@@ -428,7 +445,7 @@ export default async function CorollaPage() {
               Galería
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
-              El auto más vendido del mundo
+              {galeriaTitulo}
             </h2>
           </div>
           <Galeria exterior={galeriaExterior} interior={galeriaInterior} nombreModelo={nombreModelo} />
@@ -450,13 +467,13 @@ export default async function CorollaPage() {
 
           <div>
             <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
-              Modo Ahorro
+              {rendimientoEyebrow}
             </span>
             <h2 className="text-[clamp(26px,3.5vw,42px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.08]">
-              Muévete, ahorra y contribuye
+              {rendimientoTitulo}
             </h2>
             <p className="text-[15px] text-[#666] mt-3 leading-[1.6]">
-              Tecnología pensada para maximizar cada gota. Rendimiento real, eficiencia medible.
+              {rendimientoTexto}
             </p>
 
             <div className="mt-8 bg-[#F5F5F5] rounded-md overflow-hidden">
@@ -468,22 +485,19 @@ export default async function CorollaPage() {
                   Rendimiento de Combustible<sup className="text-[10px]">**</sup>
                 </div>
               </div>
-              {[
-                { trans: 'CVT', valor: '19.14' },
-                { trans: 'HEV', valor: '26.3' },
-              ].map((row, i) => (
+              {rendimientoFilas.map((row, i) => (
                 <div
-                  key={row.trans}
+                  key={row.transmision}
                   className={`grid grid-cols-2 ${i === 0 ? 'border-b border-[#E8E8E8]' : ''}`}
                 >
                   <div className="px-6 py-5 text-sm font-semibold text-[#EB0A1E] border-r border-[#E0E0E0]">
-                    {row.trans}
+                    {row.transmision}
                   </div>
                   <div className="px-6 py-5 flex items-baseline gap-1.5">
                     <span className="text-[32px] font-semibold text-[#EB0A1E] tracking-[-.02em]">
                       {row.valor}
                     </span>
-                    <span className="text-[13px] font-semibold text-[#888]">KM/L</span>
+                    <span className="text-[13px] font-semibold text-[#888]">{row.unidad}</span>
                   </div>
                 </div>
               ))}
@@ -502,14 +516,14 @@ export default async function CorollaPage() {
       <section id="final-cta" className="bg-black py-24 max-[880px]:py-16">
         <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 text-center flex flex-col items-center gap-4">
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] min-[881px]:whitespace-nowrap">
-            ¿Listo para manejar tu Corolla?
+            ¿Listo para manejar tu {nombreModelo}?
           </h2>
           <p className="text-[clamp(15px,1.8vw,18px)] text-white/60 max-w-[440px] leading-[1.6]">
             Un asesor te contactará a la brevedad.
           </p>
           <div className="mt-2 max-[880px]:w-full">
             <Link
-              href="/cotizacion?modelo=corolla"
+              href={`/cotizacion?modelo=${modeloSlug}`}
               className="inline-block bg-white text-black px-14 py-5 text-base font-semibold no-underline tracking-[.3px] transition-colors hover:bg-[#EBEBEB] max-[880px]:w-full"
             >
               Solicitar cotización

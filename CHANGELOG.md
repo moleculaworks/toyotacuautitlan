@@ -5,6 +5,65 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (3)
+
+### Corregido
+- Bug en el carrusel de versiones (`VersionesCarousel.tsx`): la última tarjeta perdía el
+  borde derecho porque el desplazamiento del carrusel se calculaba por porcentaje
+  (asumiendo un ancho de tarjeta que no coincidía exactamente con el CSS real), acumulando
+  un desfase de unos pixeles. Se cambió a medir la distancia real entre tarjetas ya
+  renderizadas y desplazar por esa cantidad exacta en px — elimina el desfase de raíz.
+- Altura despareja entre tarjetas de versión: tenían `height: 100%` sin que el contenedor
+  padre tuviera una altura definida, lo que rompía el `align-items: stretch` automático de
+  Flexbox. Se quitó esa clase y ahora las tarjetas igualan su altura a la más alta,
+  como debe ser por defecto.
+
+### Agregado — auditoría de contenido antes de replicar a otros modelos
+Antes de replicar el patrón del Corolla a los 19 modelos restantes, se hizo una revisión
+completa de qué contenido de la página está realmente conectado a Sanity vs. hardcodeado
+en el código (ver detalle de la conversación). Se encontró que buena parte de las secciones
+—incluyendo campos que ya existían en el schema pero nunca se leían en el código
+(`descripcion`, `caracteristicas`)— estaban fijas en `page.tsx`, lo cual habría heredado
+los mismos huecos multiplicado por cada modelo nuevo.
+
+- **Schema (`sanity/schemaTypes/modeloType.ts`):**
+  - Nuevo campo `anio` (número) — reemplaza el texto fijo "Versiones 2026"; ahora "Versiones
+    {año}" se lee de Sanity, así que en 2027 solo hay que editar el campo, no el código.
+  - `categoria` actualizado a las 5 categorías reales del negocio (Sedanes & Hatchbacks,
+    Suv's & Minivans, Pickup's & Comerciales, Toyota Gazoo Racing, Híbridos Eléctricos
+    (HEV y PHEV)) — antes tenía un enum genérico (sedán/SUV/pickup/hatchback/híbrido) que no
+    coincidía con las categorías reales del catálogo.
+  - Nuevos campos de contenido por sección (grupo "Textos de sección" en el Studio):
+    `heroSubtitulo`, `exteriorTitulo`, `destacadoEyebrow`/`destacadoTitulo`/`destacadoTexto`,
+    `seguridadTitulo`/`seguridadTexto`/`seguridadItems`, `galeriaTitulo`,
+    `rendimientoEyebrow`/`rendimientoTitulo`/`rendimientoTexto`/`rendimientoFilas`.
+  - Campos `descripcion` (intro) y `caracteristicas` (barra de datos destacados debajo del
+    Hero) ya existían pero nunca se consumían en el código — ahora sí.
+- **`app/modelos/corolla/page.tsx`:**
+  - Todas las secciones anteriores ahora leen de Sanity con un valor de respaldo (constante
+    `FALLBACK`) que replica el contenido actual del Corolla, para que la página nunca se vea
+    vacía si un campo aún no se llenó en Sanity.
+  - `descripcion` se renderiza con `@portabletext/react` (nueva dependencia) en vez de texto
+    fijo.
+  - Barra de datos destacados (Motor/Pasajeros/Tracción/Tecnología): pasó de 4 tarjetas fijas
+    con SVGs a un array dinámico con emoji como ícono — permite que cada modelo tenga datos
+    distintos (ej. una pick-up podría mostrar "Capacidad de carga" en vez de "Pasajeros").
+  - `<title>`/`<meta description>` (SEO) ahora usan `generateMetadata` leyendo
+    `seoTitulo`/`seoDescripcion` de Sanity en vez de estar fijos.
+  - Bugs puntuales corregidos: el `<h1>` decía "COROLLA" fijo en vez de usar `nombreModelo`;
+    el `alt` de la imagen de Tecnología no estaba parametrizado; los links de cotización
+    tenían `?modelo=corolla` fijo en dos lugares en vez de usar `slug.current`; el CTA final
+    decía "tu Corolla" fijo en vez de interpolar el nombre real del modelo.
+  - `components/ui/ModeloCard.tsx` y `app/modelos/page.tsx`: se quitó un mapeo de categorías
+    con el enum viejo (ya no aplicaba con las 5 categorías reales) y se actualizó el filtro
+    del catálogo a las categorías correctas.
+- **Contenido:** se cargó y publicó en Sanity todo el contenido real del Corolla para los
+  campos nuevos, para que la página deje de depender de los valores de respaldo en código.
+- **Pendiente (deferido a propósito):** la sección "Modelos similares" sigue usando datos
+  fijos de `lib/data/corolla.ts` con modelos que aún no existen como páginas reales — se
+  deja así hasta que haya más de un modelo publicado en Sanity, momento en el que debe
+  convertirse en una consulta real (excluyendo el modelo actual).
+
 ## 2026-08-22 — Raúl (2)
 
 ### Agregado

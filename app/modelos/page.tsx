@@ -10,13 +10,11 @@ export const metadata: Metadata = {
 
 const categorias = [
   { value: 'todos', label: 'Todos' },
-  { value: 'sedan', label: 'Sedán' },
-  { value: 'suv', label: 'SUV' },
-  { value: 'pickup', label: 'Pick-up' },
-  { value: 'hatchback', label: 'Hatchback' },
-  { value: 'hibrido', label: 'Híbrido' },
-  { value: 'van', label: 'Van' },
-  { value: 'comercial', label: 'Comercial' },
+  { value: 'Sedanes & Hatchbacks', label: 'Sedanes & Hatchbacks' },
+  { value: "Suv's & Minivans", label: "Suv's & Minivans" },
+  { value: "Pickup's & Comerciales", label: "Pickup's & Comerciales" },
+  { value: 'Toyota Gazoo Racing', label: 'Toyota Gazoo Racing' },
+  { value: 'Híbridos Eléctricos (HEV y PHEV)', label: 'Híbridos Eléctricos (HEV y PHEV)' },
 ]
 
 export default async function ModelosPage({
@@ -50,7 +48,11 @@ export default async function ModelosPage({
           {categorias.map((cat) => (
             <a
               key={cat.value}
-              href={cat.value === 'todos' ? '/modelos' : `/modelos?categoria=${cat.value}`}
+              href={
+                cat.value === 'todos'
+                  ? '/modelos'
+                  : `/modelos?categoria=${encodeURIComponent(cat.value)}`
+              }
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                 (categoria ?? 'todos') === cat.value
                   ? 'bg-[#EB0A1E] text-white border-[#EB0A1E]'

@@ -2,16 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Modelo } from '@/types'
 
-const categoriaLabel: Record<string, string> = {
-  sedan: 'Sedán',
-  suv: 'SUV',
-  pickup: 'Pick-up',
-  hatchback: 'Hatchback',
-  hibrido: 'Híbrido',
-  van: 'Van',
-  comercial: 'Comercial',
-}
-
 export default function ModeloCard({ modelo }: { modelo: Modelo }) {
   return (
     <Link
@@ -36,7 +26,7 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
         )}
         {modelo.categoria && (
           <span className="absolute top-3 left-3 bg-white text-[#1A1A1A] text-xs font-semibold px-2 py-1 rounded">
-            {categoriaLabel[modelo.categoria] ?? modelo.categoria}
+            {modelo.categoria}
           </span>
         )}
       </div>
