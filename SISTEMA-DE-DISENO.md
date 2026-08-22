@@ -102,7 +102,7 @@ saltar un nivel (ej. `h1` directo a `h3`).
 | Nivel | Uso |
 |---|---|
 | `h1` | Una sola vez por página. En páginas de modelo: el nombre del modelo en el Hero. En el resto de páginas: el título principal de la página (ej. "Catálogo de modelos", "Contacto"). |
-| `h2` | Cada sección de contenido con título visible dentro de la página (Versiones, Exterior, Tecnología, Seguridad, Galería, Rendimiento, CTAs, Modelos similares). También el título de cada tarjeta en un listado cuando no hay ningún `h2` de sección entre el `h1` y las tarjetas (ej. catálogo, promociones). |
+| `h2` | Cada sección de contenido con título visible dentro de la página (Versiones, Exterior, Destacado, Seguridad, Galería, Rendimiento, CTAs, Modelos similares). También el título de cada tarjeta en un listado cuando no hay ningún `h2` de sección entre el `h1` y las tarjetas (ej. catálogo, promociones). |
 | `h3` | Subtítulos o títulos de ítem *dentro* de una sección `h2` (ej. nombre de cada versión dentro de la sección "Versiones", "Colores disponibles" dentro de "Exterior"). |
 
 Secciones sin título propio (intro, barra de highlights justo después del

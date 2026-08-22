@@ -53,6 +53,9 @@
   - Fuente ToyotaType integrada en todo el sitio, no solo el Corolla (pendiente confirmar licencia web)
 - [x] Contenido de texto del Corolla 100% dirigido por Sanity (año, categoría real, textos de sección, íconos de marca) — ya no hay texto/dato fijo en código
 - [x] Base de diseño cerrada (22 de agosto): ancho/breakpoints/colores/tipografía consistentes en todo el sitio — ver `SISTEMA-DE-DISENO.md`
+- [x] Jerarquía de encabezados (h1-h3) auditada y corregida en todo el sitio — ver `SISTEMA-DE-DISENO.md` §4
+- [x] Secciones de la página de modelo se ocultan automáticamente si falta el dato en Sanity (se quitó el `FALLBACK` que mostraba contenido fijo del Corolla) — permite publicar un modelo nuevo con información parcial
+- [x] Textos breves de SEO en Versiones/Exterior/Galería (primer paso, no resuelve el tema de contenido delgado por completo)
 - [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
 - [x] Viewer 360° real: 7 colores × 16 ángulos, drag/swipe + flechas
@@ -89,6 +92,11 @@
       de empezar + registro en CHANGELOG.md — sin Pull Request con aprobación humana obligatoria
       (descartado a propósito, ninguno de los dos puede revisar código del otro). `AGENTS.md` es
       la fuente de verdad de este flujo — cualquier sesión de Claude Code en el repo lo lee solo.
+- [x] Regla de diseño (22 de agosto de 2026): consultar `SISTEMA-DE-DISENO.md` antes de cualquier
+      decisión de diseño o al crear un componente/sección nueva — documentado en `AGENTS.md`.
+- [x] Regla de publicación en Sanity (22 de agosto de 2026): el contenido se guarda como borrador
+      y solo se publica (se ve en vivo en el sitio) con confirmación explícita del dueño del
+      contenido — documentado en `AGENTS.md`.
 - [ ] Confirmar acceso de Raúl a Vercel
 - [ ] Asignar secciones del proyecto para no duplicar esfuerzo entre Beto y Raúl
 
