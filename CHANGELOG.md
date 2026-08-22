@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (17)
+
+### Corregido — tarjetas de versión desalineadas en mobile
+Raúl reportó que las tarjetas de versión no quedaban alineadas en mobile
+(bordes terminando a distinta altura). Causa: cada tarjeta va dentro de un
+contenedor que sí se estira parejo por el flex del carrusel (`align-items:
+stretch` por default), pero la tarjeta interna (`VersionCard`) no tenía
+`h-full` para llenar ese contenedor — se quedaba con su altura natural,
+distinta según cuántas características tenga cada versión. Es el mismo
+patrón que ya se había corregido en escritorio, pero al revés: ahí sobraba
+`h-full` (rompía el stretch), en mobile faltaba. Se agregó `h-full`
+condicional solo para la variante mobile de la tarjeta.
+
 ## 2026-08-22 — Raúl (16)
 
 ### Ajustado — tamaño y nitidez del visor 360°

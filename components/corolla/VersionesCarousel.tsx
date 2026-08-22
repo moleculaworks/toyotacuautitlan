@@ -184,7 +184,7 @@ function VersionCard({
 }) {
   return (
     <div
-      className="border-[1.5px] border-[#E0E0E0] bg-white flex flex-col"
+      className={`border-[1.5px] border-[#E0E0E0] bg-white flex flex-col ${mobile ? 'h-full' : ''}`}
       style={
         mobile
           ? undefined
