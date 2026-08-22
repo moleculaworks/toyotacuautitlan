@@ -78,7 +78,28 @@ export const modeloType = defineType({
         {
           type: 'object',
           fields: [
-            { name: 'icono', title: 'Ícono (un emoji, ej: 🔧)', type: 'string' },
+            {
+              name: 'icono',
+              title: 'Ícono',
+              type: 'string',
+              description:
+                'Set de íconos de marca ya diseñados en código (components/ui/HighlightIcon.tsx). Si necesitas un concepto que no está en la lista, pídelo antes de usar uno parecido.',
+              options: {
+                list: [
+                  { title: 'Motor', value: 'motor' },
+                  { title: 'Pasajeros', value: 'pasajeros' },
+                  { title: 'Tracción', value: 'traccion' },
+                  { title: 'Tecnología', value: 'tecnologia' },
+                  { title: 'Capacidad de carga', value: 'capacidad-carga' },
+                  { title: 'Potencia', value: 'potencia' },
+                  { title: 'Autonomía', value: 'autonomia' },
+                  { title: 'Remolque', value: 'remolque' },
+                  { title: 'Transmisión', value: 'transmision' },
+                  { title: 'Maletero / cajuela', value: 'maletero' },
+                  { title: 'Rendimiento de combustible', value: 'rendimiento' },
+                ],
+              },
+            },
             { name: 'titulo', title: 'Título (ej: Motor)', type: 'string' },
             { name: 'valor', title: 'Valor (ej: 2.0L · 168 HP)', type: 'string' },
           ],

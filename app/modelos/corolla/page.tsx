@@ -1,27 +1,14 @@
 import type { Metadata } from 'next'
 import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
-import localFont from 'next/font/local'
 import { PortableText } from '@portabletext/react'
+import HighlightIcon from '@/components/ui/HighlightIcon'
 import VersionesCarousel from '@/components/corolla/VersionesCarousel'
 import ExteriorColores, { type ColorExterior } from '@/components/corolla/ExteriorColores'
 import Galeria from '@/components/corolla/Galeria'
 import { modelosSimilares } from '@/lib/data/corolla'
 import { getModeloBySlug } from '@/lib/sanity/queries'
 import { sanityImgWidth } from '@/lib/sanity/image'
-
-// Fuente de marca — pendiente confirmar licencia web antes del lanzamiento (nota del handoff)
-const toyotaType = localFont({
-  src: [
-    { path: '../../fonts/ToyotaType-Book.ttf', weight: '400', style: 'normal' },
-    { path: '../../fonts/ToyotaType-BookIt.ttf', weight: '400', style: 'italic' },
-    { path: '../../fonts/ToyotaType-Semibold.ttf', weight: '600', style: 'normal' },
-    { path: '../../fonts/ToyotaType-SemiboldIt.ttf', weight: '600', style: 'italic' },
-    { path: '../../fonts/ToyotaType-Black.ttf', weight: '900', style: 'normal' },
-    { path: '../../fonts/ToyotaType-BlackIt.ttf', weight: '900', style: 'italic' },
-  ],
-  display: 'swap',
-})
 
 // Respaldo del contenido real del Corolla — se usa solo si el campo
 // correspondiente todavía no se ha cargado en Sanity, para que la página
@@ -35,10 +22,10 @@ const FALLBACK = {
   anio: 2026,
   heroSubtitulo: 'El sedán más vendido del mundo.\nPor algo será.',
   caracteristicas: [
-    { icono: '🔧', titulo: 'Motor', valor: '2.0L · 168 HP' },
-    { icono: '👥', titulo: 'Pasajeros', valor: '5' },
-    { icono: '⚙️', titulo: 'Tracción', valor: 'Delantera FWD' },
-    { icono: '🛡️', titulo: 'Tecnología', valor: 'Toyota Safety Sense' },
+    { icono: 'motor', titulo: 'Motor', valor: '2.0L · 168 HP' },
+    { icono: 'pasajeros', titulo: 'Pasajeros', valor: '5' },
+    { icono: 'traccion', titulo: 'Tracción', valor: 'Delantera FWD' },
+    { icono: 'tecnologia', titulo: 'Tecnología', valor: 'Toyota Safety Sense' },
   ],
   exteriorTitulo: 'Diseño que impone',
   destacadoEyebrow: 'Tecnología',
@@ -71,10 +58,10 @@ const FALLBACK = {
 function CheckIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="flex-shrink-0">
-      <circle cx="9" cy="9" r="9" fill="#EB0A1E" />
+      <circle cx="9" cy="9" r="9" fill="var(--toyota-red)" />
       <path
         d="M5 9.5L7.5 12L13 6.5"
-        stroke="#fff"
+        stroke="var(--background)"
         strokeWidth="1.8"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -118,7 +105,7 @@ function HeroPicture({
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       <img
         {...rest}
-        className="w-full h-full object-cover object-[right_center] max-[880px]:object-center"
+        className="w-full h-full object-cover object-[right_center] max-desktop:object-center"
       />
     </picture>
   )
@@ -200,14 +187,14 @@ export default async function CorollaPage() {
     modelo?.imagenRendimiento?.asset?.url ?? '/images/corolla/corolla-rendimiento.webp'
 
   return (
-    <div className={`${toyotaType.className} bg-white text-[#111] antialiased`}>
+    <div className="bg-background text-foreground antialiased">
       {/* § 1 · HERO */}
-      <section id="hero" className="relative overflow-hidden bg-[#D8D8D8] max-[880px]:bg-white h-[clamp(420px,42vw,560px)] max-[880px]:h-auto">
-        <div className="absolute inset-0 max-[880px]:relative max-[880px]:h-[260px]">
+      <section id="hero" className="relative overflow-hidden bg-[#D8D8D8] max-desktop:bg-white h-[clamp(420px,42vw,560px)] max-desktop:h-auto">
+        <div className="absolute inset-0 max-desktop:relative max-desktop:h-[260px]">
           <HeroPicture desktopUrl={heroDesktopUrl} mobileUrl={heroMobileUrl} nombreModelo={nombreModelo} />
           {/* Gradiente blanco para legibilidad — solo desktop */}
           <div
-            className="absolute inset-0 pointer-events-none max-[880px]:hidden"
+            className="absolute inset-0 pointer-events-none max-desktop:hidden"
             style={{
               background:
                 'linear-gradient(to right, #fff 20%, rgba(255,255,255,0.5) 32%, rgba(255,255,255,0) 44%)',
@@ -215,8 +202,8 @@ export default async function CorollaPage() {
           />
         </div>
 
-        <div className="relative z-[1] max-w-[1200px] mx-auto px-6 max-[880px]:px-4 h-full flex items-center max-[880px]:h-auto max-[880px]:pt-8 max-[880px]:pb-11">
-          <div className="w-[46%] max-[880px]:w-full flex flex-col gap-[18px] max-[880px]:text-center max-[880px]:items-center">
+        <div className="relative z-[1] max-w-7xl mx-auto px-6 max-desktop:px-4 h-full flex items-center max-desktop:h-auto max-desktop:pt-8 max-desktop:pb-11">
+          <div className="w-[46%] max-desktop:w-full flex flex-col gap-[18px] max-desktop:text-center max-desktop:items-center">
             <div>
               <span className="inline-block border-[1.5px] border-[#666] text-[#555] text-xs font-semibold tracking-[3.5px] px-[15px] py-[5px] uppercase">
                 {categoria}
@@ -232,14 +219,14 @@ export default async function CorollaPage() {
               <span className="text-[11px] font-semibold text-[#888] uppercase tracking-[1.5px] block mb-[5px]">
                 Desde
               </span>
-              <span className="text-[clamp(24px,2.8vw,32px)] font-semibold text-[#111] tracking-tight">
+              <span className="text-[clamp(24px,2.8vw,32px)] font-semibold text-foreground tracking-tight">
                 ${(modelo?.precioDesde ?? 428600).toLocaleString('es-MX')} MXN
               </span>
             </div>
-            <div className="flex max-[880px]:flex-col max-[880px]:w-full gap-3">
+            <div className="flex max-desktop:flex-col max-desktop:w-full gap-3">
               <a
                 href="#versiones"
-                className="inline-flex items-center justify-center gap-2.5 text-[#111] text-[13px] font-semibold tracking-[.3px] border-2 border-[#111] px-5 py-[11px] w-fit max-[880px]:w-full no-underline transition-colors hover:bg-[#EB0A1E] hover:border-[#EB0A1E] hover:text-white"
+                className="inline-flex items-center justify-center gap-2.5 text-foreground text-[13px] font-semibold tracking-[.3px] border-2 border-foreground px-5 py-[11px] w-fit max-desktop:w-full no-underline transition-colors hover:bg-toyota-red hover:border-toyota-red hover:text-white"
               >
                 Ver versiones y precios
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -259,7 +246,7 @@ export default async function CorollaPage() {
 
       {/* § 1.5 · INTRO */}
       <section id="intro" className="bg-white py-10">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 [&_p]:text-[clamp(16px,1.2vw,18px)] [&_p]:text-[#1a1a1a] [&_p]:leading-[1.7] [&_strong]:font-semibold">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 [&_p]:text-[clamp(16px,1.2vw,18px)] [&_p]:text-[#1a1a1a] [&_p]:leading-[1.7] [&_strong]:font-semibold">
           {modelo?.descripcion ? (
             <PortableText value={modelo.descripcion} />
           ) : (
@@ -277,21 +264,19 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 1.7 · HIGHLIGHTS BAR */}
-      <section id="highlights" className="bg-[#F5F5F5] py-5">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 grid grid-cols-4 max-[880px]:grid-cols-2">
+      <section id="highlights" className="bg-toyota-gray py-5">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 grid grid-cols-4 max-desktop:grid-cols-2">
           {caracteristicas.map((h, i, arr) => (
             <div key={h.titulo} className="relative flex flex-col items-center gap-1.5 px-3 py-4">
-              <span className="text-[28px] leading-none" aria-hidden="true">
-                {h.icono}
-              </span>
+              <HighlightIcon nombre={h.icono} />
               <span className="text-[11px] font-semibold tracking-[2.5px] text-[#888] uppercase">
                 {h.titulo}
               </span>
-              <span className="text-lg font-semibold text-[#111] tracking-tight text-center">
+              <span className="text-lg font-semibold text-foreground tracking-tight text-center">
                 {h.valor}
               </span>
               {i < arr.length - 1 && (
-                <div className="absolute right-0 top-[20%] bottom-[20%] w-px bg-[#D8D8D8] max-[880px]:hidden" />
+                <div className="absolute right-0 top-[20%] bottom-[20%] w-px bg-[#D8D8D8] max-desktop:hidden" />
               )}
             </div>
           ))}
@@ -299,11 +284,11 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 2 · VERSIONES Y PRECIOS */}
-      <section id="versiones" className="bg-white py-20 max-[880px]:py-[52px] border-t border-[#F0F0F0]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4">
+      <section id="versiones" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#F0F0F0]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
             <div>
-              <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+              <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
                 Versiones {anio}
               </span>
               <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
@@ -326,7 +311,7 @@ export default async function CorollaPage() {
             {/* Pendiente: enlace real al PDF de ficha técnica */}
             <a
               href="#"
-              className="inline-flex items-center gap-2 text-white no-underline text-sm font-semibold bg-[#EB0A1E] hover:bg-[#C5091A] px-7 py-[13px] transition-colors"
+              className="inline-flex items-center gap-2 text-white no-underline text-sm font-semibold bg-toyota-red hover:bg-toyota-red-dark px-7 py-[13px] transition-colors"
             >
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
                 <path
@@ -344,10 +329,10 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 3 · EXTERIOR Y COLORES */}
-      <section id="exterior" className="bg-white py-20 max-[880px]:py-[52px] border-t border-[#F0F0F0]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4">
+      <section id="exterior" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#F0F0F0]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
           <div className="mb-10">
-            <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+            <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
               Exterior
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
@@ -359,8 +344,8 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 5 · CTA INTERMEDIO */}
-      <section id="mid-cta" className="bg-[#EB0A1E] py-[72px] max-[880px]:py-12">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 flex max-[880px]:flex-col justify-between max-[880px]:justify-start items-center max-[880px]:items-start gap-7">
+      <section id="mid-cta" className="bg-toyota-red py-[72px] max-desktop:py-12">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 flex max-desktop:flex-col justify-between max-desktop:justify-start items-center max-desktop:items-start gap-7">
           <div>
             <h2 className="text-[clamp(24px,3.5vw,40px)] font-semibold text-white tracking-[-.02em] leading-[1.1]">
               ¿Listo para dar el siguiente paso?
@@ -371,7 +356,7 @@ export default async function CorollaPage() {
           </div>
           <Link
             href={`/cotizacion?modelo=${modeloSlug}`}
-            className="flex-shrink-0 inline-block bg-white text-[#EB0A1E] px-11 py-[18px] text-[15px] font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-[#111] hover:text-white max-[880px]:w-full max-[880px]:text-center"
+            className="flex-shrink-0 inline-block bg-white text-toyota-red px-11 py-[18px] text-[15px] font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-foreground hover:text-white max-desktop:w-full max-desktop:text-center"
           >
             Solicitar cotización
           </Link>
@@ -379,10 +364,10 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 4 · TECNOLOGÍA (TSS) */}
-      <section id="tecnologia" className="bg-[#F5F5F5] py-20 max-[880px]:py-[52px]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 grid grid-cols-2 max-[880px]:grid-cols-1 gap-16 max-[880px]:gap-8 items-center">
+      <section id="tecnologia" className="bg-toyota-gray py-20 max-desktop:py-[52px]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 grid grid-cols-2 max-desktop:grid-cols-1 gap-16 max-desktop:gap-8 items-center">
           <div>
-            <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+            <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
               {destacadoEyebrow}
             </span>
             <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.05]">
@@ -405,10 +390,10 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 4b · SEGURIDAD */}
-      <section id="seguridad" className="bg-[#111] py-20 max-[880px]:py-[52px]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4">
+      <section id="seguridad" className="bg-foreground py-20 max-desktop:py-[52px]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
           <div className="mb-12">
-            <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+            <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
               Seguridad
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-2 text-white leading-[1.05]">
@@ -419,18 +404,18 @@ export default async function CorollaPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 max-[880px]:grid-cols-1 border-t border-white/10">
+          <div className="grid grid-cols-2 max-desktop:grid-cols-1 border-t border-white/10">
             {seguridadItems.map((item, i) => (
               <div
                 key={item}
                 className={`flex items-center gap-4 py-5 border-b border-white/10 ${
                   i % 2 === 0
-                    ? 'pr-6 min-[881px]:border-r min-[881px]:border-r-white/10'
-                    : 'min-[881px]:pl-6'
+                    ? 'pr-6 desktop:border-r desktop:border-r-white/10'
+                    : 'desktop:pl-6'
                 }`}
               >
                 <CheckIcon />
-                <span className="text-[15px] text-white font-medium">{item}</span>
+                <span className="text-[15px] text-white font-semibold">{item}</span>
               </div>
             ))}
           </div>
@@ -438,10 +423,10 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 6 · GALERÍA */}
-      <section id="galeria" className="bg-white py-20 max-[880px]:py-[52px]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4">
+      <section id="galeria" className="bg-white py-20 max-desktop:py-[52px]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
           <div className="mb-9">
-            <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+            <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
               Galería
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
@@ -453,9 +438,9 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 7 · RENDIMIENTO */}
-      <section id="rendimiento" className="bg-white py-20 max-[880px]:py-[52px]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 grid grid-cols-2 max-[880px]:grid-cols-1 gap-20 max-[880px]:gap-8 items-center">
-          <div className="aspect-[4/3] max-[880px]:max-h-[300px] bg-white overflow-hidden relative">
+      <section id="rendimiento" className="bg-white py-20 max-desktop:py-[52px]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 grid grid-cols-2 max-desktop:grid-cols-1 gap-20 max-desktop:gap-8 items-center">
+          <div className="aspect-[4/3] max-desktop:max-h-[300px] bg-white overflow-hidden relative">
             <Image
               src={imagenRendimientoUrl}
               alt={`${nombreModelo} · vista trasera ¾`}
@@ -466,7 +451,7 @@ export default async function CorollaPage() {
           </div>
 
           <div>
-            <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+            <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
               {rendimientoEyebrow}
             </span>
             <h2 className="text-[clamp(26px,3.5vw,42px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.08]">
@@ -476,12 +461,12 @@ export default async function CorollaPage() {
               {rendimientoTexto}
             </p>
 
-            <div className="mt-8 bg-[#F5F5F5] rounded-md overflow-hidden">
+            <div className="mt-8 bg-toyota-gray rounded-md overflow-hidden">
               <div className="grid grid-cols-2 border-b-2 border-[#E0E0E0]">
-                <div className="px-6 py-[18px] text-sm font-semibold text-[#111] border-r border-[#E0E0E0]">
+                <div className="px-6 py-[18px] text-sm font-semibold text-foreground border-r border-[#E0E0E0]">
                   Transmisión
                 </div>
-                <div className="px-6 py-[18px] text-sm font-semibold text-[#111]">
+                <div className="px-6 py-[18px] text-sm font-semibold text-foreground">
                   Rendimiento de Combustible<sup className="text-[10px]">**</sup>
                 </div>
               </div>
@@ -490,11 +475,11 @@ export default async function CorollaPage() {
                   key={row.transmision}
                   className={`grid grid-cols-2 ${i === 0 ? 'border-b border-[#E8E8E8]' : ''}`}
                 >
-                  <div className="px-6 py-5 text-sm font-semibold text-[#EB0A1E] border-r border-[#E0E0E0]">
+                  <div className="px-6 py-5 text-sm font-semibold text-toyota-red border-r border-[#E0E0E0]">
                     {row.transmision}
                   </div>
                   <div className="px-6 py-5 flex items-baseline gap-1.5">
-                    <span className="text-[32px] font-semibold text-[#EB0A1E] tracking-[-.02em]">
+                    <span className="text-[32px] font-semibold text-toyota-red tracking-[-.02em]">
                       {row.valor}
                     </span>
                     <span className="text-[13px] font-semibold text-[#888]">{row.unidad}</span>
@@ -513,18 +498,18 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 8 · CTA FINAL */}
-      <section id="final-cta" className="bg-black py-24 max-[880px]:py-16">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4 text-center flex flex-col items-center gap-4">
-          <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] min-[881px]:whitespace-nowrap">
+      <section id="final-cta" className="bg-black py-24 max-desktop:py-16">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 text-center flex flex-col items-center gap-4">
+          <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] desktop:whitespace-nowrap">
             ¿Listo para manejar tu {nombreModelo}?
           </h2>
           <p className="text-[clamp(15px,1.8vw,18px)] text-white/60 max-w-[440px] leading-[1.6]">
             Un asesor te contactará a la brevedad.
           </p>
-          <div className="mt-2 max-[880px]:w-full">
+          <div className="mt-2 max-desktop:w-full">
             <Link
               href={`/cotizacion?modelo=${modeloSlug}`}
-              className="inline-block bg-white text-black px-14 py-5 text-base font-semibold no-underline tracking-[.3px] transition-colors hover:bg-[#EBEBEB] max-[880px]:w-full"
+              className="inline-block bg-white text-black px-14 py-5 text-base font-semibold no-underline tracking-[.3px] transition-colors hover:bg-[#EBEBEB] max-desktop:w-full"
             >
               Solicitar cotización
             </Link>
@@ -533,22 +518,22 @@ export default async function CorollaPage() {
       </section>
 
       {/* § 9 · MODELOS SIMILARES */}
-      <section id="similares" className="bg-[#F5F5F5] py-20 max-[880px]:py-[52px]">
-        <div className="max-w-[1200px] mx-auto px-6 max-[880px]:px-4">
+      <section id="similares" className="bg-toyota-gray py-20 max-desktop:py-[52px]">
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
           <div className="mb-9">
-            <span className="text-xs font-semibold tracking-[3px] text-[#EB0A1E] uppercase">
+            <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
               Modelos similares
             </span>
-            <h2 className="text-[clamp(24px,3.5vw,38px)] font-semibold tracking-[-.02em] mt-2 text-[#111] leading-[1.05]">
+            <h2 className="text-[clamp(24px,3.5vw,38px)] font-semibold tracking-[-.02em] mt-2 text-foreground leading-[1.05]">
               Descubre otras opciones
             </h2>
           </div>
 
-          <div className="grid grid-cols-3 max-[880px]:flex max-[880px]:overflow-x-auto gap-6 pb-1">
+          <div className="grid grid-cols-3 max-desktop:flex max-desktop:overflow-x-auto gap-6 pb-1">
             {modelosSimilares.map((m) => (
               <div
                 key={m.nombre}
-                className="bg-white border border-[#E8E8E8] flex flex-col max-[880px]:min-w-[80vw] max-[880px]:flex-shrink-0"
+                className="bg-white border border-[#E8E8E8] flex flex-col max-desktop:min-w-[80vw] max-desktop:flex-shrink-0"
               >
                 <div className="h-[180px] bg-white flex items-center justify-center overflow-hidden relative">
                   <Image
@@ -563,15 +548,15 @@ export default async function CorollaPage() {
                   <span className="border border-[#AAA] text-[10px] font-semibold tracking-[2px] px-2 py-[3px] text-[#777] uppercase self-start">
                     {m.categoria}
                   </span>
-                  <div className="text-[clamp(20px,2.5vw,26px)] font-semibold tracking-[-.02em] text-[#111] leading-none">
+                  <div className="text-[clamp(20px,2.5vw,26px)] font-semibold tracking-[-.02em] text-foreground leading-none">
                     {m.nombre}
                   </div>
                   <div className="text-sm text-[#555] mt-0.5">
-                    Desde <strong className="text-[#111] font-semibold">{m.precio}</strong>
+                    Desde <strong className="text-foreground font-semibold">{m.precio}</strong>
                   </div>
                   <Link
                     href={m.href}
-                    className="text-[#EB0A1E] text-sm font-semibold no-underline mt-auto pt-2 hover:underline"
+                    className="text-toyota-red text-sm font-semibold no-underline mt-auto pt-2 hover:underline"
                   >
                     Ver modelo →
                   </Link>

@@ -40,7 +40,7 @@ export default function ContactoPage() {
     <div className="bg-[#F5F5F5] min-h-screen">
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <h1 className="text-3xl font-bold text-[#1A1A1A]">Contacto</h1>
+          <h1 className="text-3xl font-semibold text-[#1A1A1A]">Contacto</h1>
           <p className="mt-2 text-gray-500">Estamos para ayudarte.</p>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default function ContactoPage() {
                   href={d.href}
                   target={d.href.startsWith('http') ? '_blank' : undefined}
                   rel={d.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="mt-4 inline-block text-sm font-medium text-[#EB0A1E] hover:underline"
+                  className="mt-4 inline-block text-sm font-semibold text-[#EB0A1E] hover:underline"
                 >
                   {d.ctaTexto} →
                 </a>

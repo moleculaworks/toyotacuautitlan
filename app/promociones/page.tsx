@@ -16,7 +16,7 @@ export default async function PromocionesPage() {
     <div className="bg-[#F5F5F5] min-h-screen">
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <h1 className="text-3xl font-bold text-[#1A1A1A]">Promociones</h1>
+          <h1 className="text-3xl font-semibold text-[#1A1A1A]">Promociones</h1>
           <p className="mt-2 text-gray-500">Ofertas vigentes en Toyota Cuautitlán</p>
         </div>
       </div>
@@ -45,7 +45,7 @@ export default async function PromocionesPage() {
                     <div className="absolute inset-0 flex items-center justify-center text-gray-300 text-sm">Sin imagen</div>
                   )}
                   {promo.etiqueta && (
-                    <span className="absolute top-3 left-3 bg-[#EB0A1E] text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="absolute top-3 left-3 bg-[#EB0A1E] text-white text-xs font-semibold px-3 py-1 rounded-full">
                       {promo.etiqueta}
                     </span>
                   )}
@@ -53,11 +53,11 @@ export default async function PromocionesPage() {
 
                 <div className="p-5 flex flex-col flex-1">
                   {promo.modelo && (
-                    <p className="text-xs font-medium text-[#EB0A1E] uppercase tracking-wide mb-1">
+                    <p className="text-xs font-semibold text-[#EB0A1E] uppercase tracking-wide mb-1">
                       Toyota {promo.modelo.nombre}
                     </p>
                   )}
-                  <h2 className="text-lg font-bold text-[#1A1A1A]">{promo.titulo}</h2>
+                  <h2 className="text-lg font-semibold text-[#1A1A1A]">{promo.titulo}</h2>
                   <p className="mt-2 text-sm text-gray-500 flex-1">{promo.descripcion}</p>
 
                   {promo.vigenciaHasta && (

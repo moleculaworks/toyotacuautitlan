@@ -8,7 +8,7 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
       href={`/modelos/${modelo.slug.current}`}
       className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100"
     >
-      <div className="relative aspect-[16/9] bg-[#F5F5F5]">
+      <div className="relative aspect-[16/9] bg-toyota-gray">
         {modelo.imagenPrincipal?.asset?.url ? (
           <Image
             src={modelo.imagenPrincipal.asset.url}
@@ -32,7 +32,7 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
       </div>
 
       <div className="p-4">
-        <h3 className="text-lg font-bold text-[#1A1A1A] group-hover:text-[#EB0A1E] transition-colors">
+        <h3 className="text-lg font-semibold text-[#1A1A1A] group-hover:text-toyota-red transition-colors">
           Toyota {modelo.nombre}
         </h3>
         {modelo.descripcionCorta && (
@@ -41,13 +41,13 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
         <div className="mt-3 flex items-center justify-between">
           <div>
             <p className="text-xs text-gray-400">Desde</p>
-            <p className="text-lg font-bold text-[#1A1A1A]">
+            <p className="text-lg font-semibold text-[#1A1A1A]">
               {modelo.precioDesde
                 ? `$${modelo.precioDesde.toLocaleString('es-MX')} MXN`
                 : 'Consultar precio'}
             </p>
           </div>
-          <span className="text-sm font-semibold text-[#EB0A1E] group-hover:underline">
+          <span className="text-sm font-semibold text-toyota-red group-hover:underline">
             Ver más →
           </span>
         </div>

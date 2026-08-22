@@ -51,23 +51,23 @@ export default function Galeria({
   return (
     <div>
       {/* Tabs */}
-      <div className="flex mb-7 border-[1.5px] border-[#111] w-fit">
+      <div className="flex mb-7 border-[1.5px] border-foreground w-fit">
         <button
           onClick={() => switchTab('exterior')}
           className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85"
           style={{
-            background: tab === 'exterior' ? '#111' : '#fff',
-            color: tab === 'exterior' ? '#fff' : '#555',
+            background: tab === 'exterior' ? 'var(--foreground)' : 'var(--background)',
+            color: tab === 'exterior' ? 'var(--background)' : '#555',
           }}
         >
           Exterior
         </button>
         <button
           onClick={() => switchTab('interior')}
-          className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85 border-l-[1.5px] border-l-[#111]"
+          className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85 border-l-[1.5px] border-l-foreground"
           style={{
-            background: tab === 'interior' ? '#111' : '#fff',
-            color: tab === 'interior' ? '#fff' : '#555',
+            background: tab === 'interior' ? 'var(--foreground)' : 'var(--background)',
+            color: tab === 'interior' ? 'var(--background)' : '#555',
             borderLeft: '1.5px solid #111',
           }}
         >
@@ -76,7 +76,7 @@ export default function Galeria({
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-3 max-[880px]:grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-3 max-desktop:grid-cols-2 gap-2.5">
         {items.map((item, idx) => (
           <button
             key={idx}
@@ -98,7 +98,7 @@ export default function Galeria({
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M15 3H21V9M21 3L13 11M9 21H3V15M3 21L11 13"
-                  stroke="#fff"
+                  stroke="var(--background)"
                   strokeWidth="2.2"
                   strokeLinecap="round"
                   strokeLinejoin="round"

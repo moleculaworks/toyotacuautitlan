@@ -95,9 +95,9 @@ export default function ExteriorColores({
   }
 
   return (
-    <div className="flex max-[880px]:flex-col items-stretch border border-[#EBEBEB]">
+    <div className="flex max-desktop:flex-col items-stretch border border-[#EBEBEB]">
       {/* Viewer 360 */}
-      <div className="flex-1 relative bg-white flex items-center justify-center min-h-[420px] max-[880px]:min-h-[300px] overflow-hidden p-10 max-[880px]:p-4">
+      <div className="flex-1 relative bg-white flex items-center justify-center min-h-[420px] max-desktop:min-h-[300px] overflow-hidden p-10 max-desktop:p-4">
         <div
           ref={viewerRef}
           className="w-full max-w-[520px] aspect-[3/2] relative overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y"
@@ -123,32 +123,32 @@ export default function ExteriorColores({
         </div>
 
         {/* Desktop: flechas flotantes a los lados + hint abajo */}
-        <span className="max-[880px]:hidden absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-[#888] pointer-events-none">
+        <span className="max-desktop:hidden absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-[#888] pointer-events-none">
           <DragIcon />
           Arrastra para girar
         </span>
         <button
           onClick={() => rotar(-1)}
           aria-label="Ángulo anterior"
-          className="max-[880px]:hidden absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
+          className="max-desktop:hidden absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-toyota-red hover:bg-toyota-red-dark border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
         >
           ‹
         </button>
         <button
           onClick={() => rotar(1)}
           aria-label="Ángulo siguiente"
-          className="max-[880px]:hidden absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#EB0A1E] hover:bg-[#C5091A] border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
+          className="max-desktop:hidden absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-toyota-red hover:bg-toyota-red-dark border-none text-white text-[22px] cursor-pointer flex items-center justify-center shadow-[0_4px_12px_rgba(235,10,30,0.3)]"
         >
           ›
         </button>
       </div>
 
       {/* Mobile: fila de controles debajo de la imagen — sin tapar el auto */}
-      <div className="min-[881px]:hidden flex items-center justify-center gap-4 py-3 border-t border-[#EBEBEB] bg-white">
+      <div className="desktop:hidden flex items-center justify-center gap-4 py-3 border-t border-[#EBEBEB] bg-white">
         <button
           onClick={() => rotar(-1)}
           aria-label="Ángulo anterior"
-          className="w-11 h-11 rounded-full bg-[#EB0A1E] border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
+          className="w-11 h-11 rounded-full bg-toyota-red border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
         >
           ‹
         </button>
@@ -159,22 +159,22 @@ export default function ExteriorColores({
         <button
           onClick={() => rotar(1)}
           aria-label="Ángulo siguiente"
-          className="w-11 h-11 rounded-full bg-[#EB0A1E] border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
+          className="w-11 h-11 rounded-full bg-toyota-red border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
         >
           ›
         </button>
       </div>
 
       {/* Panel de colores */}
-      <div className="w-[260px] max-[880px]:w-full flex-shrink-0 border-l max-[880px]:border-l-0 max-[880px]:border-t border-[#EBEBEB] bg-white px-7 py-8 max-[880px]:px-4 max-[880px]:py-5">
-        <h3 className="text-base font-semibold text-[#111] mb-6 max-[880px]:mb-4 tracking-tight">
+      <div className="w-[260px] max-desktop:w-full flex-shrink-0 border-l max-desktop:border-l-0 max-desktop:border-t border-[#EBEBEB] bg-white px-7 py-8 max-desktop:px-4 max-desktop:py-5">
+        <h3 className="text-base font-semibold text-foreground mb-6 max-desktop:mb-4 tracking-tight">
           Colores disponibles
         </h3>
         <div className="relative">
           <div
             ref={coloresScrollRef}
             onScroll={onColoresScroll}
-            className="flex flex-col max-[880px]:flex-row max-[880px]:overflow-x-auto gap-1 max-[880px]:gap-2 max-[880px]:pb-2"
+            className="flex flex-col max-desktop:flex-row max-desktop:overflow-x-auto gap-1 max-desktop:gap-2 max-desktop:pb-2"
           >
             {colores.map((c) => {
               const isActive = c.id === activeColor
@@ -182,15 +182,15 @@ export default function ExteriorColores({
                 <button
                   key={c.id}
                   onClick={() => setActiveColor(c.id)}
-                  className="flex items-center gap-3.5 px-3 py-2.5 border-none cursor-pointer w-full max-[880px]:w-auto max-[880px]:flex-shrink-0 text-left rounded transition-transform hover:bg-[#F4F4F4]"
-                  style={{ background: isActive ? '#F8F8F8' : '#fff' }}
+                  className="flex items-center gap-3.5 px-3 py-2.5 border-none cursor-pointer w-full max-desktop:w-auto max-desktop:flex-shrink-0 text-left rounded transition-transform hover:bg-[#F4F4F4]"
+                  style={{ background: isActive ? '#F8F8F8' : 'var(--background)' }}
                 >
                   <span
                     className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center"
                     style={{
                       background: c.hex,
                       border: `1.5px solid ${
-                        isActive ? '#EB0A1E' : c.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
+                        isActive ? 'var(--toyota-red)' : c.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
                       }`,
                     }}
                   >
@@ -198,7 +198,7 @@ export default function ExteriorColores({
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <path
                           d="M2.5 7.5L5.5 10.5L11.5 4"
-                          stroke="#fff"
+                          stroke="var(--background)"
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -207,7 +207,7 @@ export default function ExteriorColores({
                     )}
                   </span>
                   <span
-                    className="text-sm text-[#333] max-[880px]:whitespace-nowrap"
+                    className="text-sm text-[#333] max-desktop:whitespace-nowrap"
                     style={{ fontWeight: isActive ? 700 : 400 }}
                   >
                     {c.label}
@@ -217,7 +217,7 @@ export default function ExteriorColores({
             })}
           </div>
           {!coloresAtEnd && (
-            <div className="hidden max-[880px]:block absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+            <div className="hidden max-desktop:block absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
           )}
         </div>
       </div>
