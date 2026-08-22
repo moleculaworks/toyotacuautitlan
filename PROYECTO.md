@@ -3,7 +3,7 @@
 ## ✅ Completado
 
 ### Infraestructura
-- [x] Scaffold Next.js 14 con TypeScript + Tailwind CSS
+- [x] Scaffold Next.js 16 con TypeScript + Tailwind CSS
 - [x] Instalación de dependencias (Sanity, React Hook Form, Zod, next-seo)
 - [x] Colores de marca Toyota configurados — ver `SISTEMA-DE-DISENO.md` para la referencia completa (colores, ancho de página, tipografía)
 - [x] Repositorio en GitHub: github.com/moleculaworks/toyotacuautitlan
@@ -47,7 +47,9 @@
     selector de 7 colores, TSS, CTA rojo intermedio, seguridad,
     galería con lightbox (exterior/interior), rendimiento, CTA final,
     modelos similares
-  - Fuente ToyotaType integrada (pendiente confirmar licencia web)
+  - Fuente ToyotaType integrada en todo el sitio, no solo el Corolla (pendiente confirmar licencia web)
+- [x] Contenido de texto del Corolla 100% dirigido por Sanity (año, categoría real, textos de sección, íconos de marca) — ya no hay texto/dato fijo en código
+- [x] Base de diseño cerrada (22 de agosto): ancho/breakpoints/colores/tipografía consistentes en todo el sitio — ver `SISTEMA-DE-DISENO.md`
 - [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
 - [x] Viewer 360° real: 7 colores × 16 ángulos, drag/swipe + flechas

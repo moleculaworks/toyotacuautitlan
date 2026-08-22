@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (7)
+
+### Corregido — auditoría de documentación
+A petición explícita, se auditó honestamente si `PROYECTO.md` y `RESUMEN-TECNICO.md`
+seguían al día. `RESUMEN-TECNICO.md` tenía información arquitectónica falsa:
+- Sección 4 (Imágenes) seguía describiendo las imágenes del Corolla como si vivieran
+  en `public/images/` del repo, con una recomendación "a evaluar" de moverlas a
+  Sanity — eso se resolvió el 21 de agosto, nunca se actualizó esta sección.
+- Sección 5 (Base de datos) seguía diciendo que los datos del Corolla "no están en
+  Sanity todavía" — también resuelto desde el 21 de agosto.
+- Sección 10 tenía una lista de "próximos pasos" desactualizada que contradecía el
+  resto del propio documento (pasos ya completados listados como pendientes).
+- `PROYECTO.md` decía "Next.js 14" (el proyecto corre en Next.js 16).
+
+Se corrigieron ambos documentos. También se actualizaron `CLAUDE.md` (local, no
+versionado) y su espejo en Obsidian, y la memoria de sesión de Claude Code — tenían
+el mismo tipo de drift (el visor 360° seguía mencionado en 700px en vez de 950px,
+y la barra de destacados todavía se describía con emoji en vez del set de íconos
+de marca).
+
 ## 2026-08-22 — Raúl (6)
 
 ### Cambiado
