@@ -12,7 +12,7 @@
 
 ### CMS — Sanity Studio
 - [x] Proyecto Sanity creado (Project ID: tuhugumb)
-- [x] Schema: Modelos (nombre, slug, categoría, precio, imágenes, características, SEO)
+- [x] Schema: Modelos — detalle completo de campos en `sanity/schemaTypes/modeloType.ts` (no se duplica aquí)
 - [x] Schema: Promociones (título, vigencia, modelo relacionado, activa/destacada)
 - [x] Schema: Configuración del sitio (teléfono, WhatsApp, dirección, horario, redes, banners)
 - [x] Studio disponible en: toyotacuautitlan.vercel.app/studio
@@ -21,7 +21,7 @@
 ### Páginas
 - [x] Homepage (/) — hero con CTA
 - [x] Catálogo (/modelos) — grid con filtros por categoría
-- [x] Detalle de modelo (/modelos/[slug]) — imagen, características, galería, CTA
+- [x] Detalle de modelo genérico (/modelos/[slug]) — plantilla de respaldo simple para modelos sin página dedicada (no confundir con /modelos/corolla, la página rica que es el patrón a replicar)
 - [x] Promociones (/promociones) — cards con vigencia
 - [x] Cotización (/cotizacion) — formulario validado
 - [x] Cita de servicio (/cita-de-servicio) — formulario validado
@@ -32,8 +32,11 @@
 - [x] API routes /api/cotizacion y /api/cita (listas para conectar CRMs)
 
 ### Equipo
-- [x] Raúl invitado a GitHub (moleculaworks/toyotacuautitlan) — acceso de escritura confirmado
-- [x] Raúl invitado a Sanity (proyecto tuhugumb) — conectado con raulpontones@gmail.com
+- [x] Raúl invitado a GitHub (moleculaworks/toyotacuautitlan) — acceso de escritura confirmado.
+      Token de acceso personal (PAT) configurado en el llavero de macOS — `git push` funciona
+      sin pedir credenciales cada vez
+- [x] Raúl invitado a Sanity (proyecto tuhugumb) — conectado con raulpontones@gmail.com,
+      confirmado vía MCP que el proyecto muestra 2 miembros
 - [x] Auditoría del repo: sin archivos ajenos al sitio, limpio para clonar
 
 ---
@@ -84,8 +87,8 @@
 - [x] Repo clonado por Raúl, npm install + npm run dev verificados
 - [x] Acordar convención de trabajo (21 de agosto de 2026): rama por tarea + `git pull` antes
       de empezar + registro en CHANGELOG.md — sin Pull Request con aprobación humana obligatoria
-      (descartado a propósito, ninguno de los dos puede revisar código del otro). Documentado en
-      AGENTS.md, CLAUDE.md y RESUMEN-TECNICO.md.
+      (descartado a propósito, ninguno de los dos puede revisar código del otro). `AGENTS.md` es
+      la fuente de verdad de este flujo — cualquier sesión de Claude Code en el repo lo lee solo.
 - [ ] Confirmar acceso de Raúl a Vercel
 - [ ] Asignar secciones del proyecto para no duplicar esfuerzo entre Beto y Raúl
 

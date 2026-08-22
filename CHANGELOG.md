@@ -5,6 +5,31 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (8)
+
+### Cambiado — reorganización de documentación
+A raíz de la auditoría anterior, se replanteó por qué `RESUMEN-TECNICO.md` se
+desactualiza tan seguido: mezclaba referencia estable (qué es cada plataforma,
+cómo se relacionan) con estado que cambia todo el tiempo (qué está resuelto,
+accesos confirmados, próximos pasos) — y ese segundo tipo de contenido requiere
+edición manual constante, a diferencia de `CHANGELOG.md` (solo se agrega, nunca
+se edita lo viejo) que por eso mismo nunca se desactualizó.
+
+- `RESUMEN-TECNICO.md` (221 → 187 líneas): se quitó todo el contenido de estado
+  vivo — la narrativa "Resuelto (fecha)" de cada sección ahora es una sola
+  frase con pointer a `CHANGELOG.md`; la tabla de "Estado de accesos de Raúl"
+  se quitó completa (ya vive en `PROYECTO.md` → Equipo); la sección 8 que
+  repetía casi palabra por palabra el flujo de trabajo de `AGENTS.md` ahora
+  solo lo referencia; se quitó la sección 10 completa ("Próximos pasos, en
+  orden"), que a esta altura contradecía al resto del propio documento.
+  También se corrigió "Rama principal: única rama en uso" — ya no es cierto,
+  se crean ramas por tarea rutinariamente (se fusionan y no quedan activas).
+- `PROYECTO.md`: absorbió el detalle operativo que sí vale la pena conservar
+  (PAT de GitHub en el llavero de macOS, confirmación de 2 miembros en Sanity
+  vía MCP) en la sección Equipo. También se aclaró que `/modelos/[slug]` es
+  la plantilla de respaldo genérica, no equivalente a la página rica del
+  Corolla — antes ambas aparecían igual de "completadas" en el checklist.
+
 ## 2026-08-22 — Raúl (7)
 
 ### Corregido — auditoría de documentación
