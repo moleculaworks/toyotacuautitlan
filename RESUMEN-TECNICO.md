@@ -1,6 +1,6 @@
 # Resumen Técnico — Proyecto Toyota Cuautitlán
 
-**Fecha del reporte:** 20 de agosto de 2026 · **Última actualización:** 21 de agosto de 2026
+**Fecha del reporte:** 20 de agosto de 2026 · **Última actualización:** 22 de agosto de 2026
 **Propósito:** documento de referencia completo para cualquier persona que se integre al proyecto — no asume contexto previo.
 
 ---
@@ -67,7 +67,7 @@ toyotacuautitlan/
 ├── lib/                     → Lógica que no es visual
 │   ├── sanity/                → Conexión y consultas al CMS (Sanity)
 │   ├── validations/           → Reglas de validación de los formularios (con Zod)
-│   └── data/                  → Datos específicos del Corolla (precios, versiones, colores)
+│   └── data/                  → Solo "modelos similares" del Corolla (fallback, pendiente migrar a Sanity) — el resto de sus datos ya vive en Sanity
 │
 ├── sanity/                  → Configuración del CMS: qué tipo de contenido existe
 │   └── schemaTypes/            → Define los "moldes" de contenido: Modelo, Promoción, Configuración
@@ -87,9 +87,9 @@ toyotacuautitlan/
 
 1. **Imágenes de contenido general** (banners, fotos que carga el equipo desde el panel de edición): se guardan dentro de **Sanity**, que tiene su propio sistema de almacenamiento de imágenes incluido. Se suben directo desde el Studio, sin tocar código.
 
-2. **Imágenes del sitio piloto del Corolla** (las 138 imágenes actuales, incluyendo el visor 360°): están guardadas dentro de la carpeta `public/images/` **del propio repositorio de GitHub**, y pesan actualmente 7.5 MB en total. Este es un método válido para el volumen actual, pero **no escala bien**: si se repite este patrón con los 19 modelos restantes (cada uno con su set de 360°, galería, etc.), el repositorio de GitHub puede crecer a cientos de MB, lo que hace más lento clonar el proyecto y cada despliegue.
+2. **Imágenes del sitio piloto del Corolla**: originalmente vivían dentro de `public/images/` del repositorio de GitHub (138 imágenes, 7.5 MB) — se identificó que ese patrón no escalaba a los 19 modelos restantes.
 
-**Recomendación a evaluar antes de escalar a más modelos:** mover las imágenes de los modelos también a Sanity (que ya está integrado) o a un servicio de almacenamiento dedicado, en vez de seguir el patrón del repositorio para todo.
+**Resuelto (21 de agosto de 2026):** se migraron todas las imágenes del Corolla a Sanity — las 138 imágenes (hero, versiones, 7 colores × 16 ángulos del visor 360°, galería exterior/interior, imagen de rendimiento, imagen principal de catálogo) están subidas como assets en Sanity y el código las consume desde ahí. **Ya no hay que subir imágenes de modelos al repositorio de GitHub** — este es el patrón a replicar en los demás modelos. De paso se optimizó el peso: la galería pasó de JPEG a WebP, y el visor 360° pide a Sanity las imágenes ya redimensionadas (950px) en vez de servir el original.
 
 **PDFs u otros archivos:** no hay ningún PDF ni video alojado en el proyecto todavía (ej. la ficha técnica del Corolla, mencionada en pendientes, aún no existe como archivo).
 
@@ -107,10 +107,10 @@ Sanity no es una base de datos tradicional tipo Postgres — es un **CMS headles
 | Project ID | `tuhugumb` |
 | Dataset | `production` |
 | Cuenta dueña | **Confirmado:** la cuenta de Google `moleculaworks`, con la que se hizo login inicial (`npx sanity login --provider google`) |
-| Tipos de contenido definidos | `modelo` (nombre, precio, categoría, imágenes, características, SEO), `promocion` (título, vigencia, modelo relacionado), `configuracion` (teléfono, WhatsApp, dirección, horario, redes sociales, banners de homepage) |
+| Tipos de contenido definidos | `modelo` (ver detalle abajo), `promocion` (título, vigencia, modelo relacionado), `configuracion` (teléfono, WhatsApp, dirección, horario, redes sociales, banners de homepage) |
 | Panel de edición | `toyotacuautitlan.vercel.app/studio` — ahí el equipo comercial edita el contenido sin tocar código |
 
-**Nota aparte:** los datos específicos del Corolla (versiones, precios, colores, rutas de imágenes del 360°) **no** están en Sanity todavía — viven como código fijo en el archivo `lib/data/corolla.ts`. Es la página piloto y aún no se migró ese contenido al CMS. Cuando se replique el patrón a los demás modelos, hay que decidir si ese tipo de dato pasa a Sanity o se queda como código.
+**Resuelto (21–22 de agosto de 2026):** todo el contenido del Corolla —versiones, precios, colores + visor 360°, hero, año del modelo, categoría, textos de cada sección (Exterior, Destacado, Seguridad, Galería, Rendimiento), íconos de la barra de datos destacados, SEO— ya vive en Sanity, no en código. `lib/data/corolla.ts` solo sigue vivo para `modelosSimilares` (pendiente a propósito, hasta que haya más de un modelo publicado). El detalle completo de campos del schema `modelo` está en `sanity/schemaTypes/modeloType.ts` — no se duplica aquí para no desincronizarse. Ver también `SISTEMA-DE-DISENO.md` para ancho/colores/tipografía del sitio.
 
 ---
 
@@ -120,8 +120,7 @@ Sanity no es una base de datos tradicional tipo Postgres — es un **CMS headles
 |---|---|
 | **GitHub** | Guarda el código fuente y su historial de cambios. Es el punto de partida de todo: cualquier cambio de código empieza aquí. |
 | **Vercel** | Toma el código de GitHub, lo construye y lo publica en internet. Cada vez que se sube un cambio a la rama `main`, Vercel genera una nueva versión pública automáticamente — no hay que "subir archivos" a mano. |
-| **Sanity (CMS)** | Guarda el contenido editable (modelos, promociones, configuración del sitio) y las imágenes asociadas a ese contenido. El equipo comercial entra al Studio, edita, y el cambio aparece en el sitio público sin necesidad de tocar código ni volver a desplegar nada. |
-| **Repositorio de GitHub (carpeta `public/`)** | Guarda las imágenes específicas de la página piloto del Corolla (fotos, visor 360°). A diferencia de Sanity, estas imágenes solo cambian si alguien edita código y hace un nuevo `push`. |
+| **Sanity (CMS)** | Guarda todo el contenido editable, incluyendo el de los modelos (versiones, colores, textos de sección, imágenes — hero, 360°, galerías) y sus imágenes asociadas. El equipo comercial entra al Studio, edita, y el cambio aparece en el sitio público sin necesidad de tocar código ni volver a desplegar nada. |
 
 **Flujo completo, de la edición a la publicación:**
 
@@ -213,9 +212,9 @@ El orden acordado es: primero se termina de desarrollar el proyecto completo sob
 
 ### Próximos pasos, en orden
 
-1. Compartir `.env.local` con Raúl por un canal seguro.
-2. Configurar el flujo de ramas + Pull Requests entre Beto y Raúl.
-3. Raúl clona el repo y levanta el proyecto en su máquina.
-4. Decidir destino de las imágenes de los demás modelos (Sanity vs. almacenamiento dedicado) — hoy no escala tener todo en `public/images/` del repo (ver punto 4).
-5. Migrar los datos del Corolla (`lib/data/corolla.ts`) a Sanity.
-6. Replicar el patrón del Corolla a los demás modelos.
+1. ~~Compartir `.env.local` con Raúl por un canal seguro~~ ✅ hecho.
+2. ~~Configurar el flujo de trabajo (rama por tarea + `git pull` + `CHANGELOG.md`, sin PR con aprobación obligatoria) entre Beto y Raúl~~ ✅ hecho — ver sección 8.
+3. ~~Raúl clona el repo y levanta el proyecto en su máquina~~ ✅ hecho.
+4. ~~Decidir destino de las imágenes de los demás modelos~~ ✅ hecho — Sanity, no el repo. Ver sección 4.
+5. ~~Migrar los datos del Corolla (`lib/data/corolla.ts`) a Sanity~~ ✅ hecho (21–22 de agosto), incluyendo todo el contenido de texto de la página.
+6. **Replicar el patrón del Corolla a los demás modelos.** Este es el único paso que sigue pendiente — el patrón (schema, imágenes, contenido, íconos, base de diseño) ya está completo y probado en el Corolla.
