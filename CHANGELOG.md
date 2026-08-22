@@ -5,6 +5,58 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (6)
+
+### Cambiado
+- Fuente de marca (ToyotaType) conectada a nivel sitio: se movió su carga de
+  `app/modelos/corolla/page.tsx` a un módulo compartido (`app/fonts.ts`) y se
+  aplica ahora en `app/layout.tsx` (clase en el `<body>`) — antes solo la
+  página del Corolla la usaba y el resto del sitio caía en Arial/Helvetica
+  del navegador.
+- Se corrigieron 44 usos de `font-medium`/`font-bold` en el resto del sitio
+  (home, Navbar, Footer, contacto, cotización, cita de servicio, catálogo de
+  modelos, formularios) — pesos que no existen como archivo real en
+  ToyotaType (solo tiene 400/600/900), así que antes de conectar la fuente a
+  todo el sitio se cambiaron a `font-semibold` (600), el mismo criterio ya
+  aplicado en el Corolla.
+- `app/globals.css`: quitado el `font-family: Arial, Helvetica, sans-serif`
+  del `body` — ya no hace falta, ToyotaType cubre todo el sitio con su propio
+  fallback generado por Next.js.
+- `SISTEMA-DE-DISENO.md` actualizado: el pendiente de "fuente solo en
+  Corolla" queda resuelto.
+
+## 2026-08-22 — Raúl (5)
+
+### Agregado
+- `SISTEMA-DE-DISENO.md` (raíz del repo, con copia espejo en Obsidian): documento
+  de referencia técnica con ancho de página/breakpoints, colores y tipografía —
+  pensado para que cualquier página nueva (otros modelos, home, servicios) parta
+  de la misma base. Documenta también lo que falta: Header/Footer genéricos aún
+  sin cerrar, y que la fuente de marca (ToyotaType) hoy solo aplica en la página
+  del Corolla, no en el resto del sitio.
+
+### Corregido — cerrar la base antes de replicar
+Antes de seguir construyendo más modelos, se revisó si la base de diseño (no
+solo el contenido) era consistente en todo el sitio:
+- **Ancho de página**: la página del Corolla usaba `max-w-[1200px]`, mientras
+  que el Navbar, el Footer y el resto del sitio usan `max-w-7xl` (1280px) —
+  quedaban 80px de desalineado lateral. Se ajustó el Corolla a 1280px.
+- **Breakpoint móvil**: el valor `880px` estaba repetido a mano como clase
+  arbitraria (`max-[880px]:`/`min-[881px]:`) en 4 archivos. Se convirtió en una
+  variable nombrada (`--breakpoint-desktop` en `app/globals.css`), habilitando
+  las utilidades `desktop:`/`max-desktop:` — mismo comportamiento visual, ya
+  no es un número mágico repetido.
+- **Colores**: existían tokens de color ya definidos (`--toyota-red`, etc.)
+  pero el código seguía repitiendo el hex a mano. Se reemplazaron todos los usos
+  dentro de la página del Corolla y sus componentes (clases Tailwind, objetos
+  `style={{}}` y atributos SVG vía `var(--token)`). Se agregó un token nuevo
+  (`--toyota-red-dark`, #C5091A) para el tono hover del rojo de marca, que no
+  tenía variable.
+- **Tipografía**: se encontraron 2 usos de `font-medium` (peso 500) dentro del
+  Corolla, peso que no existe como archivo real en la fuente ToyotaType (solo
+  tiene 400/600/900 cargados) — el navegador lo aproximaba. Cambiados a
+  `font-semibold` (600, el peso real más cercano).
+
 ## 2026-08-22 — Raúl (4)
 
 ### Quitado

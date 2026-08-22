@@ -42,7 +42,7 @@ export default function CitaForm() {
     return (
       <div className="text-center py-12">
         <div className="text-5xl mb-4">✓</div>
-        <h2 className="text-2xl font-bold text-[#1A1A1A]">¡Cita agendada!</h2>
+        <h2 className="text-2xl font-semibold text-[#1A1A1A]">¡Cita agendada!</h2>
         <p className="mt-2 text-gray-500">Te confirmaremos tu cita por teléfono a la brevedad.</p>
         <p className="mt-1 text-sm text-gray-400">¿Dudas? Llámanos al (55) 5870-6655</p>
       </div>
@@ -53,7 +53,7 @@ export default function CitaForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Nombre completo <span className="text-red-500">*</span>
           </label>
           <input
@@ -64,7 +64,7 @@ export default function CitaForm() {
           <FieldError message={errors.nombre?.message} />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Teléfono <span className="text-red-500">*</span>
           </label>
           <input
@@ -78,7 +78,7 @@ export default function CitaForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+        <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
           Correo electrónico <span className="text-red-500">*</span>
         </label>
         <input
@@ -92,7 +92,7 @@ export default function CitaForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Modelo del vehículo <span className="text-red-500">*</span>
           </label>
           <input
@@ -103,7 +103,7 @@ export default function CitaForm() {
           <FieldError message={errors.modelo?.message} />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Año <span className="text-red-500">*</span>
           </label>
           <input
@@ -120,7 +120,7 @@ export default function CitaForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Tipo de servicio <span className="text-red-500">*</span>
           </label>
           <select
@@ -137,7 +137,7 @@ export default function CitaForm() {
           <FieldError message={errors.servicio?.message} />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Fecha preferida <span className="text-red-500">*</span>
           </label>
           <input
@@ -151,7 +151,7 @@ export default function CitaForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#1A1A1A] mb-1">Comentarios</label>
+        <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">Comentarios</label>
         <textarea
           {...register('comentarios')}
           rows={3}

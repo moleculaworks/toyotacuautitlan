@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { toyotaType } from "./fonts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -31,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es-MX" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-[#1A1A1A]">
+      <body className={`${toyotaType.className} min-h-full flex flex-col bg-background text-foreground`}>
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>
         <Footer />

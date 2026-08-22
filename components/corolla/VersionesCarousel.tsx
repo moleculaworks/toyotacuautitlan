@@ -70,15 +70,15 @@ export default function VersionesCarousel({
   return (
     <div>
       {/* Desktop: carrusel con flechas */}
-      <div className="relative hidden min-[881px]:block">
+      <div className="relative hidden desktop:block">
         <button
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
           disabled={!canPrev}
           aria-label="Versiones anteriores"
           className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-[1.5px] border-[#DDD] text-2xl flex items-center justify-center shadow-md transition-all cursor-pointer disabled:cursor-default"
           style={{
-            background: canPrev ? '#fff' : '#F0F0F0',
-            color: canPrev ? '#111' : '#CCC',
+            background: canPrev ? 'var(--background)' : '#F0F0F0',
+            color: canPrev ? 'var(--foreground)' : '#CCC',
           }}
         >
           ‹
@@ -89,8 +89,8 @@ export default function VersionesCarousel({
           aria-label="Versiones siguientes"
           className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-none text-2xl flex items-center justify-center transition-all cursor-pointer disabled:cursor-default hover:opacity-85"
           style={{
-            background: canNext ? '#EB0A1E' : '#F0F0F0',
-            color: canNext ? '#fff' : '#CCC',
+            background: canNext ? 'var(--toyota-red)' : '#F0F0F0',
+            color: canNext ? 'var(--background)' : '#CCC',
             boxShadow: canNext ? '0 4px 12px rgba(235,10,30,0.25)' : 'none',
           }}
         >
@@ -124,7 +124,7 @@ export default function VersionesCarousel({
                 style={{
                   width: index === d ? 28 : 8,
                   borderRadius: 4,
-                  background: index === d ? '#EB0A1E' : '#CCC',
+                  background: index === d ? 'var(--toyota-red)' : '#CCC',
                   transition: 'all .25s linear',
                 }}
               />
@@ -137,7 +137,7 @@ export default function VersionesCarousel({
       </div>
 
       {/* Mobile: scroll horizontal nativo con snap */}
-      <div className="hidden max-[880px]:block relative">
+      <div className="hidden max-desktop:block relative">
         <div
           ref={mobileScrollRef}
           onScroll={onMobileScroll}
@@ -162,7 +162,7 @@ export default function VersionesCarousel({
                 className="h-1.5 rounded-full border-none cursor-pointer p-0 transition-all"
                 style={{
                   width: mobileIndex === d ? 18 : 6,
-                  background: mobileIndex === d ? '#EB0A1E' : '#CCC',
+                  background: mobileIndex === d ? 'var(--toyota-red)' : '#CCC',
                 }}
               />
             ))}
@@ -206,14 +206,14 @@ function VersionCard({
         )}
       </div>
       <div className="bg-[#F7F7F7] px-[22px] pt-[22px] pb-[18px] border-b border-[#E8E8E8]">
-        <h3 className="text-2xl font-semibold text-[#111] tracking-tight leading-[1.1]">
+        <h3 className="text-2xl font-semibold text-foreground tracking-tight leading-[1.1]">
           {version.nombre}
         </h3>
         <div className="mt-2 flex items-baseline gap-1.5">
-          <span className="text-[22px] font-semibold text-[#EB0A1E] tracking-tight">
+          <span className="text-[22px] font-semibold text-toyota-red tracking-tight">
             ${version.precio.toLocaleString('es-MX')}
           </span>
-          <span className="text-xs font-medium text-[#EB0A1E] opacity-70">MXN</span>
+          <span className="text-xs font-semibold text-toyota-red opacity-70">MXN</span>
         </div>
       </div>
       <div className="px-[22px] py-5 flex-1">

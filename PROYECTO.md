@@ -5,7 +5,7 @@
 ### Infraestructura
 - [x] Scaffold Next.js 14 con TypeScript + Tailwind CSS
 - [x] Instalación de dependencias (Sanity, React Hook Form, Zod, next-seo)
-- [x] Colores de marca Toyota configurados (#EB0A1E, #1A1A1A, #F5F5F5)
+- [x] Colores de marca Toyota configurados — ver `SISTEMA-DE-DISENO.md` para la referencia completa (colores, ancho de página, tipografía)
 - [x] Repositorio en GitHub: github.com/moleculaworks/toyotacuautitlan
 - [x] Deploy en Vercel: toyotacuautitlan.vercel.app
 - [x] Variables de entorno configuradas en Vercel

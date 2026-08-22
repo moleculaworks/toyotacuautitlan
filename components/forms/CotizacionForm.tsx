@@ -49,7 +49,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
     return (
       <div className="text-center py-12">
         <div className="text-5xl mb-4">✓</div>
-        <h2 className="text-2xl font-bold text-[#1A1A1A]">¡Solicitud recibida!</h2>
+        <h2 className="text-2xl font-semibold text-[#1A1A1A]">¡Solicitud recibida!</h2>
         <p className="mt-2 text-gray-500">
           Un asesor se pondrá en contacto contigo en menos de 24 horas.
         </p>
@@ -62,7 +62,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Nombre completo <span className="text-red-500">*</span>
           </label>
           <input
@@ -73,7 +73,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
           <FieldError message={errors.nombre?.message} />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Teléfono <span className="text-red-500">*</span>
           </label>
           <input
@@ -87,7 +87,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+        <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
           Correo electrónico <span className="text-red-500">*</span>
         </label>
         <input
@@ -100,7 +100,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+        <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
           Modelo de interés <span className="text-red-500">*</span>
         </label>
         <select
@@ -117,7 +117,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             Forma de pago <span className="text-red-500">*</span>
           </label>
           <div className="flex gap-3">
@@ -137,7 +137,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
             ¿Cuándo planeas comprar? <span className="text-red-500">*</span>
           </label>
           <select
@@ -155,7 +155,7 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#1A1A1A] mb-1">
+        <label className="block text-sm font-semibold text-[#1A1A1A] mb-1">
           Comentarios adicionales
         </label>
         <textarea

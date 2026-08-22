@@ -11,7 +11,7 @@ export default function CitaPage() {
     <div className="bg-[#F5F5F5] min-h-screen py-12">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#1A1A1A]">Agenda tu cita de servicio</h1>
+          <h1 className="text-3xl font-semibold text-[#1A1A1A]">Agenda tu cita de servicio</h1>
           <p className="mt-2 text-gray-500">
             Servicio certificado Toyota. Te confirmaremos tu cita por teléfono.
           </p>
