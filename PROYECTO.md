@@ -70,10 +70,10 @@
 - [ ] Llenar Configuración del sitio (teléfono, WhatsApp, horario, redes)
 
 ### SEO
-- [ ] Sitemap.xml dinámico
-- [ ] robots.txt
-- [ ] Schema.org (LocalBusiness + AutoDealer)
-- [ ] Meta tags Open Graph por página
+- [ ] Sitemap.xml dinámico — esperar a tener el dominio final conectado (no tiene caso construirlo antes)
+- [x] robots.txt (22 de agosto de 2026) — `app/robots.ts` bloquea toda indexación (`Disallow: /`) mientras el sitio vive en la URL temporal de Vercel. **CRÍTICO antes del lanzamiento real: quitar el bloqueo (permitir "/"), o Google nunca indexará el sitio.**
+- [ ] Schema.org (LocalBusiness + AutoDealer) — esperar a tener el dominio final conectado
+- [ ] Meta tags Open Graph por página — esperar a tener el dominio final conectado
 
 ### Dominio — pospuesto a propósito hasta terminar el desarrollo
 - [ ] Conectar toyotacuautitlan.com.mx a Vercel
@@ -108,6 +108,7 @@
 - [ ] Pruebas en mobile (iOS y Android)
 - [ ] Velocidad y Core Web Vitals (objetivo: >90 en PageSpeed)
 - [ ] Reemplazar sitio WordPress actual con el nuevo
+- [ ] **Quitar el bloqueo de `app/robots.ts`** (permitir "/") — hoy bloquea toda indexación a propósito
 
 ### Seguridad — CRÍTICO, pendiente de implementar
 - [ ] Rate limiting en formularios de cotización y cita (evitar spam/saturación al CRM)
