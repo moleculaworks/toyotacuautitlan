@@ -97,7 +97,7 @@ export default async function CorollaPage() {
       needsBorder: c.necesitaBorde,
       imagenes: c.imagenes360
         .filter((img) => img.asset?.url)
-        .map((img) => sanityImgWidth(img.asset!.url, 950)),
+        .map((img) => sanityImgWidth(img.asset!.url, 1200)),
     })
   )
 
