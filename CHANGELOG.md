@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (14)
+
+### Agregado — robots.txt de bloqueo temporal
+Motivo: a diferencia de WP Local, el sitio vive en una URL pública
+(`toyotacuautitlan.vercel.app`) mientras se desarrolla — nada impedía que
+Google la indexara por accidente antes del lanzamiento real con el dominio
+de la agencia. Se agregó `app/robots.ts` con `Disallow: /` para bloquear
+toda indexación mientras tanto. **Pendiente crítico antes del lanzamiento:**
+quitar ese bloqueo — ver `PROYECTO.md`, sección "Antes del lanzamiento".
+Sitemap.xml, Schema.org y Open Graph se dejaron pendientes a propósito
+hasta que el dominio final esté conectado (no tiene caso construirlos dos
+veces).
+
 ## 2026-08-22 — Raúl (13)
 
 ### Corregido — auditoría de documentación (2da del día)
