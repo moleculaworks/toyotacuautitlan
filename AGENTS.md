@@ -19,3 +19,7 @@ Si estás iniciando una sesión en este repo: sigue este flujo por defecto. No p
 ## Base de diseño (acordado 22 de agosto de 2026)
 
 **Antes de cualquier decisión de diseño** (ancho, breakpoints, colores, tipografía, jerarquía de encabezados, o crear un componente/sección nueva): consultar `SISTEMA-DE-DISENO.md` (raíz del repo) como fuente de verdad — no inventar valores nuevos si ya existe un token o convención definida ahí. Si hace falta un valor que no está cubierto, agregarlo a ese archivo en vez de dejarlo suelto en el componente.
+
+## Publicación de contenido en Sanity (acordado 22 de agosto de 2026)
+
+Al editar o cargar contenido en Sanity (`patch_documents`), guardarlo como borrador y **detenerse ahí** — nunca encadenar `publish_documents` en la misma acción. Publicar pone el contenido en vivo de inmediato en el sitio real, así que requiere confirmación explícita de la persona dueña del contenido (ej. "sí, publícalo" / "sí, súbelo") antes de hacerlo, sin importar qué tan simple parezca el cambio. Esto es distinto del flujo de git de arriba (rama → push → merge a `main`), que sí está pre-aprobado y no necesita confirmación por cada cambio — la diferencia es que el código fusionado no se ve en el sitio hasta el siguiente deploy normal, mientras que el contenido publicado en Sanity se ve al instante.

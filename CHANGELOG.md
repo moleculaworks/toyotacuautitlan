@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (13)
+
+### Corregido — auditoría de documentación (2da del día)
+Segunda auditoría de "¿quedó algo desactualizado?" en el mismo día, tras los
+cambios de la tarde (jerarquía de encabezados, secciones condicionales,
+textos SEO, regla de publicación en Sanity). Se encontraron y corrigieron:
+`PROYECTO.md` sin reflejar ninguno de esos cambios; `AGENTS.md` sin la regla
+de confirmación antes de publicar en Sanity (acordada en esta sesión — sin
+esto, solo yo la recordaba, no quedaba disponible para la sesión de Beto);
+`SISTEMA-DE-DISENO.md` §4 todavía listaba "Tecnología" como sección `h2`,
+contradiciendo el renombre a "Destacado" del mismo día; y en Obsidian, la
+guía de imágenes por modelo con un título desactualizado y la guía de
+estructura de secciones sin los 3 campos de texto SEO nuevos.
+
 ## 2026-08-22 — Raúl (12)
 
 ### Agregado — textos breves en Versiones, Exterior y Galería (SEO)
