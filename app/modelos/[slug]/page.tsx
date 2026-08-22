@@ -123,29 +123,6 @@ export default async function ModeloPage({
         </div>
       )}
 
-      {/* Galería */}
-      {modelo.galeria && modelo.galeria.length > 0 && (
-        <div className="bg-[#F5F5F5] py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6">Galería</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {modelo.galeria.map((img, i) => (
-                <div key={i} className="relative aspect-[16/9] rounded-lg overflow-hidden bg-white">
-                  <Image
-                    src={img.asset.url}
-                    alt={`Toyota ${modelo.nombre} - imagen ${i + 1}`}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-300"
-                    placeholder={img.asset.metadata?.lqip ? 'blur' : 'empty'}
-                    blurDataURL={img.asset.metadata?.lqip}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* CTA final */}
       <div className="bg-[#1A1A1A] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

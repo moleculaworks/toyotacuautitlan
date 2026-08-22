@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (4)
+
+### Quitado
+- Campo `galeria` del schema `modelo` — era un campo genérico sin categorizar que no tenía
+  relación con `galeriaExteriorDetalle`/`galeriaInteriorDetalle` (las que sí usa la página
+  del Corolla). Solo lo consumía `app/modelos/[slug]/page.tsx`, la plantilla de respaldo
+  genérica para modelos sin página dedicada — nunca se le cargó contenido porque el Corolla
+  usa su propia página. Se quitó del schema, de la consulta GROQ, de esa plantilla genérica
+  y del tipo `Modelo` para no dejarlo como campo huérfano al replicar a otros modelos.
+- De paso se corrigió el tipo `categoria` en `types/index.ts`, que seguía con el enum viejo
+  (sedan/suv/pickup/hatchback/hibrido/van/comercial) en vez de las 5 categorías reales del
+  negocio ya aplicadas en el schema.
+
 ## 2026-08-22 — Raúl (3)
 
 ### Corregido
