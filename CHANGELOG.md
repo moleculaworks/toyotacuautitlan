@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (10)
+
+### Corregido — jerarquía de encabezados (h1–h3)
+Auditoría completa de todos los `h1`/`h2`/`h3` del sitio. Se encontraron dos
+saltos de nivel: el catálogo (`/modelos`) pasaba de `h1` directo a `h3` en las
+tarjetas (`components/ui/ModeloCard.tsx`) — corregido a `h2`, igual que ya
+hacían las tarjetas de Promociones. Los títulos de columna del Footer
+(`components/layout/Footer.tsx`) usaban `h3` sin ningún `h2` de por medio en
+ninguna página — corregido a `<p>`, ya que son labels visuales dentro del
+landmark `<footer>`, no secciones del documento. Se documentó la regla
+completa (qué va en `h1`/`h2`/`h3`) en `SISTEMA-DE-DISENO.md` §4, con espejo
+en Obsidian, para que se siga igual al construir los 19 modelos restantes.
+
 ## 2026-08-22 — Raúl (9)
 
 ### Agregado — regla en AGENTS.md
