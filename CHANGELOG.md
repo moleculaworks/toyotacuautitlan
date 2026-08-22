@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (11)
+
+### Cambiado — secciones condicionales por datos + sección "destacado" genérica
+Motivo: cuando sale un modelo nuevo, a veces Toyota solo comparte parte de la
+información y de todas formas hay que publicarlo. Antes, cualquier campo vacío
+caía en un `FALLBACK` con texto/imágenes reales del Corolla — en otro modelo
+eso mostraría contenido equivocado en vez de ocultar la sección. Se quitó el
+`FALLBACK` por completo: cada sección de `/modelos/corolla` ahora se muestra
+solo si su dato obligatorio ya está cargado en Sanity (intro, highlights,
+versiones, exterior, destacado, seguridad, galería, rendimiento) — aparece
+sola en cuanto se llena el campo, sin tocar código. También se corrigió que
+el precio y las imágenes del Hero/destacado/rendimiento ya no caían en un
+valor o imagen fija del Corolla cuando faltaban.
+
+Aparte, se renombró la sección `id="tecnologia"` a `id="destacado"` (y el
+comentario del código) para que quede claro que es un destacado genérico —
+en Corolla es Toyota Safety Sense, pero en otro modelo podría ser cualquier
+otro tema. El schema de Sanity ya usaba el nombre genérico (`destacadoTitulo`,
+etc.); solo el `id` de la sección se había quedado con el nombre específico.
+
 ## 2026-08-22 — Raúl (10)
 
 ### Corregido — jerarquía de encabezados (h1–h3)
