@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (19)
+
+### Cambiado — flechas de versiones simétricas (izquierda también roja)
+Raúl notó que la flecha izquierda del carrusel de versiones nunca se ponía
+roja al estar disponible (solo blanca con borde), a diferencia de la
+derecha — inconsistencia heredada del diseño original de escritorio, que
+se replicó igual en las flechas nuevas de mobile. Ahora ambas flechas
+(escritorio y mobile) usan la misma lógica de 2 estados: rojo cuando hay
+hacia dónde moverse, gris cuando no.
+
 ## 2026-08-22 — Raúl (18)
 
 ### Cambiado — flechas de navegación en el carrusel de versiones (mobile)
