@@ -153,19 +153,39 @@ export default function VersionesCarousel({
           <div className="absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
         )}
         {TOTAL_CARDS > 1 && (
-          <div className="flex justify-center items-center gap-1.5 mt-3">
-            {versiones.map((_, d) => (
-              <button
-                key={d}
-                onClick={() => goToMobileCard(d)}
-                aria-label={`Ir a la versión ${d + 1}`}
-                className="h-1.5 rounded-full border-none cursor-pointer p-0 transition-all"
-                style={{
-                  width: mobileIndex === d ? 18 : 6,
-                  background: mobileIndex === d ? 'var(--toyota-red)' : '#CCC',
-                }}
+          <div className="flex items-center gap-4 mt-4">
+            <div className="flex-1 h-[3px] bg-[#DDD] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-foreground rounded-full transition-all duration-300"
+                style={{ width: `${((mobileIndex + 1) / TOTAL_CARDS) * 100}%` }}
               />
-            ))}
+            </div>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <button
+                onClick={() => goToMobileCard(Math.max(0, mobileIndex - 1))}
+                disabled={mobileIndex === 0}
+                aria-label="Versión anterior"
+                className="w-11 h-11 rounded-full border-[1.5px] border-[#DDD] text-xl flex items-center justify-center cursor-pointer disabled:cursor-default transition-all"
+                style={{
+                  background: mobileIndex > 0 ? 'var(--background)' : '#F0F0F0',
+                  color: mobileIndex > 0 ? 'var(--foreground)' : '#CCC',
+                }}
+              >
+                ‹
+              </button>
+              <button
+                onClick={() => goToMobileCard(Math.min(TOTAL_CARDS - 1, mobileIndex + 1))}
+                disabled={mobileIndex >= TOTAL_CARDS - 1}
+                aria-label="Versión siguiente"
+                className="w-11 h-11 rounded-full border-none text-xl flex items-center justify-center cursor-pointer disabled:cursor-default transition-all"
+                style={{
+                  background: mobileIndex < TOTAL_CARDS - 1 ? 'var(--toyota-red)' : '#F0F0F0',
+                  color: mobileIndex < TOTAL_CARDS - 1 ? 'var(--background)' : '#CCC',
+                }}
+              >
+                ›
+              </button>
+            </div>
           </div>
         )}
       </div>
