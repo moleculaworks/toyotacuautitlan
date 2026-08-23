@@ -75,10 +75,11 @@ export default function VersionesCarousel({
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
           disabled={!canPrev}
           aria-label="Versiones anteriores"
-          className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-[1.5px] border-[#DDD] text-2xl flex items-center justify-center shadow-md transition-all cursor-pointer disabled:cursor-default"
+          className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-none text-2xl flex items-center justify-center transition-all cursor-pointer disabled:cursor-default hover:opacity-85"
           style={{
-            background: canPrev ? 'var(--background)' : '#F0F0F0',
-            color: canPrev ? 'var(--foreground)' : '#CCC',
+            background: canPrev ? 'var(--toyota-red)' : '#F0F0F0',
+            color: canPrev ? 'var(--background)' : '#CCC',
+            boxShadow: canPrev ? '0 4px 12px rgba(235,10,30,0.25)' : 'none',
           }}
         >
           ‹
@@ -165,10 +166,10 @@ export default function VersionesCarousel({
                 onClick={() => goToMobileCard(Math.max(0, mobileIndex - 1))}
                 disabled={mobileIndex === 0}
                 aria-label="Versión anterior"
-                className="w-11 h-11 rounded-full border-[1.5px] border-[#DDD] text-xl flex items-center justify-center cursor-pointer disabled:cursor-default transition-all"
+                className="w-11 h-11 rounded-full border-none text-xl flex items-center justify-center cursor-pointer disabled:cursor-default transition-all"
                 style={{
-                  background: mobileIndex > 0 ? 'var(--background)' : '#F0F0F0',
-                  color: mobileIndex > 0 ? 'var(--foreground)' : '#CCC',
+                  background: mobileIndex > 0 ? 'var(--toyota-red)' : '#F0F0F0',
+                  color: mobileIndex > 0 ? 'var(--background)' : '#CCC',
                 }}
               >
                 ‹
