@@ -23,7 +23,6 @@ export default function VersionesCarousel({
 }) {
   const [index, setIndex] = useState(0)
   const [mobileIndex, setMobileIndex] = useState(0)
-  const [mobileAtEnd, setMobileAtEnd] = useState(false)
   const mobileScrollRef = useRef<HTMLDivElement>(null)
   const rowRef = useRef<HTMLDivElement>(null)
   const [pitch, setPitch] = useState(0)
@@ -50,7 +49,6 @@ export default function VersionesCarousel({
     if (!el) return
     const step = MOBILE_CARD_WIDTH + MOBILE_GAP
     setMobileIndex(Math.round(el.scrollLeft / step))
-    setMobileAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4)
   }
 
   function goToMobileCard(d: number) {
@@ -150,9 +148,6 @@ export default function VersionesCarousel({
             </div>
           ))}
         </div>
-        {!mobileAtEnd && (
-          <div className="absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-        )}
         {TOTAL_CARDS > 1 && (
           <div className="flex items-center gap-4 mt-4">
             <div className="flex-1 h-[3px] bg-[#DDD] rounded-full overflow-hidden">
