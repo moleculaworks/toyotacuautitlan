@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (18)
+
+### Cambiado — flechas de navegación en el carrusel de versiones (mobile)
+Raúl pidió reemplazar los puntos de paginación del carrusel de versiones
+en mobile por una barra de progreso + flechas abajo a la derecha (ejemplo
+de Toyota.mx), para que quede más claro que se puede navegar. Mismo
+estilo (gris deshabilitado / rojo activo) que ya usan las flechas de
+escritorio. Verificado el estado (barra al 16.7% al inicio, 100% al
+final, flechas deshabilitándose en cada extremo); el desplazamiento
+animado en sí no se pudo probar visualmente en la herramienta de
+navegador de esta sesión (no ejecuta `scrollTo` con `behavior:'smooth'`
+en este entorno), pero es una limitación de la herramienta de prueba, no
+del código — confirmado forzando `behavior:'auto'` en el mismo elemento.
+
 ## 2026-08-22 — Raúl (17)
 
 ### Corregido — tarjetas de versión desalineadas en mobile
