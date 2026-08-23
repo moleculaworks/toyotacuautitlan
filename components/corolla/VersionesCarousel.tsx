@@ -140,7 +140,7 @@ export default function VersionesCarousel({
         <div
           ref={mobileScrollRef}
           onScroll={onMobileScroll}
-          className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory"
+          className="flex gap-2 overflow-x-auto no-scrollbar pb-2 snap-x snap-mandatory"
         >
           {versiones.map((v) => (
             <div key={v.nombre} className="w-[264px] min-w-[264px] max-w-[264px] flex-shrink-0 snap-start">
