@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (20)
+
+### Quitado — degradado blanco en versiones mobile
+Raúl notó que el degradado que insinuaba "hay más hacia la derecha" ya no
+hacía falta con las flechas explícitas, y además se extendía hacia abajo
+tapando levemente las flechas (estaba posicionado respecto al contenedor
+completo, no solo la tira de tarjetas). Se quitó el degradado y el estado
+`mobileAtEnd` que solo servía para eso.
+
 ## 2026-08-22 — Raúl (19)
 
 ### Cambiado — flechas de versiones simétricas (izquierda también roja)
