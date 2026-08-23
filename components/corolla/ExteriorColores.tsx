@@ -18,9 +18,9 @@ export interface ColorExterior {
 // Píxeles de arrastre necesarios para avanzar un ángulo
 const PX_POR_ANGULO = 25
 
-function DragIcon() {
+function DragIcon({ size = 14 }: { size?: number }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M8 3L4 7l4 4" />
       <path d="M4 7h16" />
       <path d="M16 21l4-4-4-4" />
@@ -39,17 +39,37 @@ export default function ExteriorColores({
   const [activeColor, setActiveColor] = useState(colores[0]?.id)
   const [angulo, setAngulo] = useState(1) // 1..N
   const [cargado, setCargado] = useState<Record<string, boolean>>({})
-  const [coloresAtEnd, setColoresAtEnd] = useState(false)
+  const [coloresProgress, setColoresProgress] = useState({ left: 0, width: 100 })
 
   const dragStart = useRef<{ x: number; angulo: number } | null>(null)
   const viewerRef = useRef<HTMLDivElement>(null)
   const coloresScrollRef = useRef<HTMLDivElement>(null)
 
-  function onColoresScroll() {
+  // Posición/ancho (en %) de la barra de progreso del scroll horizontal
+  // de colores en mobile — simula el thumb de un scrollbar nativo.
+  const medirColoresScroll = useCallback(() => {
     const el = coloresScrollRef.current
     if (!el) return
-    setColoresAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4)
+    const { scrollLeft, scrollWidth, clientWidth } = el
+    if (scrollWidth <= clientWidth) {
+      setColoresProgress({ left: 0, width: 100 })
+      return
+    }
+    setColoresProgress({
+      left: (scrollLeft / scrollWidth) * 100,
+      width: (clientWidth / scrollWidth) * 100,
+    })
+  }, [])
+
+  function onColoresScroll() {
+    medirColoresScroll()
   }
+
+  useEffect(() => {
+    medirColoresScroll()
+    window.addEventListener('resize', medirColoresScroll)
+    return () => window.removeEventListener('resize', medirColoresScroll)
+  }, [medirColoresScroll, colores.length])
 
   const color = colores.find((c) => c.id === activeColor) ?? colores[0]
   const totalAngulos = color.imagenes.length
@@ -143,26 +163,10 @@ export default function ExteriorColores({
         </button>
       </div>
 
-      {/* Mobile: fila de controles debajo de la imagen — sin tapar el auto */}
-      <div className="desktop:hidden flex items-center justify-center gap-4 py-3 border-t border-[#EBEBEB] bg-white">
-        <button
-          onClick={() => rotar(-1)}
-          aria-label="Ángulo anterior"
-          className="w-11 h-11 rounded-full bg-toyota-red border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
-        >
-          ‹
-        </button>
-        <span className="flex items-center gap-2 text-xs text-[#888]">
-          <DragIcon />
-          Arrastra para girar
-        </span>
-        <button
-          onClick={() => rotar(1)}
-          aria-label="Ángulo siguiente"
-          className="w-11 h-11 rounded-full bg-toyota-red border-none text-white text-xl cursor-pointer flex items-center justify-center flex-shrink-0"
-        >
-          ›
-        </button>
+      {/* Mobile: solo instrucción — la interacción real es arrastrar la imagen */}
+      <div className="desktop:hidden flex items-center justify-center gap-2 py-3 border-t border-[#EBEBEB] bg-white">
+        <DragIcon size={18} />
+        <span className="text-sm font-semibold text-[#555]">Desliza para girar</span>
       </div>
 
       {/* Panel de colores */}
@@ -170,11 +174,11 @@ export default function ExteriorColores({
         <h3 className="text-base font-semibold text-foreground mb-6 max-desktop:mb-4 tracking-tight">
           Colores disponibles
         </h3>
-        <div className="relative">
+        <div>
           <div
             ref={coloresScrollRef}
             onScroll={onColoresScroll}
-            className="flex flex-col max-desktop:flex-row max-desktop:overflow-x-auto gap-1 max-desktop:gap-2 max-desktop:pb-2"
+            className="flex flex-col max-desktop:flex-row max-desktop:overflow-x-auto no-scrollbar gap-1 max-desktop:gap-2 max-desktop:pb-2"
           >
             {colores.map((c) => {
               const isActive = c.id === activeColor
@@ -216,9 +220,12 @@ export default function ExteriorColores({
               )
             })}
           </div>
-          {!coloresAtEnd && (
-            <div className="hidden max-desktop:block absolute top-0 right-0 bottom-2 w-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
-          )}
+          <div className="hidden max-desktop:block h-[3px] bg-[#DDD] rounded-full overflow-hidden relative mt-1">
+            <div
+              className="absolute top-0 h-full bg-foreground rounded-full transition-all duration-150"
+              style={{ left: `${coloresProgress.left}%`, width: `${coloresProgress.width}%` }}
+            />
+          </div>
         </div>
       </div>
     </div>

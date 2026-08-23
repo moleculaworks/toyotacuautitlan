@@ -35,6 +35,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Oculta el scrollbar nativo en listas con scroll horizontal propio
+   (carrusel de versiones, colores) que ya muestran su propia barra de
+   progreso — evita que aparezcan las dos barras superpuestas al deslizar. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes lbIn {
   from {
     opacity: 0;

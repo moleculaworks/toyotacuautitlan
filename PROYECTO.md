@@ -58,7 +58,8 @@
 - [x] Textos breves de SEO en Versiones/Exterior/Galería (primer paso, no resuelve el tema de contenido delgado por completo)
 - [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
-- [x] Viewer 360° real: 7 colores × 16 ángulos, drag/swipe + flechas
+- [x] Viewer 360° real: 7 colores × 16 ángulos — drag/swipe + flechas en escritorio, solo drag/swipe en mobile (22 de agosto: se quitaron los botones de flecha en mobile por ser confusos/redundantes con el gesto de arrastre)
+- [x] Revisión de UX mobile (22 de agosto): visor 360°, "colores disponibles" (scrollbar propio en vez de degradado), texto/botón de ficha técnica, botones "Solicitar Cotización" del Corolla (ancho y centrado) — ver `CHANGELOG.md`
 - [ ] Pendiente del handoff: PDF ficha técnica
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
 - [ ] Diseño de homepage con hero real (imagen de auto)

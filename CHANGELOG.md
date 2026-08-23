@@ -5,6 +5,43 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-08-22 — Raúl (21)
+
+### Cambiado — revisión de UX mobile: visor 360°, colores, versiones y CTAs
+Sesión de revisión visual completa en mobile de la página de modelo,
+aplicada primero solo en local y publicada tras confirmación. Cambios,
+todos en `app/modelos/corolla/page.tsx`, `components/corolla/ExteriorColores.tsx`
+y `components/corolla/VersionesCarousel.tsx` salvo donde se indique:
+
+- **Visor 360° (mobile):** se quitaron los dos botones de flecha que
+  flanqueaban el texto "Arrastra para girar" — eran confusos (parecía que
+  había que arrastrar los botones) y redundantes, ya que el visor
+  siempre funcionó arrastrando la imagen directamente. Ahora solo queda
+  el texto, más visible, como "Desliza para girar".
+- **Colores disponibles (mobile):** el degradado que insinuaba "hay más
+  a la derecha" no comunicaba bien y quedó descartado antes (ver entrada
+  anterior); se reemplazó por una barra de progreso tipo scrollbar
+  (posición + ancho proporcional al contenido visible).
+- **Scrollbar nativo oculto** (`app/globals.css`, clase `.no-scrollbar`):
+  el navegador mostraba su propio scrollbar al deslizar, superpuesto a
+  la barra de progreso propia — se ocultó en los carruseles de colores y
+  de versiones (mobile) ya que ambos tienen su propio indicador.
+- **Texto y botón de "ficha técnica" (sección Versiones):** el párrafo
+  legal ("Precios y especificaciones...") no estaba centrado como el
+  bloque de abajo — se centró. El texto "Para ver más detalles..." se
+  acortó a "Para más detalles...". El botón pasó de "Descargar ficha
+  técnica (PDF)" a "Descargar Ficha Técnica".
+- **Botones "Solicitar Cotización" (CTA intermedio y CTA final,
+  únicamente en la página del Corolla — no se tocaron las apariciones en
+  `/contacto`, la plantilla genérica de modelo, ni el botón del
+  formulario, que siguen pendientes de revisión):** se corrigió a
+  "Solicitar Cotización" (mayúscula en Cotización) y se quitó el ancho
+  forzado al 100% en mobile (`max-desktop:w-full`) — en pantallas
+  angostas el botón llegaba casi de borde a borde y no se leía como
+  botón. El CTA intermedio también se centró en mobile (antes quedaba
+  alineado a la izquierda, inconsistente con el CTA final que sí estaba
+  centrado).
+
 ## 2026-08-22 — Raúl (20)
 
 ### Quitado — degradado blanco en versiones mobile

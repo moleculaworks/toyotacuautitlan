@@ -253,14 +253,14 @@ export default async function CorollaPage() {
 
             <VersionesCarousel versiones={versiones} nombreModelo={nombreModelo} />
 
-            <p className="text-xs text-[#777] mt-5 leading-[1.6]">
+            <p className="text-xs text-[#777] mt-5 leading-[1.6] text-center">
               Precios y especificaciones sujetos a cambio sin previo aviso. Las imágenes mostradas
               son únicamente ilustrativas. Consulte disponibilidad, equipamiento y precio vigente
               con un Asesor Toyota.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3.5 text-center">
               <p className="text-sm text-[#444] leading-normal">
-                Para ver más detalles de cada versión consulta la ficha técnica.
+                Para más detalles de cada versión consulta la ficha técnica.
               </p>
               {/* Pendiente: enlace real al PDF de ficha técnica */}
               <a
@@ -276,7 +276,7 @@ export default async function CorollaPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Descargar ficha técnica (PDF)
+                Descargar Ficha Técnica
               </a>
             </div>
           </div>
@@ -309,8 +309,8 @@ export default async function CorollaPage() {
 
       {/* § 5 · CTA INTERMEDIO */}
       <section id="mid-cta" className="bg-toyota-red py-[72px] max-desktop:py-12">
-        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 flex max-desktop:flex-col justify-between max-desktop:justify-start items-center max-desktop:items-start gap-7">
-          <div>
+        <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 flex max-desktop:flex-col justify-between max-desktop:justify-start items-center gap-7">
+          <div className="max-desktop:text-center">
             <h2 className="text-[clamp(24px,3.5vw,40px)] font-semibold text-white tracking-[-.02em] leading-[1.1]">
               ¿Listo para dar el siguiente paso?
             </h2>
@@ -320,9 +320,9 @@ export default async function CorollaPage() {
           </div>
           <Link
             href={`/cotizacion?modelo=${modeloSlug}`}
-            className="flex-shrink-0 inline-block bg-white text-toyota-red px-11 py-[18px] text-[15px] font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-foreground hover:text-white max-desktop:w-full max-desktop:text-center"
+            className="flex-shrink-0 inline-block bg-white text-toyota-red px-11 py-[18px] text-[15px] font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-foreground hover:text-white"
           >
-            Solicitar cotización
+            Solicitar Cotización
           </Link>
         </div>
       </section>
@@ -505,12 +505,12 @@ export default async function CorollaPage() {
           <p className="text-[clamp(15px,1.8vw,18px)] text-white/60 max-w-[440px] leading-[1.6]">
             Un asesor te contactará a la brevedad.
           </p>
-          <div className="mt-2 max-desktop:w-full">
+          <div className="mt-2">
             <Link
               href={`/cotizacion?modelo=${modeloSlug}`}
-              className="inline-block bg-white text-black px-14 py-5 text-base font-semibold no-underline tracking-[.3px] transition-colors hover:bg-[#EBEBEB] max-desktop:w-full"
+              className="inline-block bg-white text-black px-14 py-5 text-base font-semibold no-underline tracking-[.3px] transition-colors hover:bg-[#EBEBEB]"
             >
-              Solicitar cotización
+              Solicitar Cotización
             </Link>
           </div>
         </div>
