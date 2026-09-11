@@ -23,10 +23,30 @@ export async function getModeloDestacados() {
 export async function getModeloBySlug(slug: string) {
   return client.fetch(groq`
     *[_type == "modelo" && slug.current == $slug][0] {
-      _id, nombre, slug, categoria, precioDesde, descripcion,
-      descripcionCorta, caracteristicas,
+      _id, nombre, slug, categoria, anio, precioDesde, descripcion,
+      descripcionCorta, caracteristicas, heroSubtitulo,
       imagenPrincipal { asset->{ url, metadata { lqip } } },
-      galeria[] { asset->{ url, metadata { lqip } } },
+      versiones[] {
+        nombre, precio, caracteristicas,
+        imagen { asset->{ url, metadata { lqip } } }
+      },
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      imagenDestacado { asset->{ url } },
+      imagenRendimiento { asset->{ url } },
+      coloresExterior[] {
+        label, hex, necesitaBorde,
+        imagenes360[] { asset->{ url } }
+      },
+      galeriaExteriorDetalle[] { asset->{ url, metadata { lqip } } },
+      galeriaInteriorDetalle[] { asset->{ url, metadata { lqip } } },
+      versionesTexto,
+      exteriorTitulo, exteriorTexto,
+      destacadoEyebrow, destacadoTitulo, destacadoTexto,
+      seguridadTitulo, seguridadTexto, seguridadItems,
+      galeriaTitulo, galeriaTexto,
+      rendimientoEyebrow, rendimientoTitulo, rendimientoTexto,
+      rendimientoFilas[] { transmision, valor, unidad },
       seoTitulo, seoDescripcion
     }
   `, { slug })

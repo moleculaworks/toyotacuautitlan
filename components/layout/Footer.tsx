@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <span className="text-2xl font-bold text-[#EB0A1E]">TOYOTA</span>
+            <span className="text-2xl font-semibold text-[#EB0A1E]">TOYOTA</span>
             <p className="mt-1 text-sm text-gray-400">Cuautitlán</p>
             <p className="mt-4 text-sm text-gray-400 leading-relaxed">
               Concesionario oficial Toyota en Cuautitlán Izcalli, Estado de México.
@@ -29,9 +29,9 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(links).map(([section, items]) => (
             <div key={section}>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
+              <p className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
                 {section}
-              </h3>
+              </p>
               <ul className="space-y-2">
                 {items.map((item) => (
                   <li key={item.href}>

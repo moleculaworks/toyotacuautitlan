@@ -3,16 +3,16 @@
 ## ✅ Completado
 
 ### Infraestructura
-- [x] Scaffold Next.js 14 con TypeScript + Tailwind CSS
+- [x] Scaffold Next.js 16 con TypeScript + Tailwind CSS
 - [x] Instalación de dependencias (Sanity, React Hook Form, Zod, next-seo)
-- [x] Colores de marca Toyota configurados (#EB0A1E, #1A1A1A, #F5F5F5)
+- [x] Colores de marca Toyota configurados — ver `SISTEMA-DE-DISENO.md` para la referencia completa (colores, ancho de página, tipografía)
 - [x] Repositorio en GitHub: github.com/moleculaworks/toyotacuautitlan
 - [x] Deploy en Vercel: toyotacuautitlan.vercel.app
 - [x] Variables de entorno configuradas en Vercel
 
 ### CMS — Sanity Studio
 - [x] Proyecto Sanity creado (Project ID: tuhugumb)
-- [x] Schema: Modelos (nombre, slug, categoría, precio, imágenes, características, SEO)
+- [x] Schema: Modelos — detalle completo de campos en `sanity/schemaTypes/modeloType.ts` (no se duplica aquí)
 - [x] Schema: Promociones (título, vigencia, modelo relacionado, activa/destacada)
 - [x] Schema: Configuración del sitio (teléfono, WhatsApp, dirección, horario, redes, banners)
 - [x] Studio disponible en: toyotacuautitlan.vercel.app/studio
@@ -21,7 +21,7 @@
 ### Páginas
 - [x] Homepage (/) — hero con CTA
 - [x] Catálogo (/modelos) — grid con filtros por categoría
-- [x] Detalle de modelo (/modelos/[slug]) — imagen, características, galería, CTA
+- [x] Detalle de modelo genérico (/modelos/[slug]) — plantilla de respaldo simple para modelos sin página dedicada (no confundir con /modelos/corolla, la página rica que es el patrón a replicar)
 - [x] Promociones (/promociones) — cards con vigencia
 - [x] Cotización (/cotizacion) — formulario validado
 - [x] Cita de servicio (/cita-de-servicio) — formulario validado
@@ -32,8 +32,11 @@
 - [x] API routes /api/cotizacion y /api/cita (listas para conectar CRMs)
 
 ### Equipo
-- [x] Raúl invitado a GitHub (moleculaworks/toyotacuautitlan) — acceso de escritura confirmado
-- [x] Raúl invitado a Sanity (proyecto tuhugumb) — conectado con raulpontones@gmail.com
+- [x] Raúl invitado a GitHub (moleculaworks/toyotacuautitlan) — acceso de escritura confirmado.
+      Token de acceso personal (PAT) configurado en el llavero de macOS — `git push` funciona
+      sin pedir credenciales cada vez
+- [x] Raúl invitado a Sanity (proyecto tuhugumb) — conectado con raulpontones@gmail.com,
+      confirmado vía MCP que el proyecto muestra 2 miembros
 - [x] Auditoría del repo: sin archivos ajenos al sitio, limpio para clonar
 
 ---
@@ -47,10 +50,16 @@
     selector de 7 colores, TSS, CTA rojo intermedio, seguridad,
     galería con lightbox (exterior/interior), rendimiento, CTA final,
     modelos similares
-  - Fuente ToyotaType integrada (pendiente confirmar licencia web)
+  - Fuente ToyotaType integrada en todo el sitio, no solo el Corolla (pendiente confirmar licencia web)
+- [x] Contenido de texto del Corolla 100% dirigido por Sanity (año, categoría real, textos de sección, íconos de marca) — ya no hay texto/dato fijo en código
+- [x] Base de diseño cerrada (22 de agosto): ancho/breakpoints/colores/tipografía consistentes en todo el sitio — ver `SISTEMA-DE-DISENO.md`
+- [x] Jerarquía de encabezados (h1-h3) auditada y corregida en todo el sitio — ver `SISTEMA-DE-DISENO.md` §4
+- [x] Secciones de la página de modelo se ocultan automáticamente si falta el dato en Sanity (se quitó el `FALLBACK` que mostraba contenido fijo del Corolla) — permite publicar un modelo nuevo con información parcial
+- [x] Textos breves de SEO en Versiones/Exterior/Galería (primer paso, no resuelve el tema de contenido delgado por completo)
 - [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
-- [x] Viewer 360° real: 7 colores × 16 ángulos, drag/swipe + flechas
+- [x] Viewer 360° real: 7 colores × 16 ángulos — drag/swipe + flechas en escritorio, solo drag/swipe en mobile (22 de agosto: se quitaron los botones de flecha en mobile por ser confusos/redundantes con el gesto de arrastre)
+- [x] Revisión de UX mobile (22 de agosto): visor 360°, "colores disponibles" (scrollbar propio en vez de degradado), texto/botón de ficha técnica, botones "Solicitar Cotización" del Corolla (ancho y centrado) — ver `CHANGELOG.md`
 - [ ] Pendiente del handoff: PDF ficha técnica
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
 - [ ] Diseño de homepage con hero real (imagen de auto)
@@ -62,10 +71,10 @@
 - [ ] Llenar Configuración del sitio (teléfono, WhatsApp, horario, redes)
 
 ### SEO
-- [ ] Sitemap.xml dinámico
-- [ ] robots.txt
-- [ ] Schema.org (LocalBusiness + AutoDealer)
-- [ ] Meta tags Open Graph por página
+- [ ] Sitemap.xml dinámico — esperar a tener el dominio final conectado (no tiene caso construirlo antes)
+- [x] robots.txt (22 de agosto de 2026) — `app/robots.ts` bloquea toda indexación (`Disallow: /`) mientras el sitio vive en la URL temporal de Vercel. **CRÍTICO antes del lanzamiento real: quitar el bloqueo (permitir "/"), o Google nunca indexará el sitio.**
+- [ ] Schema.org (LocalBusiness + AutoDealer) — esperar a tener el dominio final conectado
+- [ ] Meta tags Open Graph por página — esperar a tener el dominio final conectado
 
 ### Dominio — pospuesto a propósito hasta terminar el desarrollo
 - [ ] Conectar toyotacuautitlan.com.mx a Vercel
@@ -77,10 +86,18 @@
 - [ ] Integrar API de CRM(s) en /api/cotizacion y /api/cita
 - [ ] Notificación por email al equipo de ventas cuando llega un lead
 
-### Flujo de trabajo con equipo — pendiente de poner en marcha
-- [ ] Compartir .env.local con Raúl por canal seguro
-- [ ] Adoptar ramas por tarea + Pull Requests (hoy todo va directo a main)
-- [ ] Definir revisión cruzada antes de fusionar a main
+### Flujo de trabajo con equipo
+- [x] Compartir .env.local con Raúl por canal seguro
+- [x] Repo clonado por Raúl, npm install + npm run dev verificados
+- [x] Acordar convención de trabajo (21 de agosto de 2026): rama por tarea + `git pull` antes
+      de empezar + registro en CHANGELOG.md — sin Pull Request con aprobación humana obligatoria
+      (descartado a propósito, ninguno de los dos puede revisar código del otro). `AGENTS.md` es
+      la fuente de verdad de este flujo — cualquier sesión de Claude Code en el repo lo lee solo.
+- [x] Regla de diseño (22 de agosto de 2026): consultar `SISTEMA-DE-DISENO.md` antes de cualquier
+      decisión de diseño o al crear un componente/sección nueva — documentado en `AGENTS.md`.
+- [x] Regla de publicación en Sanity (22 de agosto de 2026): el contenido se guarda como borrador
+      y solo se publica (se ve en vivo en el sitio) con confirmación explícita del dueño del
+      contenido — documentado en `AGENTS.md`.
 - [ ] Confirmar acceso de Raúl a Vercel
 - [ ] Asignar secciones del proyecto para no duplicar esfuerzo entre Beto y Raúl
 
@@ -92,6 +109,7 @@
 - [ ] Pruebas en mobile (iOS y Android)
 - [ ] Velocidad y Core Web Vitals (objetivo: >90 en PageSpeed)
 - [ ] Reemplazar sitio WordPress actual con el nuevo
+- [ ] **Quitar el bloqueo de `app/robots.ts`** (permitir "/") — hoy bloquea toda indexación a propósito
 
 ### Seguridad — CRÍTICO, pendiente de implementar
 - [ ] Rate limiting en formularios de cotización y cita (evitar spam/saturación al CRM)

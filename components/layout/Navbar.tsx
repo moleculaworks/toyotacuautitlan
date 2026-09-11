@@ -31,10 +31,10 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-2xl font-bold text-[#EB0A1E] tracking-tight">
+            <span className="text-2xl font-semibold text-[#EB0A1E] tracking-tight">
               TOYOTA
             </span>
-            <span className="text-sm text-[#1A1A1A] font-medium hidden sm:block">
+            <span className="text-sm text-[#1A1A1A] font-semibold hidden sm:block">
               Cuautitlán
             </span>
           </Link>
@@ -45,7 +45,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
+                className="text-sm font-semibold text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
               >
                 {link.label}
               </Link>
@@ -88,7 +88,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
+                className="text-sm font-semibold text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
               >
                 {link.label}
               </Link>
