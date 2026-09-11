@@ -5,6 +5,27 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-11 — Beto (Claude Sonnet 5)
+
+### Añadido — resumen cualitativo de material de "Seguros de Contado" (DTMAC)
+DTMAC (comercializadora) compartió una presentación de 24 páginas comparando
+coberturas entre tres aseguradoras (Qualitas, GNP, HDI), pensada para nueva
+sección "Seguros" del sitio. Se revisó el PDF completo y se documentó en
+`RESUMEN-SEGUROS-DTMAC.md` qué contenido sirve para una página pública (tipos
+de paquete, coberturas en lenguaje simple, el diferenciador "Toyota Siempre
+Contigo", promociones de meses sin intereses) y qué no (tablas de deducibles
+por aseguradora, montos en UMAs, ejemplos de precios de modelos específicos,
+reglas operativas de financiamiento/tipos de carga) — ese material es para
+capacitación de asesores, no para publicarse tal cual. Incluye propuesta de
+estructura de 5 bloques para la sección.
+
+Nota de sincronización: al hacer `git push` se encontró que `origin/main` había
+avanzado con la sesión de trabajo de Raúl del 21-22 de agosto (migración del
+Corolla a Sanity, `SISTEMA-DE-DISENO.md`, robots.txt, UX mobile, reorganización
+de `PROYECTO.md`/`RESUMEN-TECNICO.md`). Se hizo `git merge origin/main` sin
+conflictos antes de subir — el nuevo documento no toca ningún archivo que Raúl
+haya modificado.
+
 ## 2026-08-22 — Raúl (21)
 
 ### Cambiado — revisión de UX mobile: visor 360°, colores, versiones y CTAs
