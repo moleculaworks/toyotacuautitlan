@@ -60,7 +60,6 @@
 - [x] Catálogo completo de 24 modelos definido (15 de septiembre de 2026), comparando toyota.mx y toyotaoaxaca.com.mx — incluye qué modelos existen, su categoría/precio, y los 5 nameplates con motorización doble físicamente distinta (Corolla, Corolla Cross, Yaris Sedán, Tacoma, RAV4) que requieren dos documentos separados con carrusel de versiones duplicado. Ver Obsidian `catalogo-de-modelos.md`.
 - [x] Precios HEV del Corolla corregidos y publicados (15 de septiembre de 2026): LE HEV $515,300 → $524,400, XLE HEV $567,300 → $576,400 (precio real vigente en toyota.mx).
 - [ ] **Pendiente inmediato:** dividir el Corolla actual (fusionado) en dos documentos — "Corolla" (4 versiones CVT) y "Corolla HEV" (2 versiones HEV). Ver Obsidian `catalogo-de-modelos.md`.
-- [ ] **Revalidación de contenido Sanity → sitio en vivo (CRÍTICO, encontrado 15 de septiembre de 2026):** las páginas de modelo son HTML estático sin revalidación — publicar en Sanity no se refleja en Vercel hasta el siguiente deploy. Hoy se resuelve empujando un commit cualquiera a `main` tras publicar. Falta decidir e implementar una solución real: ISR con `revalidate` (más simple, actualización periódica en segundo plano) o un webhook de Sanity → ruta de revalidación en Next.js (más preciso, actualización casi instantánea sin rebuild completo). Ver `CHANGELOG.md` y `AGENTS.md`.
 - [ ] Cargar el resto de los modelos (datos desde fichas técnicas + toyota.mx, precio siempre desde toyota.mx; imágenes las trabaja Raúl en Photoshop) — proceso acordado: borrador en JSON (`JSON Modelos/`) revisado antes de tocar Sanity, un modelo a la vez
 - [ ] Campo `categoria` del schema: dejar de usar "Híbridos Eléctricos (HEV y PHEV)" como valor de categoría física — es un filtro/índice adicional, no una categoría excluyente (ver Obsidian `catalogo-de-modelos.md`). Falta implementar ese filtro en `/modelos`.
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
@@ -83,6 +82,7 @@
 - [x] robots.txt (22 de agosto de 2026) — `app/robots.ts` bloquea toda indexación (`Disallow: /`) mientras el sitio vive en la URL temporal de Vercel. **CRÍTICO antes del lanzamiento real: quitar el bloqueo (permitir "/"), o Google nunca indexará el sitio.**
 - [ ] Schema.org (LocalBusiness + AutoDealer) — esperar a tener el dominio final conectado
 - [ ] Meta tags Open Graph por página — esperar a tener el dominio final conectado
+- [ ] Revalidación de contenido Sanity → sitio en vivo (encontrado 15 de septiembre de 2026): las páginas de modelo son HTML estático sin revalidación — publicar en Sanity no se refleja en Vercel hasta el siguiente deploy. **Aplazado a propósito** (decisión 15 de septiembre): mientras el sitio no tenga visitantes reales, no urge — hoy se resuelve solo, porque cada cierre de sesión empuja un commit a `main` que dispara un deploy nuevo. Antes del lanzamiento real, implementar ISR o un webhook de Sanity → ruta de revalidación en Next.js. Ver `CHANGELOG.md` y `AGENTS.md`.
 
 ### Dominio — pospuesto a propósito hasta terminar el desarrollo
 - [ ] Conectar toyotacuautitlan.com.mx a Vercel
