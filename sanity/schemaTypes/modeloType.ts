@@ -48,8 +48,9 @@ export const modeloType = defineType({
       validation: (r) => r.required().min(0),
     }),
     defineField({
-      name: 'imagenPrincipal',
-      title: 'Imagen principal',
+      name: 'imagenTarjeta',
+      title: 'Imagen de tarjeta (catálogo y "Modelos similares")',
+      description: 'Se usa como miniatura al listar el modelo — no aparece en el Hero de su propia página, ese es un campo aparte.',
       type: 'image',
       options: { hotspot: true },
       validation: (r) => r.required(),
@@ -378,7 +379,7 @@ export const modeloType = defineType({
     select: {
       title: 'nombre',
       subtitle: 'categoria',
-      media: 'imagenPrincipal',
+      media: 'imagenTarjeta',
     },
   },
 })
