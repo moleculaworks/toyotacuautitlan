@@ -13,7 +13,7 @@ export interface Modelo {
   descripcion?: unknown[]
   caracteristicas?: { icono?: string; titulo: string; valor: string }[]
   destacado?: boolean
-  imagenPrincipal?: { asset: { url: string; metadata: { lqip: string } } }
+  imagenTarjeta?: { asset: { url: string; metadata: { lqip: string } } }
   seoTitulo?: string
   seoDescripcion?: string
 }

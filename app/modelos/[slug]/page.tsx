@@ -557,9 +557,9 @@ export default async function ModeloPage({
                   className="bg-white border border-[#E8E8E8] flex flex-col max-desktop:min-w-[80vw] max-desktop:flex-shrink-0"
                 >
                   <div className="h-[180px] bg-white flex items-center justify-center overflow-hidden relative">
-                    {m.imagenPrincipal?.asset?.url && (
+                    {m.imagenTarjeta?.asset?.url && (
                       <Image
-                        src={m.imagenPrincipal.asset.url}
+                        src={m.imagenTarjeta.asset.url}
                         alt={m.nombre}
                         fill
                         className="object-contain"

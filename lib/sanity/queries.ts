@@ -6,7 +6,7 @@ export async function getModelos() {
   return client.fetch(groq`
     *[_type == "modelo"] | order(orden asc) {
       _id, nombre, slug, categoria, precioDesde, descripcionCorta, destacado,
-      imagenPrincipal { asset->{ url, metadata { lqip } } }
+      imagenTarjeta { asset->{ url, metadata { lqip } } }
     }
   `)
 }
@@ -15,7 +15,7 @@ export async function getModeloDestacados() {
   return client.fetch(groq`
     *[_type == "modelo" && destacado == true] | order(orden asc) [0...6] {
       _id, nombre, slug, categoria, precioDesde, descripcionCorta,
-      imagenPrincipal { asset->{ url, metadata { lqip } } }
+      imagenTarjeta { asset->{ url, metadata { lqip } } }
     }
   `)
 }
@@ -28,7 +28,7 @@ export async function getModelosSimilares(slugActual: string, limite = 3) {
     groq`
       *[_type == "modelo" && slug.current != $slugActual] | order(orden asc) [0...$limite] {
         nombre, slug, categoria, precioDesde,
-        imagenPrincipal { asset->{ url, metadata { lqip } } }
+        imagenTarjeta { asset->{ url, metadata { lqip } } }
       }
     `,
     { slugActual, limite }
@@ -40,7 +40,7 @@ export async function getModeloBySlug(slug: string) {
     *[_type == "modelo" && slug.current == $slug][0] {
       _id, nombre, slug, categoria, anio, precioDesde, descripcion,
       descripcionCorta, caracteristicas, heroSubtitulo,
-      imagenPrincipal { asset->{ url, metadata { lqip } } },
+      imagenTarjeta { asset->{ url, metadata { lqip } } },
       versiones[] {
         nombre, precio, caracteristicas,
         imagen { asset->{ url, metadata { lqip } } }

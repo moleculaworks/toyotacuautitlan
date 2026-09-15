@@ -9,15 +9,15 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
       className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100"
     >
       <div className="relative aspect-[16/9] bg-toyota-gray">
-        {modelo.imagenPrincipal?.asset?.url ? (
+        {modelo.imagenTarjeta?.asset?.url ? (
           <Image
-            src={modelo.imagenPrincipal.asset.url}
+            src={modelo.imagenTarjeta.asset.url}
             alt={modelo.nombre}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
-            placeholder={modelo.imagenPrincipal.asset.metadata?.lqip ? 'blur' : 'empty'}
-            blurDataURL={modelo.imagenPrincipal.asset.metadata?.lqip}
+            placeholder={modelo.imagenTarjeta.asset.metadata?.lqip ? 'blur' : 'empty'}
+            blurDataURL={modelo.imagenTarjeta.asset.metadata?.lqip}
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-gray-300 text-sm">
