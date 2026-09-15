@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5)
+
+### Añadido — botones "Cotízalo" / "Manéjalo" en la tarjeta de versión (Corolla)
+Se agregaron los dos botones a `VersionCard` en
+`components/corolla/VersionesCarousel.tsx` (aplica tanto a la vista desktop
+como mobile, comparten el mismo componente): "Cotízalo" como botón primario
+(relleno rojo) arriba, "Manéjalo" como botón secundario (contorno negro)
+debajo — Propuesta A de las 3 variantes comparadas en una página de prueba
+local (`app/preview-versiones/`, ya borrada, nunca subida a git).
+
+**Ninguno de los dos botones tiene destino todavía** (`href="#"`) — las
+páginas y formularios de Cotización y Prueba de Manejo por versión no están
+definidos (ver Obsidian: `formularios-cotizacion-y-prueba-de-manejo.md`).
+Se conecta el enlace real cuando se construyan esos formularios.
+
+Se documentó el patrón primario/secundario como parte formal del sistema de
+diseño — ver `SISTEMA-DE-DISENO.md` §5 (Botones), nuevo.
+
 ## 2026-09-11 — Beto (Claude Sonnet 5)
 
 ### Añadido — resumen cualitativo de material de "Seguros de Contado" (DTMAC)

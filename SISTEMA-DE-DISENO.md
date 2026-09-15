@@ -116,6 +116,32 @@ estilo en vez de `h3` para no generar un salto de nivel en cada página.
 
 ---
 
+## 5. Botones
+
+Patrón primario/secundario, decidido el 15 de septiembre de 2026 al elegir la
+Propuesta A de los botones "Cotízalo"/"Manéjalo" en la tarjeta de versión
+(`components/corolla/VersionesCarousel.tsx`, `VersionCard`). Usar este patrón
+en cualquier lugar del sitio donde se necesiten dos acciones con jerarquía
+clara (una principal, una secundaria) — no inventar una variante nueva de
+outline.
+
+| | Clase | Uso |
+|---|---|---|
+| **Primario** | `bg-toyota-red text-white hover:bg-toyota-red-dark` | La acción principal — ej. "Cotízalo". Relleno rojo de marca. |
+| **Secundario** | `border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white` | La acción alternativa — ej. "Manéjalo". Contorno negro (`--foreground`), invierte a relleno negro en hover. |
+
+Ambos con `text-sm font-semibold`, `py-3` (primario) / `py-[10.5px]`
+(secundario — compensa el borde de 1.5px para que la altura visual coincida),
+`transition-colors`.
+
+**No confundir con el botón outline-rojo que ya existía** en el Hero de
+modelo ("Ver versiones y precios" — borde negro que invierte a rojo en
+hover). Ese es un tercer tratamiento válido para un solo CTA aislado sobre
+fondo claro; el patrón secundario de esta sección es específicamente para
+cuando va emparejado con un botón primario rojo, para no competir con él.
+
+---
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño

@@ -239,6 +239,24 @@ function VersionCard({
           </div>
         ))}
       </div>
+
+      {/* Sin destino todavía: las páginas/formularios de Cotización y Prueba
+          de Manejo no están definidos (ver Obsidian:
+          formularios-cotizacion-y-prueba-de-manejo.md) */}
+      <div className="px-[22px] pb-5 flex flex-col gap-2">
+        <a
+          href="#"
+          className="w-full text-center bg-toyota-red text-white text-sm font-semibold py-3 no-underline hover:bg-toyota-red-dark transition-colors"
+        >
+          Cotízalo
+        </a>
+        <a
+          href="#"
+          className="w-full text-center border-[1.5px] border-foreground text-foreground text-sm font-semibold py-[10.5px] no-underline hover:bg-foreground hover:text-white transition-colors"
+        >
+          Manéjalo
+        </a>
+      </div>
     </div>
   )
 }
