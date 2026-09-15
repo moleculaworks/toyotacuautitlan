@@ -237,7 +237,7 @@ export default async function ModeloPage({
             {caracteristicas.map((h, i, arr) => (
               <div key={h.titulo} className="relative flex flex-col items-center gap-1.5 px-3 py-4">
                 <HighlightIcon nombre={h.icono} />
-                <span className="text-[11px] font-semibold tracking-[2.5px] text-[#888] uppercase">
+                <span className="text-xs font-semibold tracking-[2.5px] text-[#888] uppercase">
                   {h.titulo}
                 </span>
                 <span className="text-lg font-semibold text-foreground tracking-tight text-center">

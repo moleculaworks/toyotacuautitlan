@@ -5,6 +5,21 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (4)
+
+### Cambiado — texto de la barra de highlights un poco más grande
+Los labels "MOTOR", "PASAJEROS", "TRACCIÓN", "TECNOLOGÍA" en
+`app/modelos/[slug]/page.tsx` pasaron de `text-[11px]` a `text-xs` (12px) —
+ajuste leve pedido tras revisar la página del Corolla.
+
+### Decidido — revalidación de Sanity aplazada a propósito
+Mientras el sitio no tenga visitantes reales, no urge resolver que el
+contenido publicado en Sanity tarde en reflejarse en Vercel (ver hallazgo
+de hoy más abajo) — cada cierre de sesión ya dispara un deploy nuevo al
+subir los cambios de documentación. Se movió el pendiente a la sección
+"SEO" de `PROYECTO.md`, junto con sitemap/Schema.org/Open Graph, que
+esperan por la misma razón (dominio final).
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (3)
 
 ### Corregido — precios desactualizados de las versiones HEV del Corolla
