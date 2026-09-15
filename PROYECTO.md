@@ -57,7 +57,12 @@
 - [x] Secciones de la página de modelo se ocultan automáticamente si falta el dato en Sanity (se quitó el `FALLBACK` que mostraba contenido fijo del Corolla) — permite publicar un modelo nuevo con información parcial
 - [x] Textos breves de SEO en Versiones/Exterior/Galería (primer paso, no resuelve el tema de contenido delgado por completo)
 - [x] Página de modelo convertida a ruta dinámica `/modelos/[slug]` (15 de septiembre de 2026) — antes vivía hardcodeada en `/modelos/corolla`; ahora cualquier modelo cargado en Sanity con el mismo esquema de contenido obtiene la página rica automáticamente. Componentes movidos de `components/corolla/` a `components/modelo/`. Ver `CHANGELOG.md`.
+- [x] Catálogo completo de 24 modelos definido (15 de septiembre de 2026), comparando toyota.mx y toyotaoaxaca.com.mx — incluye qué modelos existen, su categoría/precio, y los 5 nameplates con motorización doble físicamente distinta (Corolla, Corolla Cross, Yaris Sedán, Tacoma, RAV4) que requieren dos documentos separados con carrusel de versiones duplicado. Ver Obsidian `catalogo-de-modelos.md`.
+- [x] Precios HEV del Corolla corregidos y publicados (15 de septiembre de 2026): LE HEV $515,300 → $524,400, XLE HEV $567,300 → $576,400 (precio real vigente en toyota.mx).
+- [ ] **Pendiente inmediato:** dividir el Corolla actual (fusionado) en dos documentos — "Corolla" (4 versiones CVT) y "Corolla HEV" (2 versiones HEV). Ver Obsidian `catalogo-de-modelos.md`.
+- [ ] **Revalidación de contenido Sanity → sitio en vivo (CRÍTICO, encontrado 15 de septiembre de 2026):** las páginas de modelo son HTML estático sin revalidación — publicar en Sanity no se refleja en Vercel hasta el siguiente deploy. Hoy se resuelve empujando un commit cualquiera a `main` tras publicar. Falta decidir e implementar una solución real: ISR con `revalidate` (más simple, actualización periódica en segundo plano) o un webhook de Sanity → ruta de revalidación en Next.js (más preciso, actualización casi instantánea sin rebuild completo). Ver `CHANGELOG.md` y `AGENTS.md`.
 - [ ] Cargar el resto de los modelos (datos desde fichas técnicas + toyota.mx, precio siempre desde toyota.mx; imágenes las trabaja Raúl en Photoshop) — proceso acordado: borrador en JSON (`JSON Modelos/`) revisado antes de tocar Sanity, un modelo a la vez
+- [ ] Campo `categoria` del schema: dejar de usar "Híbridos Eléctricos (HEV y PHEV)" como valor de categoría física — es un filtro/índice adicional, no una categoría excluyente (ver Obsidian `catalogo-de-modelos.md`). Falta implementar ese filtro en `/modelos`.
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
 - [x] Viewer 360° real: 7 colores × 16 ángulos — drag/swipe + flechas en escritorio, solo drag/swipe en mobile (22 de agosto: se quitaron los botones de flecha en mobile por ser confusos/redundantes con el gesto de arrastre)
 - [x] Revisión de UX mobile (22 de agosto): visor 360°, "colores disponibles" (scrollbar propio en vez de degradado), texto/botón de ficha técnica, botones "Solicitar Cotización" del Corolla (ancho y centrado) — ver `CHANGELOG.md`
@@ -67,7 +72,8 @@
 - [ ] Diseño de homepage con hero real (imagen de auto)
 
 ### Contenido
-- [ ] Cargar los 20 modelos Toyota en Sanity con imágenes y precios
+- [ ] Cargar los modelos Toyota en Sanity con imágenes y precios — 24 en el catálogo completo de toyota.mx (probablemente un subconjunto real para Cuautitlán), ver Obsidian `catalogo-de-modelos.md` para la lista y estructura completa
+- [ ] Vista previa de borradores (Next.js Draft Mode + Sanity) — pendiente, no urgente todavía. Hoy solo se puede revisar un borrador dentro del editor de Sanity Studio (campos sueltos, no el diseño real de la página); el sitio local solo lee contenido publicado. Construirlo antes del primer refresh de año-modelo (ej. Corolla 2026 → 2027), para poder armar y aprobar el contenido nuevo con el diseño real antes de publicarlo. Ver Obsidian `catalogo-de-modelos.md`.
 - [ ] Definir estructura de versiones por modelo (LE, SE, HEV, etc.)
 - [ ] Cargar promociones vigentes
 - [ ] Llenar Configuración del sitio (teléfono, WhatsApp, horario, redes)
