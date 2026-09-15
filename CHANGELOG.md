@@ -5,6 +5,32 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (2)
+
+### Cambiado — página de modelo genérica: `/modelos/corolla` → `/modelos/[slug]`
+Primer paso para replicar la página rica del Corolla a los demás modelos.
+La plantilla completa (hero, intro, highlights, versiones, exterior/colores
+360°, destacado, seguridad, galería, rendimiento, CTAs) se movió de
+`app/modelos/corolla/page.tsx` (hardcodeada) a `app/modelos/[slug]/page.tsx`
+(genérica, ya existía como plantilla simple de respaldo — se reemplazó por
+completo). La consulta `getModeloBySlug` de `lib/sanity/queries.ts` ya traía
+todos los campos necesarios sin cambios; solo hacía falta parametrizar la
+página. `/modelos/corolla` sigue funcionando exactamente igual (ahora vía
+`[slug]`, verificado con `next build`: se pre-renderiza como página estática
+gracias a `generateStaticParams`).
+
+- **Componentes renombrados:** `components/corolla/` → `components/modelo/`
+  (`VersionesCarousel`, `ExteriorColores`, `Galeria`) — ya no eran
+  específicos del Corolla, el nombre de carpeta era engañoso.
+- **"Modelos similares" ahora es dinámico**, no una lista fija de 3 modelos
+  hardcodeados en `lib/data/corolla.ts` (archivo eliminado, ya estaba
+  obsoleto salvo por ese uso). Nueva función `getModelosSimilares(slug)` en
+  `lib/sanity/queries.ts` trae hasta 3 modelos de Sanity distintos al
+  actual; la sección se oculta sola si no hay otros modelos cargados
+  todavía (como ahora, que solo existe el Corolla).
+- Verificado: build de producción limpio, `/modelos/corolla` renderiza
+  idéntico a antes, `/modelos/algo-inexistente` da 404 correctamente.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5)
 
 ### Añadido — botones "Cotízalo" / "Manéjalo" en la tarjeta de versión (Corolla)

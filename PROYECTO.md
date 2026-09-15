@@ -56,7 +56,8 @@
 - [x] Jerarquía de encabezados (h1-h3) auditada y corregida en todo el sitio — ver `SISTEMA-DE-DISENO.md` §4
 - [x] Secciones de la página de modelo se ocultan automáticamente si falta el dato en Sanity (se quitó el `FALLBACK` que mostraba contenido fijo del Corolla) — permite publicar un modelo nuevo con información parcial
 - [x] Textos breves de SEO en Versiones/Exterior/Galería (primer paso, no resuelve el tema de contenido delgado por completo)
-- [ ] Validar página Corolla con el equipo → replicar patrón en los demás modelos
+- [x] Página de modelo convertida a ruta dinámica `/modelos/[slug]` (15 de septiembre de 2026) — antes vivía hardcodeada en `/modelos/corolla`; ahora cualquier modelo cargado en Sanity con el mismo esquema de contenido obtiene la página rica automáticamente. Componentes movidos de `components/corolla/` a `components/modelo/`. Ver `CHANGELOG.md`.
+- [ ] Cargar el resto de los modelos (datos desde fichas técnicas + toyota.mx, precio siempre desde toyota.mx; imágenes las trabaja Raúl en Photoshop) — proceso acordado: borrador en JSON (`JSON Modelos/`) revisado antes de tocar Sanity, un modelo a la vez
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
 - [x] Viewer 360° real: 7 colores × 16 ángulos — drag/swipe + flechas en escritorio, solo drag/swipe en mobile (22 de agosto: se quitaron los botones de flecha en mobile por ser confusos/redundantes con el gesto de arrastre)
 - [x] Revisión de UX mobile (22 de agosto): visor 360°, "colores disponibles" (scrollbar propio en vez de degradado), texto/botón de ficha técnica, botones "Solicitar Cotización" del Corolla (ancho y centrado) — ver `CHANGELOG.md`
