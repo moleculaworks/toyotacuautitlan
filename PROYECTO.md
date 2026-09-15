@@ -62,6 +62,7 @@
 - [x] Revisión de UX mobile (22 de agosto): visor 360°, "colores disponibles" (scrollbar propio en vez de degradado), texto/botón de ficha técnica, botones "Solicitar Cotización" del Corolla (ancho y centrado) — ver `CHANGELOG.md`
 - [ ] Pendiente del handoff: PDF ficha técnica
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
+- [x] Botones "Cotízalo"/"Manéjalo" en la tarjeta de versión del Corolla (15 de septiembre de 2026) — Propuesta A decidida tras comparar 3 variantes en local; sin destino todavía (`href="#"`), pendiente de que existan los formularios de Cotización (por versión) y Prueba de Manejo — ver `CHANGELOG.md` y Obsidian `formularios-cotizacion-y-prueba-de-manejo.md`
 - [ ] Diseño de homepage con hero real (imagen de auto)
 
 ### Contenido
