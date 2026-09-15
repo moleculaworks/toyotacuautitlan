@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (3)
+
+### Corregido — precios desactualizados de las versiones HEV del Corolla
+LE HEV: $515,300 → **$524,400**. XLE HEV: $567,300 → **$576,400**. Precio
+real vigente confirmado en toyota.mx y toyotaoaxaca.com.mx (mismo grupo).
+Publicado en Sanity tras confirmación explícita.
+
+### Hallazgo — publicar en Sanity NO actualiza el sitio en vivo al instante
+Al publicar el cambio de arriba, el sitio en producción (Vercel) siguió
+mostrando los precios viejos. Causa: `/modelos/[slug]` se pre-renderiza
+como HTML estático en el build (confirmado con headers de producción:
+`x-nextjs-prerender: 1`, `x-vercel-cache: HIT`, sin revalidación
+configurada) — el contenido de Sanity solo se refleja en el siguiente
+deploy. `AGENTS.md` decía lo contrario ("se ve al instante"); se corrigió
+esa nota — era una suposición nunca antes puesta a prueba con una
+publicación de solo-contenido (siempre coincidía con un push de código que
+ya disparaba deploy). **Pendiente:** agregar revalidación automática
+(ISR o webhook de Sanity → Vercel) para que publicar contenido puro
+vuelva a reflejarse sin necesitar un push adicional — ver `PROYECTO.md`.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (2)
 
 ### Cambiado — página de modelo genérica: `/modelos/corolla` → `/modelos/[slug]`
