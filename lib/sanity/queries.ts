@@ -20,6 +20,21 @@ export async function getModeloDestacados() {
   `)
 }
 
+// Otros modelos para la sección "Modelos similares" al final de una página
+// de modelo — cualquier otro modelo (sin filtrar por categoría todavía),
+// excluyendo el que se está viendo.
+export async function getModelosSimilares(slugActual: string, limite = 3) {
+  return client.fetch(
+    groq`
+      *[_type == "modelo" && slug.current != $slugActual] | order(orden asc) [0...$limite] {
+        nombre, slug, categoria, precioDesde,
+        imagenPrincipal { asset->{ url, metadata { lqip } } }
+      }
+    `,
+    { slugActual, limite }
+  )
+}
+
 export async function getModeloBySlug(slug: string) {
   return client.fetch(groq`
     *[_type == "modelo" && slug.current == $slug][0] {
