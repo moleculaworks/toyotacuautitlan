@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (7)
+
+### Corregido — carrusel duplicado desincronizado entre Corolla y Corolla HEV
+Las tarjetas "LE HEV" y "XLE HEV" del documento "Corolla" todavía tenían la
+lista de características simple/genérica (escrita antes de la revisión a
+fondo contra la ficha técnica), mientras que el documento nuevo "Corolla HEV"
+ya usaba la lista detallada y verificada. Sincronizadas ambas al mismo
+contenido (el detallado) para que el carrusel compartido sea idéntico en las
+dos páginas, como debe ser. Publicado con confirmación explícita.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (6)
 
 ### Añadido — documento "Corolla HEV" creado y publicado en Sanity
