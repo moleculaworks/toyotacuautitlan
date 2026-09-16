@@ -184,7 +184,7 @@ export default async function ModeloPage({
               {nombreModelo}
             </h1>
             {modelo.heroSubtitulo && (
-              <p className="text-[clamp(16px,1.6vw,18px)] font-semibold text-[#555] leading-[1.55] max-w-[340px] whitespace-pre-line">
+              <p className="text-[clamp(18px,1.8vw,20px)] font-semibold text-[#555] leading-[1.55] max-w-[340px] whitespace-pre-line">
                 {modelo.heroSubtitulo}
               </p>
             )}
