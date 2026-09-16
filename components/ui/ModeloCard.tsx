@@ -33,7 +33,7 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
 
       <div className="p-4">
         <h2 className="text-lg font-semibold text-[#1A1A1A] group-hover:text-toyota-red transition-colors">
-          Toyota {modelo.nombre}
+          {modelo.nombre}
         </h2>
         {modelo.descripcionCorta && (
           <p className="mt-1 text-sm text-gray-500 line-clamp-2">{modelo.descripcionCorta}</p>

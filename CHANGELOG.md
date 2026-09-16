@@ -5,6 +5,37 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (9)
+
+### Añadido — filtro "Híbridos Eléctricos (HEV y PHEV)" funcional en `/modelos`
+Nuevo campo booleano `esHibridoElectrico` en el schema `modelo` — no reemplaza
+a `categoria` (que sigue siendo siempre la categoría física real), es un
+filtro adicional. Corolla HEV marcado con `true` y publicado. Se quitó
+"Híbridos Eléctricos (HEV y PHEV)" de la lista de valores de `categoria`
+(nunca debió usarse ahí, y ningún documento lo tenía). Filtro de
+`app/modelos/page.tsx` actualizado para usar el campo nuevo en vez de
+comparar contra `categoria`.
+
+### Cambiado — recorte de imagen en tarjetas de "Modelos similares"
+Usaba una caja fija de 180px con `object-contain` (dejaba espacio en blanco
+arriba/abajo de la imagen) — cambiado a `aspect-[16/9]` + `object-cover`,
+igual que `ModeloCard.tsx` en el catálogo `/modelos`. Mismo recurso
+`imagenTarjeta` de siempre, sin necesidad de imágenes nuevas.
+
+### Cambiado — consistencia de tamaño/color en textos de sección
+Los textos breves de Versiones, Exterior, Galería y Rendimiento tenían 3
+estilos distintos entre sí (y con el texto de Introducción). Unificados
+todos a `clamp(16px,1.2vw,18px)` / `#1a1a1a` — el mismo estilo que ya usaban
+Introducción y Destacado. El texto de Seguridad (fondo oscuro) solo cambió
+de tamaño, se queda en blanco por legibilidad.
+
+### Cambiado — "Toyota" quitado del nombre en tarjetas del catálogo
+`ModeloCard.tsx` mostraba "Toyota Corolla" — ahora solo "Corolla".
+
+### Cambiado — `descripcionCorta` pulida en Corolla y Corolla HEV
+Los textos originales estaban en minúsculas y con tono de borrador. Nuevos
+textos propuestos y aprobados, publicados en Sanity y en `JSON Modelos/`.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (8)
 
 ### Cambiado — textos del recuadro de rendimiento más grandes

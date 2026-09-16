@@ -28,7 +28,9 @@ export default async function ModelosPage({
   const filtrados =
     !categoria || categoria === 'todos'
       ? modelos
-      : modelos.filter((m) => m.categoria === categoria)
+      : categoria === 'Híbridos Eléctricos (HEV y PHEV)'
+        ? modelos.filter((m) => m.esHibridoElectrico)
+        : modelos.filter((m) => m.categoria === categoria)
 
   return (
     <div className="bg-[#F5F5F5] min-h-screen">

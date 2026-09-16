@@ -265,7 +265,7 @@ export default async function ModeloPage({
                   Elige tu versión
                 </h2>
                 {modelo.versionesTexto && (
-                  <p className="text-base text-[#444] mt-2.5 max-w-[560px] leading-[1.6]">
+                  <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
                     {modelo.versionesTexto}
                   </p>
                 )}
@@ -318,7 +318,7 @@ export default async function ModeloPage({
                 </h2>
               )}
               {modelo.exteriorTexto && (
-                <p className="text-base text-[#444] mt-2.5 max-w-[560px] leading-[1.6]">
+                <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
                   {modelo.exteriorTexto}
                 </p>
               )}
@@ -394,7 +394,7 @@ export default async function ModeloPage({
                 </h2>
               )}
               {modelo.seguridadTexto && (
-                <p className="text-base text-white mt-3.5 max-w-[560px] leading-[1.6]">
+                <p className="text-[clamp(16px,1.2vw,18px)] text-white mt-3.5 max-w-[560px] leading-[1.6]">
                   {modelo.seguridadTexto}
                 </p>
               )}
@@ -433,7 +433,7 @@ export default async function ModeloPage({
                 </h2>
               )}
               {modelo.galeriaTexto && (
-                <p className="text-base text-[#444] mt-2.5 max-w-[560px] leading-[1.6]">
+                <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
                   {modelo.galeriaTexto}
                 </p>
               )}
@@ -475,7 +475,7 @@ export default async function ModeloPage({
                 </h2>
               )}
               {modelo.rendimientoTexto && (
-                <p className="text-[15px] text-[#666] mt-3 leading-[1.6]">
+                <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-3 leading-[1.6]">
                   {modelo.rendimientoTexto}
                 </p>
               )}
@@ -556,13 +556,13 @@ export default async function ModeloPage({
                   key={m.slug.current}
                   className="bg-white border border-[#E8E8E8] flex flex-col max-desktop:min-w-[80vw] max-desktop:flex-shrink-0"
                 >
-                  <div className="h-[180px] bg-white flex items-center justify-center overflow-hidden relative">
+                  <div className="relative aspect-[16/9] bg-toyota-gray overflow-hidden">
                     {m.imagenTarjeta?.asset?.url && (
                       <Image
                         src={m.imagenTarjeta.asset.url}
                         alt={m.nombre}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                         sizes="(max-width: 880px) 80vw, 33vw"
                       />
                     )}
