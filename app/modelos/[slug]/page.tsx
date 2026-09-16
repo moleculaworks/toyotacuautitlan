@@ -275,9 +275,8 @@ export default async function ModeloPage({
             <VersionesCarousel versiones={versiones} nombreModelo={nombreModelo} />
 
             <p className="text-xs text-[#777] mt-5 leading-[1.6] text-center">
-              Precios y especificaciones sujetos a cambio sin previo aviso. Las imágenes mostradas
-              son únicamente ilustrativas. Consulte disponibilidad, equipamiento y precio vigente
-              con un Asesor Toyota.
+              Precios y especificaciones sujetos a cambio sin previo aviso. Consulta
+              disponibilidad, equipamiento y precio vigente con un asesor Toyota.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3.5 text-center">
               <p className="text-sm text-[#444] leading-normal">
