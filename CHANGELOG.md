@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (12)
+
+### Cambiado — visor 360° más grande
+El ancho máximo del visor (`components/modelo/ExteriorColores.tsx`) estaba
+limitado a 540px dentro de un contenedor mucho más ancho — se veía chico
+con demasiado espacio en blanco alrededor, notorio al compararlo con
+toyota.mx. Subido a 800px (se probó primero en 880px, resultaba muy pegado
+a las flechas de navegación). El archivo fuente sigue siendo 1200×800px sin
+cambios — solo se ajustó el límite de despliegue, no la resolución. Nota
+actualizada en `guia-imagenes-por-modelo.md` (Obsidian).
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (11)
 
 ### Cambiado — consistencia de botones y otras inconsistencias visuales menores
