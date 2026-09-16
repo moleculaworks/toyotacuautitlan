@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-16 — Raúl (Claude Sonnet 5) (8)
+
+### Cambiado — disclaimer de precios bajo el carrusel de versiones
+`app/modelos/[slug]/page.tsx`: se quitó la línea "Las imágenes mostradas
+son únicamente ilustrativas" (ya no aplica, las fotos son reales) y se
+ajustó el tono ("Consulte" → "Consulta", "Asesor Toyota" → "asesor
+Toyota"). Texto fijo en la plantilla compartida, no es campo de Sanity —
+aplica a los 24 modelos de un jalón.
+
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (7)
 
 ### Añadido — Yaris Sedán HEV publicado en Sanity
