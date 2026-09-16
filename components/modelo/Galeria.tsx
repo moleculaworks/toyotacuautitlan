@@ -19,11 +19,12 @@ export default function Galeria({
   interior: GaleriaImagen[]
   nombreModelo: string
 }) {
+  const tieneInterior = interior.length > 0
   const [tab, setTab] = useState<Tab>('exterior')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
-  const items = tab === 'exterior' ? exterior : interior
+  const items = tab === 'exterior' || !tieneInterior ? exterior : interior
   const total = items.length
   const tabLabel = tab === 'exterior' ? 'Exterior' : 'Interior'
 
@@ -50,30 +51,32 @@ export default function Galeria({
 
   return (
     <div>
-      {/* Tabs */}
-      <div className="flex mb-7 border-[1.5px] border-foreground w-fit">
-        <button
-          onClick={() => switchTab('exterior')}
-          className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85"
-          style={{
-            background: tab === 'exterior' ? 'var(--foreground)' : 'var(--background)',
-            color: tab === 'exterior' ? 'var(--background)' : '#555',
-          }}
-        >
-          Exterior
-        </button>
-        <button
-          onClick={() => switchTab('interior')}
-          className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85 border-l-[1.5px] border-l-foreground"
-          style={{
-            background: tab === 'interior' ? 'var(--foreground)' : 'var(--background)',
-            color: tab === 'interior' ? 'var(--background)' : '#555',
-            borderLeft: '1.5px solid #111',
-          }}
-        >
-          Interior
-        </button>
-      </div>
+      {/* Tabs — solo si hay imágenes de interior; si no, Exterior es la única opción */}
+      {tieneInterior && (
+        <div className="flex mb-7 border-[1.5px] border-foreground w-fit">
+          <button
+            onClick={() => switchTab('exterior')}
+            className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85"
+            style={{
+              background: tab === 'exterior' ? 'var(--foreground)' : 'var(--background)',
+              color: tab === 'exterior' ? 'var(--background)' : '#555',
+            }}
+          >
+            Exterior
+          </button>
+          <button
+            onClick={() => switchTab('interior')}
+            className="px-8 py-3 text-sm font-semibold border-none cursor-pointer tracking-[.3px] transition-all hover:opacity-85 border-l-[1.5px] border-l-foreground"
+            style={{
+              background: tab === 'interior' ? 'var(--foreground)' : 'var(--background)',
+              color: tab === 'interior' ? 'var(--background)' : '#555',
+              borderLeft: '1.5px solid #111',
+            }}
+          >
+            Interior
+          </button>
+        </div>
+      )}
 
       {/* Grid */}
       <div className="grid grid-cols-3 max-desktop:grid-cols-2 gap-2.5">

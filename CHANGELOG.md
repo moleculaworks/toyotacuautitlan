@@ -5,6 +5,36 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-16 — Raúl (Claude Sonnet 5) (7)
+
+### Añadido — Yaris Sedán HEV publicado en Sanity
+Cuarto modelo del catálogo completado de punta a punta (slug `yaris-sedan-hev`,
+documento `ca984df4-2f37-46eb-8784-cd83b8fc7621`). Par HEV del Yaris Sedán —
+carrusel `versiones` con las mismas 6 tarjetas, reutilizando por referencia las
+imágenes ya subidas para el documento `yaris-sedan` (no se volvieron a exportar
+ni subir). Colores del 360° (Blanco, Rojo, Plata, Escarlata, Gris, Negro — sin
+Blanco Perlado) leídos de los atributos `data-color1` del DOM de toyota.mx, no
+aproximados. Primer modelo del catálogo con **36 ángulos por color** en el
+visor 360° (216 imágenes) en vez de los 16 habituales — detectado en vivo
+contra el sitio, no asumido por ser el mismo rango que otros modelos. Las
+imágenes fuente de este 360° vienen en PNG con transparencia y proporción real
+~1.415 (no 3:2 exacta como en los modelos anteriores) — se compusieron sobre
+fondo blanco y se ajustaron a 1200×800 sin recorte para no deformar el auto,
+en vez de estirarlas directo. Este modelo **no tiene galería de interior**
+(decisión del proyecto) — ver el cambio de `Galeria.tsx` abajo. 226 imágenes
+subidas vía `sanity exec` + `client.assets.upload()` (mismo mecanismo que
+Corolla HEV, Camry HEV y Yaris Sedán). Publicado con confirmación explícita
+("Súbelo a Sanity y publica").
+
+### Añadido — `Galeria.tsx` oculta la pestaña "Interior" si no hay imágenes
+Antes, un modelo sin `galeriaInteriorDetalle` (como el nuevo Yaris Sedán HEV)
+mostraba igual el botón "Interior" — al hacer clic, el visitante veía un grid
+completamente vacío sin aviso. Ahora la barra de pestañas (`Exterior`/`Interior`)
+solo se renderiza si `interior.length > 0`; si no hay imágenes, se muestra
+directo el grid de Exterior sin selector, ya que es la única opción. No afecta
+a los modelos que sí tienen ambas galerías. **Pendiente de commit/push** —
+cambio hecho en el working tree, no subido a `main` todavía.
+
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (6)
 
 ### Corregido — aspect-ratio de Destacado, Rendimiento y Galería
