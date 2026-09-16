@@ -5,6 +5,32 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (10)
+
+### Cambiado — regla de estilo: sin guión largo (—) en ningún texto del sitio
+Encontrado en `descripcionCorta`, `destacadoTexto`, `rendimientoTexto` y
+`seoTitulo` de Corolla y Corolla HEV, y en el `title` de respaldo de
+`generateMetadata`. Reemplazado por punto, dos puntos, coma o pipe (`|`,
+en títulos SEO) según el caso. Regla documentada en `SISTEMA-DE-DISENO.md`
+§6 (nueva sección de redacción/copy).
+
+### Corregido — `descripcionCorta` se cortaba a media palabra en las tarjetas
+El campo permitía hasta 160 caracteres en el schema, pero la tarjeta lo
+recorta visualmente a 2 líneas (`line-clamp-2`) — un texto más largo
+terminaba en "..." sin avisar. Bajado el límite del schema a 85 caracteres
+(con nota explicando por qué) y reescritos los textos de Corolla y Corolla
+HEV para que quepan completos. De paso, el de Corolla HEV ya no cita el
+dato de rendimiento (31.31 km/l) — queda para el cuerpo de su propia
+página, la tarjeta ahora es más comercial ("Un Corolla que además de
+moverte, te ahorra.").
+
+### Cambiado — tarjetas del catálogo (`ModeloCard.tsx`)
+- Nombre del modelo: de `text-lg` (18px) fijo a `clamp(20px,2.5vw,26px)` —
+  igual tamaño fluido que ya usa el nombre en "Modelos similares".
+- Descripción corta y label "Desde": usaban grises por defecto de Tailwind
+  (`gray-500`/`gray-400`), que no se usan en ningún otro lado del sitio —
+  cambiados a `#555`/`#888`, la escala de grises ya establecida.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (9)
 
 ### Añadido — filtro "Híbridos Eléctricos (HEV y PHEV)" funcional en `/modelos`

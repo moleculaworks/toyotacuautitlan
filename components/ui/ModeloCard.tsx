@@ -32,15 +32,15 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
       </div>
 
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-[#1A1A1A] group-hover:text-toyota-red transition-colors">
+        <h2 className="text-[clamp(20px,2.5vw,26px)] font-semibold tracking-[-.02em] leading-none text-[#1A1A1A] group-hover:text-toyota-red transition-colors">
           {modelo.nombre}
         </h2>
         {modelo.descripcionCorta && (
-          <p className="mt-1 text-sm text-gray-500 line-clamp-2">{modelo.descripcionCorta}</p>
+          <p className="mt-1 text-sm text-[#555] line-clamp-2">{modelo.descripcionCorta}</p>
         )}
         <div className="mt-3 flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-400">Desde</p>
+            <p className="text-xs text-[#888]">Desde</p>
             <p className="text-lg font-semibold text-[#1A1A1A]">
               {modelo.precioDesde
                 ? `$${modelo.precioDesde.toLocaleString('es-MX')} MXN`

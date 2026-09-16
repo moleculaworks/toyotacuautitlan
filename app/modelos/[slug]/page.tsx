@@ -76,7 +76,7 @@ export async function generateMetadata({
   const modelo = await getModeloBySlug(slug)
   if (!modelo) return {}
   return {
-    title: modelo.seoTitulo ?? `Toyota ${modelo.nombre} — Toyota Cuautitlán`,
+    title: modelo.seoTitulo ?? `Toyota ${modelo.nombre} | Toyota Cuautitlán`,
     description:
       modelo.seoDescripcion ??
       `Conoce el Toyota ${modelo.nombre} en Toyota Cuautitlán: versiones, precios, colores y más.`,

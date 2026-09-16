@@ -65,9 +65,10 @@ export const modeloType = defineType({
     defineField({
       name: 'descripcionCorta',
       title: 'Descripción corta (para tarjetas)',
+      description: 'Se corta a 2 líneas en la tarjeta del catálogo — máximo ~85 caracteres para que no se vea cortada con "...". Evitar guión largo (—); usar punto, dos puntos o coma.',
       type: 'text',
       rows: 2,
-      validation: (r) => r.max(160),
+      validation: (r) => r.max(85),
     }),
     defineField({
       name: 'descripcion',
