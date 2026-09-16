@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (11)
+
+### Cambiado — consistencia de botones y otras inconsistencias visuales menores
+Auditoría completa de la plantilla de modelo buscando más deriva visual
+(mismo tema que las correcciones anteriores del día):
+- **Botones:** "Ver versiones y precios" (Hero) de 13px a `text-sm` (14px),
+  igual que "Cotízalo"/"Manéjalo". Los dos "Solicitar Cotización" (CTA
+  intermedio y final) tenían 15px y 16px entre sí — unificados a
+  `text-base` (16px), tamaño mayor a propósito por ser CTA de sección
+  completa, no de tarjeta. Documentado en `SISTEMA-DE-DISENO.md` §5.
+- **Títulos de sección:** "Destacado" y "Rendimiento" usaban su propio
+  `clamp()` (28-3.5-42 y 26-3.5-42) en vez del estándar `clamp(28px,4vw,44px)`
+  que ya usan Versiones/Exterior/Seguridad/Galería — unificados.
+- **Grises de borde:** `#E0E0E0`, `#E8E8E8` y `#F0F0F0` (tres grises casi
+  idénticos para líneas finas/bordes) consolidados en un solo valor
+  (`#E8E8E8`).
+- **CTA final:** tenía `py-24 max-desktop:py-16` (más grande en escritorio,
+  más chico en mobile que cualquier otra sección) — igualado al estándar
+  `py-20 max-desktop:py-[52px]` del resto de las secciones.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (10)
 
 ### Cambiado — regla de estilo: sin guión largo (—) en ningún texto del sitio

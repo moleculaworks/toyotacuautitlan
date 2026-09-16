@@ -139,6 +139,19 @@ modelo ("Ver versiones y precios" — borde negro que invierte a rojo en
 hover). Ese es un tercer tratamiento válido para un solo CTA aislado sobre
 fondo claro; el patrón secundario de esta sección es específicamente para
 cuando va emparejado con un botón primario rojo, para no competir con él.
+También usa `text-sm` — incluso siendo un tratamiento de color distinto,
+comparte el mismo tamaño de texto que Cotízalo/Manéjalo (corregido el 15 de
+septiembre de 2026, antes estaba en 13px sin razón).
+
+### CTA de sección (un solo botón, ocupa su propia franja)
+
+Distinto del patrón de tarjeta de arriba — es el botón "Solicitar
+Cotización" que aparece dos veces en la página de modelo (CTA intermedio a
+media página, CTA final antes del footer). Al ser un CTA de sección
+completa, no uno dentro de una tarjeta chica, usa un tamaño de texto mayor:
+`text-base` (16px) en vez de `text-sm`. Las dos apariciones deben usar
+exactamente el mismo tamaño entre sí (el 15 de septiembre de 2026 estaban
+en 15px y 16px respectivamente, sin razón para la diferencia — corregido).
 
 ---
 
