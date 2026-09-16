@@ -5,7 +5,25 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
-## 2026-09-16 — Raúl (Claude Sonnet 5) (5)
+## 2026-09-16 — Raúl (Claude Sonnet 5) (6)
+
+### Corregido — aspect-ratio de Destacado, Rendimiento y Galería
+Raúl reportó que la imagen de "Destacado" del Yaris Sedán se veía
+recortada de los lados comparándola con el archivo original. La imagen
+exportada estaba bien (1200×800, 3:2, tal como pide `guia-imagenes-por-modelo.md`)
+— el bug estaba en el contenedor de `app/modelos/[slug]/page.tsx`, fijado
+a `aspect-[4/3]` en vez de `aspect-[3/2]`; con `object-cover` eso recortaba
+los lados de la imagen más ancha para forzarla en una caja más angosta.
+Auditando el resto de la plantilla se encontró el mismo error en 3
+lugares más: "Rendimiento" (`page.tsx`, mismo bug pero con `object-contain`,
+así que dejaba espacio en blanco en vez de recortar) y la Galería —grid de
+miniaturas y lightbox— en `components/modelo/Galeria.tsx` (una recortaba,
+la otra dejaba espacio en blanco). Los 4 se corrigieron a `aspect-[3/2]`,
+que es la proporción real de esas imágenes en toda la guía. Hero,
+Versiones, Visor 360° y Tarjeta ya estaban correctos, se revisaron y se
+descartaron como afectados. Al ser la plantilla compartida, aplica de
+inmediato a los 4 modelos ya publicados (Corolla, Corolla HEV, Camry HEV,
+Yaris Sedán).
 
 ### Corregido — copy del Yaris Sedán sin lenguaje de "renovación"
 Raúl señaló que el rediseño de este Yaris Sedán tiene varios años y ya no
