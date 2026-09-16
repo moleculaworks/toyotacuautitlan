@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-16 — Raúl (Claude Sonnet 5) (5)
+
+### Corregido — copy del Yaris Sedán sin lenguaje de "renovación"
+Raúl señaló que el rediseño de este Yaris Sedán tiene varios años y ya no
+es un factor a destacar — los textos originales (copiados de toyota.mx)
+insistían en "renovado"/"renovación"/"redescubre" en `heroSubtitulo`,
+`descripcion`, `descripcionCorta`, `exteriorTitulo` y `seoDescripcion`.
+Reemplazados con líneas propias de Toyota sin enfoque de novedad ("El
+sedán perfecto para tu día a día", "Más que un Sedán es un Toyota Yaris",
+"Se adapta a tu vida"). Publicado con confirmación explícita.
+
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (4)
 
 ### Añadido — Yaris Sedán publicado en Sanity
