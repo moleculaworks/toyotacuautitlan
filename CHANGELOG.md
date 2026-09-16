@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (8)
+
+### Cambiado — textos del recuadro de rendimiento más grandes
+En `app/modelos/[slug]/page.tsx` (plantilla genérica, aplica a todos los
+modelos): "Transmisión" y "Rendimiento de Combustible" de `text-sm` (14px) a
+`text-base` (16px); la etiqueta de transmisión de cada fila (ej. "HEV") de
+14px a 32px, para quedar proporcional en tamaño al valor numérico junto a
+ella (ej. "31.31").
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (7)
 
 ### Corregido — carrusel duplicado desincronizado entre Corolla y Corolla HEV

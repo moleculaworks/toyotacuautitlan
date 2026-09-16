@@ -482,10 +482,10 @@ export default async function ModeloPage({
 
               <div className="mt-8 bg-toyota-gray rounded-md overflow-hidden">
                 <div className="grid grid-cols-2 border-b-2 border-[#E0E0E0]">
-                  <div className="px-6 py-[18px] text-sm font-semibold text-foreground border-r border-[#E0E0E0]">
+                  <div className="px-6 py-[18px] text-base font-semibold text-foreground border-r border-[#E0E0E0]">
                     Transmisión
                   </div>
-                  <div className="px-6 py-[18px] text-sm font-semibold text-foreground">
+                  <div className="px-6 py-[18px] text-base font-semibold text-foreground">
                     Rendimiento de Combustible<sup className="text-[10px]">**</sup>
                   </div>
                 </div>
@@ -494,7 +494,7 @@ export default async function ModeloPage({
                     key={row.transmision}
                     className={`grid grid-cols-2 ${i === 0 ? 'border-b border-[#E8E8E8]' : ''}`}
                   >
-                    <div className="px-6 py-5 text-sm font-semibold text-toyota-red border-r border-[#E0E0E0]">
+                    <div className="px-6 py-5 flex items-center text-[32px] font-semibold text-toyota-red tracking-[-.02em] border-r border-[#E0E0E0]">
                       {row.transmision}
                     </div>
                     <div className="px-6 py-5 flex items-baseline gap-1.5">
