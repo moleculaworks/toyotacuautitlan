@@ -5,7 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
-## 2026-09-16 — Raúl (Claude Sonnet 5) (1)
+## 2026-09-16 — Raúl (Claude Sonnet 5) (2)
+
+### Añadido — Camry HEV publicado en Sanity
+Segundo modelo del catálogo completado de punta a punta (slug `camry-hev`,
+documento `f2e94d37-fe57-4ebe-89bd-4dc850c237cd`). Revisión previa de las
+101 imágenes locales producidas por Raúl: 2 nombres de archivo corregidos
+para llevar el prefijo completo del slug (`camry-destacado.webp` →
+`camry-hev-destacado.webp`, y las 4 imágenes de `versiones/` que tenían
+"hev" al final en vez de al inicio). Confirmado que Blanco y Blanco Perlado
+comparten intencionalmente las mismas fotos del visor 360° (13/16 ángulos
+idénticos byte a byte) — replica lo que hace toyota.mx, no es un error.
+Subida de assets vía `npx @sanity/cli assets upload` (101 imágenes: hero
+desktop/móvil, tarjeta, destacado, rendimiento, 4 versiones, 5 colores ×
+16 ángulos del 360°, galería exterior/interior de 6+6) y creación del
+documento vía `create_documents`. Corregido en el momento: el primer
+`create_documents` se envió sin el campo `slug` (requerido por el schema)
+por descuido — se resolvió con un `patch_documents` inmediato antes de
+publicar. Publicado con confirmación explícita de Raúl. Pendiente: deploy
+en Vercel (este mismo commit) para que la página exista en el sitio en
+vivo — ver `AGENTS.md`.
 
 ### Añadido — `destacadoTexto` admite viñetas (Portable Text)
 Antes era texto plano (`type: 'text'`), solo aceptaba un párrafo corrido —
