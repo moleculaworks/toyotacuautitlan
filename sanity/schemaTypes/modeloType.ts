@@ -265,8 +265,9 @@ export const modeloType = defineType({
     defineField({
       name: 'destacadoTexto',
       title: 'Texto del destacado',
-      type: 'text',
-      rows: 4,
+      description: 'Admite viñetas y negritas (Portable Text) — útil para enumerar componentes puntuales en vez de un párrafo genérico.',
+      type: 'array',
+      of: [{ type: 'block' }],
       group: 'secciones',
     }),
     defineField({

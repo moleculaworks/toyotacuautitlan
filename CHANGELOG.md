@@ -5,6 +5,34 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-16 — Raúl (Claude Sonnet 5) (1)
+
+### Añadido — `destacadoTexto` admite viñetas (Portable Text)
+Antes era texto plano (`type: 'text'`), solo aceptaba un párrafo corrido —
+ahora es `array` de `block` (igual que `descripcion`), admite listas con
+viñetas además de párrafos y negritas. `app/modelos/[slug]/page.tsx`
+actualizado para renderizar con `<PortableText>` en vez de `<p>` simple.
+Corolla y Corolla HEV migrados con contenido real: los 6 componentes de
+Toyota Safety Sense según su ficha técnica (Sistema de Pre-Colisión,
+Asistencia de Mantenimiento de Carril, Asistencia de Trazado de Carril,
+Alerta de Cambio de Carril, Sistema de Luces Altas Automáticas, Control
+Crucero Adaptativo Dinámico) en vez de un párrafo genérico. Publicado antes
+de subir el código, para no dejar la sección en blanco en producción (el
+componente de Portable Text no sabe interpretar el string viejo).
+
+### Añadido — borrador de Camry HEV (`JSON Modelos/camry-hev.json`)
+Reconstruido desde cero (reemplaza al `camry.json` viejo, formato
+pre-Sanity, borrado) — datos y textos verificados contra la ficha técnica +
+toyota.mx en vivo. Modelo único, sin par CVT/gasolina. Pendiente de
+aprobación final y carga a Sanity.
+
+### Cambiado — `/preview-borrador` generalizado
+Antes leía siempre `corolla-hev.json` a mano. Ahora acepta
+`?json=<archivo>` como parámetro, y el marcador de posición de colores se
+filtra dinámicamente por los nombres de color del borrador en vez de una
+exclusión fija ("no Negro") — reutilizable para cualquiera de los 24
+modelos sin tocar el archivo.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (12)
 
 ### Cambiado — visor 360° más grande
