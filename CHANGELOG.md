@@ -32,8 +32,17 @@ mostraba igual el botón "Interior" — al hacer clic, el visitante veía un gri
 completamente vacío sin aviso. Ahora la barra de pestañas (`Exterior`/`Interior`)
 solo se renderiza si `interior.length > 0`; si no hay imágenes, se muestra
 directo el grid de Exterior sin selector, ya que es la única opción. No afecta
-a los modelos que sí tienen ambas galerías. **Pendiente de commit/push** —
-cambio hecho en el working tree, no subido a `main` todavía.
+a los modelos que sí tienen ambas galerías. Commiteado y subido a `main`
+(rama `galeria-oculta-boton-interior`, fusionada directo) — dispara deploy en
+Vercel.
+
+### Corregido — imagen de tarjeta del Yaris Sedán HEV
+Raúl subió por error la imagen de tarjeta del Yaris Sedán (gasolina) en vez
+de la del HEV — detectado comparando el hash SHA-1 del archivo local contra
+el ID del asset ya publicado en Sanity (coincidían exactamente, señal de que
+no había cambio real que aplicar). Corregido con el archivo correcto
+(`yaris-sedan-hev-tarjeta.webp`, 1200×675) y publicado con confirmación
+explícita.
 
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (6)
 
