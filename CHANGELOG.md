@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-16 — Raúl (Claude Sonnet 5) (3)
+
+### Cambiado — subtítulo del Hero de modelo más grande
+`app/modelos/[slug]/page.tsx`: el párrafo bajo el nombre del modelo (ej.
+"Imponente por fuera y por dentro.") pasó de `clamp(16px,1.6vw,18px)` a
+`clamp(18px,1.8vw,20px)` — se veía chico junto al `h1`. Al ser la plantilla
+compartida por los 24 modelos, aplica a todos de un jalón.
+
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (2)
 
 ### Añadido — Camry HEV publicado en Sanity
