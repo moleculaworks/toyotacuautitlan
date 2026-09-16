@@ -202,7 +202,7 @@ export default async function ModeloPage({
               <div className="flex max-desktop:flex-col max-desktop:w-full gap-3">
                 <a
                   href="#versiones"
-                  className="inline-flex items-center justify-center gap-2.5 text-foreground text-[13px] font-semibold tracking-[.3px] border-2 border-foreground px-5 py-[11px] w-fit max-desktop:w-full no-underline transition-colors hover:bg-toyota-red hover:border-toyota-red hover:text-white"
+                  className="inline-flex items-center justify-center gap-2.5 text-foreground text-sm font-semibold tracking-[.3px] border-2 border-foreground px-5 py-[11px] w-fit max-desktop:w-full no-underline transition-colors hover:bg-toyota-red hover:border-toyota-red hover:text-white"
                 >
                   Ver versiones y precios
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -254,7 +254,7 @@ export default async function ModeloPage({
 
       {/* § 2 · VERSIONES Y PRECIOS */}
       {mostrarVersiones && (
-        <section id="versiones" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#F0F0F0]">
+        <section id="versiones" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
             <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
               <div>
@@ -306,7 +306,7 @@ export default async function ModeloPage({
 
       {/* § 3 · EXTERIOR Y COLORES */}
       {mostrarExterior && (
-        <section id="exterior" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#F0F0F0]">
+        <section id="exterior" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
             <div className="mb-10">
               <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
@@ -341,7 +341,7 @@ export default async function ModeloPage({
           </div>
           <Link
             href={`/cotizacion?modelo=${modeloSlug}`}
-            className="flex-shrink-0 inline-block bg-white text-toyota-red px-11 py-[18px] text-[15px] font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-foreground hover:text-white"
+            className="flex-shrink-0 inline-block bg-white text-toyota-red px-11 py-[18px] text-base font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-foreground hover:text-white"
           >
             Solicitar Cotización
           </Link>
@@ -358,7 +358,7 @@ export default async function ModeloPage({
                   {modelo.destacadoEyebrow}
                 </span>
               )}
-              <h2 className="text-[clamp(28px,3.5vw,42px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.05]">
+              <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.05]">
                 {modelo.destacadoTitulo}
               </h2>
               {modelo.destacadoTexto && (
@@ -470,7 +470,7 @@ export default async function ModeloPage({
                 </span>
               )}
               {modelo.rendimientoTitulo && (
-                <h2 className="text-[clamp(26px,3.5vw,42px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.08]">
+                <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-2 text-black leading-[1.08]">
                   {modelo.rendimientoTitulo}
                 </h2>
               )}
@@ -481,8 +481,8 @@ export default async function ModeloPage({
               )}
 
               <div className="mt-8 bg-toyota-gray rounded-md overflow-hidden">
-                <div className="grid grid-cols-2 border-b-2 border-[#E0E0E0]">
-                  <div className="px-6 py-[18px] text-base font-semibold text-foreground border-r border-[#E0E0E0]">
+                <div className="grid grid-cols-2 border-b-2 border-[#E8E8E8]">
+                  <div className="px-6 py-[18px] text-base font-semibold text-foreground border-r border-[#E8E8E8]">
                     Transmisión
                   </div>
                   <div className="px-6 py-[18px] text-base font-semibold text-foreground">
@@ -494,7 +494,7 @@ export default async function ModeloPage({
                     key={row.transmision}
                     className={`grid grid-cols-2 ${i === 0 ? 'border-b border-[#E8E8E8]' : ''}`}
                   >
-                    <div className="px-6 py-5 flex items-center text-[32px] font-semibold text-toyota-red tracking-[-.02em] border-r border-[#E0E0E0]">
+                    <div className="px-6 py-5 flex items-center text-[32px] font-semibold text-toyota-red tracking-[-.02em] border-r border-[#E8E8E8]">
                       {row.transmision}
                     </div>
                     <div className="px-6 py-5 flex items-baseline gap-1.5">
@@ -518,7 +518,7 @@ export default async function ModeloPage({
       )}
 
       {/* § 8 · CTA FINAL */}
-      <section id="final-cta" className="bg-black py-24 max-desktop:py-16">
+      <section id="final-cta" className="bg-black py-20 max-desktop:py-[52px]">
         <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 text-center flex flex-col items-center gap-4">
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] desktop:whitespace-nowrap">
             ¿Listo para manejar tu {nombreModelo}?
