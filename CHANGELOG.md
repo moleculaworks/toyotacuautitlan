@@ -5,6 +5,73 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (5)
+
+### Añadido — catálogo completo de 24 modelos definido
+Comparando toyota.mx y toyotaoaxaca.com.mx (mismo grupo que Cuautitlán) se
+definió la lista completa de modelos, su categoría/precio, y se identificaron
+**5 nameplates con motorización doble físicamente distinta** (diseño exterior
+y/o colores diferentes entre versiones): Corolla, Corolla Cross, Yaris Sedán,
+Tacoma, RAV4 — cada uno va en **dos documentos separados** (uno por
+motorización), pero con el **carrusel de versiones duplicado** (mismas 6
+tarjetas en ambas páginas, sin campo ni schema nuevo — solo se repiten los
+datos). Detalle completo en Obsidian `catalogo-de-modelos.md`.
+
+### Cambiado — campo `imagenPrincipal` renombrado a `imagenTarjeta`
+No describía para qué se usa (miniatura de catálogo y "Modelos similares",
+no algo de la propia página). Schema desplegado por CLI, dato migrado en el
+documento Corolla, código actualizado en 4 archivos
+(`lib/sanity/queries.ts`, `types/index.ts`, `components/ui/ModeloCard.tsx`,
+`app/modelos/[slug]/page.tsx`).
+
+### Cambiado — reorganización completa de `Imagenes por Modelo/`
+Carpeta renombrada (antes `Imagenes Ejemplo Modelo/`) al dejar de ser un
+solo ejemplo. Nueva convención, aplicada al Corolla y documentada en
+`CLAUDE.md`: una subcarpeta por página de modelo (nombrada con su slug),
+con siempre el slug como prefijo de cada archivo — incluso dentro de sus
+propias subcarpetas (`versiones/`, `360/<color>/`, `galeria/exterior|interior/`)
+— para poder identificar de qué modelo es un archivo aunque salga de su
+carpeta. Las carpetas se crean conforme se trabaja cada modelo, no todas de
+una vez.
+
+### Corregido — precios y datos del Corolla desactualizados
+- LE HEV $515,300 → **$524,400**, XLE HEV $567,300 → **$576,400** (precio
+  real vigente en toyota.mx/toyotaoaxaca.com.mx).
+- XLE CVT y XLE HEV ya no comparten la misma foto — cada una tiene su
+  propia imagen subida a Sanity.
+- Rendimiento: se corrigió que cada modelo muestra **una sola fila**, la
+  suya (Corolla CVT = 19.14 KM/L, sin la fila HEV que tenía un dato viejo
+  de 26.3) — confirmado con Raúl que así se ve en toyota.mx, a diferencia
+  del carrusel de versiones que sí duplica ambas motorizaciones.
+- XLE HEV: se quitó "Quemacocos" de sus características (no está en la
+  ficha técnica del HEV) y se agregó "Espejo retrovisor electrocromático"
+  en su lugar (sí confirmado en la ficha técnica).
+
+### Añadido — hallazgo: publicar en Sanity no garantiza quedarse en borrador
+Durante el trabajo de imágenes de hoy, dos `patch_documents` (borrador)
+terminaron reflejándose parcialmente en producción sin que se llamara
+`publish_documents` — causa no confirmada del todo. Se corrigió el estado
+publicado y se adoptó una salvaguarda: verificar explícitamente con
+`perspective: "published"` después de cada `patch_documents`, no asumir
+que se quedó solo en borrador. Detalle en memoria interna.
+
+### Añadido — borrador completo del Corolla HEV (`corolla-hev`)
+Datos y specs extraídos de `Ficha_Tecnica_COROLLA_HEV_26_web.pdf` +
+toyota.mx, con textos de sección redactados y aprobados por Raúl. Vive en
+`JSON Modelos/corolla-hev.json` (fuera del repo) — pendiente de imágenes
+propias (Raúl, Photoshop) antes de cargarlo a Sanity. Carpeta
+`Imagenes por Modelo/corolla-hev/` ya creada, con las 6 fotos de versiones
+listas (reutilizadas del carrusel duplicado) — faltan hero, tarjeta,
+destacado, rendimiento, colores/360° y galería.
+
+### Añadido — página de prueba visual reutilizable para revisar borradores
+`app/preview-borrador/page.tsx` (temporal, nunca en git, se borra al
+decidir) renderiza cualquier borrador de `JSON Modelos/` con el diseño
+real de la página, usando fotos del Corolla como marcador de posición
+("Foto temporal") donde el modelo en borrador aún no tiene las propias.
+Pensado para repetirse con cada uno de los 24 modelos, no solo el Corolla
+HEV — resuelve que revisar copy en JSON crudo era poco práctico.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (4)
 
 ### Cambiado — texto de la barra de highlights un poco más grande
