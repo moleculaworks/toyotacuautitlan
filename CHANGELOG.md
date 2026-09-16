@@ -5,6 +5,42 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-15 — Raúl (Claude Sonnet 5) (6)
+
+### Añadido — documento "Corolla HEV" creado y publicado en Sanity
+Nuevo documento del modelo (slug `corolla-hev`), separado del "Corolla" (CVT)
+según el patrón de carrusel duplicado ya decidido. Cargadas y referenciadas
+119 imágenes: hero desktop/mobile, tarjeta, destacado, rendimiento, las 6
+fotos de versiones (carrusel compartido con el Corolla CVT), y el visor 360°
+completo (16 ángulos × 6 colores = 96 imágenes) más galería exterior/interior
+(6 + 6). Contenido armado desde `JSON Modelos/corolla-hev.json`, ya aprobado
+en sesiones previas. Publicado con confirmación explícita.
+
+**Nota de proceso:** publicar en Sanity no actualiza el HTML estático del
+sitio — hace falta un deploy nuevo en Vercel (de ahí este mismo commit) para
+que `/modelos/corolla-hev` exista en producción.
+
+### Corregido — "Quemacocos" restaurado en XLE HEV
+Se había quitado de las características de XLE HEV (documento "Corolla", ya
+publicado) por no aparecer en la ficha técnica del HEV. Raúl confirmó contra
+las fotos de interior de toyota.mx que sí lo trae de serie. Restaurado como
+característica adicional (no se quitó "Espejo retrovisor electrocromático",
+que sigue verificado contra la ficha) — corregido en Sanity, `corolla.json` y
+`corolla-hev.json`.
+
+### Cambiado — colores del visor 360° del Corolla HEV: Blanco Perlado → Negro
+La ficha técnica del HEV lista Blanco Perlado (no Negro) entre sus 6 colores,
+pero toyota.mx — la fuente real de las fotos del 360° — no tiene Blanco
+Perlado disponible para este modelo y sí tiene Negro. Se usaron los 6 colores
+reales de toyota.mx en vez de los de la ficha técnica.
+
+### Corregido — guía de imágenes por modelo (Obsidian)
+`guia-imagenes-por-modelo.md`: el peso de referencia del visor 360° decía
+"3–6 KB por imagen" — incorrecto, verificado contra las imágenes reales del
+Corolla (24,944–29,834 bytes). Corregido a 19–38 KB. También se aclaró que
+el número de ángulos por color **no es fijo en 16** — varía por vehículo, el
+visor (`components/modelo/ExteriorColores.tsx`) soporta cualquier cantidad.
+
 ## 2026-09-15 — Raúl (Claude Sonnet 5) (5)
 
 ### Añadido — catálogo completo de 24 modelos definido
