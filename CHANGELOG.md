@@ -5,7 +5,27 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
-## 2026-09-16 — Raúl (Claude Sonnet 5) (3)
+## 2026-09-16 — Raúl (Claude Sonnet 5) (4)
+
+### Añadido — Yaris Sedán publicado en Sanity
+Tercer modelo del catálogo completado de punta a punta (slug `yaris-sedan`,
+documento `48ea9a87-6a82-4860-ad55-265d893fa710`). Uno de los 5 nameplates
+con motorización doble (par con Yaris Sedán HEV, aún no construido) — el
+carrusel `versiones` ya trae 6 tarjetas (5 de gasolina + 1 "HEV" a
+$450,000, siguiendo el patrón de Corolla/Corolla HEV). Primer modelo del
+catálogo con 2 filas de rendimiento (CVT 18.54 / MT 20.10 KM/L, porque
+ofrece ambas transmisiones). Revisión previa de las 135 imágenes de Raúl
+encontró y corrigió un nombre sin guión (`yaris-sedan-shi-cvt.webp` →
+`yaris-sedan-s-hi-cvt.webp`) y confirmó dos cosas que parecían errores pero
+no lo eran: la foto de "Base CVT" y "S MT" es el mismo archivo a propósito
+(toyota.mx también las muestra idénticas), y los colores Blanco/Blanco
+Perlado del 360° comparten algunos ángulos por el mismo motivo. Colores
+(7: Blanco, Rojo, Plata, Escarlata, Gris, Negro, Blanco Perlado) leídos
+directo de los atributos `data-color1` del DOM del configurador de
+toyota.mx, no aproximados a ojo. `destacadoTexto` (Toyota Safety Sense)
+solo tiene 4 componentes en vez de los 6 habituales — la ficha técnica de
+este modelo no incluye AHB ni DRCC, no se inventaron por consistencia.
+Publicado con confirmación explícita de Raúl.
 
 ### Cambiado — subtítulo del Hero de modelo más grande
 `app/modelos/[slug]/page.tsx`: el párrafo bajo el nombre del modelo (ej.
