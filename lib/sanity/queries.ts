@@ -5,7 +5,7 @@ import { groq } from 'next-sanity'
 export async function getModelos() {
   return client.fetch(groq`
     *[_type == "modelo"] | order(orden asc) {
-      _id, nombre, slug, categoria, precioDesde, descripcionCorta, destacado,
+      _id, nombre, slug, categoria, esHibridoElectrico, precioDesde, descripcionCorta, destacado,
       imagenTarjeta { asset->{ url, metadata { lqip } } }
     }
   `)

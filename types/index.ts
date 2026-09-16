@@ -7,7 +7,7 @@ export interface Modelo {
     | "Suv's & Minivans"
     | "Pickup's & Comerciales"
     | 'Toyota Gazoo Racing'
-    | 'Híbridos Eléctricos (HEV y PHEV)'
+  esHibridoElectrico?: boolean
   precioDesde: number
   descripcionCorta?: string
   descripcion?: unknown[]

@@ -21,6 +21,7 @@ export const modeloType = defineType({
     defineField({
       name: 'categoria',
       title: 'Categoría',
+      description: 'Categoría física del vehículo (siempre la real, ej. un sedán híbrido sigue siendo "Sedanes & Hatchbacks"). No usar "Híbridos Eléctricos" aquí — para eso existe el campo "¿Es híbrido o eléctrico?" de abajo, que funciona como filtro adicional, no como categoría excluyente.',
       type: 'string',
       options: {
         list: [
@@ -28,11 +29,17 @@ export const modeloType = defineType({
           "Suv's & Minivans",
           "Pickup's & Comerciales",
           'Toyota Gazoo Racing',
-          'Híbridos Eléctricos (HEV y PHEV)',
         ],
         layout: 'radio',
       },
       validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'esHibridoElectrico',
+      title: '¿Es híbrido o eléctrico? (HEV / PHEV / EV)',
+      description: 'Marca este campo para que el modelo aparezca también en el filtro "Híbridos Eléctricos (HEV y PHEV)" de /modelos, además de su categoría física normal. No afecta la categoría del modelo.',
+      type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'anio',
