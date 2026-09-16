@@ -142,6 +142,30 @@ cuando va emparejado con un botón primario rojo, para no competir con él.
 
 ---
 
+## 6. Redacción / copy
+
+**No usar guión largo (—) en ningún texto del sitio** (acordado 15 de
+septiembre de 2026, tras encontrarlo en varios textos: `descripcionCorta`,
+`destacadoTexto`, `rendimientoTexto`, `seoTitulo`). Usar en su lugar, según
+el caso:
+- Punto y seguido, si son dos ideas independientes.
+- Dos puntos (`:`), si la segunda parte explica o desarrolla la primera.
+- Coma, si es una pausa corta dentro de la misma idea.
+- Pipe (`|`), específicamente en títulos SEO (`seoTitulo`) para separar el
+  nombre del modelo del resto — ej. `Toyota Corolla 2026 | Versiones y
+  Precios`.
+
+Esto aplica tanto a contenido cargado en Sanity como a texto fijo en código
+(ej. el `title` de respaldo en `generateMetadata`, `app/modelos/[slug]/page.tsx`).
+
+**`descripcionCorta` (tarjetas de modelo): máximo ~85 caracteres reales**,
+no los 160 que permitía el schema hasta ahora. El campo se corta visualmente
+a 2 líneas (`line-clamp-2` en `ModeloCard.tsx`) — un texto más largo termina
+en "..." a media palabra. Escribir corto y comercial, sin citar datos/specs
+(esos van en el cuerpo de la página del modelo, no en la tarjeta de catálogo).
+
+---
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño
