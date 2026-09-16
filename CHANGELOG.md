@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-16 — Raúl (Claude Sonnet 5) (9)
+
+### Cambiado — tarjeta de versión más compacta en mobile
+`components/modelo/VersionesCarousel.tsx`: con los botones Cotízalo/Manéjalo
+agregados, la tarjeta de versión creció demasiado en mobile — mucho scroll
+para comparar versiones dentro del carrusel horizontal. Se descartó poner
+los botones lado a lado (le resta prioridad visual a "Cotízalo" y reduce
+el tamaño de toque, ambos malos en mobile) y en su lugar se apretó el
+espaciado en dos puntos sin tocar tamaño de texto ni botones: el header
+de nombre/precio (`pt-[22px]/pb-[18px]` → `pt-4/pb-[14px]`) y la lista de
+características (contenedor `py-5` → `py-3`, cada ítem `py-2` → `py-1.5`).
+Recorta ~50px de alto por tarjeta con 6 características.
+
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (8)
 
 ### Cambiado — disclaimer de precios bajo el carrusel de versiones
