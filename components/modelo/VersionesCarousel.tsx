@@ -221,7 +221,7 @@ function VersionCard({
           />
         )}
       </div>
-      <div className="bg-[#F7F7F7] px-[22px] pt-[22px] pb-[18px] border-b border-[#E8E8E8]">
+      <div className="bg-[#F7F7F7] px-[22px] pt-4 pb-[14px] border-b border-[#E8E8E8]">
         <h3 className="text-2xl font-semibold text-foreground tracking-tight leading-[1.1]">
           {version.nombre}
         </h3>
@@ -232,9 +232,9 @@ function VersionCard({
           <span className="text-xs font-semibold text-toyota-red opacity-70">MXN</span>
         </div>
       </div>
-      <div className="px-[22px] py-5 flex-1">
+      <div className="px-[22px] py-3 flex-1">
         {version.caracteristicas.map((c) => (
-          <div key={c} className="py-2 border-b border-[#F2F2F2] text-[13px] text-[#222]">
+          <div key={c} className="py-1.5 border-b border-[#F2F2F2] text-[13px] text-[#222]">
             {c}
           </div>
         ))}
