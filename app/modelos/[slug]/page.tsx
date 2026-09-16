@@ -362,9 +362,9 @@ export default async function ModeloPage({
                 {modelo.destacadoTitulo}
               </h2>
               {modelo.destacadoTexto && (
-                <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7] mt-5">
-                  {modelo.destacadoTexto}
-                </p>
+                <div className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7] mt-5 [&_p]:mb-3 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1.5 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1.5 [&_ol]:my-3">
+                  <PortableText value={modelo.destacadoTexto} />
+                </div>
               )}
             </div>
             <div className="aspect-[4/3] bg-white overflow-hidden relative">

@@ -177,6 +177,19 @@ a 2 líneas (`line-clamp-2` en `ModeloCard.tsx`) — un texto más largo termina
 en "..." a media palabra. Escribir corto y comercial, sin citar datos/specs
 (esos van en el cuerpo de la página del modelo, no en la tarjeta de catálogo).
 
+**`destacadoTexto` admite viñetas (16 de septiembre de 2026).** Migrado de
+texto plano a Portable Text (`array` de `block`, igual que `descripcion`) —
+antes solo aceptaba un párrafo corrido, ahora también acepta listas con
+viñetas. Útil cuando conviene enumerar componentes puntuales (ej. "Sistema
+de Pre-Colisión", "Asistencia de Mantenimiento de Carril"...) en vez de un
+párrafo genérico tipo "un conjunto de sistemas de asistencia activa que...".
+Sigue siendo válido usar solo un párrafo sin viñetas cuando el contenido no
+se presta a lista — no es obligatorio enumerar. Migrados a este formato:
+Corolla, Corolla HEV (sin viñetas, prosa igual que antes) y Camry HEV (con
+viñetas, primer caso real). Renderizado en `app/modelos/[slug]/page.tsx` con
+`<PortableText>` dentro de un `<div>` con estilos para `p`/`strong`/`ul`/`ol`
+(antes era un `<p>` simple).
+
 ---
 
 ## Pendientes (a propósito, no resueltos hoy)
