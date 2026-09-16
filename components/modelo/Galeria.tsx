@@ -84,7 +84,7 @@ export default function Galeria({
               setLightboxIndex(idx)
               setLightboxOpen(true)
             }}
-            className="group aspect-[4/3] relative overflow-hidden cursor-pointer border-none p-0 bg-[#F0F0F0]"
+            className="group aspect-[3/2] relative overflow-hidden cursor-pointer border-none p-0 bg-[#F0F0F0]"
             aria-label={`Ampliar: ${nombreModelo} ${tabLabel} ${idx + 1}`}
           >
             <Image
@@ -135,7 +135,7 @@ export default function Galeria({
           </button>
 
           <div className="max-w-[820px] w-[88vw]" style={{ animation: 'lbIn .25s ease' }}>
-            <div className="w-full aspect-[4/3] relative">
+            <div className="w-full aspect-[3/2] relative">
               <Image
                 src={items[lightboxIndex].src}
                 alt={`${nombreModelo} ${tabLabel} ${lightboxIndex + 1}`}

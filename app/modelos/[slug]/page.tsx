@@ -367,7 +367,7 @@ export default async function ModeloPage({
                 </div>
               )}
             </div>
-            <div className="aspect-[4/3] bg-white overflow-hidden relative">
+            <div className="aspect-[3/2] bg-white overflow-hidden relative">
               <Image
                 src={imagenDestacadoUrl!}
                 alt={`${nombreModelo} · ${modelo.destacadoTitulo}`}
@@ -452,7 +452,7 @@ export default async function ModeloPage({
             }`}
           >
             {imagenRendimientoUrl && (
-              <div className="aspect-[4/3] max-desktop:max-h-[300px] bg-white overflow-hidden relative">
+              <div className="aspect-[3/2] max-desktop:max-h-[300px] bg-white overflow-hidden relative">
                 <Image
                   src={imagenRendimientoUrl}
                   alt={`${nombreModelo} · vista trasera ¾`}
