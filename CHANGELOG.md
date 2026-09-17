@@ -5,6 +5,36 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (6)
+
+### Añadido — mega-menú de Modelos (escritorio) + acordeón (móvil)
+Reemplaza el link simple "Modelos" del navbar por el patrón de
+toyota.mx: en escritorio, un panel al hacer hover con las 5 categorías
+a la izquierda y tarjetas (imagen, nombre, precio) de la categoría
+activa a la derecha (`components/layout/ModelosMegaMenu.tsx`); en
+móvil, un acordeón anidado Modelos → categoría → tarjetas en scroll
+horizontal dentro del menú hamburguesa
+(`components/layout/ModelosMobileAccordion.tsx`), reemplazando el link
+simple anterior. Ambos leen los modelos en vivo vía `getModelos()`
+desde el layout raíz (`app/layout.tsx`, ahora async) — crecen solos
+conforme se publiquen los 18 modelos restantes. Categorías compartidas
+extraídas a `lib/categorias.ts` (antes duplicadas en
+`app/modelos/page.tsx`). Categorías sin modelos muestran "Próximamente
+en esta categoría" en vez de verse vacías.
+
+Se decidió **conservar** `/modelos` como página de respaldo (enlace al
+final del acordeón) aunque toyota.mx no tenga una — nos sirve de SEO y
+red de seguridad mientras el catálogo esté incompleto; se puede
+reconsiderar más adelante.
+
+Tamaños de texto ajustados tras varias rondas de revisión con Raúl:
+categorías y nombre de modelo a 15px/semibold, precio ("Desde $X MXN")
+a 14px/normal — antes 12px con gris muy claro, poco legible.
+
+Probado primero en local (mega-menú, acordeón, encuadre de imágenes de
+tarjeta) antes de subir — ver historial de la sesión para el detalle de
+las iteraciones de espaciado, aspect-ratio y tipografía.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (5)
 
 ### Corte de auditoría — sincronización y depuración
