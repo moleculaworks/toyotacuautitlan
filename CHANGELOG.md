@@ -5,6 +5,34 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (4)
+
+### Añadido — Yaris Hatchback publicado en Sanity
+Sexto modelo del catálogo (slug `yaris-hatchback`, documento `yaris-hatchback-modelo`).
+No tiene par HEV — 3 versiones: Base CVT ($326,500), S MT ($357,000), S CVT
+($383,300). Motor 1.5L · 106 HP (verificado en su propia ficha técnica, distinto
+a los 105 HP del Yaris Sedán). 6 colores (Blanco, Plata, Gris, Escarlata,
+Cemento, Negro) — "Cemento" es nombre de color nuevo en el catálogo. Visor
+360° con **8 ángulos por color** (no 16), primer modelo del catálogo con este
+rango más chico, extensión `.jpeg`. Destacado = "Comodidad" en vez de Toyota
+Safety Sense (decisión explícita para variar respecto a los últimos modelos).
+68 imágenes subidas sin hallazgos en la revisión previa (nombres, resoluciones
+y hashes MD5 correctos de punta a punta).
+
+## 2026-09-17 — Raúl (Claude Sonnet 5) (3)
+
+### Sincronizado — `JSON Modelos/` contra lo realmente publicado en Sanity
+Se estableció que la intro (`descripcion`) debe medir 300-350 caracteres. Al
+verificar contra el Yaris Sedán HEV se encontró que el archivo local tenía
+128 caracteres cuando lo publicado real eran 336 — auditando los otros 4
+modelos publicados se confirmó que **los 5 tenían la intro desactualizada**
+localmente, y que `corolla.json` además tenía las características de las
+versiones LE HEV/XLE HEV completamente distintas a lo publicado (specs, no
+solo texto). Los 5 archivos se corrigieron y verificaron campo por campo
+contra `query_documents` con `perspective: "published"`. **Lección: los JSON
+locales pueden desincronizarse de Sanity tras publicarse — no son fuente de
+verdad confiable por sí solos.**
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (2)
 
 ### Corregido — contador de versiones con menos de 4 tarjetas
