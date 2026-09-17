@@ -56,7 +56,7 @@ export async function getModeloBySlug(slug: string) {
       galeriaExteriorDetalle[] { asset->{ url, metadata { lqip } } },
       galeriaInteriorDetalle[] { asset->{ url, metadata { lqip } } },
       versionesTexto,
-      exteriorTitulo, exteriorTexto,
+      disenoTitulo, disenoTexto,
       destacadoEyebrow, destacadoTitulo, destacadoTexto,
       seguridadTitulo, seguridadTexto, seguridadItems,
       galeriaTitulo, galeriaTexto,

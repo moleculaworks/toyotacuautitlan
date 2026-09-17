@@ -252,77 +252,50 @@ export default async function ModeloPage({
         </section>
       )}
 
-      {/* § 2 · VERSIONES Y PRECIOS */}
-      {mostrarVersiones && (
-        <section id="versiones" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
-          <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
-            <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
-              <div>
-                <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
-                  {modelo.anio ? `Versiones ${modelo.anio}` : 'Versiones'}
-                </span>
-                <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
-                  Elige tu versión
-                </h2>
-                {modelo.versionesTexto && (
-                  <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
-                    {modelo.versionesTexto}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <VersionesCarousel versiones={versiones} nombreModelo={nombreModelo} />
-
-            <p className="text-xs text-[#777] mt-5 leading-[1.6] text-center">
-              Precios y especificaciones sujetos a cambio sin previo aviso. Consulta
-              disponibilidad, equipamiento y precio vigente con un asesor Toyota.
-            </p>
-            <div className="mt-6 flex flex-col items-center gap-3.5 text-center">
-              <p className="text-sm text-[#444] leading-normal">
-                Para más detalles de cada versión consulta la ficha técnica.
-              </p>
-              {/* Pendiente: enlace real al PDF de ficha técnica */}
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 text-white no-underline text-sm font-semibold bg-toyota-red hover:bg-toyota-red-dark px-7 py-[13px] transition-colors"
-              >
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path
-                    d="M7.5 2.5V10M4 8L7.5 11.5L11 8M2.5 13H12.5"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Descargar Ficha Técnica
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* § 3 · EXTERIOR Y COLORES */}
+      {/* § 3 · DISEÑO Y COLORES (antes "Exterior") */}
       {mostrarExterior && (
-        <section id="exterior" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
+        <section id="diseno" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
             <div className="mb-10">
               <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
-                Exterior
+                Diseño
               </span>
-              {modelo.exteriorTitulo && (
+              {modelo.disenoTitulo && (
                 <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
-                  {modelo.exteriorTitulo}
+                  {modelo.disenoTitulo}
                 </h2>
               )}
-              {modelo.exteriorTexto && (
+              {modelo.disenoTexto && (
                 <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
-                  {modelo.exteriorTexto}
+                  {modelo.disenoTexto}
                 </p>
               )}
             </div>
             <ExteriorColores colores={coloresExterior} nombreModelo={nombreModelo} />
+          </div>
+        </section>
+      )}
+
+      {/* § 6 · GALERÍA */}
+      {mostrarGaleria && (
+        <section id="galeria" className="bg-white py-20 max-desktop:py-[52px]">
+          <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
+            <div className="mb-9">
+              <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
+                Galería
+              </span>
+              {modelo.galeriaTitulo && (
+                <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
+                  {modelo.galeriaTitulo}
+                </h2>
+              )}
+              {modelo.galeriaTexto && (
+                <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
+                  {modelo.galeriaTexto}
+                </p>
+              )}
+            </div>
+            <Galeria exterior={galeriaExterior} interior={galeriaInterior} nombreModelo={nombreModelo} />
           </div>
         </section>
       )}
@@ -418,30 +391,6 @@ export default async function ModeloPage({
         </section>
       )}
 
-      {/* § 6 · GALERÍA */}
-      {mostrarGaleria && (
-        <section id="galeria" className="bg-white py-20 max-desktop:py-[52px]">
-          <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
-            <div className="mb-9">
-              <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
-                Galería
-              </span>
-              {modelo.galeriaTitulo && (
-                <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
-                  {modelo.galeriaTitulo}
-                </h2>
-              )}
-              {modelo.galeriaTexto && (
-                <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
-                  {modelo.galeriaTexto}
-                </p>
-              )}
-            </div>
-            <Galeria exterior={galeriaExterior} interior={galeriaInterior} nombreModelo={nombreModelo} />
-          </div>
-        </section>
-      )}
-
       {/* § 7 · RENDIMIENTO */}
       {mostrarRendimiento && (
         <section id="rendimiento" className="bg-white py-20 max-desktop:py-[52px]">
@@ -511,6 +460,57 @@ export default async function ModeloPage({
                 obtuvieron en condiciones controladas de laboratorio. El rendimiento real puede
                 variar según condiciones de manejo, infraestructura, climatología y otros factores.
               </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* § 2 · VERSIONES Y PRECIOS */}
+      {mostrarVersiones && (
+        <section id="versiones" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
+          <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
+            <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+              <div>
+                <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
+                  {modelo.anio ? `Versiones ${modelo.anio}` : 'Versiones'}
+                </span>
+                <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
+                  Elige tu versión
+                </h2>
+                {modelo.versionesTexto && (
+                  <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
+                    {modelo.versionesTexto}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <VersionesCarousel versiones={versiones} nombreModelo={nombreModelo} />
+
+            <p className="text-xs text-[#777] mt-5 leading-[1.6] text-center">
+              Precios y especificaciones sujetos a cambio sin previo aviso. Consulta
+              disponibilidad, equipamiento y precio vigente con un asesor Toyota.
+            </p>
+            <div className="mt-6 flex flex-col items-center gap-3.5 text-center">
+              <p className="text-sm text-[#444] leading-normal">
+                Para más detalles de cada versión consulta la ficha técnica.
+              </p>
+              {/* Pendiente: enlace real al PDF de ficha técnica */}
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 text-white no-underline text-sm font-semibold bg-toyota-red hover:bg-toyota-red-dark px-7 py-[13px] transition-colors"
+              >
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                  <path
+                    d="M7.5 2.5V10M4 8L7.5 11.5L11 8M2.5 13H12.5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Descargar Ficha Técnica
+              </a>
             </div>
           </div>
         </section>

@@ -226,16 +226,16 @@ export const modeloType = defineType({
       ],
     }),
     defineField({
-      name: 'exteriorTitulo',
-      title: 'Título de sección "Exterior"',
+      name: 'disenoTitulo',
+      title: 'Título de sección "Diseño"',
       description: 'Ej: "Diseño que impone"',
       type: 'string',
       group: 'secciones',
     }),
     defineField({
-      name: 'exteriorTexto',
-      title: 'Texto breve de sección "Exterior"',
-      description: 'Frase corta debajo del título de Exterior, ~100-120 caracteres.',
+      name: 'disenoTexto',
+      title: 'Texto breve de sección "Diseño"',
+      description: 'Frase corta debajo del título de Diseño, ~100-120 caracteres.',
       type: 'text',
       rows: 2,
       validation: (r) => r.max(160),
@@ -375,7 +375,7 @@ export const modeloType = defineType({
   groups: [
     { name: 'seo', title: 'SEO' },
     { name: 'detalle', title: 'Detalle de página (versiones, 360°, galería)' },
-    { name: 'secciones', title: 'Textos de sección (exterior, destacado, seguridad, galería, rendimiento)' },
+    { name: 'secciones', title: 'Textos de sección (diseño, destacado, seguridad, galería, rendimiento)' },
   ],
   orderings: [
     {
