@@ -5,6 +5,31 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5)
+
+### Cambiado — nuevo orden de secciones en la página de modelo + "Exterior" → "Diseño"
+`app/modelos/[slug]/page.tsx`: probado primero en `app/preview-borrador/` (borrador
+local, nunca subido a git) y aprobado por Raúl antes de aplicarlo a la plantilla real
+que usan los 24 modelos. Orden nuevo: Hero, Intro, Highlights, **Diseño** (antes
+"Exterior"), Galería, CTA intermedio, Destacado, Seguridad, Rendimiento, Versiones,
+CTA final, Modelos similares — inspirado en cómo toyota.mx presenta primero diseño/
+tecnología/seguridad y deja las tarjetas de versión (con su propio Cotízalo/Manéjalo)
+para el final, ya que el usuario conoce el producto. La sección "Exterior" se
+renombra a "Diseño" porque el sitio no tiene una sección "Interior" aparte que la
+justifique como contraparte.
+
+Esto implicó renombrar el campo de Sanity `exteriorTitulo`/`exteriorTexto` a
+`disenoTitulo`/`disenoTexto` (`sanity/schemaTypes/modeloType.ts`,
+`lib/sanity/queries.ts`) — **no** se tocaron `coloresExterior` ni
+`galeriaExteriorDetalle`, que son conceptos distintos (colores del 360° y fotos de
+exterior vs interior en Galería), no el título de esta sección. Los 5 modelos ya
+publicados (Corolla, Corolla HEV, Camry HEV, Yaris Sedán, Yaris Sedán HEV) se
+migraron con `patch_documents` (borrador) y se publicaron con confirmación explícita
+("Sí, publícalo y súbelo") **antes** de subir el código, para no dejar la sección
+vacía en producción durante la transición. Los 5 JSON de borrador en
+`JSON Modelos/` y `app/preview-borrador/page.tsx` se actualizaron igual, para no
+quedar desincronizados.
+
 ## 2026-09-16 — Raúl (Claude Sonnet 5) (9)
 
 ### Cambiado — tarjeta de versión más compacta en mobile
