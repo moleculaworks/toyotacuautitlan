@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (5)
+
+### Corte de auditoría — sincronización y depuración
+A petición explícita de Raúl, corte completo antes de seguir con más
+modelos: (1) diff campo por campo de los 6 modelos publicados contra
+`JSON Modelos/` — se encontró y corrigió 1 desfase real (`corolla-hev.json`
+le faltaban las características de las 4 versiones de gasolina
+compartidas); (2) verificado en el sitio en vivo (no solo Sanity) que el
+reordenamiento de secciones y el rename "Diseño" ya están desplegados;
+(3) `CLAUDE.md` del proyecto (+ espejo en Obsidian) corregido: el campo es
+`imagenTarjeta` no `imagenPrincipal`, y el número de ángulos del 360° no
+siempre es 16; (4) **15 imágenes huérfanas borradas de Sanity (3.35 MB)** —
+12 JPEG de 2048px de la galería del Corolla (previas a la conversión a
+WebP 1400px), la imagen de prueba `Tiktok.jpg`, la tarjeta equivocada del
+Yaris Sedán HEV, y un sobrante de antes del rename de campo — las 4
+categorías ya estaban documentadas como correcciones previas, no eran un
+misterio. Confirmado con el usuario antes de borrar (acción irreversible).
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (4)
 
 ### Añadido — Yaris Hatchback publicado en Sanity
