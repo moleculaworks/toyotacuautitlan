@@ -1,25 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ModelosMegaMenu from "./ModelosMegaMenu";
+import ModelosMobileAccordion from "./ModelosMobileAccordion";
+import type { Modelo } from "@/types";
 
 const navLinks = [
-  { label: "Modelos", href: "/modelos" },
   { label: "Promociones", href: "/promociones" },
   { label: "Servicio", href: "/cita-de-servicio" },
   { label: "Contacto", href: "/contacto" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ modelos }: { modelos: Modelo[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modelosOpen, setModelosOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  function openModelos() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setModelosOpen(true);
+  }
+
+  function scheduleCloseModelos() {
+    closeTimer.current = setTimeout(() => setModelosOpen(false), 150);
+  }
 
   return (
     <header
@@ -41,6 +54,31 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
+            <div
+              className="h-16 flex items-center"
+              onMouseEnter={openModelos}
+              onMouseLeave={scheduleCloseModelos}
+            >
+              <Link
+                href="/modelos"
+                className={`text-sm font-semibold transition-colors ${
+                  modelosOpen ? "text-[#EB0A1E]" : "text-[#1A1A1A] hover:text-[#EB0A1E]"
+                }`}
+              >
+                Modelos
+              </Link>
+
+              {modelosOpen && (
+                <div className="fixed left-0 right-0 top-16">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="bg-white border border-[#EEE] shadow-xl rounded-lg p-8 mt-3">
+                      <ModelosMegaMenu modelos={modelos} onNavigate={() => setModelosOpen(false)} />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -83,6 +121,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
           <nav className="flex flex-col gap-4 pt-4">
+            <ModelosMobileAccordion modelos={modelos} onNavigate={() => setMenuOpen(false)} />
             {navLinks.map((link) => (
               <Link
                 key={link.href}

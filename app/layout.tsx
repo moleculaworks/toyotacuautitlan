@@ -4,6 +4,7 @@ import "./globals.css";
 import { toyotaType } from "./fonts";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { getModelos } from "@/lib/sanity/queries";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -25,15 +26,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const modelos = await getModelos();
+
   return (
     <html lang="es-MX" className={`${geist.variable} h-full antialiased`}>
       <body className={`${toyotaType.className} min-h-full flex flex-col bg-background text-foreground`}>
-        <Navbar />
+        <Navbar modelos={modelos} />
         <main className="flex-1 pt-16">{children}</main>
         <Footer />
       </body>

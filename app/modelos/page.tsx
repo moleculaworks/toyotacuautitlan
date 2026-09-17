@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getModelos } from '@/lib/sanity/queries'
 import ModeloCard from '@/components/ui/ModeloCard'
+import { CATEGORIAS } from '@/lib/categorias'
 import type { Modelo } from '@/types'
 
 export const metadata: Metadata = {
@@ -8,14 +9,7 @@ export const metadata: Metadata = {
   description: 'Conoce toda la línea Toyota disponible en Cuautitlán Izcalli. Sedanes, SUVs, pick-ups e híbridos.',
 }
 
-const categorias = [
-  { value: 'todos', label: 'Todos' },
-  { value: 'Sedanes & Hatchbacks', label: 'Sedanes & Hatchbacks' },
-  { value: "Suv's & Minivans", label: "Suv's & Minivans" },
-  { value: "Pickup's & Comerciales", label: "Pickup's & Comerciales" },
-  { value: 'Toyota Gazoo Racing', label: 'Toyota Gazoo Racing' },
-  { value: 'Híbridos Eléctricos (HEV y PHEV)', label: 'Híbridos Eléctricos (HEV y PHEV)' },
-]
+const categorias = CATEGORIAS
 
 export default async function ModelosPage({
   searchParams,
