@@ -58,7 +58,10 @@ export default function VersionesCarousel({
 
   const TOTAL_CARDS = versiones.length
   const MAX_INDEX = Math.max(0, TOTAL_CARDS - CARDS_VISIBLE)
-  const dotLabels = Array.from({ length: MAX_INDEX + 1 }, (_, d) => `${d + 1}–${d + CARDS_VISIBLE}`)
+  const dotLabels = Array.from(
+    { length: MAX_INDEX + 1 },
+    (_, d) => `${d + 1}–${Math.min(d + CARDS_VISIBLE, TOTAL_CARDS)}`
+  )
 
   const canPrev = index > 0
   const canNext = index < MAX_INDEX
