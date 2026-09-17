@@ -254,7 +254,7 @@ export default async function ModeloPage({
 
       {/* § 3 · DISEÑO Y COLORES (antes "Exterior") */}
       {mostrarExterior && (
-        <section id="diseno" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
+        <section id="diseno" className="bg-white pt-20 pb-8 max-desktop:pt-[52px] max-desktop:pb-6 border-t border-[#E8E8E8]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
             <div className="mb-10">
               <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
@@ -278,7 +278,7 @@ export default async function ModeloPage({
 
       {/* § 6 · GALERÍA */}
       {mostrarGaleria && (
-        <section id="galeria" className="bg-white py-20 max-desktop:py-[52px]">
+        <section id="galeria" className="bg-white pt-8 pb-20 max-desktop:pt-6 max-desktop:pb-[52px]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
             <div className="mb-9">
               <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
