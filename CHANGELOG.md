@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (2)
+
+### Corregido — contador de versiones con menos de 4 tarjetas
+`components/modelo/VersionesCarousel.tsx`: el texto bajo el carrusel ("1–4 de
+N versiones") sumaba siempre 4 al índice sin acotarlo al total real —
+detectado al armar Yaris Hatchback, primer modelo del catálogo con solo 3
+versiones ("1–4 de 3 versiones", debería decir "1–3"). Se limita el extremo
+superior del rango con `Math.min(d + CARDS_VISIBLE, TOTAL_CARDS)`. Verificado
+que no cambia el comportamiento en modelos con 4+ versiones (Yaris Sedán
+sigue mostrando "1–4 de 6 versiones").
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5)
 
 ### Cambiado — nuevo orden de secciones en la página de modelo + "Exterior" → "Diseño"
