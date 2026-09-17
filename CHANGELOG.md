@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (7)
+
+### Cambiado — imagenTarjeta del Yaris Hatchback reexportada
+Tras comparar en el borrador local del mega-menú, se reexportó
+`yaris-hatchback-tarjeta.webp` con más aire alrededor del auto (el
+encuadre anterior lo mostraba muy grande/ajustado al cuadro). Subida
+como nuevo asset a Sanity y publicada. Se probó el mismo ajuste en
+`corolla-tarjeta.webp`, pero se descartó — el archivo se quedó igual al
+publicado, sin cambios.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (6)
 
 ### Añadido — mega-menú de Modelos (escritorio) + acordeón (móvil)
