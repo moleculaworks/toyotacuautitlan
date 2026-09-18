@@ -5,6 +5,21 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (17)
+
+### Cambiado — "Más espacio" → "Espacio" en la barra de destacados del Prius
+Raúl cuestionó el ícono de distancia entre ejes (2,750mm) que se
+había agregado al Prius en lugar de Rendimiento: contra el Corolla
+HEV (2,700mm) la diferencia es mínima, así que "Más" sonaba a una
+ventaja que en realidad no es tan contundente. Se exploraron varias
+alternativas (Autonomía estimada calculada a partir de KM/L × tanque,
+Altura, Diámetro de giro, y un campo nuevo de "detalle chico" en el
+schema para achicar solo "entre ejes") — Raúl decidió no agregar
+código nuevo por un ajuste de texto tan chico y simplemente quitar
+"Más": el dato se queda como información neutra ("Espacio: 2,750mm
+entre ejes"), igual que Motor o Pasajeros, sin pretender ser una
+ventaja competitiva. Publicado con confirmación explícita.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (16)
 
 ### Corregido — CTA final decía "manejar" en vez de "estrenar"
