@@ -5,6 +5,33 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (20)
+
+### Agregado — Avanza publicado (octavo modelo, primero de Suv's & Minivans)
+Nuevo documento en Sanity (slug `avanza`, `avanza-modelo`). Datos desde
+`Ficha_Tecnica_AVANZA_26_web.pdf` + toyota.mx en vivo, borrador revisado
+primero en `/preview-borrador?json=avanza`. Modelo único, 2 versiones
+(LE MT $367,300, XLE CVT $400,200) — el que menos versiones tiene del
+catálogo. Sin Toyota Safety Sense (primer modelo del catálogo sin TSS);
+el destacado usa el tema de versatilidad/espacio familiar en su lugar
+("Todos viajan con comodidad", copy real de toyota.mx). 99 imágenes
+propias de Raúl (hero, tarjeta, destacado, rendimiento, 2 versiones,
+360° de 5 colores × 16 ángulos, galería 6+6), subidas con un script en
+batch y el documento completo creado de una sola vez con
+`create_documents` (en vez del patrón incremental de `patch_documents`
+usado en modelos anteriores). Publicado con confirmación explícita de
+Raúl y verificado contra `perspective: "published"`.
+
+### Corregido — estructura de carpeta de imágenes del Avanza
+La carpeta `Imagenes por Modelo/avanza/` se creó inicialmente solo con
+la carpeta raíz, sin las subcarpetas `versiones/`, `360/<color>/` ni
+`galeria/exterior|interior/` — corregido antes de que Raúl empezara a
+producir fotos. Ya con fotos subidas, se detectaron y corrigieron 2
+archivos de versiones (`avanza-le-mt.webp`, `avanza-xle-cvt.webp`) que
+habían quedado en la raíz en vez de `versiones/`, y un typo en el
+nombre del archivo de destacado (`avanza-detacado.webp` →
+`avanza-destacado.webp`).
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (19)
 
 ### Cambiado — imágenes hero-desktop y hero-mobile reemplazadas en los 7 modelos publicados
