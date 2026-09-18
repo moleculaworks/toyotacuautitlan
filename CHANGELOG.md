@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (10)
+
+### Cambiado — descripcionCorta del Corolla HEV alargada
+Raúl notó en el catálogo que era la única tarjeta de las 6 publicadas
+que quedaba en una sola línea (45 caracteres vs. 54-75 de las demás),
+desalineando el precio respecto al resto del grid. Reescrita
+manteniendo el mismo mensaje ("Un Corolla que además de moverte, te
+ahorra") con más contexto — de 45 a 67 caracteres, dentro del rango de
+las otras tarjetas. Publicada con confirmación explícita.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (9)
 
 ### Cambiado — heroDesktop del Yaris Sedán HEV reemplazada
