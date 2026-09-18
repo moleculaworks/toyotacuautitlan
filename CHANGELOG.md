@@ -5,6 +5,21 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (13)
+
+### Corregido — 2 bugs de contenido en el Prius
+Raúl reportó ambos revisando el sitio en vivo: (1) la intro
+(`descripcion`) no empezaba con la frase en negrita que sí tienen los
+otros 6 modelos publicados — corregida con una frase de apertura en
+el mismo estilo ("El rediseño más atrevido de la historia del
+Prius."); (2) los círculos de "Colores disponibles" se veían todos en
+blanco — causa: los 6 valores `hex` de `coloresExterior` se guardaron
+sin el símbolo `#` (copiados directo del atributo `data-color1` del
+DOM de toyota.mx, que no lo trae), a diferencia de los demás modelos
+que sí lo tienen (`#FFFFFF`, no `FFFFFF`). Corregidos los 6.
+`JSON Modelos/prius.json` sincronizado con ambos cambios. Publicado
+con confirmación explícita y verificado en `perspective: "published"`.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (12)
 
 ### Cambiado — "MXN" reemplazado por "M.N." en todo el sitio
