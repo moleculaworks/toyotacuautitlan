@@ -232,7 +232,7 @@ function VersionCard({
           <span className="text-[22px] font-semibold text-toyota-red tracking-tight">
             ${version.precio.toLocaleString('es-MX')}
           </span>
-          <span className="text-xs font-semibold text-toyota-red opacity-70">MXN</span>
+          <span className="text-xs font-semibold text-toyota-red opacity-70">M.N.</span>
         </div>
       </div>
       <div className="px-[22px] py-3 flex-1">

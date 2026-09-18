@@ -194,7 +194,7 @@ export default async function ModeloPage({
                   Desde
                 </span>
                 <span className="text-[clamp(24px,2.8vw,32px)] font-semibold text-foreground tracking-tight">
-                  ${modelo.precioDesde.toLocaleString('es-MX')} MXN
+                  ${modelo.precioDesde.toLocaleString('es-MX')} M.N.
                 </span>
               </div>
             )}
@@ -577,7 +577,7 @@ export default async function ModeloPage({
                       <div className="text-sm text-[#555] mt-0.5">
                         Desde{' '}
                         <strong className="text-foreground font-semibold">
-                          ${m.precioDesde.toLocaleString('es-MX')} MXN
+                          ${m.precioDesde.toLocaleString('es-MX')} M.N.
                         </strong>
                       </div>
                     )}

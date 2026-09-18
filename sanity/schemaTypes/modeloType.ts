@@ -50,7 +50,7 @@ export const modeloType = defineType({
     }),
     defineField({
       name: 'precioDesde',
-      title: 'Precio desde (MXN)',
+      title: 'Precio desde (M.N.)',
       type: 'number',
       validation: (r) => r.required().min(0),
     }),
@@ -176,7 +176,7 @@ export const modeloType = defineType({
           name: 'version',
           fields: [
             { name: 'nombre', title: 'Nombre (ej: LE CVT)', type: 'string', validation: (r) => r.required() },
-            { name: 'precio', title: 'Precio (MXN)', type: 'number', validation: (r) => r.required().min(0) },
+            { name: 'precio', title: 'Precio (M.N.)', type: 'number', validation: (r) => r.required().min(0) },
             { name: 'imagen', title: 'Imagen de la versión', type: 'image', options: { hotspot: true } },
             {
               name: 'caracteristicas',

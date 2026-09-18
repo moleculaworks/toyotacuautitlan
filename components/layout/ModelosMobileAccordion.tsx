@@ -95,7 +95,7 @@ export default function ModelosMobileAccordion({
                             </div>
                             <p className="mt-2 text-[15px] font-semibold text-[#1A1A1A]">{modelo.nombre}</p>
                             <p className="text-sm font-normal text-[#555] mt-0.5">
-                              Desde ${modelo.precioDesde.toLocaleString('es-MX')} MXN
+                              Desde ${modelo.precioDesde.toLocaleString('es-MX')} M.N.
                             </p>
                           </Link>
                         ))}

@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (12)
+
+### Cambiado — "MXN" reemplazado por "M.N." en todo el sitio
+Raúl notó que toyota.mx usa "M.N." (moneda nacional) en vez del código
+de divisa "MXN" para mostrar precios. Corregido en las 6 ubicaciones
+donde el precio se renderiza: hero de la página de modelo, "modelos
+similares", catálogo (`ModeloCard.tsx`), mega-menú y acordeón móvil de
+navegación, carrusel de versiones (`VersionesCarousel.tsx`), y el
+borrador local de revisión (`app/preview-borrador/`, no versionado).
+También actualizadas las etiquetas internas del Studio de Sanity
+(`title: 'Precio desde (MXN)'` → `'(M.N.)'` en `modeloType.ts`) para
+que concuerden aunque no sean visibles al público, a petición
+explícita de Raúl.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (11)
 
 ### Añadido — Prius publicado en Sanity (séptimo modelo del catálogo)

@@ -88,7 +88,7 @@ export default function ModelosMegaMenu({
                   {modelo.nombre}
                 </p>
                 <p className="text-sm font-normal text-[#555] mt-0.5">
-                  Desde ${modelo.precioDesde.toLocaleString('es-MX')} MXN
+                  Desde ${modelo.precioDesde.toLocaleString('es-MX')} M.N.
                 </p>
               </Link>
             ))}

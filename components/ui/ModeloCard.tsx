@@ -43,7 +43,7 @@ export default function ModeloCard({ modelo }: { modelo: Modelo }) {
             <p className="text-xs text-[#888]">Desde</p>
             <p className="text-lg font-semibold text-[#1A1A1A]">
               {modelo.precioDesde
-                ? `$${modelo.precioDesde.toLocaleString('es-MX')} MXN`
+                ? `$${modelo.precioDesde.toLocaleString('es-MX')} M.N.`
                 : 'Consultar precio'}
             </p>
           </div>
