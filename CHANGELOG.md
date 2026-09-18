@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (23)
+
+### Eliminado — 19 imágenes huérfanas depuradas de Sanity
+Segunda ronda de depuración (la primera fue el 17 de septiembre, 15
+imágenes). Script `sanity exec` compara todos los `sanity.imageAsset`
+contra las referencias (`_ref`) usadas en cualquier documento `modelo`
+(raw, incluye borradores) — encontró 19 sin referencia (1.16 MB), todas
+rastreables a los reemplazos de imagen de esta sesión (hero viejo de
+Camry HEV/Corolla HEV/Prius/Yaris Hatchback/Yaris Sedán/Yaris Sedán HEV,
+destacado viejo de Corolla HEV/Yaris Sedán) más 2 sobrantes antiguos sin
+relación (`corolla-hero-mobile@2x.webp`, `corolla2.webp`). Confirmado con
+Raúl antes de borrar (acción irreversible). Scripts temporales borrados
+después de usarlos, nunca versionados.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (22)
 
 ### Cambiado — mega-menú de escritorio: más espacio en categorías, tarjetas más chicas
