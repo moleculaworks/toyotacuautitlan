@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (19)
+
+### Cambiado — imágenes hero-desktop y hero-mobile reemplazadas en los 7 modelos publicados
+Raúl reemplazó las fotos hero (desktop y mobile) de Corolla, Corolla
+HEV, Yaris Hatchback, Yaris Sedán, Yaris Sedán HEV, Prius y Camry
+HEV en `Imagenes por Modelo/`. Antes de subirlas a Sanity se probó
+el reemplazo en un entorno 100% local (código temporal en
+`app/modelos/[slug]/page.tsx` apuntando a copias en `public/`,
+revertido después, nunca commiteado) para que Raúl pudiera revisar
+las 14 imágenes en su propio navegador sin tocar el CMS. Una vez
+confirmado, se subieron como assets nuevos a Sanity y se
+reemplazaron los campos `heroDesktop`/`heroMobile` de los 7
+documentos (patch en borrador → confirmación explícita → publicado
+y verificado contra `perspective: "published"`). De paso se detectó
+y corrigió que la convención de nombre de archivo había quedado
+inconsistente (`-hero-movil.webp` en vez de `-hero-mobile.webp` como
+documenta `CLAUDE.md`) — ya corregida en las carpetas locales.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (18)
 
 ### Cambiado — botones del menú móvil más grandes y fáciles de tocar
