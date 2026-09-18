@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (8)
+
+### Cambiado — imagenTarjeta del Yaris Sedán HEV reemplazada
+Raúl produjo un nuevo encuadre de `yaris-sedan-hev-tarjeta.webp` mientras
+trabajaba las imágenes del Prius. Subida como nuevo asset a Sanity
+(confirmado por hash SHA-1 que era un archivo distinto al publicado) y
+publicada con confirmación explícita.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (7)
 
 ### Cambiado — imagenTarjeta del Yaris Hatchback reexportada
