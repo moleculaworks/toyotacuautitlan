@@ -5,6 +5,27 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (11)
+
+### Añadido — Prius publicado en Sanity (séptimo modelo del catálogo)
+Modelo único, 100% HEV, sin par de motorización doble. Año 2027 (ficha
+"MY 27"). 2 versiones: Base HEV ($525,500) y Premium HEV ($599,500),
+138 HP total. 6 colores — la ficha técnica solo lista 5, pero
+toyota.mx en vivo trae un sexto ("Mostaza") con visor 360° completo;
+sus 16 imágenes llegaron con fondo transparente (fuente PNG, mismo
+caso que Yaris Sedán HEV) y se compusieron sobre blanco antes de
+subir. Destacado final: "Modos de manejo" (ECO/NORMAL/PWR/EV) — se
+descartó "Hybrid Synergy Drive" al confirmar contra las fichas de
+Corolla HEV/Camry HEV/Yaris Sedán HEV que es el nombre genérico de
+Toyota para cualquier híbrido, no algo exclusivo del Prius. También se
+descartó "Rendimiento" (31.12 KM/L) de la barra de destacados por el
+mismo motivo de criterio (Corolla HEV ya tiene 31.31 KM/L, casi
+empatado) — reemplazado por "Más espacio" (2,750mm entre ejes).
+Sensores de estacionamiento con AEB y BSM agregados a Seguridad,
+marcados como exclusivos de Premium. 115 imágenes propias de Raúl,
+documento armado vía `sanity exec`. Publicado con confirmación
+explícita y verificado en `perspective: "published"`.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (10)
 
 ### Cambiado — descripcionCorta del Corolla HEV alargada
