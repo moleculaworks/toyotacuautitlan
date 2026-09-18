@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (9)
+
+### Cambiado — heroDesktop del Yaris Sedán HEV reemplazada
+Mismo motivo que la imagenTarjeta de esta sesión — nuevo encuadre
+producido por Raúl mientras trabajaba las imágenes del Prius. Se
+verificó por hash SHA-1 que el primer archivo entregado era idéntico
+al ya publicado (sin cambio real) antes de que Raúl reemplazara el
+archivo correcto; subida como nuevo asset a Sanity y publicada con
+confirmación explícita.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (8)
 
 ### Cambiado — imagenTarjeta del Yaris Sedán HEV reemplazada
