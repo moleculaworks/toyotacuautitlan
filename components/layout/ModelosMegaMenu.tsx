@@ -33,7 +33,7 @@ export default function ModelosMegaMenu({
               key={cat.value}
               onMouseEnter={() => setActiva(cat.value)}
               onFocus={() => setActiva(cat.value)}
-              className={`w-full flex items-center justify-between text-left py-3 border-b border-[#EDEDED] text-[15px] font-semibold transition-colors ${
+              className={`w-full flex items-center justify-between text-left py-5 border-b border-[#EDEDED] text-[15px] font-semibold transition-colors ${
                 isActive ? 'text-toyota-red' : 'text-[#1A1A1A] hover:text-toyota-red'
               }`}
             >
@@ -65,7 +65,7 @@ export default function ModelosMegaMenu({
             Próximamente en esta categoría.
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-4 gap-4">
             {filtrados.map((modelo) => (
               <Link
                 key={modelo._id}
@@ -79,7 +79,7 @@ export default function ModelosMegaMenu({
                       src={modelo.imagenTarjeta.asset.url}
                       alt={modelo.nombre}
                       fill
-                      sizes="200px"
+                      sizes="160px"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   ) : null}
