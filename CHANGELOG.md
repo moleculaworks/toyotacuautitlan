@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (21)
+
+### Cambiado — imagen de destacado reemplazada en Yaris Sedán y Corolla HEV
+Raúl produjo fotos nuevas de la sección "Destacado" para ambos modelos
+(`yaris-sedan-destacado.webp`, `corolla-hev-destacado.webp`). Subidas
+directo a Sanity (sin prueba local previa, a petición explícita), guardadas
+como borrador y publicadas con confirmación explícita ("si publica"),
+verificadas contra `perspective: "published"`.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (20)
 
 ### Agregado — Avanza publicado (octavo modelo, primero de Suv's & Minivans)
