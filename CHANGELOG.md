@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (16)
+
+### Corregido — CTA final decía "manejar" en vez de "estrenar"
+El copy "¿Listo para estrenar tu [Modelo]?" ya se había acordado y
+aplicado en `app/preview-borrador/page.tsx` durante una revisión de
+borrador anterior, pero el cambio nunca se llevó a la plantilla real
+(`app/modelos/[slug]/page.tsx`), que seguía diciendo "manejar" — se
+quedó a medias entre las dos sesiones. Corregido en los 24 modelos
+del catálogo (plantilla compartida). Detectado y reportado por Raúl.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (15)
 
 ### Corregido — 2 ajustes a la barra de destacados tras revisión de Raúl

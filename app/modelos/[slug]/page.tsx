@@ -520,7 +520,7 @@ export default async function ModeloPage({
       <section id="final-cta" className="bg-black py-20 max-desktop:py-[52px]">
         <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 text-center flex flex-col items-center gap-4">
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] desktop:whitespace-nowrap">
-            ¿Listo para manejar tu {nombreModelo}?
+            ¿Listo para estrenar tu {nombreModelo}?
           </h2>
           <p className="text-[clamp(15px,1.8vw,18px)] text-white/60 max-w-[440px] leading-[1.6]">
             Un asesor te contactará a la brevedad.
