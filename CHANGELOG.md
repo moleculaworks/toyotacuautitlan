@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (22)
+
+### Cambiado — mega-menú de escritorio: más espacio en categorías, tarjetas más chicas
+Raúl notó que las categorías del panel izquierdo se veían apretadas y que
+las tarjetas de modelo (imagen/nombre/precio) ocupaban demasiado espacio en
+pantalla. Probado primero en local (`components/layout/ModelosMegaMenu.tsx`):
+padding vertical de cada categoría de `py-3` a `py-5`, y grilla de tarjetas
+de 3 a 4 columnas (`grid-cols-3`→`grid-cols-4`, `gap-5`→`gap-4`,
+`sizes="200px"`→`"160px"`). Confirmado visualmente antes de subir.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (21)
 
 ### Cambiado — imagen de destacado reemplazada en Yaris Sedán y Corolla HEV
