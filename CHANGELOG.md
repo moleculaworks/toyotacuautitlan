@@ -5,6 +5,27 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (18)
+
+### Cambiado — botones del menú móvil más grandes y fáciles de tocar
+Raúl reportó (con captura del menú móvil de toyota.mx como
+referencia) que los botones de categoría dentro de "Modelos"
+(Sedanes, SUV's, etc.) eran incómodos de tocar con el dedo —
+confirmado en código: solo tenían `py-2.5` (~10px), un área de toque
+de ~35-38px, por debajo del mínimo recomendado (~44px). Se evaluaron
+2 alcances: (A) agrandar el padding y agregar divisores de ancho
+completo sin tocar la arquitectura del menú, o (B) rediseñar el menú
+móvil completo como overlay de pantalla completa (como toyota.mx).
+Se eligió A por atacar el problema puntual reportado con mucho menos
+riesgo — B toca `Navbar.tsx` completo (overlay, scroll-lock,
+animaciones) sin resolver directamente el problema de tamaño de
+botón. Aplicado a los 4 links de nivel superior (Modelos,
+Promociones, Servicio, Contacto) y a las 5 categorías dentro de
+Modelos (`py-4`, línea divisoria de ancho completo, `text-base` en
+vez de `text-sm`) en `Navbar.tsx` y `ModelosMobileAccordion.tsx`.
+Verificado visualmente en móvil (375px) antes de subir, con
+confirmación explícita de Raúl.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (17)
 
 ### Cambiado — "Más espacio" → "Espacio" en la barra de destacados del Prius

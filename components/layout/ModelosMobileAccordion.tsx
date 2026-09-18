@@ -42,14 +42,14 @@ export default function ModelosMobileAccordion({
     <div>
       <button
         onClick={() => setModelosAbierto((v) => !v)}
-        className="w-full flex items-center justify-between text-sm font-semibold text-[#1A1A1A]"
+        className="w-full flex items-center justify-between py-4 border-b border-[#F0F0F0] text-base font-semibold text-[#1A1A1A]"
       >
         Modelos
         <Chevron open={modelosAbierto} />
       </button>
 
       {modelosAbierto && (
-        <div className="mt-3 pl-3 flex flex-col gap-1">
+        <div className="pl-2 flex flex-col">
           {CATEGORIAS_MENU.map((cat) => {
             const catAbierta = categoriaAbierta === cat.value
             const modelosCategoria =
@@ -58,10 +58,10 @@ export default function ModelosMobileAccordion({
                 : modelos.filter((m) => m.categoria === cat.value)
 
             return (
-              <div key={cat.value} className="border-b border-[#F0F0F0] last:border-b-0">
+              <div key={cat.value} className="border-b border-[#F0F0F0]">
                 <button
                   onClick={() => setCategoriaAbierta(catAbierta ? null : cat.value)}
-                  className={`w-full flex items-center justify-between text-left py-2.5 text-[15px] font-semibold transition-colors ${
+                  className={`w-full flex items-center justify-between text-left py-4 text-base font-semibold transition-colors ${
                     catAbierta ? 'text-[#EB0A1E]' : 'text-[#1A1A1A]'
                   }`}
                 >
@@ -110,7 +110,7 @@ export default function ModelosMobileAccordion({
           <Link
             href="/modelos"
             onClick={onNavigate}
-            className="text-sm font-semibold text-toyota-red mt-2 py-1"
+            className="text-base font-semibold text-toyota-red py-4"
           >
             Ver todos los modelos →
           </Link>

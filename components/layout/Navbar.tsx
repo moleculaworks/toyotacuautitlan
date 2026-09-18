@@ -120,14 +120,14 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
-          <nav className="flex flex-col gap-4 pt-4">
+          <nav className="flex flex-col">
             <ModelosMobileAccordion modelos={modelos} onNavigate={() => setMenuOpen(false)} />
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-semibold text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
+                className="w-full py-4 border-b border-[#F0F0F0] text-base font-semibold text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
               >
                 {link.label}
               </Link>
@@ -135,7 +135,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
             <Link
               href="/cotizacion"
               onClick={() => setMenuOpen(false)}
-              className="inline-flex items-center justify-center px-5 py-2.5 bg-[#EB0A1E] text-white text-sm font-semibold rounded hover:bg-red-700 transition-colors"
+              className="inline-flex items-center justify-center px-5 py-3 mt-4 bg-[#EB0A1E] text-white text-sm font-semibold rounded hover:bg-red-700 transition-colors"
             >
               Cotizar
             </Link>
