@@ -5,6 +5,34 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (14)
+
+### Cambiado — "Tracción" reemplazado en la barra de destacados de 5 modelos
+Raúl notó que 5 de los 7 modelos publicados mostraban "Tracción:
+Delantera FWD" en la barra de 4 íconos — un dato idéntico y sin
+ningún valor distintivo, ya que todos los Sedanes & Hatchbacks del
+catálogo son FWD (donde sí importará es al llegar a Suv's/Pickup's
+con opciones 4x4/AWD). Reemplazado por un dato real y distinto por
+modelo:
+- Corolla → Capacidad de carga (470 KG, verificado en la sección
+  "Corolla en números" de toyota.mx — no aparece en la ficha técnica
+  PDF).
+- Corolla HEV → Rendimiento (31.31 KM/L, el más alto de los 7
+  modelos publicados).
+- Yaris Hatchback y Yaris Sedán → Transmisión (CVT y MT) — ambos
+  ofrecen versión de manual, a diferencia del Corolla (solo CVT).
+- Yaris Sedán HEV → Modos de manejo (ECO/NORMAL/POWER/EV) — es lo
+  primero que destaca toyota.mx de este modelo en sus
+  "Características Generales". Se mantuvo su Destacado de sección
+  (Toyota Safety Sense) sin cambios, para no repetir el mismo ángulo
+  que se usó en Prius.
+- Nuevo ícono "Modos de manejo" agregado a `HighlightIcon.tsx` y al
+  schema de Sanity (`modeloType.ts`) — un volante de 3 rayos, a
+  petición de Raúl (la primera propuesta fue un dial con marcas, se
+  descartó por menos reconocible).
+Los 5 documentos publicados con confirmación explícita y verificados
+en `perspective: "published"`.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (13)
 
 ### Corregido — 2 bugs de contenido en el Prius

@@ -106,6 +106,7 @@ export const modeloType = defineType({
                   { title: 'Transmisión', value: 'transmision' },
                   { title: 'Maletero / cajuela', value: 'maletero' },
                   { title: 'Rendimiento de combustible', value: 'rendimiento' },
+                  { title: 'Modos de manejo', value: 'modos-manejo' },
                 ],
               },
             },

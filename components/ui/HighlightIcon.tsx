@@ -94,6 +94,15 @@ const icons: Record<string, ReactNode> = {
       <path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5" />
     </svg>
   ),
+  'modos-manejo': (
+    <svg {...commonProps}>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="2.3" />
+      <path d="M12 9.7V6" />
+      <path d="M9.7 13.5 6.5 16" />
+      <path d="M14.3 13.5l3.2 2.5" />
+    </svg>
+  ),
 }
 
 export default function HighlightIcon({ nombre }: { nombre?: string }) {
