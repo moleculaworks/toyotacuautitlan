@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-17 — Raúl (Claude Sonnet 5) (15)
+
+### Corregido — 2 ajustes a la barra de destacados tras revisión de Raúl
+(1) El ícono "Transmisión" (círculo con 8 rayos) parecía un sol, no
+tenía relación visual con una transmisión — rediseñado como un
+engrane real (círculo con dientes y centro hueco) en
+`HighlightIcon.tsx`. (2) En el Yaris Sedán HEV, el valor de "Modos de
+manejo" ("ECO/NORMAL/POWER/EV") se desbordaba de su columna en la
+vista de 2 columnas de móvil, cortándose por la izquierda — acortado
+a solo "4" (el detalle completo de los modos sigue visible en la
+tarjeta de la versión S HEV, más abajo en la página). Publicado con
+confirmación explícita y verificado en `perspective: "published"`.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (14)
 
 ### Cambiado — "Tracción" reemplazado en la barra de destacados de 5 modelos
