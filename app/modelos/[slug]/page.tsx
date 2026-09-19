@@ -10,6 +10,7 @@ import Galeria from '@/components/modelo/Galeria'
 import { getModeloBySlug, getModelos, getModelosSimilares } from '@/lib/sanity/queries'
 import { sanityImgWidth } from '@/lib/sanity/image'
 import { buildVehicleJsonLd } from '@/lib/structured-data'
+import { SITE_URL } from '@/lib/site'
 import JsonLd from '@/components/JsonLd'
 import type { Modelo } from '@/types'
 
@@ -77,11 +78,27 @@ export async function generateMetadata({
   const { slug } = await params
   const modelo = await getModeloBySlug(slug)
   if (!modelo) return {}
+
+  const titulo = modelo.seoTitulo ?? `Toyota ${modelo.nombre} | Toyota Cuautitlán`
+  const descripcion =
+    modelo.seoDescripcion ??
+    `Conoce el Toyota ${modelo.nombre} en Toyota Cuautitlán: versiones, precios, colores y más.`
+  const imagenTarjetaUrl = modelo.imagenTarjeta?.asset?.url
+  const url = `${SITE_URL}/modelos/${slug}`
+
   return {
-    title: modelo.seoTitulo ?? `Toyota ${modelo.nombre} | Toyota Cuautitlán`,
-    description:
-      modelo.seoDescripcion ??
-      `Conoce el Toyota ${modelo.nombre} en Toyota Cuautitlán: versiones, precios, colores y más.`,
+    title: titulo,
+    description: descripcion,
+    alternates: { canonical: url },
+    openGraph: {
+      title: titulo,
+      description: descripcion,
+      url,
+      type: 'website',
+      ...(imagenTarjetaUrl && {
+        images: [{ url: imagenTarjetaUrl, width: 1200, height: 675, alt: `Toyota ${modelo.nombre}` }],
+      }),
+    },
   }
 }
 
