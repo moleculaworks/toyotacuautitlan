@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (24)
+
+### Agregado — datos estructurados Schema.org (AutoDealer + Car)
+Preparado antes del lanzamiento, sin depender del dominio final ni de
+quitar el bloqueo de `app/robots.ts`. Nuevo `lib/structured-data.ts`
+arma dos bloques JSON-LD: `AutoDealer` (todo el sitio, alimentado desde
+el documento "Configuración del sitio" en Sanity — hoy vacío, degrada
+a solo `name`/`url` sin inventar datos) y `Car` (cada página de modelo,
+con precio, moneda MXN, imagen, descripción y URL). Componente nuevo
+`components/JsonLd.tsx` inyecta el `<script type="application/ld+json">`.
+`lib/site.ts` centraliza `SITE_URL` (antes repetido como string suelto
+en `app/layout.tsx`). Verificado en local (homepage y `/modelos/corolla`)
+que ambos bloques se generan bien formados.
+
 ## 2026-09-17 — Raúl (Claude Sonnet 5) (23)
 
 ### Eliminado — 19 imágenes huérfanas depuradas de Sanity
