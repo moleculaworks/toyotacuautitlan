@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (27)
+
+### Cambiado — degradado del Hero de modelo extendido a la derecha
+`app/modelos/[slug]/page.tsx`: el degradado blanco que da legibilidad al
+texto sobre la foto del Hero (solo desktop) ahora abarca más espacio
+hacia la derecha (`20/32/44%` → `25/40/55%`). Probado primero en local,
+confirmado por Raúl.
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (26)
 
 ### Agregado — Raize publicado (noveno modelo, segundo de Suv's & Minivans)
