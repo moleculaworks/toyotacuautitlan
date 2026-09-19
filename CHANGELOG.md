@@ -5,6 +5,42 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (26)
+
+### Agregado — Raize publicado (noveno modelo, segundo de Suv's & Minivans)
+Nuevo documento en Sanity (slug `raize`, `raize-modelo`). Modelo único
+(sin par de motorización doble). 3 versiones (XLE MT $390,400, XLE CVT
+$404,900, XLE CVT Bi-Tono $418,200). Motor Turbo 1.0L · 97 HP — único
+turbo del catálogo hasta ahora. **Segundo modelo sin Toyota Safety
+Sense** (después de Avanza); el "destacado" usa el área de carga
+versátil (asientos abatibles + Tonneau Cover) en vez de TSS. **Primer
+modelo del catálogo con colores bi-tono** (6 sólidos + 4 combinaciones
+con techo negro, 10 en total) — requirió agregar el campo
+`coloresExterior[].hexSecundario` al schema de Sanity
+(`sanity/schemaTypes/modeloType.ts`), a la query
+(`lib/sanity/queries.ts`), al tipo y al componente
+`components/modelo/ExteriorColores.tsx` (el swatch se pinta partido en
+diagonal cuando existe `hexSecundario`), confirmado con Raúl antes de
+implementarlo. Primer modelo con conteo de ángulos del visor 360°
+distinto **por color dentro del mismo modelo** (5 colores × 8 ángulos,
+5 colores × 4 ángulos — así los tiene toyota.mx, confirmado con Raúl).
+80 imágenes propias de Raúl subidas y documento completo creado de una
+sola vez con `create_documents`. Publicado con confirmación explícita
+y verificado contra `perspective: "published"`.
+
+### Corregido — copy de Raize revisado en dos rondas antes de publicar
+1) Intro y destacado iniciales mencionaban la variedad de colores como
+argumento de venta ("10 colores para elegir") — Raúl lo rechazó: el
+distribuidor no siempre tiene en existencia todos los colores que el
+modelo ofrece en catálogo, así que no conviene destacarlo como venta.
+Reescrito sin esa mención (intro, destacado y `seoDescripcion`) y sin
+guion largo (regla de estilo ya acordada, se había colado en 3 campos
+de este borrador). Documentado como convención nueva en `JSON
+Modelos/README.md` y en memoria de Claude. 2) Intro reescrita una
+segunda vez a pedido de Raúl: menos lista de equipo de ficha técnica,
+más ángulo de uso real (ciudad entre semana / escapada de fin de
+semana). Detalle completo en Obsidian `catalogo-de-modelos.md`.
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (25)
 
 ### Agregado — Open Graph y URL canónica por página de modelo

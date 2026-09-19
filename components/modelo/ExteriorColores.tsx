@@ -11,6 +11,7 @@ export interface ColorExterior {
   id: string
   label: string
   hex: string
+  hexSecundario?: string
   needsBorder: boolean
   imagenes: string[]
 }
@@ -192,7 +193,9 @@ export default function ExteriorColores({
                   <span
                     className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center"
                     style={{
-                      background: c.hex,
+                      background: c.hexSecundario
+                        ? `linear-gradient(135deg, ${c.hex} 50%, ${c.hexSecundario} 50%)`
+                        : c.hex,
                       border: `1.5px solid ${
                         isActive ? 'var(--toyota-red)' : c.needsBorder ? '#C5C5C5' : 'rgba(0,0,0,0.1)'
                       }`,

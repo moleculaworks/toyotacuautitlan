@@ -125,12 +125,14 @@ export default async function ModeloPage({
     (c: {
       label: string
       hex: string
+      hexSecundario?: string
       necesitaBorde: boolean
       imagenes360: { asset?: { url: string } }[]
     }) => ({
       id: c.label,
       label: c.label,
       hex: c.hex,
+      hexSecundario: c.hexSecundario,
       needsBorder: c.necesitaBorde,
       imagenes: c.imagenes360
         .filter((img) => img.asset?.url)

@@ -212,6 +212,12 @@ export const modeloType = defineType({
           fields: [
             { name: 'label', title: 'Nombre del color', type: 'string', validation: (r) => r.required() },
             { name: 'hex', title: 'Color (hex, para el swatch)', type: 'string', validation: (r) => r.required() },
+            {
+              name: 'hexSecundario',
+              title: 'Segundo color (hex, solo para colores bi-tono)',
+              description: 'Dejar vacío para un color sólido. Si se llena, el swatch se pinta partido en diagonal (ej. techo de otro color).',
+              type: 'string',
+            },
             { name: 'necesitaBorde', title: '¿Necesita borde en el swatch?', type: 'boolean', initialValue: false },
             {
               name: 'imagenes360',

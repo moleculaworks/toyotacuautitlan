@@ -50,7 +50,7 @@ export async function getModeloBySlug(slug: string) {
       imagenDestacado { asset->{ url } },
       imagenRendimiento { asset->{ url } },
       coloresExterior[] {
-        label, hex, necesitaBorde,
+        label, hex, hexSecundario, necesitaBorde,
         imagenes360[] { asset->{ url } }
       },
       galeriaExteriorDetalle[] { asset->{ url, metadata { lqip } } },
