@@ -9,6 +9,8 @@ import ExteriorColores, { type ColorExterior } from '@/components/modelo/Exterio
 import Galeria from '@/components/modelo/Galeria'
 import { getModeloBySlug, getModelos, getModelosSimilares } from '@/lib/sanity/queries'
 import { sanityImgWidth } from '@/lib/sanity/image'
+import { buildVehicleJsonLd } from '@/lib/structured-data'
+import JsonLd from '@/components/JsonLd'
 import type { Modelo } from '@/types'
 
 function CheckIcon() {
@@ -155,6 +157,7 @@ export default async function ModeloPage({
 
   return (
     <div className="bg-background text-foreground antialiased">
+      <JsonLd data={buildVehicleJsonLd(modelo)} />
       {/* § 1 · HERO */}
       <section id="hero" className="relative overflow-hidden bg-[#D8D8D8] max-desktop:bg-white h-[clamp(420px,42vw,560px)] max-desktop:h-auto">
         <div className="absolute inset-0 max-desktop:relative max-desktop:h-[260px]">
