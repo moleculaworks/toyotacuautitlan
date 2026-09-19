@@ -5,6 +5,28 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (28)
+
+### Cambiado — imagen de tarjeta reemplazada en Prius y Yaris Sedán HEV
+Raúl subió `prius-tarjeta.webp` y `yaris-sedan-hev-tarjeta.webp` nuevas
+(1200×675, mismo estándar). Subidas a Sanity y aplicadas con
+`sanity exec` (patch directo, no `patch_documents` del MCP — su schema
+no cargó correctamente en esta sesión). Verificado contra
+`perspective: "published"`.
+
+### Documentado — criterio actualizado de cuándo publicar directo en Sanity
+El patch de arriba terminó publicando directo por un detalle del
+script (`client.patch(id).commit()` sobre el `_id` publicado, sin pasar
+por borrador) — se le avisó a Raúl de inmediato. Su respuesta aclaró
+que el paso de "borrador + confirmación" nunca le daba nada revisable
+en la práctica (no revisa Sanity Studio, y hoy tampoco podría — Draft
+Mode de Next.js sigue sin implementarse): su revisión real siempre fue
+la visual en local. **Regla nueva:** un cambio de contenido pedido
+explícitamente se publica directo; contenido que la IA redacta por su
+cuenta sigue revisándose primero en local antes de tocar Sanity.
+Actualizado en `AGENTS.md` y en memoria de Claude
+(`feedback_sanity_publish_confirmation.md`).
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (27)
 
 ### Cambiado — degradado del Hero de modelo extendido a la derecha
