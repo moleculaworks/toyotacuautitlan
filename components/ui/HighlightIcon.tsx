@@ -104,6 +104,12 @@ const icons: Record<string, ReactNode> = {
       <path d="M14.3 13.5l3.2 2.5" />
     </svg>
   ),
+  seguridad: (
+    <svg {...commonProps}>
+      <rect x="4" y="6" width="16" height="13" rx="4" />
+      <path d="M8 10v5M12 9v7M16 10v5" />
+    </svg>
+  ),
 }
 
 export default function HighlightIcon({ nombre }: { nombre?: string }) {

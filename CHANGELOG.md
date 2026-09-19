@@ -5,6 +5,42 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (29)
+
+### Agregado — Corolla Cross publicado (décimo modelo, primero de los pares con motorización doble desde Raize)
+Nuevo documento en Sanity (slug `corolla-cross`, `corolla-cross-modelo`).
+Primero de los 5 nameplates con motorización doble en construirse tras
+Raize (par con Corolla Cross HEV, aún no construido). 4 versiones en el
+carrusel: LE ($547,000) y XLE ($617,900) propias + SE HEV ($631,900) y
+XSE HEV ($684,900) duplicadas del par HEV, mismo patrón que
+Corolla/Corolla HEV. Motor 2.0L · 169 HP, CVT (sin manual). **Toyota
+Safety Sense completo (4 componentes: PCS, LKA, LTA, AHB)** — comparado
+contra los 4 modelos con TSS ya publicados antes de confirmarlo como
+destacado (Corolla/Corolla HEV/Camry HEV tienen 6 componentes, Yaris
+Sedán 4 distintos — Corolla Cross tiene AHB pero no LDA, DRCC queda
+listado aparte en seguridad en vez de dentro del bloque TSS, a
+diferencia de los demás). **9 bolsas de aire — el número más alto del
+catálogo hasta ahora** (2 frontales, 4 laterales, 2 cortina, 1 rodillas;
+el resto del catálogo va de 6 a 8), subido a la barra de 4 destacados en
+vez de "Transmisión" — requirió un ícono nuevo (`seguridad`) en
+`components/ui/HighlightIcon.tsx` y en la lista de opciones de
+`sanity/schemaTypes/modeloType.ts` (no existía uno para este concepto).
+6 colores sólidos (sin bi-tono en esta versión de gasolina — el bi-tono
+es exclusivo de XSE HEV, documentado para cuando se construya el
+documento HEV). **Primer modelo del catálogo con 18 ángulos por color**
+en el visor 360° (número nuevo, antes solo se había visto 4/8/16/36).
+Galería interior con solo 4 fotos (no 6) — confirmado por Raúl, no
+pendiente. Intro revisada en 3 rondas con Raúl: de lista de ficha
+técnica → enfoque 100% familiar (rechazado, ángulo mejor reservado para
+Sienna) → enfoque general de día a día sin cerrarse a un perfil de
+usuario. Subtítulo del Hero también reescrito (`Se adapta a tu ritmo`,
+redacción propia) para no contrastar con la intro más general — antes
+usaba el subtítulo real de toyota.mx ("Ideal para cualquier familia").
+125 imágenes propias de Raúl, documento completo armado con
+`create_documents`. **Publicado directo sin pausa de borrador**, a
+pedido explícito de Raúl (ver entrada anterior sobre el criterio
+actualizado de publicación).
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (28)
 
 ### Cambiado — imagen de tarjeta reemplazada en Prius y Yaris Sedán HEV
