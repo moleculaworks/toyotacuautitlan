@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (25)
+
+### Agregado — Open Graph y URL canónica por página de modelo
+`generateMetadata` en `app/modelos/[slug]/page.tsx` ahora incluye
+`openGraph` (title, description, url, image) y `alternates.canonical`.
+Reutiliza `imagenTarjeta` (1200×675, prácticamente el estándar OG de
+1200×630) como `og:image` — no hizo falta pedirle una imagen nueva a
+Raúl. Se aplica automáticamente a cada modelo conforme se publique,
+sin tocar código de nuevo. Verificado en local (Corolla y Avanza).
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (24)
 
 ### Agregado — datos estructurados Schema.org (AutoDealer + Car)
