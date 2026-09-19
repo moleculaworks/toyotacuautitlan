@@ -188,7 +188,7 @@ export default async function ModeloPage({
             className="absolute inset-0 pointer-events-none max-desktop:hidden"
             style={{
               background:
-                'linear-gradient(to right, #fff 20%, rgba(255,255,255,0.5) 32%, rgba(255,255,255,0) 44%)',
+                'linear-gradient(to right, #fff 25%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0) 55%)',
             }}
           />
         </div>
