@@ -5,6 +5,33 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (43)
+
+### Corregido — caja de rendimiento + homologación del resto de páginas del sitio
+Raúl notó que la caja de Transmisión/Rendimiento en página de modelo era
+el único elemento redondeado que había visto ahí — se confirmó que sí, y
+de paso se encontró que el resto de páginas del sitio (fuera de modelo)
+tampoco seguían `SISTEMA-DE-DISENO.md`, mismo patrón que Navbar/ModeloCard
+de la entrada anterior. Raúl pidió homologar todo, aclarando que estas
+páginas no son definitivas pero vale la pena de todas formas.
+- **Caja de rendimiento** (`app/modelos/[slug]/page.tsx` y
+  `preview-borrador`): quitado `rounded-md`.
+- **Home, `/promociones`, `/cotizacion`, `/contacto`, `/cita-de-servicio`**:
+  botones reales migrados a `<Button>` (home: "Ver modelos"/"Cotizar
+  ahora"; promociones: "Aprovechar promoción"; contacto: "Solicitar
+  cotización"); tarjetas de `rounded-lg`/`shadow-sm`/`border-gray-100` a
+  `border border-[#E8E8E8]` sin sombra ni redondeo (promociones, tarjetas
+  de contacto, wrapper de los formularios de cotización y cita); textos
+  con hex directo (`#EB0A1E`, `#1A1A1A`) a los tokens `text-toyota-red`/
+  `text-foreground`.
+- **Sin tocar a propósito**: pills/badges/indicadores `rounded-full`
+  (etiqueta de promoción, bullets, flechas de carrusel — convención
+  distinta), inputs de los formularios de muestra, y el panel del
+  mega-menú de "Modelos" en el Navbar (`rounded-lg`) — este último queda
+  pendiente, documentado en `SISTEMA-DE-DISENO.md`.
+- Verificado visualmente en las 5 páginas (desktop y móvil) antes de
+  subir.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (42)
 
 ### Corregido — Navbar, ModeloCard y formularios homologados al sistema de diseño

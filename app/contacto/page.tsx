@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
   title: 'Contacto',
@@ -40,7 +40,7 @@ export default function ContactoPage() {
     <div className="bg-[#F5F5F5] min-h-screen">
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <h1 className="text-3xl font-semibold text-[#1A1A1A]">Contacto</h1>
+          <h1 className="text-3xl font-semibold text-foreground">Contacto</h1>
           <p className="mt-2 text-gray-500">Estamos para ayudarte.</p>
         </div>
       </div>
@@ -48,9 +48,9 @@ export default function ContactoPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
           {datos.map((d) => (
-            <div key={d.titulo} className="bg-white rounded-lg border border-gray-100 p-6">
+            <div key={d.titulo} className="bg-white border border-[#E8E8E8] p-6">
               <p className="text-3xl">{d.icon}</p>
-              <h2 className="mt-3 text-sm font-semibold text-[#1A1A1A] uppercase tracking-wide">
+              <h2 className="mt-3 text-sm font-semibold text-foreground uppercase tracking-wide">
                 {d.titulo}
               </h2>
               <div className="mt-2 space-y-0.5">
@@ -63,7 +63,7 @@ export default function ContactoPage() {
                   href={d.href}
                   target={d.href.startsWith('http') ? '_blank' : undefined}
                   rel={d.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="mt-4 inline-block text-sm font-semibold text-[#EB0A1E] hover:underline"
+                  className="mt-4 inline-block text-sm font-semibold text-toyota-red hover:underline"
                 >
                   {d.ctaTexto} →
                 </a>
@@ -73,7 +73,7 @@ export default function ContactoPage() {
         </div>
 
         {/* Mapa placeholder */}
-        <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
+        <div className="bg-white border border-[#E8E8E8] overflow-hidden">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3756.0!2d-99.2!3d19.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQyJzAwLjAiTiA5OcKwMTInMDAuMCJX!5e0!3m2!1ses!2smx!4v1234567890"
             width="100%"
@@ -89,12 +89,9 @@ export default function ContactoPage() {
         {/* CTA */}
         <div className="mt-8 text-center">
           <p className="text-gray-600 mb-4">¿Prefieres que te contactemos nosotros?</p>
-          <Link
-            href="/cotizacion"
-            className="inline-block px-8 py-3 bg-[#EB0A1E] text-white font-semibold rounded hover:bg-red-700 transition-colors"
-          >
+          <Button href="/cotizacion" variant="primary" className="px-8 py-3">
             Solicitar cotización
-          </Link>
+          </Button>
         </div>
       </div>
     </div>

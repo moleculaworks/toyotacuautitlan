@@ -455,7 +455,7 @@ export default async function ModeloPage({
                 </p>
               )}
 
-              <div className="mt-8 bg-toyota-gray rounded-md overflow-hidden">
+              <div className="mt-8 bg-toyota-gray overflow-hidden">
                 <div className="grid grid-cols-2 border-b-2 border-[#E8E8E8]">
                   <div className="px-6 py-[18px] text-base font-semibold text-foreground border-r border-[#E8E8E8]">
                     Transmisión

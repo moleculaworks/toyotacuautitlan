@@ -288,3 +288,23 @@ moverlo a `HighlightIcon.tsx`.
     link "Ver más"/"Ver modelo" no está unificado). Extraerlas a un solo
     componente evitaría que se desalineen de nuevo — no se hizo en esta
     pasada por ser un cambio de estructura, no solo de color.
+- **Segunda pasada, mismo día:** Raúl notó que la caja de la tabla de
+  Transmisión/Rendimiento en página de modelo (`bg-toyota-gray rounded-md`)
+  era la única esquina redondeada de esa página — corregida (quitado
+  `rounded-md`, sincronizado en `app/modelos/[slug]/page.tsx` y
+  `preview-borrador`). Al revisar, se encontró que **el resto de páginas
+  del sitio (home, `/promociones`, `/cotizacion`, `/contacto`,
+  `/cita-de-servicio`) tampoco seguían el documento** — mismo patrón que
+  Navbar/ModeloCard: hex directo, `hover:bg-red-700`, tarjetas
+  `rounded-lg`/`shadow-sm`/`border-gray-100`. Homologadas todas: botones
+  reales migrados a `<Button>`, tarjetas a `border border-[#E8E8E8]` sin
+  sombra ni redondeo, textos de `#EB0A1E`/`#1A1A1A` a `text-toyota-red`/
+  `text-foreground`. Verificado visualmente en las 5 páginas antes de
+  subir. **No se tocó:** los `rounded-full` de pills/badges/indicadores
+  circulares (etiqueta de promoción, bullets de lista, flechas de
+  carrusel) — es una convención distinta (chips/indicadores), no la
+  esquina recta de botones y tarjetas que sí se documentó aquí; tampoco
+  los inputs de los formularios de muestra (mismo criterio que la entrada
+  anterior) ni el panel del mega-menú de "Modelos" en el Navbar
+  (`rounded-lg`, `ModelosMegaMenu.tsx`/`ModelosMobileAccordion.tsx`) —
+  este último sigue pendiente, no se incluyó en el alcance pedido.

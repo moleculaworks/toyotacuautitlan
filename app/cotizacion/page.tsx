@@ -21,13 +21,13 @@ export default async function CotizacionPage({
     <div className="bg-[#F5F5F5] min-h-screen py-12">
       <div className="max-w-2xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-semibold text-[#1A1A1A]">Solicita tu cotización</h1>
+          <h1 className="text-3xl font-semibold text-foreground">Solicita tu cotización</h1>
           <p className="mt-2 text-gray-500">
             Un asesor Toyota te contactará en menos de 24 horas con tu precio personalizado.
           </p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 sm:p-8">
+        <div className="bg-white border border-[#E8E8E8] p-6 sm:p-8">
           <CotizacionForm modeloInicial={modeloInicial} />
         </div>
 
@@ -37,10 +37,10 @@ export default async function CotizacionPage({
             { icon: '📍', label: 'Ubicación', value: 'Autopista México–Qro Km. 37.5' },
             { icon: '🕐', label: 'Horario', value: 'Lun–Sáb 9:00–19:00' },
           ].map((item) => (
-            <div key={item.label} className="bg-white rounded-lg p-3 border border-gray-100">
+            <div key={item.label} className="bg-white border border-[#E8E8E8] p-3">
               <p className="text-xl">{item.icon}</p>
               <p className="text-xs text-gray-400 mt-1">{item.label}</p>
-              <p className="text-xs font-semibold text-[#1A1A1A] mt-0.5">{item.value}</p>
+              <p className="text-xs font-semibold text-foreground mt-0.5">{item.value}</p>
             </div>
           ))}
         </div>
