@@ -5,6 +5,57 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (33)
+
+### Agregado — RAV4 HEV publicado (décimo segundo modelo, tercero de los pares con motorización doble)
+Nuevo documento en Sanity (slug `rav4-hev`, `rav4-hev-modelo`), publicado
+directo sin borrador (202 imágenes: hero, tarjeta, destacado, rendimiento,
+5 versiones, visor 360° de 10 colores × 18 ángulos, galería 6+6). Tercero
+de los 5 nameplates con motorización doble — único donde ninguna de las
+dos motorizaciones (HEV/PHEV) es 100% gasolina, así que el carrusel
+duplica LE/XLE/Woodland/Limited HEV + RAV4 PHEV. **Primer modelo con
+Toyota Safety Sense 4.0** (los demás traen TSS sin número o 3.0) — se
+comparó el desglose real contra los modelos ya publicados y se confirmó
+que agrega **RSA (Asistente de Señales de Tránsito)**, un componente que
+no existía antes en el catálogo. Destacado = "Connected Services" (Safety
+Connect, Remote Connect, Service Connect, Drive Connect, Drive Recorder)
+en vez de TSS, por ser la primera vez que aparece este concepto — TSS 4.0
+quedó documentado dentro de `seguridadItems` en su lugar. **Capacidad de
+carga en KG, no en litros** (504 kg en LE) — primer modelo del catálogo
+sin dato de cajuela en litros, la ficha técnica solo da peso de carga
+útil. **Primer modelo con rendimiento de combustible por VERSIÓN en vez
+de por transmisión** (LE/XLE 27.70, Woodland 25.30, Limited 23.20 KM/L)
+— Toyota no publica este dato para RAV4 HEV ni en su página ni en su
+ficha técnica (primera vez que pasa en el catálogo); Raúl autorizó una
+excepción puntual usando expansion.mx y carglobe.mx como fuente, con la
+aclaración explícita de que no es precedente para el resto del catálogo.
+Ajuste de código compartido: la línea divisoria entre filas de la tabla
+de "Rendimiento" (`app/modelos/[slug]/page.tsx`) solo funcionaba para
+exactamente 2 filas (`i === 0`) — extendida a `i < longitud - 1` para
+que funcione con cualquier número de filas, y sincronizada la misma
+lógica en `app/preview-borrador/page.tsx` (estaba desincronizado, sin
+línea divisoria en absoluto). Verificado que Yaris Sedán (2 filas) sigue
+viéndose igual tras el cambio.
+
+### Corregido — 3 hallazgos al revisar fichas técnicas ya guardadas localmente
+Raúl recordó que las fichas técnicas en PDF de casi todo el catálogo ya
+viven en `Fichas Tecnicas/` (carpeta del proyecto, fuera del repo) — no
+hacía falta pelear con el 403 de toyota.mx para conseguirlas. Al
+revisarlas de nuevo se encontraron y corrigieron 3 cosas:
+1. **Corolla Cross HEV** (`corolla-cross-hev-modelo`): `seguridadItems`
+   incluía BSM (Monitoreo de Punto Ciego), copiado sin verificar del
+   documento gasolina gemelo — la ficha real del HEV no lo incluye. Se
+   corrigió la lista completa contra la sección SEGURIDAD real (que usa
+   el término "Kit de seguridad" en vez de desglosar VSC/TRAC/HAC/ABS).
+2. **Corolla** (`corolla-modelo` y `corolla.json`): typo "Alarmas e
+   inmovilizados" → "Alarma e inmovilizador" en `seguridadItems`.
+3. **Corolla Cross** (`corolla-cross-modelo`): las versiones "SE HEV" y
+   "XSE HEV" del carrusel de versiones no tenían imagen desde que se
+   publicó (19 de septiembre) — pendiente hasta que existiera el
+   documento Corolla Cross HEV con esas fotos. Ya publicado ese par,
+   se referenciaron las mismas imágenes (sin volver a subirlas) en el
+   documento de gasolina.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (32)
 
 ### Agregado — Corolla Cross HEV publicado (décimo primer modelo, par HEV de Corolla Cross)

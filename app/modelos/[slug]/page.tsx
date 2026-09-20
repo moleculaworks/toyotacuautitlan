@@ -462,7 +462,7 @@ export default async function ModeloPage({
                 {rendimientoFilas.map((row, i) => (
                   <div
                     key={row.transmision}
-                    className={`grid grid-cols-2 ${i === 0 ? 'border-b border-[#E8E8E8]' : ''}`}
+                    className={`grid grid-cols-2 ${i < rendimientoFilas.length - 1 ? 'border-b border-[#E8E8E8]' : ''}`}
                   >
                     <div className="px-6 py-5 flex items-center text-[32px] font-semibold text-toyota-red tracking-[-.02em] border-r border-[#E8E8E8]">
                       {row.transmision}
