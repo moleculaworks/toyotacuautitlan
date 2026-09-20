@@ -5,6 +5,27 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (37)
+
+### Corregido — segunda pasada de "equipo heredado" en todo el catálogo
+A partir de la lección de Yaris Hatchback (entrada 36), se revisó el
+equipo completo (Exterior/Interior/Seguridad) de cada versión contra lo
+anunciado en versiones más baratas del mismo carrusel, en los 9
+carruseles del catálogo:
+- **Yaris Hatchback S CVT**: 2 ítems más heredados de S MT sin repetirse
+  en su propio resumen — "Asiento para conductor tipo cubo con ajuste
+  manual de 6 direcciones" y "Conectores traseros USB tipo C (2)".
+- **Corolla/Corolla HEV — XLE CVT y XLE HEV**: ambas heredan "Faros con
+  encendido y apagado automático" de LE, sin repetirlo en su propio
+  resumen — agregado a las 6 tarjetas correspondientes (gasolina + HEV).
+- **Avanza XLE CVT**: le faltaba "Pantalla multiinformación (MID) 4.2\""
+  — confirmado que LE MT no la trae en su Interior, es una mejora real
+  de XLE no mencionada antes.
+- **Sin hallazgos adicionales** en Corolla Cross/Corolla Cross HEV, RAV4
+  HEV, Raize, Camry HEV, Prius, Yaris Sedán/Yaris Sedán HEV — revisados
+  a fondo, las diferencias entre sus tarjetas ya reflejan distinciones
+  reales de equipo entre versiones, no heredos sin anunciar.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (36)
 
 ### Corregido — refinamiento del criterio de `versiones[].caracteristicas`
