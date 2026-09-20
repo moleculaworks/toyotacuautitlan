@@ -5,6 +5,30 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (36)
+
+### Corregido — refinamiento del criterio de `versiones[].caracteristicas`
+Dos ajustes al criterio nuevo (entrada 35), documentados en
+`JSON Modelos/README.md`:
+
+1. **"Características Generales" puede omitir equipo real que sí está
+   instalado.** Raúl encontró que Yaris Hatchback S CVT también trae
+   "Faros de niebla LED" (confirmado en la sección Exterior completa de
+   esa misma versión en toyota.mx) — no aparecía en su resumen de
+   "Características Generales" porque ya se había introducido en S MT y
+   Toyota no lo vuelve a destacar como novedad en el trim superior.
+   Corregido en `yaris-hatchback.json` y en Sanity. Regla nueva: antes de
+   cerrar una tarjeta, contrastar contra el equipo completo de esa
+   versión (Exterior/Interior/Seguridad de la misma página, o la ficha
+   técnica), no solo el resumen curado.
+2. **Reglas para acortar texto largo, acotadas a 2 técnicas seguras**
+   (usar una forma corta que Toyota mismo use en otra parte de la misma
+   fuente oficial, o quitar una palabra redundante) — **con la excepción
+   explícita de que "Android Auto" y "Apple CarPlay" siempre van
+   completos**, nunca como sigla ("AA"/"ACP"), a pedido directo de Raúl:
+   nadie está familiarizado con esas siglas aunque toyota.mx a veces las
+   use así en su propia copy.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (35)
 
 ### Corregido — nuevo criterio para `versiones[].caracteristicas`, aplicado a todo el catálogo
