@@ -29,9 +29,10 @@ const icons: Record<string, ReactNode> = {
   ),
   pasajeros: (
     <svg {...commonProps}>
-      <circle cx="9" cy="7" r="2.5" />
-      <circle cx="15" cy="7" r="2.5" />
-      <path d="M4 19c0-3.3 2.2-5.5 5-5.5h6c2.8 0 5 2.2 5 5.5" />
+      <circle cx="8" cy="7.5" r="2.3" />
+      <path d="M3.3 19c0-3 2.1-5 4.7-5s4.7 2 4.7 5" />
+      <circle cx="16.5" cy="8.5" r="2" />
+      <path d="M12.6 19c0-2.6 1.7-4.3 3.9-4.3s3.9 1.7 3.9 4.3" />
     </svg>
   ),
   traccion: (
@@ -106,8 +107,7 @@ const icons: Record<string, ReactNode> = {
   ),
   seguridad: (
     <svg {...commonProps}>
-      <rect x="4" y="6" width="16" height="13" rx="4" />
-      <path d="M8 10v5M12 9v7M16 10v5" />
+      <path d="M12 3l7 4v5c0 4.4-3 8.5-7 9.5C8 20.5 5 16.4 5 12V7l7-4z" />
     </svg>
   ),
 }
