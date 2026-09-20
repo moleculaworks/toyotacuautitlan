@@ -4,6 +4,7 @@ import Image, { getImageProps } from 'next/image'
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
 import HighlightIcon from '@/components/ui/HighlightIcon'
+import Button from '@/components/ui/Button'
 import VersionesCarousel from '@/components/modelo/VersionesCarousel'
 import ExteriorColores, { type ColorExterior } from '@/components/modelo/ExteriorColores'
 import Galeria from '@/components/modelo/Galeria'
@@ -222,21 +223,24 @@ export default async function ModeloPage({
             )}
             {mostrarVersiones && (
               <div className="flex max-desktop:flex-col max-desktop:w-full gap-3">
-                <a
+                <Button
                   href="#versiones"
-                  className="inline-flex items-center justify-center gap-2.5 text-foreground text-sm font-semibold tracking-[.3px] border-2 border-foreground px-5 py-[11px] w-fit max-desktop:w-full no-underline transition-colors hover:bg-toyota-red hover:border-toyota-red hover:text-white"
+                  variant="outline-hero"
+                  className="text-sm tracking-[.3px] px-5 py-[11px] w-fit max-desktop:w-full gap-2.5"
+                  icon={
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M8 3L8 13M4 9L8 13L12 9"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  }
                 >
                   Ver versiones y precios
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path
-                      d="M8 3L8 13M4 9L8 13L12 9"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
+                </Button>
               </div>
             )}
           </div>
@@ -333,12 +337,13 @@ export default async function ModeloPage({
               Un asesor de Toyota Cuautitlán te contacta hoy.
             </p>
           </div>
-          <Link
+          <Button
             href={`/cotizacion?modelo=${modeloSlug}`}
-            className="flex-shrink-0 inline-block bg-white text-toyota-red px-11 py-[18px] text-base font-semibold no-underline tracking-[.3px] whitespace-nowrap transition-colors hover:bg-foreground hover:text-white"
+            variant="invert-red"
+            className="flex-shrink-0 px-11 py-[18px] text-base tracking-[.3px] whitespace-nowrap"
           >
             Solicitar Cotización
-          </Link>
+          </Button>
         </div>
       </section>
 
@@ -518,21 +523,25 @@ export default async function ModeloPage({
                 Para más detalles de cada versión consulta la ficha técnica.
               </p>
               {/* Pendiente: enlace real al PDF de ficha técnica */}
-              <a
+              <Button
                 href="#"
-                className="inline-flex items-center gap-2 text-white no-underline text-sm font-semibold bg-toyota-red hover:bg-toyota-red-dark px-7 py-[13px] transition-colors"
+                variant="primary"
+                className="text-sm px-7 py-[13px] gap-2"
+                icon={
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                    <path
+                      d="M7.5 2.5V10M4 8L7.5 11.5L11 8M2.5 13H12.5"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                }
+                iconPosition="left"
               >
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                  <path
-                    d="M7.5 2.5V10M4 8L7.5 11.5L11 8M2.5 13H12.5"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
                 Descargar Ficha Técnica
-              </a>
+              </Button>
             </div>
           </div>
         </section>
@@ -548,12 +557,13 @@ export default async function ModeloPage({
             Un asesor te contactará a la brevedad.
           </p>
           <div className="mt-2">
-            <Link
+            <Button
               href={`/cotizacion?modelo=${modeloSlug}`}
-              className="inline-block bg-white text-black px-14 py-5 text-base font-semibold no-underline tracking-[.3px] transition-colors hover:bg-[#EBEBEB]"
+              variant="invert-black"
+              className="px-14 py-5 text-base tracking-[.3px]"
             >
               Solicitar Cotización
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

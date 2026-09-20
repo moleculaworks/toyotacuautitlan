@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import Button from '@/components/ui/Button'
 
 export interface VersionSanity {
   nombre: string
@@ -247,18 +248,12 @@ function VersionCard({
           de Manejo no están definidos (ver Obsidian:
           formularios-cotizacion-y-prueba-de-manejo.md) */}
       <div className="px-[22px] pb-5 flex flex-col gap-2">
-        <a
-          href="#"
-          className="w-full text-center bg-toyota-red text-white text-sm font-semibold py-3 no-underline hover:bg-toyota-red-dark transition-colors"
-        >
+        <Button href="#" variant="primary" className="w-full text-center text-sm py-3">
           Cotízalo
-        </a>
-        <a
-          href="#"
-          className="w-full text-center border-[1.5px] border-foreground text-foreground text-sm font-semibold py-[10.5px] no-underline hover:bg-foreground hover:text-white transition-colors"
-        >
+        </Button>
+        <Button href="#" variant="secondary" className="w-full text-center text-sm py-[10.5px]">
           Manéjalo
-        </a>
+        </Button>
       </div>
     </div>
   )

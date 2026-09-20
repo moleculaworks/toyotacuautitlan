@@ -118,40 +118,56 @@ estilo en vez de `h3` para no generar un salto de nivel en cada página.
 
 ## 5. Botones
 
-Patrón primario/secundario, decidido el 15 de septiembre de 2026 al elegir la
-Propuesta A de los botones "Cotízalo"/"Manéjalo" en la tarjeta de versión
-(`components/corolla/VersionesCarousel.tsx`, `VersionCard`). Usar este patrón
-en cualquier lugar del sitio donde se necesiten dos acciones con jerarquía
-clara (una principal, una secundaria) — no inventar una variante nueva de
-outline.
+**Componente compartido: `components/ui/Button.tsx`** (20 de septiembre de
+2026) — antes cada botón era clases de Tailwind copiadas a mano en cada
+archivo; ahora los 5 tratamientos de color/hover reales del sitio viven en
+un solo lugar como `variant`. Cualquier sección nueva (Financiamiento,
+Servicio, etc.) debe importar este componente para sus botones en vez de
+volver a escribir las clases de color a mano — así un cambio de tono de
+marca se hace en un solo archivo, no se busca y reemplaza en todo el repo.
 
-| | Clase | Uso |
+| `variant` | Clase de color/hover | Uso real hoy |
 |---|---|---|
-| **Primario** | `bg-toyota-red text-white hover:bg-toyota-red-dark` | La acción principal — ej. "Cotízalo". Relleno rojo de marca. |
-| **Secundario** | `border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white` | La acción alternativa — ej. "Manéjalo". Contorno negro (`--foreground`), invierte a relleno negro en hover. |
+| `primary` | `bg-toyota-red text-white hover:bg-toyota-red-dark` | Acción principal — "Cotízalo", "Descargar Ficha Técnica". Relleno rojo de marca. |
+| `secondary` | `border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white` | Acción alternativa emparejada con un primario — "Manéjalo". Contorno negro, invierte a relleno negro. |
+| `outline-hero` | `border-2 border-foreground text-foreground hover:bg-toyota-red hover:border-toyota-red hover:text-white` | CTA aislado sobre fondo claro — "Ver versiones y precios" en el Hero. Contorno negro, invierte a rojo. |
+| `invert-red` | `bg-white text-toyota-red hover:bg-foreground hover:text-white` | Botón blanco sobre fondo rojo de marca — CTA intermedio ("¿Listo para dar el siguiente paso?"). |
+| `invert-black` | `bg-white text-black hover:bg-[#EBEBEB]` | Botón blanco sobre fondo negro — CTA final ("¿Listo para estrenar tu [Modelo]?"). |
 
-Ambos con `text-sm font-semibold`, `py-3` (primario) / `py-[10.5px]`
-(secundario — compensa el borde de 1.5px para que la altura visual coincida),
-`transition-colors`.
+**El componente NO impone tamaño de texto, padding ni tracking** — eso se
+pasa vía `className` en cada uso, porque hoy varía por contexto y no está
+100% homologado entre sí (ver "CTA de sección" abajo). `variant` solo fija
+el tratamiento de color/hover — la parte que sí debe ser idéntica en todo
+el sitio. `icon` + `iconPosition` (`'left'` | `'right'`) para botones con
+ícono — si se pasa `icon`, agregar también la clase `gap-*` en `className`
+(el componente no la fija sola, para no chocar con el `className` propio en
+el CSS compilado). `href` renderiza `<Link>` (o `<a target="_blank">` con
+`external`); sin `href`, renderiza `<button>` (acepta `onClick`, `type`,
+`disabled` — útil para submits de formulario).
 
-**No confundir con el botón outline-rojo que ya existía** en el Hero de
-modelo ("Ver versiones y precios" — borde negro que invierte a rojo en
-hover). Ese es un tercer tratamiento válido para un solo CTA aislado sobre
-fondo claro; el patrón secundario de esta sección es específicamente para
-cuando va emparejado con un botón primario rojo, para no competir con él.
-También usa `text-sm` — incluso siendo un tratamiento de color distinto,
-comparte el mismo tamaño de texto que Cotízalo/Manéjalo (corregido el 15 de
-septiembre de 2026, antes estaba en 13px sin razón).
+Todos los botones reales de página de modelo ya usan este componente
+(`app/modelos/[slug]/page.tsx`, `components/modelo/VersionesCarousel.tsx`)
+— revisado visualmente en `/preview-borrador` y en vivo tras el cambio, sin
+diferencia de un solo pixel contra la versión anterior.
 
 ### CTA de sección (un solo botón, ocupa su propia franja)
 
 Distinto del patrón de tarjeta de arriba — es el botón "Solicitar
 Cotización" que aparece dos veces en la página de modelo (CTA intermedio a
-media página, CTA final antes del footer). Al ser un CTA de sección
-completa, no uno dentro de una tarjeta chica, usa un tamaño de texto mayor:
-`text-base` (16px) en vez de `text-sm`. Las dos apariciones deben usar
-exactamente el mismo tamaño entre sí (el 15 de septiembre de 2026 estaban
-en 15px y 16px respectivamente, sin razón para la diferencia — corregido).
+media página, `variant="invert-red"`; CTA final antes del footer,
+`variant="invert-black"`). Al ser un CTA de sección completa, no uno dentro
+de una tarjeta chica, usa un tamaño de texto mayor: `text-base` (16px) en
+vez de `text-sm`. Las dos apariciones ya comparten ese tamaño (corregido el
+15 de septiembre de 2026, antes estaban en 15px y 16px sin razón).
+
+**Pendiente de decisión (no es un error, es una inconsistencia sin
+resolver, detectada el 20 de septiembre de 2026):** el padding de estos dos
+botones no es idéntico entre sí (`px-11 py-[18px]` en el intermedio,
+`px-14 py-5` en el final) y su tratamiento de hover tampoco (invierte a
+negro/blanco vs. a un gris claro fijo `#EBEBEB`). No se unificó todavía
+porque cambiaría el aspecto visual de una pieza ya publicada — antes de
+tocarlo, confirmar con Raúl si se homologan a un solo tamaño/hover o si la
+diferencia es intencional por el contraste de fondo (rojo vs. negro).
 
 ---
 
@@ -192,6 +208,43 @@ viñetas, primer caso real). Renderizado en `app/modelos/[slug]/page.tsx` con
 
 ---
 
+## 7. Íconos
+
+**Set de íconos de línea en código: `components/ui/HighlightIcon.tsx`.**
+Se dibujan como SVG directo en el componente (no se suben como imagen por
+modelo) para garantizar el mismo trazo, grosor y color en todo el catálogo.
+Especificación para dibujar un ícono nuevo con el mismo estilo:
+
+| Propiedad | Valor |
+|---|---|
+| Tamaño de render | `32×32` |
+| `viewBox` | `0 0 24 24` |
+| `fill` | `none` (solo trazo, nunca relleno) |
+| `stroke` | `var(--toyota-red)` |
+| `strokeWidth` | `1.8` |
+| `strokeLinecap` / `strokeLinejoin` | `round` / `round` |
+
+Todos comparten este mismo objeto `commonProps` — para agregar un concepto
+nuevo (ej. un ícono para Financiamiento o Servicio), dibujar el SVG con
+estas mismas 6 propiedades y agregarlo al diccionario `icons` del
+componente. Hoy vive el set usado en la barra de datos destacados de
+modelo (`motor`, `pasajeros`, `traccion`, `tecnologia`, `capacidad-carga`,
+`potencia`, `autonomia`, `remolque`, `transmision`, `maletero`,
+`rendimiento`, `modos-manejo`, `seguridad`) — el componente no está atado a
+esa barra específica, cualquier sección puede importar `HighlightIcon` y
+pasar un `nombre` de la lista.
+
+**Otros SVG puntuales del sitio no pasan por este componente** (ej. el
+check rojo de "Características Generales" en `page.tsx`, la flecha del
+Hero, el ícono de descarga de "Ficha Técnica") — son de un solo uso, con
+`strokeWidth="1.8"` y `strokeLinecap`/`strokeLinejoin` `"round"` también
+(mismo trazo que HighlightIcon, por consistencia), pero dibujados inline
+donde se usan en vez de vivir en el diccionario compartido. Si un ícono
+puntual se vuelve a necesitar en un segundo lugar, ese es el momento de
+moverlo a `HighlightIcon.tsx`.
+
+---
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño
@@ -204,3 +257,25 @@ viñetas, primer caso real). Renderizado en `app/modelos/[slug]/page.tsx` con
   ningún lado (queda solo como variable CSS sin aplicar, ahora que ToyotaType
   es la fuente real del `<body>`) — evaluar si quitarlo del todo o si se
   pensaba usar para algo específico.
+- **Hallazgo importante (auditoría del 20 de septiembre de 2026): el Navbar,
+  los formularios de muestra (`CotizacionForm.tsx`, `CitaForm.tsx`) y la
+  tarjeta de catálogo (`components/ui/ModeloCard.tsx`) NO siguen este
+  documento.** Usan un sistema de estilo distinto y nunca documentado:
+  - Color: hex directo `bg-[#EB0A1E]` en vez del token `bg-toyota-red`, y
+    `hover:bg-red-700` (rojo genérico de Tailwind) en vez de
+    `hover:bg-toyota-red-dark` (`#C5091A`, el tono de marca real).
+  - Esquinas redondeadas (`rounded`, `rounded-lg`) — ningún botón ni tarjeta
+    de página de modelo usa esquinas redondeadas, todo es recto.
+  - `ModeloCard.tsx` (usada en `/modelos`, el catálogo) además tiene
+    `shadow-sm hover:shadow-md` y `border-gray-100` — la tarjeta equivalente
+    de "Modelos similares" dentro de una página de modelo usa
+    `border border-[#E8E8E8]` sin sombra ni redondeo. Son visualmente dos
+    tarjetas distintas para el mismo concepto.
+  - Este documento decía (línea "Estado actual", 22 de agosto de 2026) que
+    colores y tipografía ya eran consistentes "en todo el sitio, no solo en
+    el Corolla" — no es cierto para estas piezas específicas, quedaron fuera
+    de esa limpieza o se agregaron después sin pasar por este documento.
+  - **No se corrigió en esta pasada** porque cambia el aspecto visual de
+    piezas que están en producción (Navbar aparece en cada página del
+    sitio) — es una decisión de diseño, no un bug de código, así que
+    necesita confirmación antes de tocarse.

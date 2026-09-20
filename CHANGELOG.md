@@ -5,6 +5,33 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (41)
+
+### Agregado — auditoría de diseño y componente `Button` compartido
+De cara a trabajar secciones nuevas (Financiamiento, Servicio, etc.) en una
+conversación aparte, se auditó si `SISTEMA-DE-DISENO.md` de verdad cubre
+todo el sitio o solo página de modelo:
+- **Nuevo `components/ui/Button.tsx`**: los 5 tratamientos de color/hover
+  reales del sitio (primary, secondary, outline-hero, invert-red,
+  invert-black) ahora viven en un componente compartido en vez de clases
+  copiadas a mano. Migrados los 6 usos reales en página de modelo
+  (`app/modelos/[slug]/page.tsx`, `VersionesCarousel.tsx`) — verificado
+  visualmente en local, sin ningún cambio de pixel.
+- **Nueva sección 7 (Íconos) en `SISTEMA-DE-DISENO.md`**: documentada la
+  especificación de `HighlightIcon.tsx` (32×32, viewBox 24, stroke
+  `var(--toyota-red)`, strokeWidth 1.8, trazos redondos) para que cualquier
+  ícono nuevo (Financiamiento, Servicio) use el mismo estilo.
+- **Hallazgo sin corregir todavía**: Navbar, `ModeloCard.tsx` (tarjeta del
+  catálogo) y los formularios de muestra (`CotizacionForm.tsx`,
+  `CitaForm.tsx`) usan un sistema de color/esquinas distinto y nunca
+  documentado (hex directo `#EB0A1E`, `hover:bg-red-700` genérico de
+  Tailwind, esquinas redondeadas) — ninguna de estas 3 piezas sigue
+  realmente `SISTEMA-DE-DISENO.md` pese a que el documento decía desde el
+  22 de agosto que ya era consistente en todo el sitio. Documentado en la
+  sección "Pendientes" — no se corrigió porque cambia el aspecto visual de
+  piezas ya en producción (el Navbar aparece en cada página), pendiente de
+  confirmación antes de tocarse.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (40)
 
 ### Corregido — RAV4 HEV Limited HEV, spec de motor repetido sin necesidad
