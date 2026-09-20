@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (39)
+
+### Cambiado — bloque de 4 iconos destacados (debajo del Hero)
+Raúl cuestionó si "Pasajeros" (dato genérico, igual en casi todo el
+catálogo) merecía uno de los 4 iconos principales en modelos donde no es
+distintivo:
+- **RAV4 HEV**: se quitaron "Pasajeros · 5" y "Capacidad de carga · 504
+  kg" (única unidad en KG del catálogo, sin base de comparación) a favor
+  de "Tracción · FWD / AWD" (primera SUV del catálogo con AWD disponible,
+  en Woodland y Limited) y "Rendimiento · Hasta 27.70 KM/L". También se
+  quitó "Bolsas de aire · 8" a favor de "Tecnología · Toyota Safety Sense
+  4.0" (primer modelo del catálogo con TSS 4.0/RSA).
+- **Yaris Sedán HEV**: se quitó "Pasajeros · 5" a favor de "Rendimiento ·
+  29.4 KM/L" — dato ya presente en la tabla de rendimiento del modelo,
+  consistente con Corolla HEV y RAV4 HEV, que ya usan Rendimiento como
+  uno de sus 4 iconos. Único modelo 100% híbrido del catálogo que no lo
+  tenía todavía en ese bloque.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (38)
 
 ### Corregido — 2 ajustes menores
