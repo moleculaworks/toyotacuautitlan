@@ -5,6 +5,48 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (32)
+
+### Agregado — Corolla Cross HEV publicado (décimo primer modelo, par HEV de Corolla Cross)
+Nuevo documento en Sanity (slug `corolla-cross-hev`, `corolla-cross-hev-modelo`),
+publicado directo sin borrador (91 imágenes: hero, tarjeta, destacado,
+rendimiento, 4 versiones, galería 6+4, visor 360° de 4 colores × 18
+ángulos). Cierra el segundo de los 5 nameplates con motorización doble
+del catálogo (después de Corolla/Corolla HEV) — mismas 4 versiones que
+Corolla Cross (LE, XLE, SE HEV, XSE HEV) duplicadas en el carrusel de
+ambos documentos. **Sistema híbrido de 196 HP combinados** (toyota.mx no
+desglosa cilindrada, y la ficha técnica en PDF no se pudo descargar —
+bloqueada por WAF/Cloudflare del sitio en todos los intentos, 403 tanto
+por `curl` como por navegación directa). Cajuela de 349 L (menor a los
+434 L del gasolina, por la batería) — **no se dejó como destacado**: al
+compararla contra las SUV's ya publicadas (Avanza 498 L, Raize 369 L,
+Corolla Cross 434 L) resultó ser la más baja del catálogo, así que en su
+lugar el cuarto ícono de la barra es Rendimiento (25.88 KM/L). **4
+colores, todos bi-tono, sin ningún sólido** (Rojo/Negro, Azul/Negro,
+Blanco/Negro, Plata/Negro) — confirma lo documentado al construir el
+Corolla Cross de gasolina. Destacado con Toyota Safety Sense (5
+componentes, incluye "Control Crucero Full Speed Range", que no aparece
+en el documento de gasolina). Intro reescrita 2 veces con Raúl: la
+primera versión era demasiado técnica (HP, KM/L, transición automática,
+cajuela) y tenía un dato incorrecto (afirmaba la misma versatilidad de
+carga que el gasolina); se corrigió con un ángulo de uso real (tráfico
+diario + fin de semana) y la transición eléctrico/gasolina descrita de
+forma sensorial en vez de como dato duro. Texto de "Diseño" también
+reescrito — la primera versión usaba una tarjeta *highlight* real de
+toyota.mx (defensas/espejos abatibles) que Raúl marcó como genérica, sin
+vender nada; se cambió por iluminación BI-LED (de serie en las 4
+versiones, dato real y distintivo).
+
+### Documentado — nuevo rango de caracteres para `disenoTexto`
+Al construir Corolla Cross HEV se encontró que `disenoTexto` sí tiene un
+tope duro en el schema de Sanity (`validation: r.max(160)`, antes sin
+regla explícita en el borrador) — dos documentos ya publicados lo
+excedían (Corolla Cross 177, Corolla Cross HEV en su primer borrador
+173). Se acordó con Raúl un rango de **120-160 caracteres** (agregado a
+`JSON Modelos/README.md`) — además de respetar el tope, sirve para
+"engordar" los modelos que quedaron muy cortos (86-103 caracteres) por
+valor de SEO, pendiente de aplicarse al resto del catálogo.
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (31)
 
 ### Cambiado — 3 íconos de la barra de destacados rediseñados
