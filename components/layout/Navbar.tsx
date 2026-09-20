@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ModelosMegaMenu from "./ModelosMegaMenu";
 import ModelosMobileAccordion from "./ModelosMobileAccordion";
+import Button from "@/components/ui/Button";
 import type { Modelo } from "@/types";
 
 const navLinks = [
@@ -92,12 +93,9 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
 
           {/* CTA */}
           <div className="hidden md:block">
-            <Link
-              href="/cotizacion"
-              className="inline-flex items-center px-5 py-2.5 bg-[#EB0A1E] text-white text-sm font-semibold rounded hover:bg-red-700 transition-colors"
-            >
+            <Button href="/cotizacion" variant="primary" className="px-5 py-2.5 text-sm">
               Cotizar
-            </Link>
+            </Button>
           </div>
 
           {/* Mobile hamburger */}
@@ -132,13 +130,14 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
                 {link.label}
               </Link>
             ))}
-            <Link
+            <Button
               href="/cotizacion"
+              variant="primary"
               onClick={() => setMenuOpen(false)}
-              className="inline-flex items-center justify-center px-5 py-3 mt-4 bg-[#EB0A1E] text-white text-sm font-semibold rounded hover:bg-red-700 transition-colors"
+              className="px-5 py-3 mt-4 text-sm"
             >
               Cotizar
-            </Link>
+            </Button>
           </nav>
         </div>
       )}

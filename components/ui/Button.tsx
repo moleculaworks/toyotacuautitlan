@@ -66,13 +66,19 @@ export default function Button(props: ButtonProps) {
   if (props.href) {
     if (props.external) {
       return (
-        <a href={props.href} className={classes} target="_blank" rel="noopener noreferrer">
+        <a
+          href={props.href}
+          className={classes}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={props.onClick}
+        >
           {content}
         </a>
       )
     }
     return (
-      <Link href={props.href} className={classes}>
+      <Link href={props.href} className={classes} onClick={props.onClick}>
         {content}
       </Link>
     )

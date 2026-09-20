@@ -257,25 +257,34 @@ moverlo a `HighlightIcon.tsx`.
   ningún lado (queda solo como variable CSS sin aplicar, ahora que ToyotaType
   es la fuente real del `<body>`) — evaluar si quitarlo del todo o si se
   pensaba usar para algo específico.
-- **Hallazgo importante (auditoría del 20 de septiembre de 2026): el Navbar,
-  los formularios de muestra (`CotizacionForm.tsx`, `CitaForm.tsx`) y la
-  tarjeta de catálogo (`components/ui/ModeloCard.tsx`) NO siguen este
-  documento.** Usan un sistema de estilo distinto y nunca documentado:
-  - Color: hex directo `bg-[#EB0A1E]` en vez del token `bg-toyota-red`, y
-    `hover:bg-red-700` (rojo genérico de Tailwind) en vez de
-    `hover:bg-toyota-red-dark` (`#C5091A`, el tono de marca real).
-  - Esquinas redondeadas (`rounded`, `rounded-lg`) — ningún botón ni tarjeta
-    de página de modelo usa esquinas redondeadas, todo es recto.
-  - `ModeloCard.tsx` (usada en `/modelos`, el catálogo) además tiene
-    `shadow-sm hover:shadow-md` y `border-gray-100` — la tarjeta equivalente
-    de "Modelos similares" dentro de una página de modelo usa
-    `border border-[#E8E8E8]` sin sombra ni redondeo. Son visualmente dos
-    tarjetas distintas para el mismo concepto.
-  - Este documento decía (línea "Estado actual", 22 de agosto de 2026) que
-    colores y tipografía ya eran consistentes "en todo el sitio, no solo en
-    el Corolla" — no es cierto para estas piezas específicas, quedaron fuera
-    de esa limpieza o se agregaron después sin pasar por este documento.
-  - **No se corrigió en esta pasada** porque cambia el aspecto visual de
-    piezas que están en producción (Navbar aparece en cada página del
-    sitio) — es una decisión de diseño, no un bug de código, así que
-    necesita confirmación antes de tocarse.
+- **Hallazgo del 20 de septiembre de 2026, corregido el mismo día:** el
+  Navbar (botón "Cotizar", desktop y móvil), los formularios de muestra
+  (`CotizacionForm.tsx`, `CitaForm.tsx`, botón de submit) y la tarjeta de
+  catálogo (`components/ui/ModeloCard.tsx`) usaban un sistema de estilo
+  distinto y nunca documentado — hex directo `bg-[#EB0A1E]` en vez del
+  token `bg-toyota-red`, `hover:bg-red-700` (rojo genérico de Tailwind) en
+  vez de `hover:bg-toyota-red-dark`, y esquinas redondeadas (`rounded`,
+  `rounded-lg`) que no existen en ningún botón/tarjeta de página de modelo.
+  Homologados los 3: Navbar y formularios ahora usan `components/ui/Button.tsx`
+  (variant `primary`); `ModeloCard.tsx` quitó `rounded-lg`/`shadow`/
+  `border-gray-100` a favor de `border border-[#E8E8E8]` (mismo borde que
+  la tarjeta de "Modelos similares") y su badge de categoría pasó de pill
+  sólido redondeado a contorno, igual que el resto del sitio. Verificado
+  visualmente en `/`, `/modelos`, `/cotizacion` y `/cita-de-servicio`
+  (desktop y móvil) — sin romper el cierre del menú móvil al hacer clic en
+  "Cotizar" (el componente `Button` ahora propaga `onClick` también en modo
+  `href`, no solo en modo `<button>`).
+  - **Los formularios (`CotizacionForm.tsx`/`CitaForm.tsx`) siguen siendo
+    muestras sin terminar** (ver `formularios-cotizacion-y-prueba-de-manejo.md`
+    en Obsidian) — solo se corrigió el botón de submit a la marca real, no
+    se tocaron los inputs (siguen con `rounded` y `focus:border-[#EB0A1E]`
+    hardcodeado) para no invertir esfuerzo en una pieza que se reconstruye
+    después.
+  - **Oportunidad sin resolver, no es un bug:** `ModeloCard.tsx` y la
+    tarjeta inline de "Modelos similares" en `app/modelos/[slug]/page.tsx`
+    son dos implementaciones separadas del mismo concepto de tarjeta
+    (ahora con el mismo borde/badge, pero el badge sigue en posición
+    distinta — sobre la foto en una, encima del título en la otra, y el
+    link "Ver más"/"Ver modelo" no está unificado). Extraerlas a un solo
+    componente evitaría que se desalineen de nuevo — no se hizo en esta
+    pasada por ser un cambio de estructura, no solo de color.

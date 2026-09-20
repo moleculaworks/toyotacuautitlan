@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { citaSchema, type CitaData } from '@/lib/validations/cita'
+import Button from '@/components/ui/Button'
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null
@@ -160,13 +161,14 @@ export default function CitaForm() {
         />
       </div>
 
-      <button
+      <Button
         type="submit"
+        variant="primary"
         disabled={enviando}
-        className="w-full py-3 bg-[#EB0A1E] text-white font-semibold rounded hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full py-3 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {enviando ? 'Enviando...' : 'Agendar cita'}
-      </button>
+      </Button>
 
       <p className="text-xs text-gray-400 text-center">
         Lun–Sáb 9:00–19:00 · Dom 10:00–15:00 · (55) 5870-6655

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { cotizacionSchema, type CotizacionData } from '@/lib/validations/cotizacion'
+import Button from '@/components/ui/Button'
 
 const modelos = [
   'Yaris Hatchback', 'Yaris Sedán', 'Corolla', 'Corolla HEV', 'Camry', 'Camry HEV',
@@ -166,13 +167,14 @@ export default function CotizacionForm({ modeloInicial }: { modeloInicial?: stri
         />
       </div>
 
-      <button
+      <Button
         type="submit"
+        variant="primary"
         disabled={enviando}
-        className="w-full py-3 bg-[#EB0A1E] text-white font-semibold rounded hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full py-3 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {enviando ? 'Enviando...' : 'Solicitar cotización'}
-      </button>
+      </Button>
 
       <p className="text-xs text-gray-400 text-center">
         Al enviar aceptas que un asesor de Toyota Cuautitlán te contacte.

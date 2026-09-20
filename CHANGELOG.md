@@ -5,6 +5,33 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (42)
+
+### Corregido — Navbar, ModeloCard y formularios homologados al sistema de diseño
+Cierre del hallazgo de la entrada anterior (41): Raúl confirmó homologar
+estas 3 piezas, aclarando que los formularios siguen siendo muestras sin
+terminar (no ameritan un rediseño completo todavía).
+- **Navbar**: los 2 botones "Cotizar" (desktop y móvil) ahora usan
+  `<Button variant="primary">` — antes hex directo `#EB0A1E` +
+  `hover:bg-red-700` + esquinas redondeadas.
+- **`CotizacionForm.tsx` / `CitaForm.tsx`**: el botón de submit ("Solicitar
+  cotización" / "Agendar cita") usa el mismo `<Button variant="primary">`.
+  Solo el botón — los inputs del formulario no se tocaron, siguen siendo
+  muestra.
+- **`ModeloCard.tsx`** (tarjeta del catálogo `/modelos`): quitó
+  `rounded-lg`/sombra/`border-gray-100` a favor de `border border-[#E8E8E8]`
+  (mismo borde que la tarjeta de "Modelos similares"); badge de categoría
+  pasó de pill sólido redondeado a contorno.
+- Se ajustó `components/ui/Button.tsx` para propagar `onClick` también en
+  modo `href` (antes solo funcionaba en modo `<button>`) — necesario para
+  que "Cotizar" siga cerrando el menú móvil al hacer clic.
+- Verificado visualmente en local (`/`, `/modelos`, `/cotizacion`,
+  `/cita-de-servicio`, desktop y móvil) antes de subir — sin romper
+  ninguna interacción existente.
+- Queda documentada como oportunidad futura (no resuelta hoy): unificar
+  `ModeloCard.tsx` con la tarjeta inline de "Modelos similares" en un solo
+  componente — hoy son 2 implementaciones separadas del mismo concepto.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (41)
 
 ### Agregado — auditoría de diseño y componente `Button` compartido
