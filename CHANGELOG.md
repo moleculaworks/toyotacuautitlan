@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (38)
+
+### Corregido — 2 ajustes menores
+- **Avanza XLE CVT**: typo "Rines de aluminio de 16x6"" → "Rines de
+  aluminio de 16"" (la ficha no trae el "x6", era un error de captura).
+- **RAV4 HEV** — primer caso real aplicado de la regla de texto breve
+  (ver README.md): "Potencia total del sistema híbrido de [226/236] HP"
+  → "Potencia total del sistema · [226/236] HP" en LE HEV, Woodland HEV
+  y Limited HEV — la ficha técnica nombra esa fila solo "Potencia total
+  del sistema" (sin "híbrido"), así que acortar usa el nombre real de
+  Toyota, no parafraseo propio.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (37)
 
 ### Corregido — segunda pasada de "equipo heredado" en todo el catálogo
