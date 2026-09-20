@@ -5,6 +5,29 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (30)
+
+### Corregido — deploy de Vercel que no se disparó (webhook fallido)
+Raúl notó que el ícono nuevo de "Bolsas de aire" no aparecía en
+`toyotacuautitlan.vercel.app/modelos/corolla-cross`, aunque el
+contenido de texto (9 bolsas, intro nueva) sí se veía actualizado.
+Diagnóstico: en el dashboard de Vercel (pestaña Deployments) se
+confirmó que el commit `0c84b57` (el que traía el ícono y publicaba
+Corolla Cross) **nunca llegó a desplegarse** — el último deploy exitoso
+era el commit anterior (`41f5416`). El contenido de texto sí se veía
+"actualizado" porque la página se genera bajo demanda en el primer
+request (ruta dinámica sin `dynamicParams: false`) consultando Sanity
+en vivo, pero usando el código del último deploy real, sin el ícono
+nuevo. Se confirmó que el push sí había llegado bien a GitHub
+(`origin/main` en `0c84b57`) — el fallo fue puntual del webhook
+GitHub→Vercel. Se forzó un nuevo deploy con un commit vacío (`a323797`)
+y esta vez sí se disparó correctamente; verificado que el ícono ya
+aparece en el HTML servido en vivo. Se revisó también
+`Project Settings → Git` en Vercel (repo conectado sin errores,
+eventos `deployment_status`/`repository_dispatch` activos) — sin
+hallazgos, se confirma que fue un fallo aislado del webhook, no un
+problema de configuración persistente.
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (29)
 
 ### Agregado — Corolla Cross publicado (décimo modelo, primero de los pares con motorización doble desde Raize)
