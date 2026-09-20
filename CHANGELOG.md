@@ -5,6 +5,42 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (35)
+
+### Corregido — nuevo criterio para `versiones[].caracteristicas`, aplicado a todo el catálogo
+Raúl encontró que la tarjeta "Limited HEV" de RAV4 HEV no mencionaba su
+potencia (236 HP, igual que Woodland) porque toyota.mx no la lista en la
+sección "Características Generales" de esa versión específica, aunque sí
+la confirma su ficha técnica. Al investigar el porqué, se detectó que el
+criterio usado hasta ahora (recortar a 5 ítems por tarjeta, priorizando lo
+que Claude consideraba "más distintivo") era subjetivo y en algunos casos
+había quitado ítems reales de toyota.mx sin justificación.
+
+**Regla nueva, documentada en `JSON Modelos/README.md`:** cada tarjeta de
+versión lleva la lista completa de "Características Generales" de
+toyota.mx tal cual, sin parafrasear. Solo se puede omitir un ítem si
+aparece **literalmente igual en todas las versiones** del carrusel (ej.
+Toyota Safety Sense repetido en las 4 HEV de RAV4). Se puede **agregar**
+un dato verificado en la ficha técnica aunque toyota.mx lo omita en la
+lista de esa versión específica, si es relevante (como el caso de
+potencia/AWD de Limited HEV). Tope de **8 ítems** por tarjeta (no una
+meta, solo un techo).
+
+**Auditoría completa de los 9 carruseles del catálogo (12 modelos
+publicados) contra toyota.mx en vivo:**
+- **Corregidos** (tenían texto truncado, parafraseado, ítems tomados de
+  Interior/Seguridad en vez de Características Generales, o ítems reales
+  faltantes): Yaris Hatchback, Raize, Corolla/Corolla HEV (par, la
+  corrección más grande — nunca se había hecho con este rigor desde que
+  se armó, incluyendo agregar 'Potencia total del sistema híbrido 138 HP'
+  que no estaba en ninguna tarjeta), Corolla Cross/Corolla Cross HEV
+  (par), RAV4 HEV (LE +1 ítem, XLE +3, Woodland +3, RAV4 PHEV +1, además
+  de la corrección de potencia/AWD de Limited ya aplicada antes).
+- **Ya estaban correctos, sin cambios:** Avanza, Prius, Camry HEV, Yaris
+  Sedán/Yaris Sedán HEV (par) — coincidían exacto con toyota.mx.
+- Todos los cambios publicados directo en Sanity (contenido explícito) y
+  reflejados en `JSON Modelos/`.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (34)
 
 ### Corregido — labels de color de RAV4 HEV, formato real de toyota.mx
