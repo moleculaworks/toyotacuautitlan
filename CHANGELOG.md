@@ -5,6 +5,29 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-19 — Raúl (Claude Sonnet 5) (31)
+
+### Cambiado — 3 íconos de la barra de destacados rediseñados
+Raúl reportó que el ícono nuevo de "Bolsas de aire" (cojín con
+pliegues) no se entendía — se probaron varias alternativas (escudo con
+estrella, airbag con estallido, cinturón diagonal) comparadas en un
+artefacto visual antes de decidir; quedó un **escudo simple**, sin
+elementos extra. De paso se corrigieron dos íconos más: **"Pasajeros"**
+se veía como un símbolo de infinito por el arco de hombros compartido
+entre las dos cabezas — ahora son dos personas con arcos separados.
+**"Maletero"** parecía una tarjeta de crédito — se probó primero un
+auto de perfil con la cajuela abierta (inspirado en una referencia de
+Raúl), pero a 32px con trazo fino se veía ilegible; se descartó a favor
+de una **maleta simple**. Los 3 aplican automáticamente a los 10
+modelos publicados (código compartido en `HighlightIcon.tsx`, no
+Sanity).
+
+### Cambiado — "Maletero" renombrado a "Cajuela"
+A pedido de Raúl (término más común). Corregido en los 3 documentos de
+Sanity que lo usaban (Avanza, Raize, Corolla Cross) y en sus JSON
+locales correspondientes. Documentado como convención en
+`JSON Modelos/README.md` para los modelos siguientes.
+
 ## 2026-09-19 — Raúl (Claude Sonnet 5) (30)
 
 ### Corregido — deploy de Vercel que no se disparó (webhook fallido)
