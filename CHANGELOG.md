@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (40)
+
+### Corregido — RAV4 HEV Limited HEV, spec de motor repetido sin necesidad
+Raúl notó que "Potencia total del sistema · 236 HP (AWD)" se había
+agregado explícito a la tarjeta de Limited HEV, pero Woodland HEV (la
+versión inmediata anterior del mismo carrusel) ya anuncia el mismo dato
+sin cambio — se quitó de Limited HEV. Se documentó en README.md como
+excepción al criterio de "equipo heredado": a diferencia del equipo
+(donde el cliente asumiría ausencia si no se anuncia), un spec de motor
+ya establecido en la versión anterior no necesita repetirse si no
+cambia — mismo patrón que usa toyota.mx (XLE HEV tampoco repite los 226
+HP de LE HEV). El dato general del modelo sigue correcto en
+`descripcion`.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (39)
 
 ### Cambiado — bloque de 4 iconos destacados (debajo del Hero)
