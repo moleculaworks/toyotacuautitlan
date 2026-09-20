@@ -85,9 +85,9 @@ const icons: Record<string, ReactNode> = {
   ),
   maletero: (
     <svg {...commonProps}>
-      <path d="M3 10h18v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8z" />
-      <path d="M3 10V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3" />
-      <path d="M9 14h6" />
+      <rect x="4" y="9" width="16" height="11" rx="1.5" />
+      <path d="M9 9V6.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1V9" />
+      <path d="M4 14h16" />
     </svg>
   ),
   rendimiento: (
