@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-20 — Raúl (Claude Sonnet 5) (34)
+
+### Corregido — labels de color de RAV4 HEV, formato real de toyota.mx
+Raúl notó que los nombres de color en el visor 360° ("Azul Woodland",
+"Blanco Woodland") no dejaban claro que "Woodland"/"Limited" es la
+versión, no parte del nombre del color — podía leerse como si el color
+se llamara "Azul Woodland". Se corrigieron los 10 labels de
+`coloresExterior` en `rav4-hev-modelo` para replicar tal cual el formato
+real de toyota.mx: nombre + versiones entre paréntesis (ej. "Azul
+(Woodland)", "Negro (LE / XLE / Limited)"). De paso se corrigió un
+agrupamiento erróneo: "Blanco" se había etiquetado como exclusivo de
+Woodland, cuando toyota.mx lo marca compartido entre LE y Woodland
+("Blanco (LE / Woodland)") — el label original del DOM ya traía esta
+información completa, no hacía falta simplificarla. Publicado directo
+en Sanity (cambio de contenido explícito). Forzado un redeploy con
+commit vacío (`efbc30b`) ya que no había ningún cambio de código
+pendiente que disparara el webhook.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (33)
 
 ### Agregado — RAV4 HEV publicado (décimo segundo modelo, tercero de los pares con motorización doble)
