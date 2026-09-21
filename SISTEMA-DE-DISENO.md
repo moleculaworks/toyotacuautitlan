@@ -305,6 +305,18 @@ moverlo a `HighlightIcon.tsx`.
   carrusel) — es una convención distinta (chips/indicadores), no la
   esquina recta de botones y tarjetas que sí se documentó aquí; tampoco
   los inputs de los formularios de muestra (mismo criterio que la entrada
-  anterior) ni el panel del mega-menú de "Modelos" en el Navbar
-  (`rounded-lg`, `ModelosMegaMenu.tsx`/`ModelosMobileAccordion.tsx`) —
-  este último sigue pendiente, no se incluyó en el alcance pedido.
+  anterior).
+- **Tercera pasada, 21 de septiembre de 2026:** cerrado el pendiente de la
+  entrada anterior — el panel del mega-menú de "Modelos" en el Navbar
+  (`Navbar.tsx`, `ModelosMegaMenu.tsx`, `ModelosMobileAccordion.tsx`)
+  también usaba `rounded-lg`/`rounded` en el panel desktop y en las
+  miniaturas de modelo (desktop y móvil), además de hex directo
+  (`#EB0A1E`/`#1A1A1A`) en varios textos del propio Navbar que no se
+  habían tocado en la primera pasada (logo, links de "Modelos"/nav,
+  botón de hamburguesa). Corregido: sin esquinas redondeadas, colores por
+  token. El `shadow-xl` del panel del mega-menú **sí se dejó** — a
+  diferencia de una tarjeta en el flujo normal de la página, es un panel
+  flotante superpuesto al contenido, y ahí la sombra cumple una función
+  real (separarlo visualmente de lo que hay debajo), no es decoración
+  redundante. Verificado en desktop (hover del mega-menú) y móvil
+  (acordeón).

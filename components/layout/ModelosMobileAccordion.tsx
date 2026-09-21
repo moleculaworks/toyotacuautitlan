@@ -42,7 +42,7 @@ export default function ModelosMobileAccordion({
     <div>
       <button
         onClick={() => setModelosAbierto((v) => !v)}
-        className="w-full flex items-center justify-between py-4 border-b border-[#F0F0F0] text-base font-semibold text-[#1A1A1A]"
+        className="w-full flex items-center justify-between py-4 border-b border-[#F0F0F0] text-base font-semibold text-foreground"
       >
         Modelos
         <Chevron open={modelosAbierto} />
@@ -62,7 +62,7 @@ export default function ModelosMobileAccordion({
                 <button
                   onClick={() => setCategoriaAbierta(catAbierta ? null : cat.value)}
                   className={`w-full flex items-center justify-between text-left py-4 text-base font-semibold transition-colors ${
-                    catAbierta ? 'text-[#EB0A1E]' : 'text-[#1A1A1A]'
+                    catAbierta ? 'text-toyota-red' : 'text-foreground'
                   }`}
                 >
                   {cat.label}
@@ -82,7 +82,7 @@ export default function ModelosMobileAccordion({
                             onClick={onNavigate}
                             className="flex-shrink-0 w-[150px]"
                           >
-                            <div className="relative aspect-[16/9] bg-[#F5F5F5] rounded overflow-hidden">
+                            <div className="relative aspect-[16/9] bg-toyota-gray overflow-hidden">
                               {modelo.imagenTarjeta?.asset?.url ? (
                                 <Image
                                   src={modelo.imagenTarjeta.asset.url}
@@ -93,7 +93,7 @@ export default function ModelosMobileAccordion({
                                 />
                               ) : null}
                             </div>
-                            <p className="mt-2 text-[15px] font-semibold text-[#1A1A1A]">{modelo.nombre}</p>
+                            <p className="mt-2 text-[15px] font-semibold text-foreground">{modelo.nombre}</p>
                             <p className="text-sm font-normal text-[#555] mt-0.5">
                               Desde ${modelo.precioDesde.toLocaleString('es-MX')} M.N.
                             </p>

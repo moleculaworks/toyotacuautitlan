@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-21 — Raúl (Claude Sonnet 5) (44)
+
+### Corregido — mega-menú de "Modelos" homologado al sistema de diseño
+Cierre del pendiente que quedó documentado en la entrada anterior.
+- **`Navbar.tsx`**: quitado `rounded` del botón de hamburguesa (sin efecto
+  visual real, no tenía fondo visible); colores del logo, links de
+  navegación y "Modelos" pasados de hex directo a `text-toyota-red`/
+  `text-foreground`.
+- **`ModelosMegaMenu.tsx`** (panel desktop) y **`ModelosMobileAccordion.tsx`**
+  (acordeón móvil): quitado `rounded` de las miniaturas de imagen de cada
+  modelo; textos a los mismos tokens de color.
+- El panel flotante del mega-menú (`Navbar.tsx`) mantiene su `shadow-xl`
+  a propósito — es un overlay sobre el contenido, no una tarjeta en el
+  flujo normal de la página, así que la sombra sigue cumpliendo una
+  función real ahí.
+- Verificado visualmente: mega-menú en hover (desktop) y acordeón
+  (móvil) antes de subir.
+
 ## 2026-09-20 — Raúl (Claude Sonnet 5) (43)
 
 ### Corregido — caja de rendimiento + homologación del resto de páginas del sitio

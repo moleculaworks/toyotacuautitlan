@@ -45,10 +45,10 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-2xl font-semibold text-[#EB0A1E] tracking-tight">
+            <span className="text-2xl font-semibold text-toyota-red tracking-tight">
               TOYOTA
             </span>
-            <span className="text-sm text-[#1A1A1A] font-semibold hidden sm:block">
+            <span className="text-sm text-foreground font-semibold hidden sm:block">
               Cuautitlán
             </span>
           </Link>
@@ -63,7 +63,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
               <Link
                 href="/modelos"
                 className={`text-sm font-semibold transition-colors ${
-                  modelosOpen ? "text-[#EB0A1E]" : "text-[#1A1A1A] hover:text-[#EB0A1E]"
+                  modelosOpen ? "text-toyota-red" : "text-foreground hover:text-toyota-red"
                 }`}
               >
                 Modelos
@@ -72,7 +72,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
               {modelosOpen && (
                 <div className="fixed left-0 right-0 top-16">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="bg-white border border-[#EEE] shadow-xl rounded-lg p-8 mt-3">
+                    <div className="bg-white border border-[#EEE] shadow-xl p-8 mt-3">
                       <ModelosMegaMenu modelos={modelos} onNavigate={() => setModelosOpen(false)} />
                     </div>
                   </div>
@@ -84,7 +84,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-semibold text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
+                className="text-sm font-semibold text-foreground hover:text-toyota-red transition-colors"
               >
                 {link.label}
               </Link>
@@ -100,7 +100,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded text-[#1A1A1A]"
+            className="md:hidden p-2 text-foreground"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menú"
           >
@@ -125,7 +125,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="w-full py-4 border-b border-[#F0F0F0] text-base font-semibold text-[#1A1A1A] hover:text-[#EB0A1E] transition-colors"
+                className="w-full py-4 border-b border-[#F0F0F0] text-base font-semibold text-foreground hover:text-toyota-red transition-colors"
               >
                 {link.label}
               </Link>

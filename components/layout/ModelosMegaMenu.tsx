@@ -34,7 +34,7 @@ export default function ModelosMegaMenu({
               onMouseEnter={() => setActiva(cat.value)}
               onFocus={() => setActiva(cat.value)}
               className={`w-full flex items-center justify-between text-left py-5 border-b border-[#EDEDED] text-[15px] font-semibold transition-colors ${
-                isActive ? 'text-toyota-red' : 'text-[#1A1A1A] hover:text-toyota-red'
+                isActive ? 'text-toyota-red' : 'text-foreground hover:text-toyota-red'
               }`}
             >
               {cat.label}
@@ -73,7 +73,7 @@ export default function ModelosMegaMenu({
                 onClick={onNavigate}
                 className="group"
               >
-                <div className="relative aspect-[16/9] bg-[#F5F5F5] rounded overflow-hidden">
+                <div className="relative aspect-[16/9] bg-toyota-gray overflow-hidden">
                   {modelo.imagenTarjeta?.asset?.url ? (
                     <Image
                       src={modelo.imagenTarjeta.asset.url}
@@ -84,7 +84,7 @@ export default function ModelosMegaMenu({
                     />
                   ) : null}
                 </div>
-                <p className="mt-2.5 text-[15px] font-semibold text-[#1A1A1A] group-hover:text-toyota-red transition-colors">
+                <p className="mt-2.5 text-[15px] font-semibold text-foreground group-hover:text-toyota-red transition-colors">
                   {modelo.nombre}
                 </p>
                 <p className="text-sm font-normal text-[#555] mt-0.5">
