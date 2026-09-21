@@ -31,7 +31,7 @@ export default async function ModelosPage({
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <h1 className="text-3xl font-semibold text-[#1A1A1A]">Catálogo de modelos</h1>
+          <h1 className="text-3xl font-semibold text-foreground">Catálogo de modelos</h1>
           <p className="mt-2 text-gray-500">
             {modelos.length} modelos disponibles en Toyota Cuautitlán
           </p>
@@ -51,8 +51,8 @@ export default async function ModelosPage({
               }
               className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
                 (categoria ?? 'todos') === cat.value
-                  ? 'bg-[#EB0A1E] text-white border-[#EB0A1E]'
-                  : 'bg-white text-[#1A1A1A] border-gray-200 hover:border-[#EB0A1E] hover:text-[#EB0A1E]'
+                  ? 'bg-toyota-red text-white border-toyota-red'
+                  : 'bg-white text-foreground border-gray-200 hover:border-toyota-red hover:text-toyota-red'
               }`}
             >
               {cat.label}
@@ -64,7 +64,7 @@ export default async function ModelosPage({
         {filtrados.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
             <p className="text-lg">No hay modelos en esta categoría todavía.</p>
-            <a href="/modelos" className="mt-4 inline-block text-[#EB0A1E] font-semibold hover:underline">
+            <a href="/modelos" className="mt-4 inline-block text-toyota-red font-semibold hover:underline">
               Ver todos los modelos
             </a>
           </div>

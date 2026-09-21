@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-21 — Raúl (Claude Sonnet 5) (45)
+
+### Corregido — Footer y catálogo, último barrido de hex directo
+Raúl preguntó si ya estaba toda la documentación de diseño al día — en vez
+de asumirlo, se repitió el `grep` sobre todo el repo (no solo lo ya
+tocado) y aparecieron 2 archivos sin pasar por ninguna ronda anterior.
+- **`Footer.tsx`**: `bg-[#1A1A1A]` → `bg-toyota-dark`, `text-[#EB0A1E]`
+  (logo) → `text-toyota-red`.
+- **`app/modelos/page.tsx`** (catálogo): título y pills de filtro de
+  categoría (activo e inactivo) de hex directo a `text-toyota-red`/
+  `text-foreground`/`bg-toyota-red`. Los pills siguen `rounded-full` — ya
+  es la convención aceptada de chip, no esquina de botón/tarjeta.
+- Verificado por estilos computados (`getComputedStyle`) en vez de
+  captura de pantalla (panel oculto ese turno) — mismos valores de color
+  exactos que antes, cero cambio visual.
+- Con esta pasada, un `grep` de hex directo/`rounded-lg`/`shadow-sm` sobre
+  todo `app/`+`components/` ya no encuentra nada fuera de las excepciones
+  ya documentadas (formularios de muestra, chips `rounded-full`, overlay
+  del mega-menú).
+
 ## 2026-09-21 — Raúl (Claude Sonnet 5) (44)
 
 ### Corregido — mega-menú de "Modelos" homologado al sistema de diseño

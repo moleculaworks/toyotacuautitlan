@@ -320,3 +320,21 @@ moverlo a `HighlightIcon.tsx`.
   real (separarlo visualmente de lo que hay debajo), no es decoración
   redundante. Verificado en desktop (hover del mega-menú) y móvil
   (acordeón).
+- **Cuarta pasada, mismo día — barrido final de todo el repo:** Raúl
+  preguntó si ya estaba toda la documentación de diseño al día; en vez de
+  asumirlo, se volvió a hacer `grep` de hex directo/rounded en `app/` y
+  `components/` completos (no solo lo ya tocado) y aparecieron 2 archivos
+  sin pasar por ninguna ronda anterior: **`Footer.tsx`** (fondo y logo con
+  hex directo) y **`app/modelos/page.tsx`** (título y pills de filtro de
+  categoría con hex directo). Ninguno tenía esquinas mal usadas — el
+  catálogo solo usa `rounded-full` en los pills de filtro, que ya es la
+  convención aceptada de chip. Corregido: `bg-[#1A1A1A]` → `bg-toyota-dark`,
+  `text-[#EB0A1E]` → `text-toyota-red`, `text-[#1A1A1A]` → `text-foreground`.
+  Verificado por estilos computados (`getComputedStyle`) en vez de captura
+  de pantalla — el panel del navegador estaba oculto ese turno — mismos
+  valores de color exactos que antes (`rgb(26,26,26)`/`rgb(235,10,30)`),
+  cero cambio visual. **Con esta pasada, un `grep` de `#EB0A1E`/`#1A1A1A`/
+  `hover:bg-red-700`/`rounded-lg`/`shadow-sm`/`border-gray-100` sobre todo
+  `app/`+`components/` ya no encuentra nada fuera de las excepciones
+  documentadas arriba** (formularios de muestra, chips `rounded-full`,
+  overlay del mega-menú).
