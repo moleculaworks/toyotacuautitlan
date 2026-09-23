@@ -5,6 +5,36 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-22 — Raúl (Claude Sonnet 5) (47)
+
+### Cambiado — "Pasajeros" reemplazado en 9 de los 12 modelos publicados
+Raúl preguntó en qué modelos se usaba "Pasajeros" en el bloque de 4
+iconos — de los 10 que lo tenían, se decidió qué hacer con 9 (Avanza se
+deja igual, 7 plazas es un dato real y distintivo ahí). Se descartó
+Rendimiento como reemplazo general porque cada modelo ya tiene su propia
+sección de Rendimiento más abajo — adelantarlo en el bloque de 4 sería
+repetir el mismo número dos veces sin agregar nada, a diferencia de otros
+iconos (Motor, Tecnología, Seguridad) que sí se expanden con más detalle
+en secciones posteriores.
+- **Yaris Sedán** y **Raize** → Bolsas de aire · 6. Es el mínimo del
+  catálogo (no distintivo por comparación), pero Raúl señaló que sigue
+  siendo más relevante que Pasajeros: en un sedán/SUV compacta es obvio
+  que no caben más de 5, mientras que el número de bolsas de aire no se
+  puede saber a simple vista.
+- **Yaris Hatchback** → Bolsas de aire · 7.
+- **Corolla** y **Camry HEV** → Bolsas de aire · 8.
+- **Prius** → Bolsas de aire · 7 (el caso donde más se dudó — su
+  31.12 KM/L es prácticamente la identidad de marca del modelo, pero se
+  respetó el mismo criterio de no adelantar Rendimiento).
+- **Corolla HEV** → Modos de manejo · 4 (ECO/NORMAL/SPORT/EV, ya
+  confirmado en su propia tarjeta de versión XLE HEV) — no se usó Bolsas
+  de aire para no repetir el mismo dato que su hermano de gasolina (8).
+- **Corolla Cross** y **Corolla Cross HEV** → Tecnología · Toyota Safety
+  Sense — ya es el destacado real de ambas páginas.
+- Publicado directo en Sanity (9 documentos) y sincronizado en los 9 JSON
+  de `JSON Modelos/`. Verificado visualmente en local (Corolla HEV,
+  Corolla Cross, Yaris Sedán) antes de subir.
+
 ## 2026-09-22 — Raúl (Claude Sonnet 5) (46)
 
 ### Corregido — imágenes 360° pixeladas del Yaris Sedán
