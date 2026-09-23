@@ -5,6 +5,30 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-22 — Raúl (Claude Sonnet 5) (46)
+
+### Corregido — imágenes 360° pixeladas del Yaris Sedán
+Raúl notó que el visor 360° del Yaris Sedán (gasolina) se veía pixelado
+comparado con el resto del catálogo. Confirmado por comparación de
+recortes a nivel de pixel contra RAV4 HEV y Yaris Sedán HEV (mismo
+tamaño de archivo, 1200×800, pero con artefactos de bloque visibles solo
+en Yaris Sedán) — las 112 imágenes (7 colores × 16 ángulos) se habían
+generado a partir de una fuente de baja calidad, probablemente el método
+de respaldo de captura de pantalla en vez de la imagen fuente real.
+- Se confirmó en toyota.mx que sí existen las imágenes fuente reales para
+  este modelo (`content/dam/tmex/yaris-sedan/[color][N].jpg`), a
+  resolución real de **5500×3667 px** — no hacía falta capturar pantalla.
+- Re-descargadas las 112 imágenes a resolución completa y reconvertidas a
+  WebP 1200×800 calidad 80 (mismo estándar del resto del catálogo),
+  reemplazando los archivos locales en `Imagenes por Modelo/yaris-sedan/360/`.
+- Subidas a Sanity reemplazando los 112 assets del documento `yaris-sedan`
+  (mismas 16 posiciones por color, mismo orden — `_key` de cada imagen
+  preservado, solo cambió el asset referenciado).
+- Verificado por comparación de recorte antes/después: artefactos de
+  bloque eliminados, calidad ya equivalente al resto del catálogo.
+- Requiere un push a `main` para que el sitio en producción muestre los
+  nuevos assets (páginas de modelo son estáticas, ver `AGENTS.md`).
+
 ## 2026-09-21 — Raúl (Claude Sonnet 5) (45)
 
 ### Corregido — Footer y catálogo, último barrido de hex directo
