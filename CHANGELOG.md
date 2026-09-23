@@ -5,6 +5,28 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-22 — Raúl (Claude Sonnet 5) (48)
+
+### Cambiado — "Rendimiento" quitado del bloque de 4 iconos en todo el catálogo
+Raúl preguntó si dejaría Rendimiento en los 4 modelos que ya lo usaban en
+ese bloque, dado lo discutido en la entrada anterior (evitar adelantar
+en el resumen de 4 lo que ya se detalla en la sección de Rendimiento más
+abajo). Se aplicó el mismo criterio de forma retroactiva:
+- **Corolla HEV** → Bolsas de aire · 8 (mismo dato real que Corolla
+  gasolina).
+- **Corolla Cross HEV** → Modos de manejo · 3 (Eco/Normal/Sport, ya
+  confirmado en su propia tarjeta de versión SE HEV).
+- **RAV4 HEV** → Bolsas de aire · 8 (dato ya confirmado en
+  `seguridadItems`, antes descartado por ser el único modelo con ese
+  ícono — ya no aplica, ahora varios modelos lo usan).
+- **Yaris Sedán HEV** → Bolsas de aire · 6.
+- Con esto, ningún modelo del catálogo adelanta Rendimiento en el bloque
+  de 4 — regla documentada en `JSON Modelos/README.md` (sección
+  `caracteristicas[]`) para los próximos 12 modelos.
+- Publicado directo en Sanity (4 documentos) y sincronizado en los 4 JSON
+  correspondientes. Verificado visualmente en local (RAV4 HEV, Corolla
+  Cross HEV) antes de subir.
+
 ## 2026-09-22 — Raúl (Claude Sonnet 5) (47)
 
 ### Cambiado — "Pasajeros" reemplazado en 9 de los 12 modelos publicados
