@@ -5,6 +5,25 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-23 — Raúl (Claude Sonnet 5) (50)
+
+### Agregado — Prius: nuevo destacado "Connected Technologies"
+Raúl recordaba haber visto "Connected Services" en la ficha técnica del
+Prius y pidió corroborarlo. Confirmado en `Ficha_Tecnica_PRIUS_27_web.pdf`
+(sección SEGURIDAD): el nombre real es **"Connected Technologies"** (no
+"Connected Services"), con 4 componentes — Safety Connect, Remote
+Connect, Service Connect y Drive Connect — de serie en ambas versiones
+(Base HEV y Premium HEV). No aparecía en ningún lado de la página.
+- Reemplazó al destacado anterior ("Modos de manejo") — ya no hacía
+  falta duplicarlo ahí porque ese tema se subió al bloque de 4 iconos en
+  la entrada anterior (49).
+- Mismo tratamiento que "Connected Services" en RAV4 HEV (eyebrow
+  "Conectividad", lista con viñetas, cierre) pero con el nombre y los 4
+  componentes reales de este modelo, sin inventar descripciones de cada
+  Connect (no encontradas en ninguna fuente oficial).
+- Publicado directo en Sanity y sincronizado en `prius.json`. Verificado
+  en local antes de subir.
+
 ## 2026-09-23 — Raúl (Claude Sonnet 5) (49)
 
 ### Cambiado — Prius: ícono "Espacio" reemplazado por "Modos de manejo"
