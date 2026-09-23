@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-23 — Raúl (Claude Sonnet 5) (49)
+
+### Cambiado — Prius: ícono "Espacio" reemplazado por "Modos de manejo"
+A petición de Raúl: se quitó "Espacio · 2,750mm entre ejes" del bloque de
+4 iconos a favor de "Modos de manejo · 4" — mismo dato que ya es el
+destacado real de la página (ECO/NORMAL/PWR/EV, "Un auto, cuatro
+personalidades"), consistente con el patrón ya usado en Corolla Cross/
+Corolla Cross HEV (subir el tema del destacado también al bloque de 4).
+Publicado directo en Sanity y sincronizado en `prius.json`. Verificado
+visualmente en local antes de subir.
+
 ## 2026-09-22 — Raúl (Claude Sonnet 5) (48)
 
 ### Cambiado — "Rendimiento" quitado del bloque de 4 iconos en todo el catálogo
