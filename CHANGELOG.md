@@ -5,6 +5,32 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-23 — Raúl (Claude Sonnet 5) (51)
+
+### Agregado — descripciones reales de Connected Services/Technologies (Prius y RAV4 HEV)
+Raúl preguntó si existía información sobre qué hace cada servicio de
+conectividad (Safety/Remote/Service/Drive Connect, Drive Recorder), ya
+que ambos destacados solo listaban los nombres sueltos. Se encontró una
+fuente oficial que no se había revisado antes: `toyota.mx/tecnologia-
+toyota/connected-services/faq` — un FAQ dedicado de Toyota México con
+una pregunta "¿Qué es X?" por cada servicio.
+- **Safety Connect**: asistencia en emergencias (botón SOS, notificación
+  automática de colisión, asistencia en el camino, localizador de
+  vehículo robado).
+- **Remote Connect**: encendido/apagado remoto del motor, climatización,
+  bloqueo/desbloqueo de puertas, estado del vehículo.
+- **Service Connect**: recordatorios de mantenimiento y apoyo para
+  agendar cita de servicio.
+- **Drive Connect**: navegación en la nube (Cloud Navigation, Intelligent
+  Assistant, Destination Assist).
+- **Drive Recorder** (solo RAV4 HEV): cámara integrada con grabación
+  continua en bucle (~90 min), eventos automáticos, exportable a USB.
+- Se agregó una frase corta por cada ítem en el destacado de **Prius**
+  ("Connected Technologies") y **RAV4 HEV** ("Connected Services"),
+  mismo formato que el desglose de Toyota Safety Sense en otros modelos.
+  Publicado directo en Sanity, sincronizado en ambos JSON. Verificado
+  visualmente en local antes de subir.
+
 ## 2026-09-23 — Raúl (Claude Sonnet 5) (50)
 
 ### Agregado — Prius: nuevo destacado "Connected Technologies"
