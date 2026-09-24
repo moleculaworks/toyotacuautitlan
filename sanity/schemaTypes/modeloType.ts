@@ -356,6 +356,17 @@ export const modeloType = defineType({
       group: 'secciones',
     }),
     defineField({
+      name: 'rendimientoColumnaTitulo',
+      title: 'Título de la primera columna de la tabla de rendimiento',
+      description:
+        'Por defecto "Transmisión". Cambiar cuando las filas no representan tipos de ' +
+        'transmisión — ej. RAV4 HEV usa el mismo eCVT en toda la gama, así que sus filas ' +
+        'son nombres de versión (LE / XLE, Woodland, Limited) y el título correcto es "Versiones".',
+      type: 'string',
+      initialValue: 'Transmisión',
+      group: 'secciones',
+    }),
+    defineField({
       name: 'rendimientoFilas',
       title: 'Tabla de rendimiento (filas)',
       description:

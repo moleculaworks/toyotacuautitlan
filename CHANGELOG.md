@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-25 — Raúl (Claude Sonnet 5) (54)
+
+### Corregido — título de la tabla de rendimiento en RAV4 HEV
+
+El encabezado de la primera columna decía "Transmisión" en todos los modelos, pero en
+RAV4 HEV las filas son nombres de versión (LE / XLE, Woodland, Limited), no tipos de
+transmisión — usa el mismo eCVT en toda la gama. Nuevo campo `rendimientoColumnaTitulo`
+en el esquema de Sanity (por defecto "Transmisión", editable por modelo); RAV4 HEV ya
+publicado con "Versiones".
+
 ## 2026-09-25 — Raúl (Claude Sonnet 5) (53)
 
 ### Cambiado — íconos de la barra de destacados, levemente más grandes
