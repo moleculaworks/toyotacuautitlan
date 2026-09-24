@@ -5,6 +5,13 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-25 — Raúl (Claude Sonnet 5) (53)
+
+### Cambiado — íconos de la barra de destacados, levemente más grandes
+
+`width`/`height` de `HighlightIcon.tsx` de 32 a 36 — único lugar donde se usa el
+componente en producción (barra de características debajo del Hero de cada modelo).
+
 ## 2026-09-25 — Raúl (Claude Opus 5.5) (52)
 
 ### Cambiado — rediseño del set de íconos de la barra de destacados (`HighlightIcon.tsx`)
