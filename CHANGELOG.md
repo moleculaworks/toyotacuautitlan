@@ -13,7 +13,8 @@ El encabezado de la primera columna decía "Transmisión" en todos los modelos, 
 RAV4 HEV las filas son nombres de versión (LE / XLE, Woodland, Limited), no tipos de
 transmisión — usa el mismo eCVT en toda la gama. Nuevo campo `rendimientoColumnaTitulo`
 en el esquema de Sanity (por defecto "Transmisión", editable por modelo); RAV4 HEV ya
-publicado con "Versiones".
+publicado con "Versión" (singular, consistente con "Rendimiento de Combustible" y con
+el propio "Transmisión" al que reemplaza — cada fila es una sola versión).
 
 ## 2026-09-25 — Raúl (Claude Sonnet 5) (53)
 

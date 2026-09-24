@@ -361,7 +361,7 @@ export const modeloType = defineType({
       description:
         'Por defecto "Transmisión". Cambiar cuando las filas no representan tipos de ' +
         'transmisión — ej. RAV4 HEV usa el mismo eCVT en toda la gama, así que sus filas ' +
-        'son nombres de versión (LE / XLE, Woodland, Limited) y el título correcto es "Versiones".',
+        'son nombres de versión (LE / XLE, Woodland, Limited) y el título correcto es "Versión".',
       type: 'string',
       initialValue: 'Transmisión',
       group: 'secciones',
