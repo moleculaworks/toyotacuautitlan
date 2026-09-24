@@ -8,8 +8,8 @@ import type { ReactNode } from 'react'
 // sanity/schemaTypes/modeloType.ts.
 
 const commonProps = {
-  width: 32,
-  height: 32,
+  width: 36,
+  height: 36,
   viewBox: '0 0 24 24',
   fill: 'none' as const,
   stroke: 'var(--toyota-red)',
