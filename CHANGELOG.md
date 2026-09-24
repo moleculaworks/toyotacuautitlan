@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-09-25 — Raúl (Claude Opus 5.5) (52)
+
+### Cambiado — rediseño del set de íconos de la barra de destacados (`HighlightIcon.tsx`)
+
+- **Trazo más delgado en todo el set:** `strokeWidth` pasa de 1.8 a 1.0
+  (actualizado en `SISTEMA-DE-DISENO.md`). Permite íconos con más detalle sin verse
+  amontonados; también servirá para los íconos futuros de Financiamiento/Servicio.
+- **8 íconos redibujados** a partir de ejemplos que eligió Raúl: `motor` (bloque de
+  motor con tapa y cilindros), `traccion` (tren motriz con diferencial en T),
+  `tecnologia` (auto visto desde arriba con ondas de sensores — antes era un escudo
+  idéntico al de seguridad), `transmision` (engrane de 8 dientes), `maletero`
+  (cajuela abierta vista desde atrás), `modos-manejo` (volante), `seguridad` (escudo
+  con palomita) y `capacidad-carga` (pesa con "KG").
+- **Ajuste menor:** `pasajeros` con las cabezas más cerca del cuerpo. `potencia` sin
+  cambios.
+- **Eliminados:** `autonomia`, `remolque` y `rendimiento` — ningún modelo publicado los
+  usaba (verificado en Sanity). Se quitaron del componente y de las opciones del campo
+  `caracteristicas.icono` en `sanity/schemaTypes/modeloType.ts`. Si un modelo futuro
+  (RAV4 PHEV, Tacoma) los necesita, se dibujan de nuevo con el estilo actual.
+
 ## 2026-09-23 — Raúl (Claude Sonnet 5) (51)
 
 ### Agregado — descripciones reales de Connected Services/Technologies (Prius y RAV4 HEV)

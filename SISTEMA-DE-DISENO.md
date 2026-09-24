@@ -221,7 +221,7 @@ Especificación para dibujar un ícono nuevo con el mismo estilo:
 | `viewBox` | `0 0 24 24` |
 | `fill` | `none` (solo trazo, nunca relleno) |
 | `stroke` | `var(--toyota-red)` |
-| `strokeWidth` | `1.8` |
+| `strokeWidth` | `1.0` (hasta el 23 de sep de 2026 era `1.8` — se redujo al rediseñar el set para permitir trazos más detallados sin verse amontonados) |
 | `strokeLinecap` / `strokeLinejoin` | `round` / `round` |
 
 Todos comparten este mismo objeto `commonProps` — para agregar un concepto
@@ -229,8 +229,9 @@ nuevo (ej. un ícono para Financiamiento o Servicio), dibujar el SVG con
 estas mismas 6 propiedades y agregarlo al diccionario `icons` del
 componente. Hoy vive el set usado en la barra de datos destacados de
 modelo (`motor`, `pasajeros`, `traccion`, `tecnologia`, `capacidad-carga`,
-`potencia`, `autonomia`, `remolque`, `transmision`, `maletero`,
-`rendimiento`, `modos-manejo`, `seguridad`) — el componente no está atado a
+`potencia`, `transmision`, `maletero`, `modos-manejo`, `seguridad` — 10
+íconos; `autonomia`, `remolque` y `rendimiento` se eliminaron el 25 de sep
+de 2026 por no usarse en ningún modelo) — el componente no está atado a
 esa barra específica, cualquier sección puede importar `HighlightIcon` y
 pasar un `nombre` de la lista.
 
