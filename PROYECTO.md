@@ -100,6 +100,8 @@
 - [ ] Pendiente del handoff: PDF ficha técnica
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
 - [x] Botones "Cotízalo"/"Manéjalo" en la tarjeta de versión del Corolla (15 de septiembre de 2026) — Propuesta A decidida tras comparar 3 variantes en local; sin destino todavía (`href="#"`), pendiente de que existan los formularios de Cotización (por versión) y Prueba de Manejo — ver `CHANGELOG.md` y Obsidian `formularios-cotizacion-y-prueba-de-manejo.md`
+- [x] **Rediseño del set de íconos de la barra de destacados** (25 de septiembre de 2026) — 8 íconos redibujados a partir de ejemplos de Raúl (motor, tracción, tecnología, transmisión, maletero, modos de manejo, seguridad, capacidad de carga), trazo de todo el set de 1.8 a 1.0, render de 32 a 36 px; `pasajeros` con ajuste menor y `potencia` sin cambios. Eliminados `autonomia`, `remolque` y `rendimiento` (ningún modelo los usaba). Ver `SISTEMA-DE-DISENO.md` sección 7 y `CHANGELOG.md` (52-53). Pendiente a futuro: si RAV4 PHEV o Tacoma necesitan autonomía/remolque, se dibujan de cero con un ejemplo de Raúl.
+- [x] **Título de la tabla de rendimiento configurable por modelo** (25 de septiembre de 2026) — campo `rendimientoColumnaTitulo` en el schema (default "Transmisión"); RAV4 HEV publicado con "Versión" porque sus filas son versiones, no tipos de transmisión. Ver `CHANGELOG.md` (54).
 - [ ] Diseño de homepage con hero real (imagen de auto)
 
 ### Contenido

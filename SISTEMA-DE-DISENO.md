@@ -217,7 +217,7 @@ Especificación para dibujar un ícono nuevo con el mismo estilo:
 
 | Propiedad | Valor |
 |---|---|
-| Tamaño de render | `32×32` |
+| Tamaño de render | `36×36` (era `32×32` hasta el 25 de sep de 2026 — se agrandó levemente en la barra de destacados) |
 | `viewBox` | `0 0 24 24` |
 | `fill` | `none` (solo trazo, nunca relleno) |
 | `stroke` | `var(--toyota-red)` |
