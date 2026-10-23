@@ -19,7 +19,7 @@ al auto de las fotos (Blanco Perlado `#F5F5F5` con borde en vez del crema `#EAE6
 `#BD0C28` en vez de `#FF0000`). Galería exterior e interior de 6+6. Destacado "Máxima comodidad
 para todos" (aire de tres zonas, tercera fila, USB en segunda fila, área de carga con apertura
 eléctrica), con foto de la tercera fila ocupada. Rendimiento CVT 20.75 KM/L tal como lo muestra
-toyota.mx. Barra de íconos: Motor Híbrido · 243 HP, Pasajeros 7 u 8, Cajuela 454 L y Bolsas de
+toyota.mx. Barra de íconos: Motor Híbrido · 243 HP, Pasajeros Hasta 8, Cajuela 454 L y Bolsas de
 aire 8. 109 imágenes subidas con la CLI de Sanity. Publicado con confirmación explícita de Raúl.
 
 **Aviso de proceso:** las páginas de modelo nuevas se generan bajo demanda al primer acceso, y si
