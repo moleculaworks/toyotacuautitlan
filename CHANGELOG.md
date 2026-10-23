@@ -5,6 +5,22 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (59)
+
+### Corregido — precios de Corolla y Corolla HEV actualizados a los vigentes en toyota.mx
+
+Toyota subió recientemente las versiones de gasolina del Corolla: Base CVT $428,600 → **$435,900**,
+LE CVT $458,700 → **$466,100**, XLE CVT $537,400 → **$544,900** y SE CVT $544,500 → **$552,100**
+(LE HEV $524,400 y XLE HEV $576,400 sin cambio). Se actualizaron las 6 tarjetas del carrusel en
+los dos documentos (`Corolla` y `Corolla HEV`, que duplican las mismas versiones) y el
+`precioDesde` del Corolla ($435,900, el precio que ve el catálogo). Las descripciones para
+buscadores (`seoDescripcion`) de ambos se corrigieron al mismo tiempo: la del Corolla decía
+"$428,600 MXN" y ahora "$435,900 M.N."; la del Corolla HEV cambió "MXN" por "M.N." sin cambiar
+su precio. Contenido puro en Sanity (sin cambio de código), así que este commit solo sirve para
+disparar el deploy. Se comparó además el `precioDesde` de los otros 11 modelos contra el menú de
+toyota.mx y todos coinciden. Pendiente menor: las `seoDescripcion` de Yaris Hatchback, Yaris Sedán,
+Yaris Sedán HEV y Camry HEV todavía dicen "MXN" en vez de "M.N.".
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (58)
 
 ### Cambiado — RAV4 PHEV con una sola tarjeta de versión, como toyota.mx
