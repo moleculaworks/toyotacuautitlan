@@ -5,6 +5,28 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (61)
+
+### Agregado — Highlander HEV publicado en Sanity (14º de 24)
+
+Slug `highlander-hev`, documento `highlander-hev-modelo`, `esHibridoElectrico: true`, segunda
+SUV de tres filas del catálogo y la de más plazas (8 en XLE HEV, 7 en Limited HEV). Sin par de
+motorización: carrusel de 2 tarjetas propias (XLE HEV y Limited HEV). Datos de la ficha técnica
+MY26 y de toyota.mx; "Nightshade" que aparece en la ficha es solo una nota al pie de colores, no
+una versión. 5 colores sólidos con 18 ángulos de 360° cada uno (Blanco Perlado, Azul Oscuro, Rojo,
+Gris metálico y Negro); se cambió el hex de dos de ellos respecto a toyota.mx porque no se parecían
+al auto de las fotos (Blanco Perlado `#F5F5F5` con borde en vez del crema `#EAE6CA`, y Rojo
+`#BD0C28` en vez de `#FF0000`). Galería exterior e interior de 6+6. Destacado "Máxima comodidad
+para todos" (aire de tres zonas, tercera fila, USB en segunda fila, área de carga con apertura
+eléctrica), con foto de la tercera fila ocupada. Rendimiento CVT 20.75 KM/L tal como lo muestra
+toyota.mx. Barra de íconos: Motor Híbrido · 243 HP, Pasajeros 7 u 8, Cajuela 454 L y Bolsas de
+aire 8. 109 imágenes subidas con la CLI de Sanity. Publicado con confirmación explícita de Raúl.
+
+**Aviso de proceso:** las páginas de modelo nuevas se generan bajo demanda al primer acceso, y si
+alguien consulta la URL en producción ANTES de publicar en Sanity, Next.js guarda un 404 en caché
+que dura hasta el siguiente deploy (pasó con esta página). Por eso no se debe consultar en
+producción un slug que todavía no está publicado.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (60)
 
 ### Cambiado — ninguna descripción menciona el precio
