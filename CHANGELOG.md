@@ -5,6 +5,22 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (60)
+
+### Cambiado — ninguna descripción menciona el precio
+
+Raúl pidió que las descripciones sean generales para no tener que actualizarlas cada vez que
+Toyota cambie un precio. Se revisaron todos los textos de los 13 modelos publicados (intro,
+descripción corta, versiones, diseño, destacado, seguridad, galería, rendimiento y las
+características de cada versión): el precio aparecía únicamente en la descripción para
+buscadores (`seoDescripcion`) de 12 modelos (todos menos Prius), con "M.N." o "MXN". Se
+reescribieron quitando el "desde $…" y dejando el resto del texto (ej. "Toyota RAV4 PHEV 2026.
+SUV híbrida enchufable con 324 HP… Cotiza en Toyota Cuautitlán."); de paso desaparece la
+inconsistencia "MXN"/"M.N." que quedaba en 4 modelos (Yaris Hatchback, Yaris Sedán, Yaris Sedán
+HEV y Camry HEV). Los precios viven solo en `precioDesde` y `versiones[].precio`. Contenido puro
+en Sanity (publicado con confirmación explícita de Raúl); este commit solo registra el cambio y
+dispara el deploy. Regla agregada al README de `JSON Modelos/`.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (59)
 
 ### Corregido — precios de Corolla y Corolla HEV actualizados a los vigentes en toyota.mx
