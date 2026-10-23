@@ -5,6 +5,47 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (57)
+
+### Cambiado — título de la pestaña uniforme en todos los modelos
+
+El título de `/modelos/[slug]` ahora se genera solo como `<Nombre> | Toyota Cuautitlán`
+(ej. `RAV4 PHEV | Toyota Cuautitlán`), sin año ni "Versiones y Precios" — mismo criterio que
+usa toyota.mx. Antes, 6 modelos (Corolla Cross, Corolla Cross HEV, Prius, RAV4 HEV, Raize y
+el nuevo RAV4 PHEV) mostraban el nombre repetido ("… | Toyota Cuautitlán | Toyota Cuautitlán")
+porque su `seoTitulo` ya traía el sufijo y la plantilla de `app/layout.tsx` lo agrega otra
+vez, mientras que los otros 7 no lo traían. El campo `seoTitulo` queda **oculto** en el
+Studio y sin efecto (no se borraron los datos antiguos); el título de Open Graph usa el
+mismo valor. Los modelos nuevos no necesitan escribir `seoTitulo`.
+
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (56)
+
+### Agregado — aclaración opcional por fila en la tabla de rendimiento
+
+Nuevo campo opcional `detalle` en cada fila de `rendimientoFilas` (schema, `queries.ts` y
+`page.tsx`): se muestra debajo del nombre de la fila, en tamaño chico y gris. Lo usa RAV4 PHEV
+para "CVT" + "Convencional" y "CVT" + "Modo eléctrico" (toyota.mx los llama "CVT (Modo
+convencional)" y "CVT (Modo eléctrico)"; sin paréntesis y con la aclaración menor se lee más
+limpio). Las filas sin `detalle` se ven exactamente igual que antes. La clave de React de cada
+fila ahora incluye la aclaración, porque dos filas pueden llamarse igual ("CVT").
+
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (55)
+
+### Agregado — RAV4 PHEV publicado en Sanity (13º de 24, cierra el par con RAV4 HEV)
+
+Slug `rav4-phev`, documento `rav4-phev-modelo`, `esHibridoElectrico: true`, desde $999,000
+M.N. Carrusel con las mismas 5 tarjetas que RAV4 HEV (imágenes de versiones reutilizadas por
+referencia). **3 colores, todos bi-tono con techo negro** (Blanco/Negro, Azul/Negro y
+Bronce/Negro), visor 360° de 18 ángulos por color (54 imágenes) más hero, tarjeta, destacado y
+rendimiento, todo subido con la CLI de Sanity (`sanity exec` + `client.assets.upload()`).
+**Sin galería** por decisión de Raúl (la página oculta la sección sola al no haber imágenes).
+Destacado: Connected Services con texto propio (para no duplicar el de RAV4 HEV) e imagen de
+la app de Toyota en español. Rendimiento como lo muestra toyota.mx: CVT convencional 25.25 y
+CVT modo eléctrico 83.69 KM/L. Barra de 4 íconos: Motor PHEV · 324 HP, Tracción AWD, Modos de
+manejo 7, Bolsas de aire 8. El hex del Bronce se fijó en `#D8C6BE` (el DOM de toyota.mx traía
+un gris que no coincide con el nombre, Raúl pidió el bronce). Contenido revisado en
+`/preview-borrador` antes de cargar y publicado con confirmación explícita.
+
 ## 2026-09-25 — Raúl (Claude Sonnet 5) (54)
 
 ### Corregido — título de la tabla de rendimiento en RAV4 HEV

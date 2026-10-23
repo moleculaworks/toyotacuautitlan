@@ -131,9 +131,12 @@ export const modeloType = defineType({
     }),
     defineField({
       name: 'seoTitulo',
-      title: 'SEO: Título (deja vacío para usar el nombre)',
+      title: 'SEO: Título (ya no se usa)',
+      description:
+        'Sin efecto desde el 23 de octubre de 2026: el título de la pestaña se genera solo como "Nombre | Toyota Cuautitlán" para todos los modelos. Campo oculto; se conserva solo para no perder datos antiguos.',
       type: 'string',
       group: 'seo',
+      hidden: true,
     }),
     defineField({
       name: 'seoDescripcion',
@@ -378,6 +381,13 @@ export const modeloType = defineType({
           type: 'object',
           fields: [
             { name: 'transmision', title: 'Transmisión (ej: CVT, HEV)', type: 'string', validation: (r) => r.required() },
+            {
+              name: 'detalle',
+              title: 'Aclaración (opcional, ej: Convencional)',
+              description:
+                'Texto chico que se muestra debajo del nombre de la fila. Úsalo cuando el nombre necesite un matiz, ej: "CVT" con aclaración "Modo eléctrico".',
+              type: 'string',
+            },
             { name: 'valor', title: 'Valor (ej: 19.14)', type: 'string', validation: (r) => r.required() },
             { name: 'unidad', title: 'Unidad (ej: KM/L)', type: 'string', initialValue: 'KM/L' },
           ],

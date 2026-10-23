@@ -62,7 +62,7 @@ export async function getModeloBySlug(slug: string) {
       galeriaTitulo, galeriaTexto,
       rendimientoEyebrow, rendimientoTitulo, rendimientoTexto,
       rendimientoColumnaTitulo,
-      rendimientoFilas[] { transmision, valor, unidad },
+      rendimientoFilas[] { transmision, detalle, valor, unidad },
       seoTitulo, seoDescripcion
     }
   `, { slug })

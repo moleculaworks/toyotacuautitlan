@@ -80,7 +80,10 @@ export async function generateMetadata({
   const modelo = await getModeloBySlug(slug)
   if (!modelo) return {}
 
-  const titulo = modelo.seoTitulo ?? `Toyota ${modelo.nombre} | Toyota Cuautitlán`
+  // Título uniforme para todos los modelos: "<Nombre> | Toyota Cuautitlán" (acordado 23 oct 2026).
+  // La plantilla de app/layout.tsx agrega el " | Toyota Cuautitlán" a `title`; el de Open Graph lleva el
+  // título completo. `seoTitulo` de Sanity ya no se usa (el campo quedó oculto en el Studio).
+  const titulo = `${modelo.nombre} | Toyota Cuautitlán`
   const descripcion =
     modelo.seoDescripcion ??
     `Conoce el Toyota ${modelo.nombre} en Toyota Cuautitlán: versiones, precios, colores y más.`
@@ -88,7 +91,7 @@ export async function generateMetadata({
   const url = `${SITE_URL}/modelos/${slug}`
 
   return {
-    title: titulo,
+    title: modelo.nombre,
     description: descripcion,
     alternates: { canonical: url },
     openGraph: {
@@ -119,7 +122,7 @@ export default async function ModeloPage({
   const caracteristicas: { icono?: string; titulo: string; valor: string }[] =
     modelo.caracteristicas ?? []
   const seguridadItems: string[] = modelo.seguridadItems ?? []
-  const rendimientoFilas: { transmision: string; valor: string; unidad?: string }[] =
+  const rendimientoFilas: { transmision: string; detalle?: string; valor: string; unidad?: string }[] =
     modelo.rendimientoFilas ?? []
 
   const coloresExterior: ColorExterior[] = (modelo.coloresExterior ?? []).map(
@@ -466,11 +469,16 @@ export default async function ModeloPage({
                 </div>
                 {rendimientoFilas.map((row, i) => (
                   <div
-                    key={row.transmision}
+                    key={`${row.transmision}-${row.detalle ?? i}`}
                     className={`grid grid-cols-2 ${i < rendimientoFilas.length - 1 ? 'border-b border-[#E8E8E8]' : ''}`}
                   >
-                    <div className="px-6 py-5 flex items-center text-[32px] font-semibold text-toyota-red tracking-[-.02em] border-r border-[#E8E8E8]">
-                      {row.transmision}
+                    <div className="px-6 py-5 flex flex-col justify-center border-r border-[#E8E8E8]">
+                      <span className="text-[32px] font-semibold text-toyota-red tracking-[-.02em]">
+                        {row.transmision}
+                      </span>
+                      {row.detalle && (
+                        <span className="text-base font-medium text-[#555] mt-0.5">{row.detalle}</span>
+                      )}
                     </div>
                     <div className="px-6 py-5 flex items-baseline gap-1.5">
                       <span className="text-[32px] font-semibold text-toyota-red tracking-[-.02em]">
