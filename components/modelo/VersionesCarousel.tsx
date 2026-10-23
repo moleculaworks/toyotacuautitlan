@@ -73,32 +73,36 @@ export default function VersionesCarousel({
     <div>
       {/* Desktop: carrusel con flechas */}
       <div className="relative hidden desktop:block">
-        <button
-          onClick={() => setIndex((i) => Math.max(0, i - 1))}
-          disabled={!canPrev}
-          aria-label="Versiones anteriores"
-          className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-none text-2xl flex items-center justify-center transition-all cursor-pointer disabled:cursor-default hover:opacity-85"
-          style={{
-            background: canPrev ? 'var(--toyota-red)' : '#F0F0F0',
-            color: canPrev ? 'var(--background)' : '#CCC',
-            boxShadow: canPrev ? '0 4px 12px rgba(235,10,30,0.25)' : 'none',
-          }}
-        >
-          ‹
-        </button>
-        <button
-          onClick={() => setIndex((i) => Math.min(MAX_INDEX, i + 1))}
-          disabled={!canNext}
-          aria-label="Versiones siguientes"
-          className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-none text-2xl flex items-center justify-center transition-all cursor-pointer disabled:cursor-default hover:opacity-85"
-          style={{
-            background: canNext ? 'var(--toyota-red)' : '#F0F0F0',
-            color: canNext ? 'var(--background)' : '#CCC',
-            boxShadow: canNext ? '0 4px 12px rgba(235,10,30,0.25)' : 'none',
-          }}
-        >
-          ›
-        </button>
+        {TOTAL_CARDS > 1 && (
+          <>
+          <button
+            onClick={() => setIndex((i) => Math.max(0, i - 1))}
+            disabled={!canPrev}
+            aria-label="Versiones anteriores"
+            className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-none text-2xl flex items-center justify-center transition-all cursor-pointer disabled:cursor-default hover:opacity-85"
+            style={{
+              background: canPrev ? 'var(--toyota-red)' : '#F0F0F0',
+              color: canPrev ? 'var(--background)' : '#CCC',
+              boxShadow: canPrev ? '0 4px 12px rgba(235,10,30,0.25)' : 'none',
+            }}
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => setIndex((i) => Math.min(MAX_INDEX, i + 1))}
+            disabled={!canNext}
+            aria-label="Versiones siguientes"
+            className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-none text-2xl flex items-center justify-center transition-all cursor-pointer disabled:cursor-default hover:opacity-85"
+            style={{
+              background: canNext ? 'var(--toyota-red)' : '#F0F0F0',
+              color: canNext ? 'var(--background)' : '#CCC',
+              boxShadow: canNext ? '0 4px 12px rgba(235,10,30,0.25)' : 'none',
+            }}
+          >
+            ›
+          </button>
+          </>
+        )}
 
         <div className="overflow-hidden">
           <div
@@ -116,27 +120,29 @@ export default function VersionesCarousel({
         </div>
 
         {/* Dots + contador */}
-        <div className="flex justify-center items-center gap-2 mt-5">
-          <div className="flex items-center gap-1.5">
-            {dotLabels.map((_, d) => (
-              <button
-                key={d}
-                onClick={() => setIndex(d)}
-                aria-label={`Ir a posición ${d + 1}`}
-                className="h-2 rounded border-none cursor-pointer p-0"
-                style={{
-                  width: index === d ? 28 : 8,
-                  borderRadius: 4,
-                  background: index === d ? 'var(--toyota-red)' : '#CCC',
-                  transition: 'all .25s linear',
-                }}
-              />
-            ))}
+        {TOTAL_CARDS > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-5">
+            <div className="flex items-center gap-1.5">
+              {dotLabels.map((_, d) => (
+                <button
+                  key={d}
+                  onClick={() => setIndex(d)}
+                  aria-label={`Ir a posición ${d + 1}`}
+                  className="h-2 rounded border-none cursor-pointer p-0"
+                  style={{
+                    width: index === d ? 28 : 8,
+                    borderRadius: 4,
+                    background: index === d ? 'var(--toyota-red)' : '#CCC',
+                    transition: 'all .25s linear',
+                  }}
+                />
+              ))}
+            </div>
+            <span className="text-xs text-[#222] ml-2">
+              {dotLabels[index]} de {TOTAL_CARDS} versiones
+            </span>
           </div>
-          <span className="text-xs text-[#222] ml-2">
-            {dotLabels[index]} de {TOTAL_CARDS} versiones
-          </span>
-        </div>
+        )}
       </div>
 
       {/* Mobile: scroll horizontal nativo con snap */}

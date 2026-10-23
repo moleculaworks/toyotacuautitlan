@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (58)
+
+### Cambiado — RAV4 PHEV con una sola tarjeta de versión, como toyota.mx
+
+La página del RAV4 PHEV en toyota.mx muestra únicamente su propia versión en el carrusel
+(es la única excepción de los 5 pares con motorización doble, probablemente por la brecha de
+precio frente al RAV4 HEV). Se había decidido no replicarla; Raúl revisó el caso y pidió
+seguir a toyota.mx. El documento `rav4-phev-modelo` ahora lleva solo la tarjeta "RAV4 PHEV"
+($999,000) y un `versionesTexto` propio; la página de RAV4 HEV conserva sus 5 tarjetas (4 HEV +
+PHEV), igual que toyota.mx. Ajuste de `VersionesCarousel.tsx` para este caso: con una sola
+versión se ocultan en escritorio las flechas, los puntos de navegación y el contador "1–1 de
+1 versiones" (en móvil ya se ocultaban), y la tarjeta queda alineada a la izquierda. Los modelos
+con 2 o más versiones no cambian.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (57)
 
 ### Cambiado — título de la pestaña uniforme en todos los modelos
