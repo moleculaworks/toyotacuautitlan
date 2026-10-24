@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (64)
+
+### Agregado — 4Runner HEV publicado en Sanity (16º de 24)
+
+Se publicó el borrador registrado en la entrada 63 (documento `4runner-hev-modelo`, slug `4runner-hev`), con confirmación
+explícita de Raúl, y se revisó en localhost: carga completa sin errores ni imágenes rotas (17 imágenes en pantalla), con las
+2 tarjetas ($1,251,700 y $1,395,300), los 5 colores con su visor 360°, la galería exterior e interior, la barra de íconos
+(Híbrido · 326 HP, 4WD, 572 L, 8 bolsas), el destacado "Supera cualquier camino" y la tabla de rendimiento con
+"Limited HEV 13.07" y "TRD Pro HEV 12.46 KM/L". Esta vez no se consultó la URL en producción antes de publicar, así que no
+quedó un 404 en caché. Observación de diseño pendiente de decidir: el nombre de la fila "AT (8 velocidades)" ocupa dos
+líneas a 32 px en la tabla de rendimiento (igual que "CVT (Convencional)" en RAV4 PHEV antes de acortarlo).
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (63)
 
 ### Agregado — 4Runner HEV cargado a Sanity como BORRADOR (16º de 24, sin publicar)
