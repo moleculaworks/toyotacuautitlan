@@ -5,6 +5,26 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (62)
+
+### Agregado — Sienna HEV publicada en Sanity (15º de 24)
+
+Slug `sienna-hev`, documento `sienna-hev-modelo`, `esHibridoElectrico: true`, primera minivan del catálogo.
+Sin par de motorización: carrusel de 4 tarjetas propias (LE HEV $1,007,600, XLE HEV $1,052,200, XSE HEV
+$1,162,200 y Platinum AWD HEV $1,201,800; el AWD solo existe en la Platinum). Hasta 8 pasajeros (8 en LE y XLE,
+7 en XSE y Platinum con segunda fila tipo capitán), 244 HP del sistema, 10 bolsas de aire (el máximo del
+catálogo) y cajuela de 867 L (la mayor). 6 colores (Azul Oscuro, Blanco Perlado, Gris metálico, Negro, Rojo y
+Cemento) con 18 ángulos de 360° cada uno, salvo **Cemento con 17**: a esa serie le falta un fotograma
+intermedio y Raúl decidió dejarla así (el giro da un pequeño salto). Hex ajustados a las fotos en vez de los de
+toyota.mx: Blanco Perlado `#F5F5F5` con borde, Rojo `#BD0C28`, Azul Oscuro `#304180`, y Gris metálico `#999999` /
+Cemento `#5C616A` intercambiados porque en las fotos el gris metálico es más claro. Galería exterior e interior de
+6+6. Destacado "Conéctate con facilidad" (conectividad para los pasajeros de todas las filas; se evaluaron 6
+temas). Rendimiento CVT 20.50 KM/L tal como toyota.mx. 128 imágenes subidas con la CLI de Sanity; el hero
+desktop, el hero mobile, la `interior-04` de la galería y el destacado se comprimieron antes de subir (de 200,
+173, 202 y 126 KB a 132, 125, 118 y 90 KB). La ficha técnica local y la página de Toyota no coinciden en varios
+detalles de equipo (audio y pantalla, MID y espejo del XSE, colores, punto ciego en LE); se siguió a toyota.mx en
+lo que muestra y se usó la ficha para lo que el sitio no dice. Publicado con confirmación explícita de Raúl.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (61)
 
 ### Agregado — Highlander HEV publicado en Sanity (14º de 24)
