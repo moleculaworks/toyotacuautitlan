@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-24 — Raúl (Claude Sonnet 5.5) (69)
+
+### Agregado — ícono `remolque` (capacidad de arrastre)
+
+Nuevo ícono de línea en `components/ui/HighlightIcon.tsx` y nueva opción "Remolque / capacidad de arrastre" en la lista de íconos de `caracteristicas`
+(`sanity/schemaTypes/modeloType.ts`). Dibujado a partir de un ejemplo de Raúl (bola de enganche con collarín abierto sobre un soporte), sin los tres
+destellos del ejemplo y con el soporte cerrado en el lado derecho (opción A de cuatro que se compararon). Mismo trazo que el resto del set (36 px,
+`strokeWidth` 1.0). El set pasa de 10 a 11 íconos. Todavía no lo usa ningún modelo: está pensado para la capacidad de arrastre del Sequoia HEV
+(4,210 kg) y los futuros Tacoma y Tundra. Sin cambio visible en el sitio hasta que un modelo lo elija. `SISTEMA-DE-DISENO.md` actualizado.
+
 ## 2026-10-24 — Raúl (Claude Sonnet 5.5) (68)
 
 ### Cambiado — nuevo hero desktop en Highlander HEV, Sienna HEV y 4Runner HEV

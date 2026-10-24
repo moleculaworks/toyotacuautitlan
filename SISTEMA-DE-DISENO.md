@@ -229,9 +229,12 @@ nuevo (ej. un ícono para Financiamiento o Servicio), dibujar el SVG con
 estas mismas 6 propiedades y agregarlo al diccionario `icons` del
 componente. Hoy vive el set usado en la barra de datos destacados de
 modelo (`motor`, `pasajeros`, `traccion`, `tecnologia`, `capacidad-carga`,
-`potencia`, `transmision`, `maletero`, `modos-manejo`, `seguridad` — 10
-íconos; `autonomia`, `remolque` y `rendimiento` se eliminaron el 25 de sep
-de 2026 por no usarse en ningún modelo) — el componente no está atado a
+`potencia`, `transmision`, `maletero`, `modos-manejo`, `seguridad`,
+`remolque` — 11 íconos; `autonomia` y `rendimiento` se eliminaron el 25 de
+sep de 2026 por no usarse en ningún modelo; `remolque` se eliminó ese día
+y volvió el 24 de oct de 2026 con diseño nuevo, a partir de un ejemplo de
+Raúl: bola de enganche con collarín abierto sobre un soporte cerrado, para
+la capacidad de arrastre del Sequoia HEV y futuros Tacoma/Tundra) — el componente no está atado a
 esa barra específica, cualquier sección puede importar `HighlightIcon` y
 pasar un `nombre` de la lista.
 

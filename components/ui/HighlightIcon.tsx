@@ -104,6 +104,15 @@ const icons: Record<string, ReactNode> = {
       <path d="M7.68 11.9 10.97 14.6 16 9.65" />
     </svg>
   ),
+  remolque: (
+    <svg {...commonProps}>
+      <path d="M7.9 10.29A4.4 4.4 0 1 1 12.7 10.29" />
+      <path d="M7.9 10.29H9.7M10.9 10.29H12.7" />
+      <path d="M7.9 10.29V14M12.7 10.29V14" />
+      <path d="M13.5 14H7.1Q6.2 14 6.2 14.9V16.2Q6.2 17 7.1 17.2Q8.4 17.4 9.2 18.5Q10.4 20.3 12.8 20.3H16.2Q17.2 20.3 17.2 19.3V17.1" />
+      <path d="M13.5 14Q14.1 14 14.5 14.7Q15.2 16 16.1 16Q17.2 16 17.2 17.1" />
+    </svg>
+  ),
 }
 
 export default function HighlightIcon({ nombre }: { nombre?: string }) {

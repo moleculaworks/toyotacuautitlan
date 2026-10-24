@@ -105,6 +105,7 @@ export const modeloType = defineType({
                   { title: 'Maletero / cajuela', value: 'maletero' },
                   { title: 'Modos de manejo', value: 'modos-manejo' },
                   { title: 'Seguridad', value: 'seguridad' },
+                  { title: 'Remolque / capacidad de arrastre', value: 'remolque' },
                 ],
               },
             },
