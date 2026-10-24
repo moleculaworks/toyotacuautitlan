@@ -5,6 +5,28 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (65)
+
+### Agregado — botones de ficha técnica: soporte para varias fichas por modelo (los PDFs se suben después)
+
+Hasta hoy el botón "Descargar Ficha Técnica" de la página de modelo tenía `href="#"` en todos los modelos. Ahora el esquema de
+Sanity tiene un campo `fichasTecnicas` (lista de objetos con `nombre` y un archivo PDF), la consulta de `lib/sanity/queries.ts`
+lo trae (`fichasTecnicas[] { nombre, "url": archivo.asset->url }`) y `app/modelos/[slug]/page.tsx` muestra **un botón por
+ficha**: con una sola dice "Descargar Ficha Técnica" (el texto de siempre) y con varias dice "Ficha Técnica <nombre>" (ej.
+"Ficha Técnica Limited HEV" y "Ficha Técnica TRD Pro HEV" en el 4Runner HEV), **lado a lado en escritorio y apilados en móvil**,
+abriendo el PDF en una pestaña nueva. **Mientras un modelo no tenga fichas cargadas, la página conserva el botón sin enlace
+(`#`) exactamente como estaba**, así que nada cambia visualmente en producción hasta que se suban los PDFs. Raúl decidió subir
+los PDFs de `Fichas Tecnicas/` y enlazarlos al final, cuando todos los modelos estén publicados (hay 17 fichas para los 16
+modelos publicados hoy: el 4Runner HEV tiene dos y los demás una; Tacoma HEV y Tundra HEV también tendrán dos). Verificado en
+local con datos de prueba temporales (ya revertidos): dos fichas lado a lado en escritorio y apiladas en móvil, una ficha con el
+texto de siempre y sin fichas el botón sin enlace.
+
+### Cambiado — fila de rendimiento del 4Runner HEV más corta
+
+"AT (8 velocidades)" ocupaba dos líneas a 32 px en la tabla de rendimiento. Ahora la fila dice "AT" en grande, como "CVT" y "MT" en
+los demás modelos, y debajo en chico "8 velocidades · Limited HEV" y "8 velocidades · TRD Pro HEV" (campo `detalle`). Contenido
+puro en Sanity, ya publicado.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (64)
 
 ### Agregado — 4Runner HEV publicado en Sanity (16º de 24)

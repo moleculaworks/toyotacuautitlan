@@ -128,7 +128,7 @@ marca se hace en un solo archivo, no se busca y reemplaza en todo el repo.
 
 | `variant` | Clase de color/hover | Uso real hoy |
 |---|---|---|
-| `primary` | `bg-toyota-red text-white hover:bg-toyota-red-dark` | Acción principal — "Cotízalo", "Descargar Ficha Técnica". Relleno rojo de marca. |
+| `primary` | `bg-toyota-red text-white hover:bg-toyota-red-dark` | Acción principal — "Cotízalo", "Descargar Ficha Técnica". Relleno rojo de marca. Cuando un modelo tiene varias fichas (ej. 4Runner HEV), se muestra un `primary` por ficha ("Ficha Técnica <versión>"), lado a lado en escritorio y apilados en móvil (`max-desktop:flex-col`). |
 | `secondary` | `border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white` | Acción alternativa emparejada con un primario — "Manéjalo". Contorno negro, invierte a relleno negro. |
 | `outline-hero` | `border-2 border-foreground text-foreground hover:bg-toyota-red hover:border-toyota-red hover:text-white` | CTA aislado sobre fondo claro — "Ver versiones y precios" en el Hero. Contorno negro, invierte a rojo. |
 | `invert-red` | `bg-white text-toyota-red hover:bg-foreground hover:text-white` | Botón blanco sobre fondo rojo de marca — CTA intermedio ("¿Listo para dar el siguiente paso?"). |

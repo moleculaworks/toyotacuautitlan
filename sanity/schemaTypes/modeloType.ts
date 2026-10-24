@@ -397,6 +397,38 @@ export const modeloType = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'fichasTecnicas',
+      title: 'Fichas técnicas (PDF)',
+      description:
+        'Un botón de descarga por cada ficha. Con una sola ficha el botón dice "Descargar Ficha Técnica"; con varias (ej. 4Runner HEV: Limited y TRD Pro) dice "Ficha Técnica <nombre>". Si no hay ninguna, la página muestra el botón sin enlace.',
+      type: 'array',
+      group: 'detalle',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'nombre',
+              title: 'Nombre (ej: Limited HEV)',
+              description: 'Se muestra solo cuando el modelo tiene más de una ficha.',
+              type: 'string',
+              validation: (r) => r.required(),
+            },
+            {
+              name: 'archivo',
+              title: 'Archivo PDF',
+              type: 'file',
+              options: { accept: 'application/pdf' },
+              validation: (r) => r.required(),
+            },
+          ],
+          preview: {
+            select: { title: 'nombre', subtitle: 'archivo.asset.originalFilename' },
+          },
+        },
+      ],
+    }),
   ],
   groups: [
     { name: 'seo', title: 'SEO' },

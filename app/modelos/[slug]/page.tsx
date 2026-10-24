@@ -124,6 +124,10 @@ export default async function ModeloPage({
   const seguridadItems: string[] = modelo.seguridadItems ?? []
   const rendimientoFilas: { transmision: string; detalle?: string; valor: string; unidad?: string }[] =
     modelo.rendimientoFilas ?? []
+  // Fichas técnicas (PDF): un botón por ficha. Sin fichas cargadas, se conserva el botón sin enlace.
+  const fichasTecnicas: { nombre: string; url: string }[] = (modelo.fichasTecnicas ?? []).filter(
+    (f: { nombre?: string; url?: string }) => f?.url
+  )
 
   const coloresExterior: ColorExterior[] = (modelo.coloresExterior ?? []).map(
     (c: {
@@ -530,26 +534,39 @@ export default async function ModeloPage({
               <p className="text-sm text-[#444] leading-normal">
                 Para más detalles de cada versión consulta la ficha técnica.
               </p>
-              {/* Pendiente: enlace real al PDF de ficha técnica */}
-              <Button
-                href="#"
-                variant="primary"
-                className="text-sm px-7 py-[13px] gap-2"
-                icon={
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                    <path
-                      d="M7.5 2.5V10M4 8L7.5 11.5L11 8M2.5 13H12.5"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                }
-                iconPosition="left"
-              >
-                Descargar Ficha Técnica
-              </Button>
+              {/* Una ficha: "Descargar Ficha Técnica". Varias: un botón por ficha, lado a lado en escritorio y apilados en móvil. */}
+              <div className="flex flex-row max-desktop:flex-col items-center justify-center gap-3">
+                {(fichasTecnicas.length > 0
+                  ? fichasTecnicas.map((f) => ({
+                      key: f.url,
+                      href: f.url,
+                      texto: fichasTecnicas.length > 1 ? `Ficha Técnica ${f.nombre}` : 'Descargar Ficha Técnica',
+                    }))
+                  : [{ key: 'sin-enlace', href: '#', texto: 'Descargar Ficha Técnica' }]
+                ).map((b) => (
+                  <Button
+                    key={b.key}
+                    href={b.href}
+                    external={b.href !== '#'}
+                    variant="primary"
+                    className="text-sm px-7 py-[13px] gap-2"
+                    icon={
+                      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                        <path
+                          d="M7.5 2.5V10M4 8L7.5 11.5L11 8M2.5 13H12.5"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    }
+                    iconPosition="left"
+                  >
+                    {b.texto}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
