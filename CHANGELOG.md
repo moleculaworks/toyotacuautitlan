@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-24 — Raúl (Claude Sonnet 5.5) (68)
+
+### Cambiado — nuevo hero desktop en Highlander HEV, Sienna HEV y 4Runner HEV
+
+Raúl reemplazó en sus carpetas el `*-hero-desktop.webp` de cuatro modelos. En Sanity ya existían tres (Highlander HEV, Sienna HEV y
+4Runner HEV): se subieron las imágenes nuevas con la CLI (1920×680), se actualizó `heroDesktop` de cada documento y se publicó. Antes de subirlas
+se comprimieron las dos más pesadas, con respaldo de los originales: 4Runner HEV 271 → 159 KB y Sienna HEV 176 → 134 KB; la del Highlander
+(123 KB) se subió tal cual. El **Sequoia HEV** también tiene hero desktop nuevo (152 KB, 1920×680), pero ese modelo todavía no existe en Sanity: la
+imagen queda en su carpeta (`Imagenes por Modelo/sequoia-hev/`) para cuando se construya. Las tres imágenes anteriores quedan huérfanas en Sanity
+(sin referencia); se limpian en la próxima auditoría de assets huérfanos. Verificado en local: las tres páginas cargan con el hash del hero nuevo.
+Este commit solo registra el cambio y dispara el deploy que lo refleja (las páginas de modelo son estáticas).
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (67)
 
 ### Cambiado — sección "Versiones" centrada en los modelos con 1 o 2 versiones
