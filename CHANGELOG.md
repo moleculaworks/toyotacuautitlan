@@ -5,6 +5,35 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (63)
+
+### Agregado — 4Runner HEV cargado a Sanity como BORRADOR (16º de 24, sin publicar)
+
+Documento `drafts.4runner-hev-modelo` (slug `4runner-hev`), creado y verificado contra el JSON pero **sin publicar**:
+se publica con confirmación explícita de Raúl y solo entonces se hace la revisión en localhost y el push. Sin par de
+motorización; carrusel de 2 tarjetas propias: Limited HEV $1,251,700 y TRD Pro HEV $1,395,300. 326 HP (i-FORCE MAX
+2.4 L, la potencia más alta del catálogo), tracción 4WD (Limited full time, TRD Pro part time; es la primera 4x4 del
+catálogo), cajuela de 572 L, 8 bolsas de aire y Toyota Safety Sense con 5 componentes. 5 colores con 18 ángulos de 360°
+(Blanco Perlado, Grafito, Negro, Rojo y Azul Humo = 90 imágenes), con hex ajustados a las fotos: Blanco Perlado
+`#F5F5F5` con borde, Rojo `#BD0C28` y Azul Humo `#2C475E`; la serie del **Rojo tiene los fotogramas 09 y 10 idénticos y un
+salto entre el 12 y el 13, y Raúl decidió dejarla así**. Destacado "Supera cualquier camino" (todoterreno). Rendimiento
+AT (8 velocidades) 13.07 KM/L en la Limited y 12.46 en la TRD Pro, usando el campo `detalle` para distinguir la versión
+(toyota.mx no las distingue; la asignación la confirmó Raúl). 109 imágenes subidas con la CLI de Sanity; se comprimieron
+el hero desktop, el hero mobile, el destacado y la `exterior-04` de la galería (de 220, 236, 131 y 190 KB a 134, 122, 87
+y 97 KB). La ficha de la TRD Pro la agregó Raúl a `Fichas Tecnicas/`; las dos fichas (Limited y TRD Pro) difieren en
+rines, distancia al piso, ángulos y suspensión. Los colores que la ficha de la TRD Pro menciona (Blanco y Azul Pacífico)
+no existen en toyota.mx y no se incluyeron.
+
+**Pendientes que quedan abiertos:**
+- Publicar el 4Runner HEV en Sanity (con el "sí" de Raúl), revisar `localhost:3000/modelos/4runner-hev` y hacer el
+  push con el registro de publicación.
+- **Botones de ficha técnica:** el botón "Descargar Ficha Técnica" de `app/modelos/[slug]/page.tsx` tiene `href="#"` en
+  todos los modelos (nunca se conectó el PDF). Raúl pidió, como tarea aparte, soportar varias fichas por modelo (el
+  4Runner tiene dos: Limited y TRD Pro; Tacoma HEV y Tundra HEV también): campo en el schema con una lista de PDFs (cada
+  uno con su nombre), consulta, un botón por ficha y subir los PDFs de `Fichas Tecnicas/` a Sanity.
+- Siguientes modelos: Sequoia HEV (carpeta de imágenes creada), Hilux, Hiace, Tundra HEV, Tacoma, Tacoma HEV, GR Yaris y
+  GR Corolla (falta su ficha técnica).
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (62)
 
 ### Agregado — Sienna HEV publicada en Sanity (15º de 24)
