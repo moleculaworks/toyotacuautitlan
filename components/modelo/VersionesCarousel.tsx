@@ -64,6 +64,19 @@ export default function VersionesCarousel({
     (_, d) => `${d + 1}–${Math.min(d + CARDS_VISIBLE, TOTAL_CARDS)}`
   )
 
+  // Con 1 o 2 versiones no hay nada que deslizar: se muestran centradas (acordado 23 oct 2026).
+  // Escritorio: 360 px una sola, 340 px cada una si son dos. Móvil: apiladas, ancho máximo 360 px.
+  if (TOTAL_CARDS <= 2) {
+    const ancho = TOTAL_CARDS === 1 ? '360px' : '340px'
+    return (
+      <div className="flex justify-center gap-4 max-desktop:flex-col max-desktop:items-center">
+        {versiones.map((v) => (
+          <VersionCard key={v.nombre} version={v} nombreModelo={nombreModelo} ancho={ancho} />
+        ))}
+      </div>
+    )
+  }
+
   const canPrev = index > 0
   const canNext = index < MAX_INDEX
   const offset = -(index * (100 / CARDS_VISIBLE))
@@ -203,21 +216,26 @@ function VersionCard({
   version,
   mobile,
   nombreModelo,
+  ancho,
 }: {
   version: VersionSanity
   mobile?: boolean
   nombreModelo: string
+  // Ancho fijo para el layout centrado de 1 o 2 versiones; sin él se usa el de la fila del carrusel.
+  ancho?: string
 }) {
   return (
     <div
       className={`border-[1.5px] border-[#E0E0E0] bg-white flex flex-col ${mobile ? 'h-full' : ''}`}
       style={
-        mobile
-          ? undefined
-          : {
-              minWidth: 'calc(25% - 6px)',
-              flex: '0 0 calc(25% - 6px)',
-            }
+        ancho
+          ? { width: ancho, maxWidth: '100%', flex: `0 0 ${ancho}` }
+          : mobile
+            ? undefined
+            : {
+                minWidth: 'calc(25% - 6px)',
+                flex: '0 0 calc(25% - 6px)',
+              }
       }
     >
       <div className="aspect-video bg-white overflow-hidden flex items-center justify-center relative">

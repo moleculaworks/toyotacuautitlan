@@ -5,6 +5,19 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (67)
+
+### Cambiado — sección "Versiones" centrada en los modelos con 1 o 2 versiones
+
+Con una sola versión (RAV4 PHEV) o dos (4Runner HEV, Prius, Avanza y Highlander HEV) el carrusel dejaba las tarjetas pegadas a la
+izquierda con mucho espacio vacío. Raúl comparó tres opciones en una página de prueba temporal (hoy, tarjetas centradas con el título a la
+izquierda, y todo centrado) y eligió la **C**: título, subtítulo y tarjetas centrados, y las tarjetas un poco más anchas (360 px la sola, 340 px
+cada una si son dos, frente al cuarto del ancho de la fila que tienen hoy). `VersionesCarousel.tsx` ya no renderiza flechas, puntos ni
+contador en ese caso, y `app/modelos/[slug]/page.tsx` centra el encabezado de la sección cuando `versiones.length <= 2`. **En móvil** las tarjetas
+quedan apiladas, de ancho máximo 360 px, en vez de deslizarse. Los modelos con 3 o más versiones (Raize, Yaris Hatchback, Corolla Cross,
+Sienna HEV, Corolla y los demás) conservan el carrusel de siempre. Verificado en local: 1, 2, 3, 4 y 6 versiones, escritorio y móvil, sin errores
+en consola. Se borró la página temporal de comparación.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (66)
 
 ### Cambiado — las fichas técnicas se pueden registrar sin archivo, para ver los botones antes de subir los PDFs

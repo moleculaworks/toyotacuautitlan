@@ -509,7 +509,8 @@ export default async function ModeloPage({
       {mostrarVersiones && (
         <section id="versiones" className="bg-white py-20 max-desktop:py-[52px] border-t border-[#E8E8E8]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
-            <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
+            {/* Con 1 o 2 versiones (sin carrusel) el encabezado va centrado, igual que las tarjetas. */}
+            <div className={`flex items-end mb-10 flex-wrap gap-4 ${versiones.length <= 2 ? 'justify-center text-center' : 'justify-between'}`}>
               <div>
                 <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
                   {modelo.anio ? `Versiones ${modelo.anio}` : 'Versiones'}
@@ -518,7 +519,7 @@ export default async function ModeloPage({
                   Elige tu versión
                 </h2>
                 {modelo.versionesTexto && (
-                  <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6]">
+                  <p className={`text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] mt-2.5 max-w-[560px] leading-[1.6] ${versiones.length <= 2 ? 'mx-auto' : ''}`}>
                     {modelo.versionesTexto}
                   </p>
                 )}
