@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-23 — Raúl (Claude Sonnet 5.5) (66)
+
+### Cambiado — las fichas técnicas se pueden registrar sin archivo, para ver los botones antes de subir los PDFs
+
+A pedido de Raúl, el 4Runner HEV ya muestra sus **dos botones** de ficha técnica ("Ficha Técnica Limited HEV" y "Ficha Técnica TRD Pro HEV",
+lado a lado en escritorio y apilados en móvil) **sin enlace**: el archivo PDF de cada ficha pasó a ser **opcional** en el schema
+(`fichasTecnicas[].archivo`), y la página muestra el botón de toda ficha que tenga `nombre`, con `href="#"` mientras no haya archivo. El
+documento del 4Runner (`4runner-hev-modelo`) se parchó y se publicó con las dos fichas por nombre. Los demás modelos siguen mostrando su
+único botón sin enlace. Cuando se suban los PDFs al final, solo hay que adjuntar el archivo a cada entrada (y crear las entradas de los
+modelos con una sola ficha). Verificado en local: dos botones en el 4Runner con `href="#"`, y Sienna y Corolla con su botón único como
+antes.
+
 ## 2026-10-23 — Raúl (Claude Sonnet 5.5) (65)
 
 ### Agregado — botones de ficha técnica: soporte para varias fichas por modelo (los PDFs se suben después)

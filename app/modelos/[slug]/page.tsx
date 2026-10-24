@@ -124,9 +124,10 @@ export default async function ModeloPage({
   const seguridadItems: string[] = modelo.seguridadItems ?? []
   const rendimientoFilas: { transmision: string; detalle?: string; valor: string; unidad?: string }[] =
     modelo.rendimientoFilas ?? []
-  // Fichas técnicas (PDF): un botón por ficha. Sin fichas cargadas, se conserva el botón sin enlace.
-  const fichasTecnicas: { nombre: string; url: string }[] = (modelo.fichasTecnicas ?? []).filter(
-    (f: { nombre?: string; url?: string }) => f?.url
+  // Fichas técnicas (PDF): un botón por ficha registrada. Una ficha sin archivo todavía (url vacía) muestra su
+  // botón sin enlace; sin ninguna ficha registrada, se conserva un solo botón sin enlace.
+  const fichasTecnicas: { nombre: string; url?: string | null }[] = (modelo.fichasTecnicas ?? []).filter(
+    (f: { nombre?: string }) => f?.nombre
   )
 
   const coloresExterior: ColorExterior[] = (modelo.coloresExterior ?? []).map(
@@ -538,8 +539,8 @@ export default async function ModeloPage({
               <div className="flex flex-row max-desktop:flex-col items-center justify-center gap-3">
                 {(fichasTecnicas.length > 0
                   ? fichasTecnicas.map((f) => ({
-                      key: f.url,
-                      href: f.url,
+                      key: f.nombre,
+                      href: f.url || '#',
                       texto: fichasTecnicas.length > 1 ? `Ficha Técnica ${f.nombre}` : 'Descargar Ficha Técnica',
                     }))
                   : [{ key: 'sin-enlace', href: '#', texto: 'Descargar Ficha Técnica' }]
