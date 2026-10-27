@@ -5,6 +5,21 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-26 — Raúl (Claude Sonnet 5.5) (70)
+
+### Agregado — Sequoia HEV publicado en Sanity (17 de 24 modelos)
+
+Décimo séptimo modelo (slug `sequoia-hev`, documento `sequoia-hev-modelo`), sin par de motorización. 2 versiones: Limited 2WD HEV $1,735,000 y Platinum 4WD HEV $1,901,100
+(sección de versiones centrada, sin carrusel). Sistema híbrido de 389 HP (la mayor potencia del catálogo), hasta 8 pasajeros, tracción 2WD / 4WD (la Limited es la única
+de tracción trasera del catálogo) y capacidad de arrastre de hasta 4,210 kg. Barra de íconos: Motor, Pasajeros, Tracción y **Remolque** (el ícono nuevo de la entrada 69;
+Bolsas de aire sale de la barra porque ya aparece en Seguridad). Destacado "Es tu aliada en cualquier maniobra" (cámara 360°, sensores, asistencia de arrastre en reversa y
+capacidad de arrastre; la foto es la pantalla de la cámara 360°, con textos en inglés, decisión de Raúl). Rendimiento por tracción: 12.70 km/l (2WD, Limited) y 11.50 km/l (4WD,
+Platinum). 7 colores de 16 ángulos de 360°; los hex del sitio no coincidían con las fotos y se reutilizaron los ya acordados en otros modelos (Azul `#304180`, Rojo `#BD0C28`,
+Gris `#5C616A`, Plata `#BEBFC1`, Blanco Perlado `#F0EDE8`). Galería de 6 exteriores y 3 interiores (se cuentan solo 3). Las dos imágenes de versiones son el mismo archivo
+(decisión de Raúl). Un solo botón de ficha técnica, sin enlace todavía (los PDFs se suben al final). 128 imágenes subidas con la CLI de Sanity; el documento se creó como
+borrador, se verificó contra el JSON y se publicó con confirmación de Raúl. Revisado en localhost: carga sin errores ni imágenes rotas. Se fusiona a `main` junto con la rama
+`icono-remolque` (entrada 69), que el modelo necesita para dibujar el ícono.
+
 ## 2026-10-24 — Raúl (Claude Sonnet 5.5) (69)
 
 ### Agregado — ícono `remolque` (capacidad de arrastre)
