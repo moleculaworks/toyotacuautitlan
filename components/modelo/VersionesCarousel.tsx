@@ -26,6 +26,7 @@ export default function VersionesCarousel({
   const [mobileIndex, setMobileIndex] = useState(0)
   const mobileScrollRef = useRef<HTMLDivElement>(null)
   const rowRef = useRef<HTMLDivElement>(null)
+  const raizRef = useRef<HTMLDivElement>(null)
   const [pitch, setPitch] = useState(0)
 
   // Distancia real en px entre el inicio de una tarjeta y la siguiente
@@ -44,6 +45,31 @@ export default function VersionesCarousel({
     window.addEventListener('resize', medir)
     return () => window.removeEventListener('resize', medir)
   }, [versiones.length])
+
+  // Si el nombre de alguna versión ocupa dos líneas (ej. "Doble Cabina DSL AT MHEV"), todos los
+  // nombres del mismo grupo toman esa altura para que precios y listas queden alineados.
+  // Se mide lo renderizado (no la longitud del texto), así funciona con cualquier ancho de tarjeta.
+  useEffect(() => {
+    function igualar() {
+      const raiz = raizRef.current
+      if (!raiz) return
+      const grupos = [raiz, ...Array.from(raiz.querySelectorAll<HTMLElement>('[data-grupo]'))].filter((el) =>
+        el.hasAttribute('data-grupo')
+      )
+      for (const grupo of grupos) {
+        const titulos = Array.from(grupo.querySelectorAll<HTMLElement>('[data-version-titulo]'))
+        titulos.forEach((t) => {
+          t.style.minHeight = ''
+        })
+        const alto = Math.max(0, ...titulos.map((t) => t.offsetHeight))
+        if (alto > 0) titulos.forEach((t) => (t.style.minHeight = `${alto}px`))
+      }
+    }
+    igualar()
+    window.addEventListener('resize', igualar)
+    document.fonts?.ready.then(igualar)
+    return () => window.removeEventListener('resize', igualar)
+  }, [versiones])
 
   function onMobileScroll() {
     const el = mobileScrollRef.current
@@ -69,7 +95,7 @@ export default function VersionesCarousel({
   if (TOTAL_CARDS <= 2) {
     const ancho = TOTAL_CARDS === 1 ? '360px' : '340px'
     return (
-      <div className="flex justify-center gap-4 max-desktop:flex-col max-desktop:items-center">
+      <div ref={raizRef} data-grupo="centrado" className="flex justify-center gap-4 max-desktop:flex-col max-desktop:items-center">
         {versiones.map((v) => (
           <VersionCard key={v.nombre} version={v} nombreModelo={nombreModelo} ancho={ancho} />
         ))}
@@ -83,7 +109,7 @@ export default function VersionesCarousel({
   const transform = pitch ? `translateX(${-(index * pitch)}px)` : `translateX(${offset}%)`
 
   return (
-    <div>
+    <div ref={raizRef}>
       {/* Desktop: carrusel con flechas */}
       <div className="relative hidden desktop:block">
         {TOTAL_CARDS > 1 && (
@@ -120,6 +146,7 @@ export default function VersionesCarousel({
         <div className="overflow-hidden">
           <div
             ref={rowRef}
+            data-grupo="escritorio"
             className="flex gap-2"
             style={{
               transform,
@@ -162,6 +189,7 @@ export default function VersionesCarousel({
       <div className="hidden max-desktop:block relative">
         <div
           ref={mobileScrollRef}
+          data-grupo="movil"
           onScroll={onMobileScroll}
           className="flex gap-2 overflow-x-auto no-scrollbar pb-2 snap-x snap-mandatory"
         >
@@ -250,7 +278,7 @@ function VersionCard({
         )}
       </div>
       <div className="bg-[#F7F7F7] px-[22px] pt-4 pb-[14px] border-b border-[#E8E8E8]">
-        <h3 className="text-2xl font-semibold text-foreground tracking-tight leading-[1.1]">
+        <h3 data-version-titulo className="text-2xl font-semibold text-foreground tracking-tight leading-[1.1]">
           {version.nombre}
         </h3>
         <div className="mt-2 flex items-baseline gap-1.5">

@@ -5,6 +5,28 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-26 — Raúl (Claude Sonnet 5.5) (71)
+
+### Agregado — Hilux publicado en Sanity (18 de 24 modelos)
+
+Décimo octavo modelo (slug `hilux`, documento `hilux-modelo`), sin par de motorización, **año 2027** (el de la ficha). 4 versiones de doble cabina en carrusel: Doble Cabina Base $570,900,
+SR $620,900, Diesel MT $720,900 y DSL AT MHEV $880,900. Pickup, así que no lleva Toyota Safety Sense (ni toyota.mx ni la ficha lo mencionan). Barra de íconos: Motor "Hasta 201 HP",
+Tracción "2WD / 4WD", Capacidad de carga "Hasta 810 kg" y Bolsas de aire "7". **La capacidad de carga varía por versión** y viene de GQ México y El Economista (6 de agosto de 2026,
+coinciden entre sí): Base y SR 810 kg, DSL MT 770 kg y DSL AT MHEV 765 kg; solo el 810 kg está también en toyota.mx. Raúl decidió tomarla como hecho; cada tarjeta lleva la suya.
+Destacado "Placer y negocios, el espacio perfecto" (batea de 1 m³ con 4 ganchos, 120 V y caja fría en la DSL AT MHEV, cargador inalámbrico, cámara de reversa y USB C; se descartó
+"Herencia Dakar" por considerarlo poco decisivo para la compra, aunque se queda en la descripción corta y la intro). La tracción de las diesel dice solo "4WD" (el sitio dice "permanente"
+y la ficha "part time"). Rendimiento igual que toyota.mx (Diesel AT 14.20, Diesel MT 14.30, Gasolina MT 9.89 km/l), sin aclarar versión. Las tarjetas muestran el motor y la potencia
+en una sola línea ("... y 164 HP" en Base y SR; "... y 201 HP @ ..." en las diesel). 7 colores de 16 ángulos de 360° (hex medidos contra las fotos: Azufre `#C6963B`, Gris `#5C616A`,
+Plata `#BEBFC1`, Rojo `#BD0C28`, Blanco `#F5F5F5`, Blanco Perlado `#F0EDE8`); los fotogramas repetidos de Blanco (14 = 15) y Negro (15 = 16) ya vienen así de toyota.mx. Galería 6 + 6.
+133 imágenes subidas con la CLI de Sanity; se comprimieron los dos heros y dos fotos de galería (192→136, 176→123, 237→125 y 224→107 KB). Un solo botón de ficha técnica, sin enlace todavía.
+
+### Cambiado — nombres largos de versión alinean las tarjetas
+
+`components/modelo/VersionesCarousel.tsx`: cuando el nombre de alguna versión ocupa dos líneas (ej. "Doble Cabina DSL AT MHEV"), todos los nombres del mismo grupo (escritorio, móvil o
+layout centrado) toman esa altura, de modo que precios y listas quedan alineados. Se mide lo renderizado, no el largo del texto. Revisado en 18 páginas y 7 anchos (375 a 1440 px): en
+1280 y 1440 px solo cambia el Hilux; entre 900 y 1100 px también alinea tarjetas que ya estaban desalineadas en Sienna HEV, Camry HEV, Raize y RAV4 HEV. Donde los nombres caben en una
+línea el resultado es idéntico al anterior.
+
 ## 2026-10-26 — Raúl (Claude Sonnet 5.5) (70)
 
 ### Agregado — Sequoia HEV publicado en Sanity (17 de 24 modelos)
