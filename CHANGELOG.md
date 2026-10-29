@@ -5,6 +5,21 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-29 — Raúl (Claude Sonnet 5.5) (72)
+
+### Agregado — Hiace publicado en Sanity (19 de 24 modelos)
+
+Décimo noveno modelo (slug `hiace`, documento `hiace-modelo`), sin par de motorización, año 2026. 3 versiones en carrusel: Ventanas $739,000, Panel $765,800 y 12 Pasajeros $833,300 (nombres cortos). Sin Toyota Safety Sense.
+Barra de íconos: Motor "Hasta 277 HP", Pasajeros "Hasta 12", Capacidad de carga "Hasta 1,130 kg" y Volumen de carga "Hasta 9.3 m³". Capacidad de carga por versión (1,130 / 1,125 / 925 kg, ficha). Destacado "Al servicio de tus pasajeros"
+(la 12 Pasajeros). Rendimiento con la versión de cada fila: MT (Gasolina) 8.30 km/l en Ventanas y 12 Pasajeros, MT (Diesel) 7.82 km/l en Panel. **2 colores (Blanco y Plata) con 24 ángulos de 360°** (no 16); la Plata es solo de la 12 Pasajeros, pero no se comenta
+en el sitio (para eso está la ficha). 68 imágenes subidas con la CLI de Sanity; heros comprimidos (162→138 y 143→120 KB). Un solo botón de ficha técnica, sin enlace todavía. **Primer modelo con los textos de sección propios desde el inicio**, en la línea de los sedanes.
+
+### Cambiado — reescritura de textos de los modelos 13 a 18 (RAV4 PHEV, Highlander HEV, Sienna HEV, 4Runner HEV, Sequoia HEV y Hilux)
+
+En esos seis modelos el subtítulo del hero, la frase inicial de la intro, el título de Diseño, los textos de galería, el título del destacado y el título y texto de rendimiento eran idénticos a toyota.mx (comprobado campo por campo contra las páginas del sitio).
+Raúl pidió seguir la línea de los sedanes (Prius, Yaris): título corto con actitud y texto con un dato real y un beneficio. Se reescribieron en Sanity (cambio de contenido, publicado directo) con datos ya publicados de cada modelo (km/l, HP, bolsas de aire, Toyota Safety Sense),
+y también los títulos y textos de seguridad, que repetían una misma plantilla. RAV4 PHEV solo cambió hero, rendimiento y texto de seguridad (sin galería, y "Connected Services" se queda como nombre de función). Hilux pasa de "Modo ahorro" a "Eficiencia". Sin cambio de código.
+
 ## 2026-10-26 — Raúl (Claude Sonnet 5.5) (71)
 
 ### Agregado — Hilux publicado en Sanity (18 de 24 modelos)
