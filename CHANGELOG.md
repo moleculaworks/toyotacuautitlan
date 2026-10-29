@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-29 — Raúl (Claude Sonnet 5.5) (76)
+
+### Pendiente anotado — revisar los HEX de los modelos 1 a 12
+
+Raúl pidió dejar anotado como pendiente revisar los hex de los colores de los modelos donde no se hizo, desde el 1 hasta el 12. En los modelos 13 a 19 los hex se midieron contra las fotos del 360°; en los primeros 12 no se hizo de forma sistemática. Sin cambio de contenido ni de código: solo documentación (ver `PROYECTO.md`).
+
 ## 2026-10-29 — Raúl (Claude Sonnet 5.5) (75)
 
 ### Cambiado — hero del Hiace más corto
