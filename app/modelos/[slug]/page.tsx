@@ -632,6 +632,9 @@ export default async function ModeloPage({
                     <div className="text-[clamp(20px,2.5vw,26px)] font-semibold tracking-[-.02em] text-foreground leading-none">
                       {m.nombre}
                     </div>
+                    {m.descripcionCorta && (
+                      <p className="text-sm text-[#555] line-clamp-2 min-h-10">{m.descripcionCorta}</p>
+                    )}
                     {m.precioDesde && (
                       <div className="text-sm text-[#555] mt-0.5">
                         Desde{' '}

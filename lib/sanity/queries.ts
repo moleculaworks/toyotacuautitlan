@@ -27,7 +27,7 @@ export async function getModelosSimilares(slugActual: string, limite = 3) {
   return client.fetch(
     groq`
       *[_type == "modelo" && slug.current != $slugActual] | order(orden asc) [0...$limite] {
-        nombre, slug, categoria, precioDesde,
+        nombre, slug, categoria, precioDesde, descripcionCorta,
         imagenTarjeta { asset->{ url, metadata { lqip } } }
       }
     `,

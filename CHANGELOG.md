@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-29 — Raúl (Claude Sonnet 5.5) (74)
+
+### Cambiado — tres retoques de textos y de la tarjeta de "Modelos similares"
+
+1. **Galería del Corolla HEV:** el título "El auto más vendido del mundo" (eslogan de Toyota para el Corolla) pasa a "Conoce el Corolla HEV por dentro y por fuera".
+2. **Textos de seguridad con plantilla** ("Equipo de serie en las N versiones, sin excepciones."): se renovaron con datos propios en Raize, Corolla Cross, Corolla Cross HEV y RAV4 HEV (títulos y textos nuevos; contenido ya publicado en Sanity).
+3. **Descripción corta en "Descubre otras opciones":** la tarjeta de "Modelos similares" (dentro de `app/modelos/[slug]/page.tsx`) ahora muestra la descripción corta debajo del nombre, a dos líneas y con el espacio de dos líneas reservado (`min-h-10`) para que el precio quede alineado entre tarjetas.
+   `getModelosSimilares` (`lib/sanity/queries.ts`) trae ahora `descripcionCorta`. Revisado en escritorio (las 19 páginas: tarjetas alineadas) y en móvil. Es el único cambio de código; el resto es contenido.
+
 ## 2026-10-29 — Raúl (Claude Sonnet 5.5) (73)
 
 ### Cambiado — reescritura de textos de los modelos 1 a 12 (los que conservaban textos de toyota.mx)
