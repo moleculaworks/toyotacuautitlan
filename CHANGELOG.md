@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-29 — Raúl (Claude Sonnet 5.5) (75)
+
+### Cambiado — hero del Hiace más corto
+
+El subtítulo del hero del Hiace ("La van para tu negocio, con una versión para cada forma de trabajar.", 68 caracteres) se partía en tres líneas en pantalla. Raúl eligió "Hecha para mover tu negocio." (28 caracteres) entre varias variantes. Contenido publicado en Sanity; sin cambio de código.
+
 ## 2026-10-29 — Raúl (Claude Sonnet 5.5) (74)
 
 ### Cambiado — tres retoques de textos y de la tarjeta de "Modelos similares"
