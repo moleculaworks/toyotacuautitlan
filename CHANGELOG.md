@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-10-29 — Raúl (Claude Sonnet 5.5) (73)
+
+### Cambiado — reescritura de textos de los modelos 1 a 12 (los que conservaban textos de toyota.mx)
+
+Revisión campo por campo contra las páginas de toyota.mx de los 12 primeros modelos. El **Prius** y la **Corolla Cross** ya estaban en la línea (sin textos copiados salvo el nombre de función Toyota Safety Sense). En los otros 10 se reescribieron en Sanity (cambio de contenido,
+publicado directo) los textos idénticos o casi idénticos al sitio: "Muévete, ahorra y contribuye", "Seguridad es mi segundo nombre" con "Una fama internacional…", los textos de galería "Te brindamos la mejor tecnología…" y varios heroes, títulos de Diseño, de galería y de destacado.
+Criterio: título corto con actitud y texto con un dato real y un beneficio, en la línea de los sedanes (Prius). Etiqueta "Modo Ahorro" → "Eficiencia" donde se reescribió el rendimiento. Se tocaron: Yaris Sedán, Yaris Sedán HEV, Yaris Hatchback, Corolla, Corolla HEV (solo seguridad), Camry HEV, Avanza, Raize, Corolla Cross HEV y RAV4 HEV.
+Las descripciones cortas del Yaris Sedán y del Camry HEV se separaron del hero (el hero lleva la idea de marca y la descripción corta los datos). Se mantienen los nombres de función (Toyota Safety Sense, Connected Services, "Beyond Zero") y la primera frase "Más que un sedán, es un Toyota Yaris.". Sin cambio de código.
+Hallazgo: la descripción corta solo se ve en el catálogo `/modelos` y no en "Descubre otras opciones" (esa tarjeta es otra, dentro de `page.tsx`); agregarla ahí queda pendiente de que Raúl lo apruebe.
+
 ## 2026-10-29 — Raúl (Claude Sonnet 5.5) (72)
 
 ### Agregado — Hiace publicado en Sanity (19 de 24 modelos)
