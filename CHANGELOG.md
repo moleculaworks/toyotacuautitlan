@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-01 — Raúl (Claude Sonnet 5.5) (77)
+
+### Cambiado — hex de los colores de los modelos 1 a 12 revisados contra las fotos del 360°
+
+Los hex que venían de toyota.mx son marcadores genéricos (casi todos los rojos `#FF0000` o `#F90406`, casi todas las platas `#E3E4E5`, y el grafito y el gris metálico del Camry y del Corolla iguales) y no se parecían a los autos. Se compararon uno por uno con las fotos de cada color (hojas en `Revision HEX/`) y se corrigieron en Sanity, publicado directo, en 10 modelos:
+Avanza, Camry HEV, Corolla, Corolla Cross, Corolla Cross HEV, Prius, Raize, Yaris Hatchback, Yaris Sedán y Yaris Sedán HEV. Corolla HEV y RAV4 HEV no cambiaron (ya estaban razonablemente bien).
+**Alta confianza:** Yaris Hatchback "Gris" `#808080` → `#2F3E66` (el auto es azul marino); Camry "Grafito" → `#7D7977` y "Gris Metálico" → `#5C616A`; rojos puros → `#BD0C28` (Avanza, Corolla Cross, Prius, Yaris Sedán, Yaris Hatchback Escarlata, Corolla Cross HEV); Blanco Perlado crema `#EAE6CA` → `#F0EDE8` (Corolla Cross, Prius, Yaris Sedán); Prius Mostaza `#DE8A18` y Azul Oscuro `#1B4A8C`.
+**Confianza media:** platas más oscuras (`#BEBFC1` en Avanza, Corolla Cross, Raize, Yaris Sedán y Corolla Cross HEV; `#8C98A3` en Prius; `#A5AEBA` en Yaris Hatchback), Corolla Cross gris `#6E7B8E` y azul `#3A74AE`, Prius gris `#52626D`, Raize rojo `#CC0A18` y gris `#707070`, Corolla gris metálico `#5C616A`, Yaris Hatchback Cemento `#9AA4A5`, Yaris Sedán gris `#5F6368` y Escarlata `#C4161C`, Yaris Sedán HEV rojo `#E8132B` y escarlata `#CC0A18`.
+Se ajustó también `necesitaBorde` (Blanco Perlado `#F0EDE8` y Plata `#BEBFC1` con borde). Valores aproximados, elegidos visualmente. Sin cambio de código.
+
 ## 2026-10-29 — Raúl (Claude Sonnet 5.5) (76)
 
 ### Pendiente anotado — revisar los HEX de los modelos 1 a 12
