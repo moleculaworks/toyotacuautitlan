@@ -181,6 +181,9 @@ export default async function ModeloPage({
   const mostrarSeguridad = seguridadItems.length > 0
   const mostrarGaleria = galeriaExterior.length > 0 || galeriaInterior.length > 0
   const mostrarRendimiento = rendimientoFilas.length > 0
+  // Con 4 o más filas (hoy solo la Tacoma) la tabla se compacta: aclaración en la misma línea y menos espacio vertical.
+  // Con 1 a 3 filas queda exactamente como siempre.
+  const rendimientoCompacto = rendimientoFilas.length >= 4
   const mostrarSimilares = otrosModelos.length > 0
 
   return (
@@ -465,10 +468,14 @@ export default async function ModeloPage({
 
               <div className="mt-8 bg-toyota-gray overflow-hidden">
                 <div className="grid grid-cols-2 border-b-2 border-[#E8E8E8]">
-                  <div className="px-6 py-[18px] text-base font-semibold text-foreground border-r border-[#E8E8E8]">
+                  <div
+                    className={`px-6 ${rendimientoCompacto ? 'py-3 max-desktop:px-4' : 'py-[18px]'} text-base font-semibold text-foreground border-r border-[#E8E8E8]`}
+                  >
                     {modelo.rendimientoColumnaTitulo || 'Transmisión'}
                   </div>
-                  <div className="px-6 py-[18px] text-base font-semibold text-foreground">
+                  <div
+                    className={`px-6 ${rendimientoCompacto ? 'py-3 max-desktop:px-4' : 'py-[18px]'} text-base font-semibold text-foreground`}
+                  >
                     Rendimiento de Combustible<sup className="text-[10px]">**</sup>
                   </div>
                 </div>
@@ -477,16 +484,30 @@ export default async function ModeloPage({
                     key={`${row.transmision}-${row.detalle ?? i}`}
                     className={`grid grid-cols-2 ${i < rendimientoFilas.length - 1 ? 'border-b border-[#E8E8E8]' : ''}`}
                   >
-                    <div className="px-6 py-5 flex flex-col justify-center border-r border-[#E8E8E8]">
-                      <span className="text-[32px] font-semibold text-toyota-red tracking-[-.02em]">
+                    <div
+                      className={
+                        rendimientoCompacto
+                          ? 'px-6 py-3.5 max-desktop:px-4 flex flex-row flex-wrap items-baseline gap-x-2.5 border-r border-[#E8E8E8]'
+                          : 'px-6 py-5 flex flex-col justify-center border-r border-[#E8E8E8]'
+                      }
+                    >
+                      <span
+                        className={`text-[32px] font-semibold text-toyota-red tracking-[-.02em] ${rendimientoCompacto ? 'leading-10' : ''}`}
+                      >
                         {row.transmision}
                       </span>
                       {row.detalle && (
-                        <span className="text-base font-medium text-[#555] mt-0.5">{row.detalle}</span>
+                        <span className={`text-base font-medium text-[#555] ${rendimientoCompacto ? '' : 'mt-0.5'}`}>
+                          {row.detalle}
+                        </span>
                       )}
                     </div>
-                    <div className="px-6 py-5 flex items-baseline gap-1.5">
-                      <span className="text-[32px] font-semibold text-toyota-red tracking-[-.02em]">
+                    <div
+                      className={`px-6 ${rendimientoCompacto ? 'py-3.5 max-desktop:px-4' : 'py-5'} flex items-baseline gap-1.5`}
+                    >
+                      <span
+                        className={`text-[32px] font-semibold text-toyota-red tracking-[-.02em] ${rendimientoCompacto ? 'leading-10' : ''}`}
+                      >
                         {row.valor}
                       </span>
                       <span className="text-[13px] font-semibold text-[#888]">{row.unidad}</span>

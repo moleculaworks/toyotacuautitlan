@@ -5,6 +5,23 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (80)
+
+### Agregado — Tacoma publicada en Sanity (21 de 24 modelos)
+
+Vigésimo primer modelo (slug `tacoma`, documento `tacoma-modelo`), la versión de gasolina del par con Tacoma HEV, año 2026. **7 versiones en carrusel**, las mismas que mostrará Tacoma HEV (par con carrusel duplicado): SR 4x2 $779,500, SR 4x4 $849,500, TRD Sport 4x2 $909,900, TRD Sport 4x4 $979,900, TRD Off Road 4x4 $1,119,100, TRD Sport Premium 4x4 HEV $1,167,500 y TRD PRO 4x4 HEV $1,377,900.
+Motor 2.4 L de 228 HP (SR) o 278 HP (TRD Sport y TRD Off Road), caja automática de 8 velocidades y 4WD part time con caja reductora en las versiones 4x4. Barra de íconos: Motor "Hasta 278 HP", Tracción "2WD / 4WD", Capacidad de carga "Hasta 684 kg" (679 / 654 / 684 según la versión) y **Remolque "2,722 kg"** (primera pickup mediana con la cifra en su ficha; usa el ícono `remolque`).
+Destacado **"Manejo"** ("Control y potencia en cada trayecto"): se descartaron "terreno difícil" (se parecía al 4Runner HEV), "carga" (al Hilux), "uso diario" y "luz y visibilidad". Seguridad con 8 ítems comunes a las 5 versiones de gasolina (Toyota Safety Sense con Alerta de Cambio de Carril y DRCC Full Speed Range).
+Rendimiento en **4 filas** como las muestra toyota.mx ("AT 2WD" 12.69, "AT 4WD" 11.71, "AT TRD 2WD" 12.31 y "AT TRD 4WD" 11.47 km/l), sin asignarlas a versiones concretas. 5 colores con **8 ángulos de 360°**; HEX reutilizados salvo Azul `#2A3A96` (el cobalto del Tundra HEV) y Grafito `#45474B`.
+64 imágenes subidas con la CLI de Sanity; heros comprimidos con calidad 55 (345→219 y 382→241 KB; no se llegó a ~140 KB porque la escena de río y grava es muy densa) y destacado 171→112 KB. Las versiones SR 4x2/4x4 y TRD Sport 4x2/4x4 comparten imagen de dos en dos (aceptado), y la TRD Off Road sale plateada aunque la ficha la da solo en Bronce (viene de la tarjeta de toyota.mx).
+Una ficha técnica sin archivo ("Tacoma", botón "Descargar Ficha Técnica"). Publicado con confirmación de Raúl y revisado en local; el sitio en vivo lo muestra con este push.
+Tacoma HEV queda con su borrador en `JSON Modelos/tacoma-hev.json` (aprobado en estructura, sin cargar a Sanity) y solo el 360° (4 colores de 16 ángulos). Ruta de toyota.mx: `/modelos/pickup/tacoma/` (la HEV vive en `/modelos/hibridos/tacoma-hev/`).
+
+### Cambiado — la tabla de rendimiento se compacta cuando tiene 4 o más filas
+
+A pedido de Raúl: con 4 filas con aclaración, la tabla de Transmisión/Rendimiento de la Tacoma medía unos 520 px y alargaba la sección. `app/modelos/[slug]/page.tsx` ahora usa una versión compacta **solo cuando hay 4 o más filas** (hoy únicamente la Tacoma): la aclaración ("2WD", "TRD 4WD") va en la misma línea que "AT", menos espacio vertical por fila y en el encabezado, y el número rojo conserva sus 32 px. Se activa por los datos, sin campo nuevo en Sanity.
+Medido a 1280 y a 375 px: Tacoma 521→325 y 569→349 px; Tundra HEV, Sequoia HEV, 4Runner HEV, Hilux, RAV4 HEV y Yaris Sedán, idénticos a antes. Documentado en `SISTEMA-DE-DISENO.md` (sección 8).
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (79)
 
 ### Agregado — Tundra HEV publicado en Sanity (20 de 24 modelos)

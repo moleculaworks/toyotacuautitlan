@@ -249,6 +249,15 @@ moverlo a `HighlightIcon.tsx`.
 
 ---
 
+## 8. Tabla de rendimiento (página de modelo)
+
+La tabla de Transmisión / Rendimiento de combustible (`#rendimiento` en `app/modelos/[slug]/page.tsx`) tiene dos versiones, elegidas **solo por el número de filas**, sin campo en Sanity:
+
+- **1 a 3 filas (todos los modelos publicados menos la Tacoma):** versión de siempre. Fila de 88 px (espacio de 20 px arriba y abajo, número rojo de 32 px con interlineado de 48 px); con aclaración (`detalle`) apilada debajo en `text-base` gris, la fila sube a 115 px. Encabezado de 62 px.
+- **4 o más filas (hoy solo la Tacoma, desde el 9 de noviembre de 2026):** versión compacta. La aclaración va **en la misma línea** que la transmisión (`flex-wrap`, así una aclaración larga baja sola a la línea siguiente), espacio de 14 px arriba y abajo, interlineado del número de 40 px (fila de 68 px) y encabezado de 12 px de espacio (50 px). El número rojo conserva sus 32 px. En móvil el espacio horizontal baja de 24 a 16 px para que la aclaración quepa junto a "AT".
+
+Si otro modelo llega a 4 filas, usa la versión compacta sin cambios; si se quiere que aplique también a 3 filas, el límite está en `rendimientoCompacto` (`rendimientoFilas.length >= 4`).
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño
