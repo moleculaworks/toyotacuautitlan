@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (78)
+
+### Seguridad — Next.js, Zod y cabeceras (sin cambios de contenido ni de diseño)
+
+Raúl preguntó si el sitio usa PHP. **No:** es Next.js (Node) con Sanity y Vercel; no hay archivos `.php`, ni `composer`, ni WordPress. Al revisar la parte técnica, `npm audit` marcó que Next.js 16.2.9 tenía avisos de seguridad (algunos críticos: ejecución remota de código en el optimizador de imágenes y en `next/og`, entre otros) y que Zod (dependencia directa) permitía agotar la memoria con datos enormes.
+- **`next` 16.2.9 → 16.4.5** (versión exacta, sin `^`) y **`zod` → `^4.6.7`**. Con eso `next`, `sharp` y `zod` dejan de aparecer en la auditoría (de 36 avisos a 33: 2 críticos y 14 altos restantes, todos de las herramientas de Sanity y de compilación, no del servidor público).
+- **Cabeceras de seguridad** en `next.config.ts`: `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin` y `Permissions-Policy` (cámara, micrófono y pagos desactivados). Se apagó `X-Powered-By`. **No** se agregó `Content-Security-Policy` a propósito: puede bloquear imágenes, scripts o el `/studio` si queda mal escrita; si se agrega, primero en modo Report-Only.
+- **Verificación antes de subir:** se tomó la "huella" (texto, imágenes, enlaces, datos estructurados y metadatos) de las 25 páginas en producción y del código nuevo: **125 comparaciones, 0 diferencias**. Además: compila (33 rutas), el visor 360° cambia de color, el carrusel y los nombres alineados siguen igual, el menú funciona, las rutas de formulario siguen rechazando datos inválidos (400) y el `/studio` muestra el inicio de sesión como en producción.
+- Respaldo de `package.json` y `package-lock.json` previos en la carpeta temporal de la sesión; si algo fallara, Vercel conserva el despliegue anterior y se puede revertir el commit.
+- No se corrió `npm audit fix` a ciegas (actualizaría muchas dependencias internas); queda pendiente, opcional, el salto a Sanity 6 (cambio mayor) para limpiar los avisos de las herramientas del Studio.
+
 ## 2026-11-01 — Raúl (Claude Sonnet 5.5) (77)
 
 ### Cambiado — hex de los colores de los modelos 1 a 12 revisados contra las fotos del 360°

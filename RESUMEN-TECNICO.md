@@ -185,3 +185,12 @@ Estos dos valores **no son secretos** (el prefijo `NEXT_PUBLIC_` significa que q
 **Cómo compartirlo con un nuevo colaborador:** copiar y pegar ese mismo contenido en un archivo nuevo llamado `.env.local` dentro de la raíz del proyecto en su máquina (no existe automáticamente al clonar, hay que crearlo a mano cada vez).
 
 **No hay ninguna otra llave secreta en este momento** — no hay API keys de CRM, no hay tokens de pago, no hay credenciales de terceros. El día que se conecte un CRM o cualquier otro servicio, ese será el momento de empezar a manejar variables verdaderamente sensibles, y ahí sí será clave no compartirlas por canales inseguros.
+
+## Seguridad y dependencias (actualizado el 9 de noviembre de 2026)
+
+- **El sitio no usa PHP.** Es Next.js (Node) + Sanity (CMS en la nube) + Vercel. No hay `.php`, `composer`, WordPress ni servidor propio. Las cabeceras de respuesta dicen `server: Vercel`.
+- **Versiones clave:** Next.js 16.4.5 (fija, sin `^`), React 19.2.4, Zod 4.6.7, Sanity 5.x.
+- **Cabeceras** (en `next.config.ts`): `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`, `Permissions-Policy`; `X-Powered-By` apagado. `Strict-Transport-Security` lo agrega Vercel. Sin `Content-Security-Policy` todavía (ver `PROYECTO.md`).
+- **Cómo auditar:** `npm audit --omit=dev`. Los avisos restantes (2 críticos, 14 altos) vienen de las herramientas del Sanity Studio y de compilación (`dompurify`, `tar`, `vite`, `adm-zip`, `js-yaml`…), no del servidor público; limpiarlos exige Sanity 6 (cambio mayor).
+- **Antes de actualizar dependencias:** guardar la "huella" de las 25 páginas en producción (texto, imágenes, enlaces, datos estructurados y metadatos), actualizar en una rama, compilar y comparar; no usar `npm audit fix --force`.
+- **Vercel puede bloquear peticiones automáticas** (`curl` repetido recibe un "Security Checkpoint" 403 temporal); para comprobar el sitio en bloque, hacerlo desde el navegador.
