@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (79)
+
+### Agregado — Tundra HEV publicado en Sanity (20 de 24 modelos)
+
+Vigésimo modelo (slug `tundra-hev`, documento `tundra-hev-modelo`), sin par de motorización, año 2026. 4 versiones en carrusel: Limited HEV $1,494,000, TRD Off Road HEV $1,520,200, Platinum HEV $1,660,500 y TRD PRO HEV $1,695,400.
+**437 HP de potencia total (V6 biturbo de 3.5 L más motor eléctrico), la más alta del catálogo**, transmisión automática de 10 velocidades y 4WD Part-Time con caja reductora.
+Barra de íconos: Motor "Híbrido · 437 HP", Tracción "4WD", Capacidad de carga "Hasta 730 kg" (730 en Limited, TRD Off Road y TRD PRO y 710 en Platinum, leído de la tabla de la ficha) y Bolsas de aire "8".
+Destacado "Una cabina para viajes largos" (asientos de cubo con calefacción y ventilación en las 4 versiones, aire de 2 zonas, pantalla de 14", conectores y 14 portavasos). Rendimiento 11.40 km/l como toyota.mx, una sola fila sin distinguir versión.
+Seguridad con 10 ítems, entre ellos el Control de Estabilidad del Remolque y el monitoreo de presión de llantas; el Toyota Safety Sense del Tundra no incluye Alerta de Cambio de Carril (LDA).
+6 colores con 16 ángulos de 360° (Azul, Blanco, Rojo, Gris, Negro y Plata); HEX nuevos Azul `#2A3A96` y Plata `#A5A7AB`, el resto reutilizados. Galería 6 exteriores + 6 interiores.
+117 imágenes subidas con la CLI de Sanity; heros comprimidos (195→139 y 184→128 KB). La imagen de la TRD PRO está en otro ángulo que las otras tres versiones (aceptado).
+**Dos fichas técnicas sin archivo** ("Tundra HEV", que cubre Limited, TRD Off Road y Platinum, y "Tundra TRD PRO HEV"), igual que el 4Runner HEV: los dos botones se ven sin enlace hasta subir los PDFs al final.
+Publicado con confirmación de Raúl y revisado en local antes de subir; el sitio en vivo lo muestra con este push.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (78)
 
 ### Seguridad — Next.js, Zod y cabeceras (sin cambios de contenido ni de diseño)
