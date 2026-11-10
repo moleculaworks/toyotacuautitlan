@@ -43,6 +43,46 @@
 
 ## 🔲 Pendiente
 
+### Resumen de lo que falta (actualizado el 9 de noviembre de 2026, con el catálogo de 24 modelos completo)
+
+Los 24 modelos están publicados con precios iguales a toyota.mx, las 27 fichas técnicas conectadas a sus botones y el año fuera de SEO y de la página (ver `CHANGELOG.md` 70 a 89). Lo que sigue abierto, de más a menos importante (el detalle de cada punto está en las listas de abajo):
+
+**A. Para poder lanzar el sitio**
+1. **Dominio:** conectar `toyotacuautitlan.com.mx` a Vercel, configurar el DNS en el registrador y confirmar el SSL (Vercel lo hace solo). Pospuesto a propósito hasta terminar el desarrollo.
+2. **Quitar el bloqueo de `app/robots.ts`** (hoy `Disallow: /`, a propósito): si se olvida, Google nunca indexa el sitio. Y construir un **sitemap dinámico** una vez conectado el dominio.
+3. **Reemplazar el sitio WordPress actual** con el nuevo, pruebas en mobile (iOS y Android) y Core Web Vitals (objetivo mayor a 90 en PageSpeed).
+4. **Configuración del sitio en Sanity:** el documento `configuracion` **no existe todavía** (verificado el 9 de noviembre). Faltan teléfono, WhatsApp, horario y redes; revisar qué muestra el sitio mientras tanto (datos del concesionario en el pie y en el JSON-LD).
+5. **Promociones:** hay **0** promociones cargadas en Sanity.
+6. **Inicio:** diseño de la homepage con el hero real (imagen de auto) y el rediseño de las tarjetas de modelo según el wireframe aprobado (verificar con Raúl si ese wireframe sigue vigente).
+
+**B. Formularios y leads (todo pospuesto a propósito hasta terminar el desarrollo)**
+1. Construir de verdad los formularios de Cotización y Prueba de Manejo: hoy son solo muestras sin revisar. Las decisiones ya tomadas están en Obsidian (`formularios-cotizacion-y-prueba-de-manejo.md`): selects de modelo y versión en cascada desde Sanity, slug de versión automático, versión obligatoria sin opción "todas" y precio visible al elegir versión.
+2. Definir qué CRMs conectar (Zeenvia, Seekop, SaleU, propio), integrarlos en `/api/cotizacion` y `/api/cita` y avisar por correo al equipo de ventas cuando llegue un lead.
+3. **Antes de conectar** esas rutas: límite de intentos (rate limit) y captcha invisible (por ejemplo Cloudflare Turnstile).
+
+**C. Seguridad**
+`Content-Security-Policy` primero en modo Report-Only y, si no rompe nada, activarla; roles de Sanity como Editor (no Administrator) al invitar al equipo; confirmar la política de backups de Sanity; activar Dependabot en GitHub; revisar permisos de Vercel al sumar colaboradores; repetir `npm audit --omit=dev` cada cierto tiempo; opcional, subir a Sanity 6 (cambio mayor).
+
+**D. Mejoras técnicas, no urgentes**
+1. **Revalidación Sanity a sitio en vivo** (aplazada a propósito el 15 de septiembre): las páginas de modelo son HTML estático, así que cada cambio de contenido necesita un deploy. El 9 de noviembre dio dos desfases: el deploy leyó datos viejos del CDN de Sanity (3 botones de ficha quedaron sin enlace; se resolvió con un commit vacío). Una revalidación automática (webhook de Sanity o revalidación por demanda) lo evitaría. Mientras tanto: esperar unos minutos entre parchar Sanity y hacer push, y verificar todas las páginas en producción (ver la memoria `feedback_cdn_sanity_antes_de_desplegar`).
+2. Vista previa de borradores ya publicados (Draft Mode de Next.js).
+3. Actualización masiva de precios y datos por CSV o Google Sheets (futuro).
+
+**E. Mantenimiento que hay que repetir** (los métodos están guardados en la memoria de Claude)
+1. **Precios contra toyota.mx:** repetir de vez en cuando y antes de cualquier campaña (Toyota subió 4 modelos sin avisar el 9 de noviembre).
+2. **Fichas nuevas:** cuando Toyota publique una ficha de otro año modelo, comparar contra lo publicado y actualizar el campo `anio` (ahora interno). Casos abiertos: toyota.mx todavía enlaza para el Tundra HEV la ficha `TUNDRA_HV_25`, más antigua que la que usamos; y la página de Corolla en toyota.mx aún muestra el equipo de 2026 (sin Connected Services ni la antena de aleta de tiburón de la ficha 2027), así que revisar de nuevo cuando la actualicen.
+3. **Auditoría de imágenes huérfanas** después de reemplazar imágenes o subir archivos (la del 9 de noviembre dejó 0 de 2,629 imágenes).
+
+**F. Decisiones abiertas de Raúl**
+1. **Qué modelos vende realmente Cuautitlán:** los 24 son el catálogo completo de toyota.mx y la propia nota del proyecto dice que la agencia real probablemente vende un subconjunto (Oaxaca, por ejemplo, no tiene GR Yaris ni RAV4 PHEV). Confirmar con la agencia y ocultar los que no venda.
+2. **GR Supra y GR Supra Final Edition** existen en toyota.mx pero no están en los 24: decidir si se agregan.
+3. Dudas menores de HEX: Gris y Negro del Yaris Sedán HEV, y las platas de Corolla y Corolla HEV.
+4. Equipo: confirmar el acceso de Raúl a Vercel y repartir secciones del proyecto con Beto para no duplicar esfuerzo.
+
+**G. Documentación que hay que mantener al día**
+`CHANGELOG.md` y `PROYECTO.md` en cada cambio; la copia espejo de este archivo en Obsidian (`00 proyecto.md`) cuando se edite el `CLAUDE.md` del proyecto; la bóveda (`catalogo-de-modelos.md`, `nombres-fichas-tecnicas.md`, `pendientes-del-proyecto.md`); y la memoria de Claude (`MEMORY.md`).
+
+
 ### Diseño visual (en progreso)
 - [x] Wireframe de página de modelo individual (handoff Corolla 2026)
 - [x] Página piloto /modelos/corolla implementada según handoff:
@@ -112,7 +152,7 @@
 - [x] Imagen hero mobile dedicada (frontal 4:3) vía <picture>
 - [x] Viewer 360° real: 7 colores × 16 ángulos — drag/swipe + flechas en escritorio, solo drag/swipe en mobile (22 de agosto: se quitaron los botones de flecha en mobile por ser confusos/redundantes con el gesto de arrastre)
 - [x] Revisión de UX mobile (22 de agosto): visor 360°, "colores disponibles" (scrollbar propio en vez de degradado), texto/botón de ficha técnica, botones "Solicitar Cotización" del Corolla (ancho y centrado) — ver `CHANGELOG.md`
-- [ ] Pendiente del handoff: PDF ficha técnica
+- [x] Pendiente del handoff: PDF ficha técnica — HECHO el 9 de noviembre de 2026: 27 fichas conectadas a los botones (ver `CHANGELOG.md` 87).
 - [ ] Rediseño visual de tarjetas de modelo según wireframe aprobado
 - [x] Botones "Cotízalo"/"Manéjalo" en la tarjeta de versión del Corolla (15 de septiembre de 2026) — Propuesta A decidida tras comparar 3 variantes en local; sin destino todavía (`href="#"`), pendiente de que existan los formularios de Cotización (por versión) y Prueba de Manejo — ver `CHANGELOG.md` y Obsidian `formularios-cotizacion-y-prueba-de-manejo.md`
 - [x] **Rediseño del set de íconos de la barra de destacados** (25 de septiembre de 2026) — 8 íconos redibujados a partir de ejemplos de Raúl (motor, tracción, tecnología, transmisión, maletero, modos de manejo, seguridad, capacidad de carga), trazo de todo el set de 1.8 a 1.0, render de 32 a 36 px; `pasajeros` con ajuste menor y `potencia` sin cambios. Eliminados `autonomia`, `remolque` y `rendimiento` (ningún modelo los usaba). Ver `SISTEMA-DE-DISENO.md` sección 7 y `CHANGELOG.md` (52-53). Pendiente a futuro: si RAV4 PHEV o Tacoma necesitan autonomía/remolque, se dibujan de cero con un ejemplo de Raúl.
@@ -122,7 +162,7 @@
 - [ ] Diseño de homepage con hero real (imagen de auto)
 
 ### Contenido
-- [ ] Cargar los modelos Toyota en Sanity con imágenes y precios — 24 en el catálogo completo de toyota.mx (probablemente un subconjunto real para Cuautitlán), ver Obsidian `catalogo-de-modelos.md` para la lista y estructura completa
+- [x] Cargar los modelos Toyota en Sanity con imágenes y precios — 24 en el catálogo completo de toyota.mx (probablemente un subconjunto real para Cuautitlán), ver Obsidian `catalogo-de-modelos.md` para la lista y estructura completa — HECHO el 9 de noviembre de 2026: los 24 modelos publicados con imágenes, y precios iguales a toyota.mx.
 - [x] **Botones de ficha técnica: código listo** (23 de octubre de 2026) — campo `fichasTecnicas` en el schema, proyección en `queries.ts` y un botón por ficha en `app/modelos/[slug]/page.tsx` (lado a lado en escritorio, apilados en móvil; una ficha conserva el texto "Descargar Ficha Técnica"). Mientras un modelo no tenga fichas el botón sigue sin enlace; el 4Runner HEV ya muestra sus dos botones (Limited y TRD Pro) sin enlace, porque el archivo es opcional. Ver `CHANGELOG.md` (65 y 66).
 - [x] **Ícono `remolque` (capacidad de arrastre)** (24 de octubre de 2026) — nuevo ícono de línea en `HighlightIcon.tsx` y opción nueva en el schema (`caracteristicas.icono`); el set pasa de 10 a 11 íconos. Diseñado a partir de un ejemplo de Raúl (bola de enganche sobre un soporte cerrado, sin los destellos). Lo estrena el Sequoia HEV y servirá para Tacoma y Tundra HEV. Ver `CHANGELOG.md` (69).
 - [x] **Sección "Versiones" centrada con 1 o 2 versiones** (23 de octubre de 2026) — opción C elegida por Raúl: título, subtítulo y tarjetas centrados, tarjetas de 360 px (una) o 340 px (dos), apiladas en móvil; sin carrusel. Aplica a RAV4 PHEV, 4Runner HEV, Prius, Avanza y Highlander HEV; los modelos con 3 o más versiones conservan el carrusel. Ver `CHANGELOG.md` (67).
@@ -137,7 +177,7 @@
 - [x] **Subir las fichas técnicas (PDF) y enlazarlas a cada modelo** (9 de noviembre de 2026) — 27 PDF para los 24 modelos (Tacoma HEV, 4Runner HEV y Tundra HEV con dos) subidos con la CLI de Sanity y vinculados en `fichasTecnicas`; antes se unificaron los nombres al estilo de Toyota (`Ficha_Tecnica_<MODELO>_<AA>_web.pdf`, registro en Obsidian) y se descartaron las fichas `_26` de Corolla y Corolla HEV por existir las `_27`. Las 27 URL responden como PDF y ningún botón conserva `href="#"`. Ver `CHANGELOG.md` (87).
 - [x] **Comparar el contenido de Corolla y Corolla HEV contra su ficha 2027** (9 de noviembre de 2026) — datos técnicos idénticos a la 2026; cambios de equipo (antena de aleta de tiburón, Connected Services y cargador Qi de 10 W en XLE/SE) aplicados en parte por indicación de Raúl, ver `CHANGELOG.md` (88). Aparte: toyota.mx todavía enlaza para el Tundra HEV la ficha `TUNDRA_HV_25`, más antigua que la que usamos.
 - [ ] Vista previa de borradores **ya publicados en Sanity** (Next.js Draft Mode) — pendiente, no urgente todavía. No confundir con `/preview-borrador` (ya construido): ese resuelve revisar copy/specs de un JSON *antes* de tocar Sanity con fotos prestadas; esto otro resolvería ver un borrador que *ya está en Sanity* (ej. un refresh de año-modelo sobre un documento existente) con el diseño real antes de publicar. Hoy eso solo se puede ver en el editor de Sanity Studio (campos sueltos). Construirlo antes del primer refresh de año-modelo (ej. Corolla 2026 → 2027). Ver Obsidian `catalogo-de-modelos.md`.
-- [ ] Definir estructura de versiones por modelo (LE, SE, HEV, etc.)
+- [x] Definir estructura de versiones por modelo (LE, SE, HEV, etc.) — HECHO: `versiones[]` en los 24 modelos.
 - [ ] Cargar promociones vigentes
 - [ ] Llenar Configuración del sitio (teléfono, WhatsApp, horario, redes)
 
@@ -174,7 +214,7 @@
 - [ ] Asignar secciones del proyecto para no duplicar esfuerzo entre Beto y Raúl
 
 ### Precios
-- [ ] Definir estructura de versiones por modelo
+- [x] Definir estructura de versiones por modelo — HECHO: `versiones[]` en los 24 modelos.
 - [ ] Implementar actualización masiva por CSV o Google Sheets
 
 ### Antes del lanzamiento

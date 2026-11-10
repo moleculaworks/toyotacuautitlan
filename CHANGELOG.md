@@ -5,6 +5,13 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (90)
+
+### Documentación — resumen priorizado de lo que falta, con el catálogo de 24 modelos completo
+
+A pedido de Raúl, antes de compactar la conversación, se documentó todo lo que queda por hacer. `PROYECTO.md` ahora abre la sección "Pendiente" con un **"Resumen de lo que falta"** en siete bloques: (A) lo necesario para lanzar (dominio, quitar el bloqueo de `robots.ts`, sitemap, reemplazar el WordPress, pruebas mobile y Core Web Vitals, y dos hallazgos de esta revisión: **el documento `configuracion` no existe en Sanity** y **hay 0 promociones**), (B) formularios y CRM, (C) seguridad, (D) mejoras técnicas no urgentes (incluida la revalidación Sanity a sitio en vivo, con lo que pasó con el CDN de Sanity el 9 de noviembre), (E) mantenimiento recurrente (precios, fichas nuevas y auditoría de huérfanas), (F) decisiones abiertas de Raúl (qué modelos vende realmente Cuautitlán, GR Supra, HEX dudosos, acceso a Vercel) y (G) documentación que mantener. Se marcaron como hechos cuatro pendientes viejos que ya estaban resueltos (PDF de ficha técnica, carga de los 24 modelos y la estructura de versiones, que aparecía dos veces).
+Misma lista en Obsidian (`pendientes-del-proyecto.md`) y en la memoria de Claude (`project_pendientes_al_9_nov_2026`). Además se corrigió el `CLAUDE.md` del proyecto y su copia espejo `00 proyecto.md`, que decían "6 de 24 ya publicados" y "pendiente inmediato: dividir el Corolla"; ahora dicen que los 24 están publicados y apuntan a la lista de pendientes. Sin cambios de código ni de contenido.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (89)
 
 ### Cambiado — el campo `anio` queda como dato interno y así se explica en el Studio
