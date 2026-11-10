@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (86)
+
+### Corregido — precios de 4 modelos alineados con toyota.mx
+
+A pedido de Raúl se revisaron los precios de los 24 modelos contra toyota.mx (la lista de modelos y la página de cada modelo con todas sus versiones, leídas el 9 de noviembre de 2026). **20 modelos ya coincidían** (precio "desde" y de cada versión). Los 4 que no, porque Toyota subió precios después de la carga, se corrigieron en Sanity y se publicaron directo:
+- **Yaris Sedán** (y su par **Yaris Sedán HEV**, que lleva las mismas 6 tarjetas): "desde" $327,700 → $330,700 y $450,000 → $453,000 en el HEV; Base MT $330,700, Base CVT $345,700, S MT $355,800, S CVT $370,800, S Hi CVT $406,800 y HEV $453,000 (+$3,000 en todas).
+- **Camry HEV**: "desde" $625,600 → $629,400; LE HEV $629,400, XSE HEV $709,500, XSE Bi-tono HEV $719,500 y XLE HEV $764,500 (+$3,800 a +$3,900).
+- **Raize**: XLE CVT $404,900 → $407,900 y XLE CVT Bi-Tono $418,200 → $421,200 (la XLE MT y el "desde" $390,400 no cambiaron).
+Se comprobó después que Sanity y toyota.mx dan los mismos números en los 4 modelos. También se sincronizaron los JSON de `JSON Modelos/` de esos modelos y la tabla de precios de `catalogo-de-modelos.md` en Obsidian (que además traía el Hiace en $732,200 en vez de $739,000; el sitio ya tenía el correcto). Sin cambios de código. Los precios del sitio solo salen de `precioDesde` y de `versiones[].precio` (ningún texto de modelo menciona precio), así que no hay otros lugares que cambiar. El sitio en vivo los muestra con este push.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (85)
 
 ### Mantenimiento — tercera auditoría de imágenes huérfanas en Sanity (113 borradas)
