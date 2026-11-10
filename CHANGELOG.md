@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (84)
+
+### Agregado — GR Corolla publicado en Sanity (24 de 24 modelos: catálogo completo)
+
+Vigésimo cuarto y último modelo del catálogo (slug `gr-corolla`, documento `gr-corolla-modelo`), segundo de la categoría **Toyota Gazoo Racing**, año 2026 (ficha MY26, febrero de 2026). **Una sola versión**, "GR Corolla", $975,000 M.N. (ni el sitio ni la ficha le dan nombre de versión); la sección va centrada y sin carrusel.
+Motor 1.6 L de 3 cilindros con turbo, interenfriador y subradiador, **296 HP y 295 lb-pie**, **transmisión automática de 8 velocidades** (el GR Yaris es manual) y tracción GR-FOUR con bloqueo de diferencial (LSD); cajuela de **503 L** y 5 pasajeros. Barra de íconos: Motor "Turbo · 296 HP", Transmisión "Automática · 8 vel.", Tracción "GR-FOUR AWD" y Cajuela "503 L". Rendimiento en una fila, AT 13.40 km/l.
+Hero **"Un deportivo con espíritu de competencia."** (el primer texto, "Un hatchback deportivo con lugar para cinco.", no convenció por hablar del espacio y no de la emoción). Destacado **"Desempeño"** ("Potencia que responde al instante"): Raúl decidió que el tema de los dos GR es el desempeño, y el texto se apoya en la automática de 8 velocidades porque el motor y la tracción son los mismos que los del GR Yaris; se descartaron "Tecnología", "Transmisión" y "Tracción". Imagen: el GR Corolla rojo en movimiento por una calle de noche.
+Toyota Safety Sense con **solo 4 componentes** (PCS, LKA, LTA y AHB, sin la Alerta de Cambio de Carril), control de crucero con radar "All Speed Range" (como lo escribe la ficha), monitoreo de punto ciego con alerta de tráfico cruzado y asistente de salida segura, 7 bolsas de aire y sensores de estacionamiento (estos últimos solo en toyota.mx).
+**3 colores** con **17 (Blanco), 18 (Gris) y 18 (Rojo) ángulos de 360°**, igual que la API de toyota.mx. HEX aprobados tras un comparativo visual contra la foto: Blanco `#E5E7EA` con borde (blanco plateado, más frío que el `#F5F5F5` de otros modelos), Gris `#45474B` y Rojo `#BD0C28`.
+**Galería de 6 exteriores y 5 interiores** (excepción al patrón 6 + 6, confirmada por Raúl: solo hay 5 fotos; son de toyota.mx y tres muestran mph y °F de la versión de EE. UU., aceptado). 70 imágenes subidas con la CLI de Sanity; la imagen de rendimiento (primer plano del botón GR START/STOP) se comprimió de 172 a 98 KB con calidad 55 y sin canal alfa, sin diferencia visible; los heros ya venían ligeros (103 y 134 KB).
+Una ficha técnica registrada sin archivo ("GR Corolla"). Publicado con confirmación de Raúl y revisado en local (14 imágenes sin rotas, sin errores en consola); el sitio en vivo lo muestra con este push. Ruta de toyota.mx: `/modelos/gr/gr-corolla/`. Con este modelo los 24 del catálogo quedan publicados; siguen las tareas de cierre (subir las fichas técnicas, auditar imágenes huérfanas y revisar que ningún botón quede con `href="#"`).
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (83)
 
 ### Cambiado — nueva imagen del destacado de Tacoma HEV y nueva tarjeta del Tundra HEV
