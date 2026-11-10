@@ -2,9 +2,13 @@ import { client } from './client'
 import { groq } from 'next-sanity'
 
 // Modelos
+// Ordenados por precio de menor a mayor (acordado 9 nov 2026, igual que el menú de
+// toyota.mx): lo usan el mega-menú de escritorio, el acordeón móvil y el catálogo
+// /modelos, que filtran por categoría sin cambiar este orden. `nombre` desempata.
+// El campo `orden` de Sanity ya no manda aquí (valía 99 o vacío en los 24 modelos).
 export async function getModelos() {
   return client.fetch(groq`
-    *[_type == "modelo"] | order(orden asc) {
+    *[_type == "modelo"] | order(precioDesde asc, nombre asc) {
       _id, nombre, slug, categoria, esHibridoElectrico, precioDesde, descripcionCorta, destacado,
       imagenTarjeta { asset->{ url, metadata { lqip } } }
     }

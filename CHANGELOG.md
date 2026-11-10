@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (92)
+
+### Cambiado — los modelos del menú se ordenan por precio, como en toyota.mx
+
+A pedido de Raúl, el menú de modelos sigue el orden de toyota.mx, verificado por precio. Se revisó primero cómo lo hace Toyota: en cada categoría (Sedanes & Hatchbacks, Suv's & Minivans, Pickup's & Comerciales, Toyota Gazoo Racing e Híbridos) los modelos van **de menor a mayor precio**. En nuestro sitio, en cambio, `getModelos()` ordenaba por el campo `orden` de Sanity, que valía 99 en 17 modelos y estaba vacío en 7, así que el orden era casi arbitrario.
+`getModelos()` en `lib/sanity/queries.ts` ahora usa `order(precioDesde asc, nombre asc)`. Como esa consulta alimenta el mega-menú de escritorio, el acordeón móvil y el catálogo `/modelos`, los tres quedan ordenados por precio, y como el orden sale del precio, **se reordena solo cuando Toyota cambia un precio**. El campo `orden` se conserva (lo siguen usando "Modelos similares" y los destacados de la portada).
+Verificado en localhost, en las 5 categorías del menú de escritorio y del móvil: mismo orden y mismos precios que toyota.mx (7, 10, 5, 2 y 13 modelos) y precios ascendentes en todas; el catálogo `/modelos` en "Todos" muestra los 24 de menor a mayor. La única diferencia con toyota.mx es que allá también están GR Supra y GR Supra Final Edition (no son de nuestros 24).
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (91)
 
 ### Cambiado — nueva imagen del destacado del Prius
