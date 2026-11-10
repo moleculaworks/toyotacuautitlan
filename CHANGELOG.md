@@ -5,6 +5,13 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (93)
+
+### Cambiado — "Modelos similares" ahora muestra modelos de la misma categoría y precio cercano
+
+A pedido de Raúl, la sección "Modelos similares" (al final de cada página de modelo) dejó de mostrar tres modelos casi al azar (17 de los 24 tenían `orden = 99` y los otros 7 estaban vacíos, así que siempre salían Yaris Sedán, 4Runner HEV y Avanza). Regla nueva en `getModelosSimilares()` de `lib/sanity/queries.ts`: (1) primero modelos de la **misma categoría**, del más cercano en precio al que se está viendo; (2) si la categoría no alcanza para 3 (Gazoo Racing solo tiene 2 modelos), se completa con modelos de otras categorías, también por cercanía de precio; (3) nunca incluye el modelo actual; (4) los 3 elegidos se muestran de menor a mayor precio. El campo `orden` ya no interviene en esta sección (sigue en `getModeloDestacados`). Sin cambios de diseño ni de Sanity.
+Verificado en localhost: Corolla Cross muestra Raize, Corolla Cross HEV y RAV4 HEV; Yaris Hatchback, Yaris Sedán, Corolla y Yaris Sedán HEV; Tacoma, Hilux, Hiace y Tacoma HEV; GR Yaris, GR Corolla más Highlander HEV y RAV4 PHEV.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (92)
 
 ### Cambiado — los modelos del menú se ordenan por precio, como en toyota.mx

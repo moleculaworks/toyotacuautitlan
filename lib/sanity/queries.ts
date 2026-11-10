@@ -1,5 +1,6 @@
 import { client } from './client'
 import { groq } from 'next-sanity'
+import type { Modelo } from '@/types'
 
 // Modelos
 // Ordenados por precio de menor a mayor (acordado 9 nov 2026, igual que el menú de
@@ -24,19 +25,35 @@ export async function getModeloDestacados() {
   `)
 }
 
-// Otros modelos para la sección "Modelos similares" al final de una página
-// de modelo — cualquier otro modelo (sin filtrar por categoría todavía),
-// excluyendo el que se está viendo.
+// Modelos para la sección "Modelos similares" al final de una página de modelo
+// (acordado 9 nov 2026). Primero los de la misma categoría, del más cercano en
+// precio al que se está viendo; si la categoría no alcanza para `limite`
+// (ej. Gazoo Racing solo tiene 2 modelos), se completa con los de otras
+// categorías, también por cercanía de precio. Nunca incluye el modelo actual.
+// Se muestran de menor a mayor precio. El campo `orden` de Sanity ya no interviene.
 export async function getModelosSimilares(slugActual: string, limite = 3) {
-  return client.fetch(
-    groq`
-      *[_type == "modelo" && slug.current != $slugActual] | order(orden asc) [0...$limite] {
-        nombre, slug, categoria, precioDesde, descripcionCorta,
-        imagenTarjeta { asset->{ url, metadata { lqip } } }
-      }
-    `,
-    { slugActual, limite }
-  )
+  const todos: Modelo[] = await client.fetch(groq`
+    *[_type == "modelo"] {
+      _id, nombre, slug, categoria, precioDesde, descripcionCorta,
+      imagenTarjeta { asset->{ url, metadata { lqip } } }
+    }
+  `)
+
+  const actual = todos.find((m) => m.slug.current === slugActual)
+  if (!actual) return []
+
+  const distancia = (m: Modelo) =>
+    Math.abs((m.precioDesde ?? 0) - (actual.precioDesde ?? 0))
+  const porCercania = (a: Modelo, b: Modelo) =>
+    distancia(a) - distancia(b)
+
+  const otros = todos.filter((m) => m.slug.current !== slugActual)
+  const mismaCategoria = otros.filter((m) => m.categoria === actual.categoria).sort(porCercania)
+  const restoDeCategorias = otros.filter((m) => m.categoria !== actual.categoria).sort(porCercania)
+
+  return [...mismaCategoria, ...restoDeCategorias]
+    .slice(0, limite)
+    .sort((a, b) => (a.precioDesde ?? 0) - (b.precioDesde ?? 0))
 }
 
 export async function getModeloBySlug(slug: string) {
