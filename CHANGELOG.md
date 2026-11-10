@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (83)
+
+### Cambiado — nueva imagen del destacado de Tacoma HEV y nueva tarjeta del Tundra HEV
+
+A pedido de Raúl se reemplazaron dos imágenes ya publicadas en Sanity (sin cambios de código):
+- **Tacoma HEV, imagen del destacado** (`tacoma-hev-destacado.webp`): ahora es una Grafito jalando un remolque con un cuatrimoto en un camino de terracería, que acompaña mejor el título "Fuerza híbrida para cargar y remolcar" (antes era la Grafito parada en la nieve). 1200×800, 140 KB.
+- **Tundra HEV, tarjeta** (`tundra-hev-tarjeta.webp`): nueva foto de la versión Platinum en plata sobre fondo claro; la tarjeta se usa en el catálogo y en "Modelos similares". 1200×675, 41 KB.
+Raúl nombró primero `yaris-sedan-tarjeta.webp` como segunda imagen, pero fue un error: ese archivo no había cambiado desde septiembre (idéntico al de Sanity) y no se tocó. Las imágenes anteriores de Tacoma HEV y Tundra HEV quedan sin referencias en Sanity (pendientes para la próxima auditoría de huérfanas). Publicado directo, como acordado para cambios de contenido pedidos explícitamente; el sitio en vivo lo muestra con este push.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (82)
 
 ### Agregado — GR Yaris publicado en Sanity (23 de 24 modelos)
