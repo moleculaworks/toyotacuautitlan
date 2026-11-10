@@ -285,6 +285,15 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 | Breakpoint | `desktop:` / `max-desktop:` (880px), el del hero heredado, en toda la página. Para las páginas sin SectionHero rige la regla de la sección 1. |
 | Textos | Editables en Sanity (documento único "Página: ..."), con regeneración cada 60 s (`revalidate = 60`). Imágenes opcionales en Sanity con placeholder local mientras no se suban. |
 
+## 10. Cabecera, logo y menú móvil (10 de noviembre de 2026)
+
+- **Altura de la cabecera:** 64 px en móvil y tableta (menos de 1024 px) y **80 px desde `lg:`**. Esa altura aparece en 4 lugares que hay que mover juntos: la cabecera, el contenedor del mega-menú, el `top` del mega-menú y el `pt` de `main` (`app/layout.tsx`).
+- **Cambio de menú: `lg:` (1024 px), no `md:`.** Menos de 1024 px: hamburguesa a la izquierda (✕ al abrir), logo centrado e ícono de teléfono a la derecha; desde 1024 px: logo, barra de enlaces con mega-menú y botón "Cotizar". Motivo: el logo oficial no cabe con la barra completa a 768 px.
+- **Panel del menú móvil:** pantalla completa bajo la cabecera (`top-16 bottom-0`), lista con scroll propio, zona fija al fondo con el botón rojo "Cotizar" y "WhatsApp ventas" / "WhatsApp servicio" en contorno (`secondary`, 16 px). `body` bloqueado mientras está abierto; cierra con ✕, Escape o al tocar un enlace. Filas con flecha, igual que las categorías del acordeón.
+- **Logo:** SVG oficial en `public/images/logo/`. `toyota-cuautitlan-logo.svg` (fondo claro) en la cabecera, 32 px de alto en móvil y 40 px desde `lg:`; `toyota-cuautitlan-logo-blanco.svg` en el pie de página, 40 px. Los archivos fuente viven en la carpeta de trabajo `Logotipo/` (con el favicon). Nunca recrear el logo en texto.
+- **Favicon:** `app/favicon.ico`, `app/icon.png` (512) y `app/apple-icon.png` (180), generados de `Logotipo/favicon.png`.
+- **Imagen para compartir (Open Graph):** `public/images/toyota-cuautitlan-compartir.jpg`, 1200×630, JPG de menos de 300 KB, sin precios, años ni teléfonos (logo + fachada + "Pasión por servir."). Se declara en `app/layout.tsx`; las páginas de modelo usan la foto de tarjeta del modelo. Mientras el dominio propio no apunte a este sitio, la URL absoluta usa el dominio de Vercel (ver comentario en `layout.tsx`).
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño

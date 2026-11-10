@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const links = {
@@ -20,8 +21,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <span className="text-2xl font-semibold text-toyota-red">TOYOTA</span>
-            <p className="mt-1 text-sm text-gray-400">Cuautitlán</p>
+            <Image
+              src="/images/logo/toyota-cuautitlan-logo-blanco.svg"
+              alt="Toyota Cuautitlán"
+              width={193}
+              height={40}
+              className="h-10 w-auto"
+            />
             <p className="mt-4 text-sm text-gray-400 leading-relaxed">
               Concesionario oficial Toyota en Cuautitlán Izcalli, Estado de México.
             </p>
