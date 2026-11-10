@@ -5,6 +5,28 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (96)
+
+### Agregado y cambiado — Blanco en el 360° de la Sienna HEV y se quita el Negro (queda con 6 colores)
+
+Raúl entregó el 360° de **Blanco** de la Sienna HEV (18 ángulos de 1200×800 webp, en `Imagenes por Modelo/sienna-hev/360/blanco`). Se subieron las 18 imágenes a Sanity con la CLI y el color se insertó en `coloresExterior` junto a Blanco Perlado (después de Azul Oscuro, que sigue siendo el primero): hex `#FFFFFF` con borde, como el Blanco de los demás modelos. Verificado en localhost: aparece el botón y Blanco y Blanco Perlado muestran fotos distintas. La ficha 2026 lo listaba (versiones LE y XSE) y toyota.mx no. **Se borró también el Negro** (a pedido de Raúl; la ficha no lo listaba y toyota.mx sí): la Sienna HEV queda con **6 colores** (Azul Oscuro, Blanco, Blanco Perlado, Gris metálico, Rojo, Cemento), igual que la ficha. `disenoTexto` de la Sienna HEV no menciona el número de colores, no hubo que corregirlo. `JSON Modelos/sienna-hev.json` sincronizado. Se ve en el sitio en vivo hasta el siguiente deploy.
+
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (95)
+
+### Agregado — Plata y Negro en el 360° del Camry HEV (ahora 7 colores)
+
+Raúl entregó las fotos 360° de **Plata** y **Negro** del Camry HEV (16 ángulos de 1200×800 webp cada uno, en `Imagenes por Modelo/camry-hev/360/plata` y `/negro`). Se subieron las 32 imágenes a Sanity con la CLI y se insertaron en `coloresExterior` siguiendo el orden de la ficha: Blanco, Blanco Perlado, **Plata**, Gris Metálico, Grafito, **Negro**, Rojo. Hex elegidos contra las fotos: Plata `#A9AEB1`, Negro `#111111` (ambos sin borde). Verificado en localhost: los 7 colores aparecen y Plata y Negro muestran fotos propias. Sigue sin agregarse el Azul Cósmico (bi-tono XSE) porque no hay 360°.
+**Textos que dependían del número de colores** (`disenoTexto`, corregidos en Sanity y en `JSON Modelos/`): Camry HEV "cinco" a **"siete"** colores; Corolla "siete" a **"seis"** y Corolla HEV "seis" a **"cinco"**, por los Negros borrados esa misma mañana (entrada 94). `JSON Modelos/` de Corolla, Corolla HEV y Prius sincronizados con Sanity (sin Negro/Mostaza) y el de Camry HEV con los 7 colores. Se ve en el sitio en vivo hasta el siguiente deploy.
+
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (94)
+
+### Documentado — GR Supra descartado y revisión de colores del 360° contra fichas y toyota.mx
+
+- **GR Supra y GR Supra Final Edition descartados** (toyota.mx ya no los muestra en su menú): el catálogo de 24 modelos es el definitivo.
+- **Revisión de colores** pedida por Raúl (que el 360° tenga los mismos colores que cada ficha técnica). Sin cambios de código ni de Sanity. Se compararon los colores de las 27 fichas PDF con el 360° de los 24 modelos: 10 coinciden exactos y 14 difieren. Se verificó contra la lista "Colores disponibles" de cada página de toyota.mx: **el 360° coincide con toyota.mx en los 24 modelos** (única diferencia: el Rojo de la Tacoma HEV, agregado a propósito). Las diferencias son entre las fichas PDF y toyota.mx. Informe completo en Obsidian (`revision-colores-vs-fichas.md`). 
+- **Decisión de Raúl:** los modelos con ficha **2027** (Corolla, Corolla HEV, Prius, Hilux, GR Yaris) deben tener los mismos colores que su ficha; lo que sobra se borra y lo que falta se genera. Hecho en Sanity (publicado): se borró **Negro** del Corolla, **Negro** del Corolla HEV y **Mostaza** del Prius (respaldo de los colores previos en el scratchpad de la sesión). Quedan Corolla con 6 colores, Corolla HEV con 5 y Prius con 5. Hilux y GR Yaris ya coincidían. El **Blanco Perlado del Corolla HEV** (la ficha lo lista para la XLE HEV) **no se agrega**: sus 16 fotos en toyota.mx son idénticas a las del Blanco, así que Raúl decidió dejar el Corolla HEV con 5 colores.
+- **Renombrados para igualar la ficha** (Sanity y `JSON Modelos/`): Avanza "Negro" pasa a **"Negro Metálico"** y GR Yaris "Gris" pasa a **"Gris Metal"** (tal cual lo escribe la ficha). Los demás nombres distintos (Tacoma, Tundra HEV) se dejan como toyota.mx. Los cambios se ven en el sitio hasta el siguiente deploy.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (93)
 
 ### Cambiado — "Modelos similares" ahora muestra modelos de la misma categoría y precio cercano

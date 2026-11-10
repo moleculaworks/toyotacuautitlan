@@ -77,7 +77,7 @@ Los 24 modelos están publicados con precios iguales a toyota.mx, las 27 fichas 
 
 **F. Decisiones abiertas de Raúl**
 1. **Qué modelos vende realmente Cuautitlán:** los 24 son el catálogo completo de toyota.mx y la propia nota del proyecto dice que la agencia real probablemente vende un subconjunto (Oaxaca, por ejemplo, no tiene GR Yaris ni RAV4 PHEV). Confirmar con la agencia y ocultar los que no venda.
-2. **GR Supra y GR Supra Final Edition** existen en toyota.mx pero no están en los 24: decidir si se agregan.
+2. ~~GR Supra y GR Supra Final Edition~~ **Descartados el 9 de noviembre de 2026**: Raúl comprobó que toyota.mx ya no los muestra en su menú. El catálogo de 24 modelos queda como definitivo.
 3. Dudas menores de HEX: Gris y Negro del Yaris Sedán HEV, y las platas de Corolla y Corolla HEV.
 4. Equipo: confirmar el acceso de Raúl a Vercel y repartir secciones del proyecto con Beto para no duplicar esfuerzo.
 
