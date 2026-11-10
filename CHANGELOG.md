@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (85)
+
+### Mantenimiento — tercera auditoría de imágenes huérfanas en Sanity (113 borradas)
+
+Con el catálogo completo (24/24) se hizo la tercera ronda de limpieza (las dos anteriores habían borrado 34). Se buscaron las imágenes sin ningún documento que las referencie (incluidos borradores): **113 huérfanas, 4.1 MB**, el 4% de las 2,742 que había (99.6 MB). Raúl confirmó el borrado y se eliminaron con la CLI de Sanity, con un seguro que aborta si el número encontrado no coincide con el esperado; borradas 113 de 113, sin fallos.
+Eran: **106 del 360° del Yaris Sedán** subidas el 16 de septiembre (versiones antiguas: las que usa el sitio, con los mismos nombres de archivo y más ligeras, se subieron el 23 de septiembre), los heros desktop antiguos de **Highlander HEV, Sienna HEV y 4Runner HEV**, las tarjetas antiguas de **Yaris Sedán HEV y Prius**, y las dos reemplazadas el mismo día (tarjeta del Tundra HEV y destacado de la Tacoma HEV). Antes de borrar se comprobó que ninguna estaba escrita a mano en el código del repo.
+Resultado: **2,629 imágenes, todas en uso y 0 huérfanas**. Sin efecto en el sitio (nada las usaba) y sin cambios de código. Todas conservan su original en `Imagenes por Modelo/`. Queda pendiente repetir la auditoría después de subir las fichas técnicas y de cualquier reemplazo de imágenes.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (84)
 
 ### Agregado — GR Corolla publicado en Sanity (24 de 24 modelos: catálogo completo)
