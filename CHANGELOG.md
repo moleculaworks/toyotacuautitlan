@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (81)
+
+### Agregado — Tacoma HEV publicada en Sanity (22 de 24 modelos)
+
+Vigésimo segundo modelo (slug `tacoma-hev`, documento `tacoma-hev-modelo`), la versión híbrida del par con Tacoma, año 2026, desde $1,167,500 M.N. Mismas **7 versiones en carrusel** que la Tacoma (par con carrusel duplicado; las imágenes de versiones se reutilizaron por referencia, sin duplicar archivos).
+Sistema híbrido: motor 2.4 L de 278 HP más motor eléctrico de 48 HP, **326 HP** y **465 lb-pie** de potencia y torque totales (el 2.4 L solo da 317 lb-pie), caja automática de 8 velocidades y 4WD con caja reductora. Barra de íconos: Motor "Híbrido · 326 HP", Tracción "4WD", Capacidad de carga "765 kg" y Remolque "2,699 kg".
+Destacado **"Potencia"** ("Fuerza híbrida para cargar y remolcar", cierre "La Tacoma más potente de la línea"): se descartó "Energía" (toma de 120 V y 2,400 W) por no ser relevante en una pickup robusta, y "Cabina premium" y "Todoterreno" por parecerse al Tundra HEV y al 4Runner HEV. Los datos de potencia y torque son idénticos en las fichas de la TRD Sport Premium y la TRD PRO.
+**Contenido enfocado en la TRD Sport Premium**, a pedido de Raúl (la TRD PRO casi nunca hay en inventario): las fotos son de la Sport Premium (con emblema Toyota al frente; la TRD PRO lleva la palabra TOYOTA en la parrilla) y la TRD PRO aparece como versión y mención breve.
+**5 colores** de 16 ángulos de 360°: Blanco Perlado `#F0EDE8`, Grafito `#4A4D5A`, Plata `#BEBFC1`, Blanco/Negro (bi-tono `#F5F5F5` + `#000000`) y **Rojo `#BD0C28`** al final. El configurador de toyota.mx solo muestra 4, pero su API `viewCarColor` sirve el Rojo (16 ángulos) y la ficha de la Sport Premium lo lista; Raúl pidió incluirlo (la galería es toda roja). El Azul también existe en la API, pero no se agregó.
+97 imágenes subidas con la CLI de Sanity (5 sueltas, galería 6 + 6 y 5 × 16 de 360°); heros comprimidos a calidad 70 (179→132 y 149→114 KB, sin diferencia visible a 100%). La galería interior 06 es el cofre con el motor (aceptado). Rendimiento en una fila (AT, 12.90 km/l).
+Dos fichas técnicas registradas sin archivo ("Tacoma HEV" y "Tacoma TRD PRO HEV"; botones "Ficha Técnica Tacoma HEV" y "Ficha Técnica Tacoma TRD PRO HEV"). Publicado con confirmación de Raúl y revisado en local (27 imágenes sin rotas, sin errores en consola); el sitio en vivo lo muestra con este push. Ruta de toyota.mx: `/modelos/hibridos/tacoma-hev/`.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (80)
 
 ### Agregado — Tacoma publicada en Sanity (21 de 24 modelos)
