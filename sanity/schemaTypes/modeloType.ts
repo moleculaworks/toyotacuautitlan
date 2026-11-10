@@ -43,7 +43,9 @@ export const modeloType = defineType({
     }),
     defineField({
       name: 'anio',
-      title: 'Año del modelo (ej: 2026)',
+      title: 'Año modelo de la ficha (solo interno)',
+      description:
+        'Año modelo de la ficha técnica vigente (ej: 2027). SOLO INTERNO: no se muestra en el sitio ni en SEO (título, descripción, redes y datos estructurados van sin año, igual que toyota.mx). Sirve para saber de qué año es la información publicada y detectar cuándo Toyota saca una ficha nueva; actualízalo cuando cambie la ficha del modelo.',
       type: 'number',
       validation: (r) => r.required().min(2020).max(2035),
       group: 'detalle',

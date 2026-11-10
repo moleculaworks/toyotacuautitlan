@@ -5,6 +5,13 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (89)
+
+### Cambiado — el campo `anio` queda como dato interno y así se explica en el Studio
+
+Tras quitar el año del SEO y de la página (CHANGELOG 88), el campo `anio` de Sanity dejó de usarse en el sitio (solo lo trae la consulta de `lib/sanity/queries.ts`). Raúl eligió **conservarlo como dato interno** en lugar de quitarlo: sirve para saber de qué año modelo es la información publicada de cada modelo y detectar cuándo Toyota saca una ficha nueva (así se vio con Corolla y Corolla HEV, publicados como 2026 con ficha vigente 2027). En `sanity/schemaTypes/modeloType.ts` el campo ahora se llama **"Año modelo de la ficha (solo interno)"** y lleva una descripción que aclara que no se muestra ni en el sitio ni en SEO y que hay que actualizarlo cuando cambie la ficha. Sigue siendo obligatorio. Sin cambios de contenido ni de lo que ve el visitante.
+Antes de decidirlo, Raúl pidió comprobar si **toyota.mx menciona el año en sus páginas de modelo**: se revisaron las 24 páginas (HTML tal como lo sirve el sitio). No hay año en el título (solo el nombre del modelo, ej. "Corolla"), y tampoco hay meta descripción, etiquetas Open Graph ni datos estructurados (JSON-LD) en ninguna. En el texto visible solo aparece en 2 páginas, en frases sueltas y no como etiqueta: 4Runner HEV ("4Runner 2025 combina lo último en ingeniería…", 2 veces) y Yaris Sedán HEV (una "búsqueda sugerida" con "Nuevo Yaris Sedán HEV 2026"). O sea, toyota.mx no usa el año como dato de la página, lo que confirma la decisión de no mostrarlo.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (88)
 
 ### Cambiado — el año deja de aparecer en SEO y en la página; Corolla y Corolla HEV alineados con su ficha 2027
