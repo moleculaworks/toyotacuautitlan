@@ -53,9 +53,10 @@ export default function TarjetasFrenos({
         {(tabla.tarjetas ?? []).map((t) => (
           <div
             key={t._key}
-            className={`bg-white border border-[#E8E8E8] px-5 pt-5 pb-2 max-sm:px-3 max-sm:pt-4 flex flex-col ${
-              t.anchoDoble && !enColumna ? 'col-span-2' : ''
-            }`}
+            className={`bg-white border border-[#E8E8E8] px-5 pb-2 max-sm:px-3 flex flex-col ${
+              // Con nombre de modelo hay título arriba; sin nombre (filas de modelo) no se deja hueco
+              t.modelos ? 'pt-5 max-sm:pt-4' : 'pt-0'
+            } ${t.anchoDoble && !enColumna ? 'col-span-2' : ''}`}
           >
             {t.modelos && (
               <>
@@ -64,7 +65,7 @@ export default function TarjetasFrenos({
                 <div className="w-7 h-[2px] bg-toyota-red mt-3" />
               </>
             )}
-            <dl className="mt-auto pt-2">
+            <dl className={`mt-auto ${t.modelos ? 'pt-2' : 'pt-0'}`}>
               {[
                 ['4 ruedas', t.cuatroRuedas],
                 ['Delanteras', t.delanteras],

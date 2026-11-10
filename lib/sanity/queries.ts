@@ -155,6 +155,7 @@ export async function getPaginaPreciosServicio() {
   return client.fetch(groq`
     *[_type == "paginaPreciosServicio" && _id == "paginaPreciosServicio"][0] {
       heroTitulo, heroSubtitulo, heroAlt, intro, seoDescripcion,
+      franjaMedioTitulo, franjaMedioApoyo, franjaFinalTitulo, franjaFinalApoyo, franjaBoton,
       heroDesktop { asset->{ url } },
       heroMobile { asset->{ url } },
       bloques[] {

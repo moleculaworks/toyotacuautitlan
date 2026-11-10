@@ -1,9 +1,11 @@
+import { Fragment } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getPaginaPreciosServicio } from '@/lib/sanity/queries'
 import SectionHero from '@/components/ui/SectionHero'
 import TablaKilometrado, { type TablaKilometradoData } from '@/components/servicio/TablaKilometrado'
 import TarjetasFrenos, { type TablaFrenosData } from '@/components/servicio/TarjetasFrenos'
+import Button from '@/components/ui/Button'
 import NotasServicio from '@/components/servicio/NotasServicio'
 import { anclaDe } from '@/components/servicio/formato'
 import { placeholders } from '@/lib/data/financiamiento'
@@ -24,6 +26,16 @@ export async function generateMetadata(): Promise<Metadata> {
 // Misma estructura que Financiamiento (acordado 10 nov 2026): hero y párrafo inicial heredados,
 // línea gris entre secciones blancas, línea roja corta solo en móvil, h2 de sección sin etiqueta
 // roja. De ahí en adelante, una sección por bloque de Sanity, con tablas de kilometrado o de frenos.
+// Destino de las franjas de cita. Todavía no hay a dónde llevarlo (formulario real de cita o WhatsApp de
+// servicio): queda en '#', igual que los botones "Cotizar ahora" de Financiamiento. Cambiar cuando exista.
+const ENLACE_CITA = '#'
+
+// Textos de las franjas rojas: se editan en Sanity (grupo "Franjas de cita"). Estos son el respaldo si un
+// campo está vacío. Sin prometer confirmaciones ni procesos que todavía no están definidos.
+const FRANJA_MEDIO = { titulo: '¿Listo para agendar tu servicio?', apoyo: 'Programa el mantenimiento de tu Toyota.' }
+const FRANJA_FINAL = { titulo: 'Mantén tu Toyota al día', apoyo: 'Agenda tu cita de servicio y cuida tu Toyota.' }
+const BOTON_CITA = 'Agenda tu cita de servicio'
+
 const contenedor = 'max-w-7xl mx-auto px-6 max-desktop:px-4'
 const h2 = 'text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] text-black leading-[1.05]'
 const textoSeccion = 'text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7] mt-4'
@@ -54,6 +66,29 @@ function Tablas({ tablas, enColumna = false }: { tablas?: TablaBloque[]; enColum
         ),
       )}
     </>
+  )
+}
+
+// Franja roja de cierre con botón blanco: copia de la CTA intermedia de las páginas de modelo
+// (bg-toyota-red, título y apoyo a la izquierda, botón `invert-red` a la derecha; en móvil, centrado
+// y apilado). Se usa en medio de la página y al final.
+function FranjaCita({ id, titulo, apoyo, boton }: { id: string; titulo: string; apoyo: string; boton: string }) {
+  return (
+    <section id={id} className="bg-toyota-red py-[72px] max-desktop:py-12">
+      <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 flex max-desktop:flex-col justify-between max-desktop:justify-start items-center gap-7">
+        <div className="max-desktop:text-center">
+          <h2 className="text-[clamp(24px,3.5vw,40px)] font-semibold text-white tracking-[-.02em] leading-[1.1]">{titulo}</h2>
+          <p className="text-[clamp(15px,1.6vw,17px)] text-white mt-2.5">{apoyo}</p>
+        </div>
+        <Button
+          href={ENLACE_CITA}
+          variant="invert-red"
+          className="flex-shrink-0 px-11 py-[18px] text-base tracking-[.3px] whitespace-nowrap"
+        >
+          {boton}
+        </Button>
+      </div>
+    </section>
   )
 }
 
@@ -93,6 +128,9 @@ export default async function PreciosServicioPage() {
 
   const bloques: Bloque[] = p.bloques ?? []
   const hayNotasGenerales = (p.notasGenerales ?? []).length > 0
+  const franjaMedio = { titulo: p.franjaMedioTitulo || FRANJA_MEDIO.titulo, apoyo: p.franjaMedioApoyo || FRANJA_MEDIO.apoyo }
+  const franjaFinal = { titulo: p.franjaFinalTitulo || FRANJA_FINAL.titulo, apoyo: p.franjaFinalApoyo || FRANJA_FINAL.apoyo }
+  const textoBoton: string = p.franjaBoton || BOTON_CITA
 
   return (
     <div className="bg-background text-foreground antialiased">
@@ -128,14 +166,11 @@ export default async function PreciosServicioPage() {
       </section>
 
       {bloques.map((b, i) => {
-        const esUltimo = i === bloques.length - 1
         return (
+          <Fragment key={b._key}>
           <section
-            key={b._key}
             id={anclaDe(b.acceso || b.titulo)}
-            className={`bg-white border-t border-[#E8E8E8] pt-12 max-desktop:pt-10 scroll-mt-16 lg:scroll-mt-20 ${
-              esUltimo && !hayNotasGenerales ? 'pb-20 max-desktop:pb-[52px]' : 'pb-12 max-desktop:pb-10'
-            }`}
+            className="bg-white border-t border-[#E8E8E8] pt-12 max-desktop:pt-10 pb-12 max-desktop:pb-10 scroll-mt-16 lg:scroll-mt-20"
           >
             <div className={contenedor}>
               <h2 className={h2}>{b.titulo}</h2>
@@ -171,6 +206,10 @@ export default async function PreciosServicioPage() {
               <NotasServicio notas={b.notas} />
             </div>
           </section>
+          {/* Franja del medio: después de los dos bloques generales (kilometrado y frenos), antes de
+              los modelos con precios propios */}
+          {i === 1 && bloques.length > 2 && <FranjaCita id="cita-medio" titulo={franjaMedio.titulo} apoyo={franjaMedio.apoyo} boton={textoBoton} />}
+          </Fragment>
         )
       })}
 
@@ -182,6 +221,9 @@ export default async function PreciosServicioPage() {
           </div>
         </section>
       )}
+
+      {/* Franja del final, antes del pie de página */}
+      <FranjaCita id="cita-final" titulo={franjaFinal.titulo} apoyo={franjaFinal.apoyo} boton={textoBoton} />
     </div>
   )
 }

@@ -307,6 +307,8 @@ Reglas acordadas con Raúl para las tablas de precios (`components/servicio/`, `
 - **Tarjetas de frenos:** 4 por fila desde 1280 px, 3 entre 880 y 1279 px, 2 en móvil (cada una de unos 166 px a 375 px, con 12 px de relleno lateral en móvil); un grupo largo de modelos puede ocupar dos columnas. El precio queda alineado abajo aunque los títulos tengan distinto largo.
 - **Accesos rápidos:** pastillas con el estilo de los filtros del catálogo, una por bloque.
 - **Probado y descartado:** limitar el ancho de la tabla de kilometrado y ponerla junto a los frenos; convertir los frenos en tabla con encabezado de dos niveles (no convenció, se revirtió).
+- **Franjas de cita:** dos franjas rojas con botón blanco (copia de la CTA intermedia de los modelos), una en medio (después de los dos primeros bloques) y otra al final, antes del pie. No se usa la franja negra al final (se funde con el pie oscuro) ni botones sueltos sobre fondo blanco (se ven aislados). Textos en Sanity (grupo "Franjas de cita"); sin prometer confirmaciones ni procesos no definidos.
+- **Tarjeta de frenos sin nombre de modelo** (filas de modelo): sin relleno superior (9 px sobre "4 ruedas", 17 px abajo); con nombre, el relleno de siempre.
 - **Menú:** "Servicio" es un grupo sin página propia; desplegable sencillo en escritorio (`Navbar.tsx`) y acordeón en móvil (`ServicioMobileAccordion.tsx`).
 
 ## Pendientes (a propósito, no resueltos hoy)

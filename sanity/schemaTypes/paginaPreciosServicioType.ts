@@ -167,6 +167,7 @@ export const paginaPreciosServicioType = defineType({
   groups: [
     { name: 'portada', title: 'Portada', default: true },
     { name: 'bloques', title: 'Bloques y tablas' },
+    { name: 'franjas', title: 'Franjas de cita' },
     { name: 'notas', title: 'Notas generales' },
   ],
   fields: [
@@ -317,6 +318,43 @@ export const paginaPreciosServicioType = defineType({
           },
         }),
       ],
+    }),
+
+    // Franjas rojas con el botón de la cita: una en medio de la página (después de los dos primeros
+    // bloques) y otra al final. El botón es el mismo en las dos.
+    defineField({
+      name: 'franjaMedioTitulo',
+      title: 'Franja del medio: título',
+      description: 'Se ve en la franja roja que va después de los dos primeros bloques. Ej: "¿Listo para agendar tu servicio?"',
+      type: 'string',
+      group: 'franjas',
+    }),
+    defineField({
+      name: 'franjaMedioApoyo',
+      title: 'Franja del medio: texto de apoyo',
+      description: 'Una línea bajo el título. No prometas confirmaciones ni procesos que no estén definidos.',
+      type: 'string',
+      group: 'franjas',
+    }),
+    defineField({
+      name: 'franjaFinalTitulo',
+      title: 'Franja del final: título',
+      description: 'Se ve en la franja roja que cierra la página, antes del pie. Ej: "Mantén tu Toyota al día"',
+      type: 'string',
+      group: 'franjas',
+    }),
+    defineField({
+      name: 'franjaFinalApoyo',
+      title: 'Franja del final: texto de apoyo',
+      type: 'string',
+      group: 'franjas',
+    }),
+    defineField({
+      name: 'franjaBoton',
+      title: 'Texto del botón (el mismo en las dos franjas)',
+      description: 'Ej: "Agenda tu cita de servicio". A dónde lleva el botón todavía se define en el código.',
+      type: 'string',
+      group: 'franjas',
     }),
 
     defineField({

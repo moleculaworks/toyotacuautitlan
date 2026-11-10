@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (109)
+
+### Añadido — franjas rojas de cita en Precios de servicio y ajuste de las tarjetas de frenos sin nombre
+
+- **Dos franjas rojas con el botón "Agenda tu cita de servicio"** en `/servicio/precios`: una **en medio** (después de los dos primeros bloques, kilometrado y frenos generales, antes de RAV4 PHEV y GR y Supra) y otra **al final**, antes del pie de página. Son una copia de la CTA intermedia de las páginas de modelo (fondo `bg-toyota-red`, título y apoyo a la izquierda, botón `invert-red` a la derecha; en móvil centradas y apiladas). Reemplazan a dos botones sueltos que se probaron y se descartaron porque se veían aislados. Se descartó la franja negra del final (se funde con el pie oscuro, mismo motivo por el que se quitó en Financiamiento). **El botón todavía no lleva a ningún lado**: `ENLACE_CITA = '#'` en `app/servicio/precios/page.tsx` (cambiar cuando se defina el destino: formulario real de cita o WhatsApp de servicio; `/cita-de-servicio` es hoy un formulario de muestra).
+- **Textos editables en Sanity** (grupo nuevo "Franjas de cita" del documento "Página: Precios de servicio"): título y apoyo de cada franja y texto del botón. Valores cargados: medio, "¿Listo para agendar tu servicio?" / "Programa el mantenimiento de tu Toyota."; final, "Mantén tu Toyota al día" / "Agenda tu cita de servicio y cuida tu Toyota."; botón, "Agenda tu cita de servicio". Si un campo queda vacío se usa el texto de respaldo del código. Los apoyos no prometen confirmaciones ni procesos que no están definidos. Se comprobó que un cambio en Sanity se refleja en la página (prueba y restauración).
+- **Tarjetas de frenos sin nombre de modelo** (RAV4 PHEV, Supra, GR Corolla y GR Yaris): se quita el relleno superior que dejaba unos 37 px vacíos sobre "4 ruedas"; ahora quedan 9 px arriba y 17 px abajo. Regla por datos (`modelos` vacío); las 15 tarjetas del listado general no cambian.
+- Pendientes de la sección sin cambio: vigencias (frenos "1° de enero", el resto "1 de julio"), hero (Raúl trabaja la imagen), destino del botón de cita, Refacciones y `/cita-de-servicio`.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (108)
 
 ### Añadido — sección Servicio: menú, página "Precios de servicio" con precios reales y página provisional de Refacciones
