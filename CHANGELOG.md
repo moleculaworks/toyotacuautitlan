@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (98)
+
+### Cambiado — Azul Humo en la Tacoma (reemplaza al Azul) y en la Tacoma HEV (nuevo), y nueva imagen del destacado de la Tacoma
+
+Raúl entregó el 360° de **Azul Humo** de la Tacoma (8 ángulos de 1200×800 webp, en `Imagenes por Modelo/tacoma/360/azul-humo`) para sustituir al Azul (cobalto) que estaba. Se subieron las 8 imágenes a Sanity con la CLI y se reemplazó el color en su misma posición (cuarto lugar): label **"Azul Humo"** (como la ficha) y hex `#2F6B91`, tomado de las fotos (la mediana de la carrocería es un azul petróleo, no el cobalto `#2A3A96` anterior). Verificado en localhost: botón "Azul Humo" con foto propia. Las 8 fotos del Azul anterior quedan huérfanas en Sanity (se borran en la próxima auditoría). `JSON Modelos/tacoma.json` sincronizado. Con esto la Tacoma solo difiere de su ficha en Bronce y Negro (sin 360°). Pendiente: subir a `main` para verlo en vivo.
+
+**Tacoma HEV:** Raúl también entregó el 360° de **Azul Humo** de la Tacoma HEV (16 ángulos de 1200×800 webp, en `Imagenes por Modelo/tacoma-hev/360/azul-humo`). Subido con la CLI e insertado tras Grafito (orden de la ficha de la TRD Sport 4x4), hex `#2F6B91` (el mismo de la Tacoma, la mediana de las fotos da un tono equivalente). Ahora son 6 colores y solo falta Azul Pacífico (TRD Pro, sin 360°). Verificado en localhost. `JSON Modelos/tacoma-hev.json` sincronizado.
+
+**También:** Raúl reemplazó la imagen del **destacado** de la Tacoma (`tacoma-destacado.webp`, 1200×800, 150 KB: una Tacoma TRD Sport roja de frente por un camino de terracería, para el destacado "Manejo · Control y potencia en cada trayecto"). Subida con la CLI y puesta en `imagenDestacado` (publicado directo). La imagen anterior queda huérfana en Sanity (se borra en la próxima auditoría). Verificado en localhost.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (97)
 
 ### Cambiado — se quita Gris (Woodland) del RAV4 HEV y se agrega Blanco Perlado al Corolla HEV
