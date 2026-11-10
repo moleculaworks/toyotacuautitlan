@@ -9,6 +9,12 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
 **Descripción de las tarjetas de plan (10 nov 2026, más tarde):** a pedido de Raúl pasó de `text-sm` gris `#555` (copiado de las tarjetas de "Modelos similares") al mismo estilo del párrafo posterior al hero: `clamp(16px,1.2vw,18px)`, color `#1a1a1a` e interlineado 1.7. Medido en 1440 px: 17.28 px, `rgb(26,26,26)` y 29.4 px de interlineado, idéntico al párrafo del hero; las tarjetas crecen a 391 px (planes) y 421 px (arrendamientos). **Después, a pedido de Raúl, también las viñetas de "Ver detalles" y los textos de la franja de beneficios** subieron de 14 px al mismo `clamp(16px,1.2vw,18px)` del párrafo del hero (las viñetas con interlineado 1.6 y los beneficios con 1.7); su color sigue en gris `#555`. Medido: 17.28 px a 1440 px y 16 px a 375 px, 0 desbordes en móvil.
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (104)
+
+### Documentación — análisis del menú de toyota.mx y estado del proyecto antes de compactar (sin cambios de código)
+
+A pedido de Raúl se documentó todo lo pendiente antes de compactar la conversación. `PROYECTO.md` suma el bloque **H** al "Resumen de lo que falta" (Financiamiento en producción y sus pendientes, flujo acordado para las próximas secciones, menú, reglas de diseño nuevas, colores del 360° contra fichas y estado del entorno) y corrige E.3 (hoy hay 4 imágenes huérfanas, los hero anteriores de Financiamiento). **Menú (sin aplicar):** se revisó el menú de toyota.mx en móvil y escritorio y el nuestro en un celular de 375 px; hallazgo: nuestro menú móvil, con Modelos y una categoría abiertas, mide 924 px en un celular de 812 px y no tiene scroll propio (Servicio, Contacto y Cotizar quedan inalcanzables). Se le propuso a Raúl hamburguesa a la izquierda con logo centrado y un panel a pantalla completa con scroll propio; queda pendiente su respuesta sobre el lado derecho de la cabecera móvil y los accesos de Llamar y WhatsApp. Se continuará inmediatamente después de compactar. Notas nuevas en Obsidian (`menu-pantalla-completa-propuesta.md`), `pendientes-del-proyecto.md` re-sincronizado y memoria de Claude actualizada.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (103)
 
 ### Cambiado — hover de los botones estandarizado (rama `financiamiento-cotizar`, solo localhost, sin subir a main)
