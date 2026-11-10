@@ -295,6 +295,20 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 - **Favicon:** `app/favicon.ico`, `app/icon.png` (512) y `app/apple-icon.png` (180), generados de `Logotipo/favicon.png`.
 - **Imagen para compartir (Open Graph):** `public/images/toyota-cuautitlan-compartir.jpg`, 1200×630, JPG de menos de 300 KB, sin precios, años ni teléfonos (logo + fachada + "Pasión por servir."). Se declara en `app/layout.tsx`; las páginas de modelo usan la foto de tarjeta del modelo. Mientras el dominio propio no apunte a este sitio, la URL absoluta usa el dominio de Vercel (ver comentario en `layout.tsx`).
 
+## 11. Sección Servicio: Precios de servicio (10 de noviembre de 2026)
+
+Reglas acordadas con Raúl para las tablas de precios (`components/servicio/`, `app/servicio/precios/page.tsx`); sirven de base para cualquier tabla de precios futura.
+
+- **Precio estándar:** **18 px en escritorio y 16 px en móvil**, semibold, rojo `#EB0A1E`. Igual en las tablas de kilometrado y en las tarjetas de frenos (no mezclar tamaños).
+- **Kilometraje / intervalo:** peso normal (400), 16 px; los encabezados y los precios van en negritas (600).
+- **Encabezados de tabla:** el de kilometrado queda solo para lectores de pantalla (`sr-only`); a la vista, el título de la tabla ("Servicio kilometrado en miles") y las notas dicen el resto. Las tarjetas de frenos no llevan encabezado. La moneda y el I.V.A. van en las notas y excepciones de cada sección.
+- **Notas y excepciones:** un solo desplegable por sección, **"Ver notas y excepciones"** (botón rojo 15 px, cerrado por defecto, panel gris a todo el ancho con viñetas rojas, texto de 14 px). No hay listas de notas visibles ni línea de vigencia en la parte principal del bloque. Las notas compartidas por varios modelos van una sola vez, al final del bloque.
+- **Filas de modelo:** kilometrado a la izquierda, frenos a la derecha, notas debajo; apiladas en móvil y tableta (menos de 880 px). Es automático para cualquier bloque que tenga tabla de kilometrado y de frenos. El renglón de detalle bajo el título de tabla solo se reserva si la tabla vecina lo trae.
+- **Tarjetas de frenos:** 4 por fila desde 1280 px, 3 entre 880 y 1279 px, 2 en móvil (cada una de unos 166 px a 375 px, con 12 px de relleno lateral en móvil); un grupo largo de modelos puede ocupar dos columnas. El precio queda alineado abajo aunque los títulos tengan distinto largo.
+- **Accesos rápidos:** pastillas con el estilo de los filtros del catálogo, una por bloque.
+- **Probado y descartado:** limitar el ancho de la tabla de kilometrado y ponerla junto a los frenos; convertir los frenos en tabla con encabezado de dos niveles (no convenció, se revirtió).
+- **Menú:** "Servicio" es un grupo sin página propia; desplegable sencillo en escritorio (`Navbar.tsx`) y acordeón en móvil (`ServicioMobileAccordion.tsx`).
+
 ## Pendientes (a propósito, no resueltos hoy)
 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño

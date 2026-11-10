@@ -12,6 +12,10 @@ export const structure: StructureResolver = (S) =>
         .title('Página: Financiamiento')
         .id('paginaFinanciamiento')
         .child(S.document().schemaType('paginaFinanciamiento').documentId('paginaFinanciamiento')),
+      S.listItem()
+        .title('Página: Precios de servicio')
+        .id('paginaPreciosServicio')
+        .child(S.document().schemaType('paginaPreciosServicio').documentId('paginaPreciosServicio')),
       S.divider(),
       S.documentTypeListItem('configuracion').title('Configuración del sitio'),
     ])

@@ -9,6 +9,8 @@ const links = {
     { label: "Cotizar", href: "/cotizacion" },
   ],
   Servicios: [
+    { label: "Precios de servicio", href: "/servicio/precios" },
+    { label: "Refacciones", href: "/servicio/refacciones" },
     { label: "Cita de servicio", href: "/cita-de-servicio" },
     { label: "Contacto", href: "/contacto" },
   ],

@@ -5,6 +5,24 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (108)
+
+### Añadido — sección Servicio: menú, página "Precios de servicio" con precios reales y página provisional de Refacciones
+
+- **Menú:** "Servicio" pasa a ser un **grupo sin página propia** con dos opciones, "Precios de servicio" (`/servicio/precios`) y "Refacciones" (`/servicio/refacciones`). Escritorio: desplegable sencillo con hover y clic (`Navbar.tsx`); móvil: acordeón dentro del panel de pantalla completa (`components/layout/ServicioMobileAccordion.tsx`). `/cita-de-servicio` (formulario de muestra) sale del menú pero sigue existiendo y en el pie de página, que suma los dos enlaces nuevos. Orden: Modelos, Promociones, Financiamiento, Servicio, Contacto.
+- **Sanity, todo editable** (`sanity/schemaTypes/paginaPreciosServicioType.ts`, documento único "Página: Precios de servicio", regeneración cada 60 s, sin deploy): portada (título, subtítulo, párrafo, hero escritorio y móvil, descripción para Google) y una **lista ordenable de bloques**. Cada bloque: título, nombre corto para el acceso rápido, texto breve, línea opcional de vigencia, tablas, **notas del bloque** (una sola vez al final) y, opcionalmente, **modelos en filas**. Dos tipos de tabla: **kilometrado** (filas intervalo, detalle y precio, con un texto opcional en lugar del precio) y **frenos** (tarjetas con modelo opcional, detalle, "Ocupar dos columnas", 4 ruedas, delanteras y traseras). Cada tabla tiene un solo campo **"Notas y excepciones"**. Precios como número, formateados `$2,195`.
+- **Página** (`app/servicio/precios/page.tsx`, `components/servicio/`): hero y párrafo inicial como Financiamiento (línea roja corta solo en móvil); accesos rápidos con pastillas (estilo de los filtros del catálogo); una sección por bloque separada por la línea gris; encabezado `h2` sin etiqueta roja.
+  - **Tabla de kilometrado:** estilo de la tabla de rendimiento de los modelos (fondo gris, `<table>` real), kilometraje en peso normal (400), precio en rojo; el encabezado ("Kilometraje (en miles) | Precio (M.N.)") queda solo para lectores de pantalla.
+  - **Frenos:** tarjetas por modelo o grupo, 4 por fila en escritorio de 1280 px o más, 3 entre 880 y 1279 px y 2 en móvil; el grupo largo de modelos ocupa dos columnas.
+  - **Precio estándar** de toda la sección: **18 px en escritorio y 16 px en móvil**, igual en kilometrado y en frenos.
+  - **Filas de modelo** (RAV4 PHEV, y Supra, GR Corolla y GR Yaris dentro del bloque "GR y Supra"): kilometrado a la izquierda, frenos a la derecha y las notas debajo; en móvil, todo en una columna. Cualquier bloque con tabla de kilometrado y de frenos se acomoda así por datos. "Servicio cada X meses o Y km" va en el texto breve del bloque.
+  - **Notas:** un único desplegable "Ver notas y excepciones" por sección, cerrado por defecto y a todo el ancho (vigencia e I.V.A. incluidos ahí); no hay lista de notas visible ni línea de vigencia en la parte principal. Las notas compartidas de GR y Supra van una sola vez al final del bloque.
+- **Datos reales cargados** desde las imágenes originales de Toyota (`Secciones/Servicio/precios-de-servicio/originales/`), comprobados contra el original en una página local temporal (ya eliminada): kilometrado general (7 filas, $2,195 a $8,950) con listas de modelos por cilindros y todas sus notas y excepciones; 15 tarjetas de frenos; RAV4 PHEV; Supra, GR Corolla y GR Yaris. Se quitó el asterisco del RAV4 PHEV (sin nota en el original). "FJ - CRUISER" quedó como "FJ CRUISER" y los subtítulos de las tarjetas en minúsculas con acentos; el resto del texto, tal como viene impreso.
+- **Refacciones:** página provisional con hero y "Estamos preparando esta sección".
+- **Probado y descartado por Raúl** (todo revertido): limitar el ancho de la tabla de kilometrado y ponerla junto a los frenos, y convertir los frenos en tabla con encabezado de dos niveles.
+- Medido con datos reales: escritorio 4,789 px de alto y móvil 6,848 px, sin desbordes y sin tablas recortadas a 375 px.
+- **Pendientes:** (a) **vigencias**: el kilometrado, el RAV4 PHEV y GR y Supra dicen "1 de julio al 31 de diciembre del 2026" y los frenos "1° de enero al 31 de diciembre del 2026"; Raúl las revisa (se corrigen en la última nota de cada desplegable); (b) **imagen del hero** (placeholder gris; Raúl la trabaja, 1920 × 680 escritorio y 1600 × 1200 móvil, se sube en Sanity); (c) **botón "Agenda tu cita de servicio"**: ubicación por definir; (d) contenido de **Refacciones**; (e) qué hacer con `/cita-de-servicio`; (f) todos los precios y notas vencen el 31 de diciembre de 2026.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (107)
 
 ### Cambiado — separadores en Financiamiento, espacio del párrafo en móvil de los 24 modelos y Blanco Perlado nuevo del Camry HEV

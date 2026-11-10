@@ -141,3 +141,28 @@ export async function getPaginaFinanciamiento() {
     }
   `)
 }
+
+// Proyección de una tabla de servicio (kilometrado o frenos); se usa en los bloques y en sus modelos.
+const tablaServicioProy = `
+  _key, _type, titulo, detalle,
+  encabezadoPrimera,
+  filas[] { _key, intervalo, detalle, precio, precioTexto },
+  tarjetas[] { _key, modelos, detalle, anchoDoble, cuatroRuedas, delanteras, traseras },
+  notas
+`
+
+export async function getPaginaPreciosServicio() {
+  return client.fetch(groq`
+    *[_type == "paginaPreciosServicio" && _id == "paginaPreciosServicio"][0] {
+      heroTitulo, heroSubtitulo, heroAlt, intro, seoDescripcion,
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      bloques[] {
+        _key, titulo, acceso, texto, vigencia, notas,
+        tablas[] { ${tablaServicioProy} },
+        modelos[] { _key, titulo, detalle, tablas[] { ${tablaServicioProy} } }
+      },
+      notasGenerales
+    }
+  `)
+}
