@@ -27,7 +27,6 @@ export function buildAutoDealerJsonLd(configuracion: Configuracion | null) {
 interface ModeloParaJsonLd {
   nombre: string
   slug: { current: string }
-  anio?: number
   precioDesde: number
   descripcionCorta?: string
   seoDescripcion?: string
@@ -46,7 +45,6 @@ export function buildVehicleJsonLd(modelo: ModeloParaJsonLd) {
     brand: { '@type': 'Brand', name: 'Toyota' },
     model: modelo.nombre,
     url,
-    ...(modelo.anio && { vehicleModelDate: String(modelo.anio) }),
     ...(imagen && { image: imagen }),
     description: modelo.seoDescripcion ?? modelo.descripcionCorta ?? `Toyota ${modelo.nombre} en Toyota Cuautitlán.`,
     offers: {

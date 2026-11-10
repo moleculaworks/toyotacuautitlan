@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (88)
+
+### Cambiado — el año deja de aparecer en SEO y en la página; Corolla y Corolla HEV alineados con su ficha 2027
+
+Raúl recordó que en SEO se había decidido no mencionar el año. Se revisó: el **título de la pestaña** ya iba sin año desde el 23 de octubre (`<Nombre> | Toyota Cuautitlán`), pero la **descripción para buscadores** (`seoDescripcion`) llevaba año en los 24 modelos (formato `Toyota <Nombre> 2026. …`, que había quedado en el README junto con la regla de no poner precios sin ser una decisión suya explícita), la sección de versiones mostraba **"Versiones 2026"** y los datos estructurados para Google emitían `vehicleModelDate`. Raúl pidió quitarlos, por la misma razón por la que se quitaron los precios: un año en lo que muestra Google envejece (Corolla y Corolla HEV decían 2026 y su ficha vigente es 2027).
+- **Sanity (publicado directo):** las 24 `seoDescripcion` pasan a `Toyota <Nombre>. <Frase>. Cotiza en Toyota Cuautitlán.` (el Prius, que tenía otra redacción, a "Conoce el nuevo Prius: …"); ninguna supera 160 caracteres ni conserva un año. Se **borró el valor guardado de `seoTitulo`** en los 19 modelos que lo tenían (13 con año y "Versiones y Precios", 6 con el formato nuevo): el campo seguía oculto y sin efecto, pero ensuciaba los datos. El campo queda oculto en el schema.
+- **Código:** `app/modelos/[slug]/page.tsx` muestra la etiqueta "Versiones" a secas (antes `Versiones ${anio}`) y `lib/structured-data.ts` ya no emite `vehicleModelDate` en el JSON-LD. `anio` se conserva en Sanity solo como dato interno (ya no se muestra ni se emite en ningún lado). Verificado en las 24 páginas locales: ningún año en título, descripciones, Open Graph, datos estructurados ni texto visible (solo el "© 2026" del pie, que es del sitio).
+- **Corolla y Corolla HEV (ficha MY27, septiembre de 2026):** se comparó la ficha 2027 contra la 2026 y contra lo publicado. Los datos técnicos son idénticos; el equipo cambia en antena tipo aleta de tiburón (todas las versiones, no se menciona en ningún texto), **Connected Services** nuevo en todas y **cargador inalámbrico Qi de 10 W** solo en XLE y SE (Corolla) y XLE HEV. Por indicación de Raúl: `anio` pasa a **2027** en los dos modelos, se agrega **Connected Services** ("Safety Connect, Remote Connect, Service Connect y Drive Connect") a `seguridadItems` de los dos (8 a 9 ítems) y el **cargador Qi de 10 W solo en la tarjeta XLE CVT** (6 a 7 ítems, en los dos documentos porque el carrusel está duplicado; no en SE CVT ni XLE HEV, cuyas tarjetas ya tienen 8). Nota: la página de toyota.mx aún muestra el equipo de 2026 (sin Connected Services ni la antena nueva); el dato sale de la ficha.
+- Sincronizados los 24 JSON de `JSON Modelos/` (y los de Corolla y Corolla HEV con los cambios de arriba) y el README (formato de `seoDescripcion` sin año y la regla "ningún texto de SEO lleva año").
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (87)
 
 ### Agregado — fichas técnicas (PDF) subidas a Sanity y conectadas a los botones de los 24 modelos

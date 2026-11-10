@@ -534,7 +534,7 @@ export default async function ModeloPage({
             <div className={`flex items-end mb-10 flex-wrap gap-4 ${versiones.length <= 2 ? 'justify-center text-center' : 'justify-between'}`}>
               <div>
                 <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
-                  {modelo.anio ? `Versiones ${modelo.anio}` : 'Versiones'}
+                  Versiones
                 </span>
                 <h2 className="text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] mt-1.5 text-black leading-[1.05]">
                   Elige tu versión
