@@ -57,13 +57,14 @@ export default async function FinanciamientoPage() {
         alt={p.heroAlt || p.heroTitulo}
       />
 
-      <section id="intro" className="bg-white py-10">
+      <section id="intro" className="bg-white py-10 max-desktop:pt-0">
         <div className={contenedor}>
+          <div className="desktop:hidden w-7 h-[2px] bg-toyota-red mb-5 mx-auto" />
           <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7]">{p.intro}</p>
         </div>
       </section>
 
-      <section id="planes" className="bg-white pt-10 pb-20 max-desktop:pb-[52px]">
+      <section id="planes" className="bg-white border-t border-[#E8E8E8] pt-12 pb-12 max-desktop:pt-10 max-desktop:pb-10">
         <div className={contenedor}>
           <h2 className={h2}>{p.planesTitulo}</h2>
           {(p.planesDestacado || p.planesTexto) && (
@@ -75,7 +76,7 @@ export default async function FinanciamientoPage() {
         </div>
       </section>
 
-      <section id="arrendamientos" className="bg-white pb-20 max-desktop:pb-[52px]">
+      <section id="arrendamientos" className="bg-white border-t border-[#E8E8E8] pt-12 pb-20 max-desktop:pt-10 max-desktop:pb-[52px]">
         <div className={contenedor}>
           <h2 className={h2}>{p.arrendamientosTitulo}</h2>
           {(p.arrendamientosDestacado || p.arrendamientosTexto) && (

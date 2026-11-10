@@ -282,6 +282,7 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 | Franja gris de beneficios | `bg-toyota-gray`, 3 columnas (2 en tablet, 1 en móvil), ícono + `h3` + texto |
 | Íconos de beneficios | **Temporales**: `components/ui/IconoGenerico.tsx` marca la posición. Los definitivos se dibujan uno por uno con referencia de Raúl, mismo trazo (1.0) y render (36px) que `HighlightIcon.tsx`. |
 | CTA | Sin franja de cierre (se quitó el 10 nov 2026: el negro se fundía con el pie de página). Cada tarjeta lleva un botón "Cotizar ahora" (`primary`, ancho completo, `text-base`: los botones del sitio solo usan 14 px o 16 px, nunca más) al final de sus viñetas, con `href="#"` hasta que exista el formulario |
+| Separadores entre secciones blancas | La **línea fina gris** `border-t border-[#E8E8E8]` (de borde a borde) arriba de cada sección blanca que sigue a otra blanca, como en las páginas de modelo. En móvil, **línea roja corta** (28×2 px, la de las tarjetas) **centrada** entre el subtítulo del hero y el párrafo introductorio; en escritorio no se muestra. En el párrafo introductorio de los modelos, el relleno superior en móvil es 0 (`max-desktop:pt-0`): del botón del hero al párrafo quedan 44 px. |
 | Breakpoint | `desktop:` / `max-desktop:` (880px), el del hero heredado, en toda la página. Para las páginas sin SectionHero rige la regla de la sección 1. |
 | Textos | Editables en Sanity (documento único "Página: ..."), con regeneración cada 60 s (`revalidate = 60`). Imágenes opcionales en Sanity con placeholder local mientras no se suban. |
 

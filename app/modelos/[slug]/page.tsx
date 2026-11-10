@@ -260,7 +260,7 @@ export default async function ModeloPage({
 
       {/* § 1.5 · INTRO */}
       {mostrarIntro && (
-        <section id="intro" className="bg-white py-10">
+        <section id="intro" className="bg-white py-10 max-desktop:pt-0">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 [&_p]:text-[clamp(16px,1.2vw,18px)] [&_p]:text-[#1a1a1a] [&_p]:leading-[1.7] [&_strong]:font-semibold">
             <PortableText value={modelo.descripcion!} />
           </div>

@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (107)
+
+### Cambiado — separadores en Financiamiento, espacio del párrafo en móvil de los 24 modelos y Blanco Perlado nuevo del Camry HEV
+
+- **Financiamiento** (`app/financiamiento/page.tsx`): el párrafo introductorio flotaba en un fondo blanco continuo. Se agrega la **línea fina gris** `#E8E8E8` de borde a borde (la misma que usan las páginas de modelo entre secciones blancas) arriba de "Planes de financiamiento" y arriba de "Arrendamientos", con espacios de 40/48 px en escritorio y 40/40 px en móvil. En **móvil** se suma una **línea roja corta** (28×2 px, la de las tarjetas) **centrada** entre el subtítulo del hero y el párrafo; en escritorio no se muestra (a pedido de Raúl, "no aporta"). El espacio del subtítulo a la línea es de 44 px porque es el relleno inferior que ya trae el hero compartido, que no se tocó.
+- **Los 24 modelos, solo móvil** (`app/modelos/[slug]/page.tsx`): el espacio entre el botón "Ver versiones y precios" y el primer párrafo bajó de 84 px a **44 px** quitando el relleno superior del párrafo introductorio (`max-desktop:pt-0`); a Raúl le parecía un hueco extraño. Medido en los 24 modelos con marcos de 375 y 1280 px: los 24 dan 44 px en móvil y en escritorio siguen en 40 px, sin cambios.
+- **Camry HEV, Blanco Perlado** (contenido ya publicado en Sanity): Raúl cambió los 16 ángulos del 360° del Blanco Perlado porque el anterior se parecía al Blanco. Se subieron los 16 archivos nuevos (`Imagenes por Modelo/camry-hev/360/blanco-perlado/`) y se reemplazaron en el color "Blanco Perlado" (`color18`); los demás colores no se tocaron. Se verificó con un muestreo de color de la carrocería que el Blanco sale azulado (`#DFDFE2`) y el Perlado cálido (`#E1E1DB`); el color de la muestra se quedó en `#F0EDE8`. Quedaron 3 imágenes viejas sin referencia (pendientes de la próxima auditoría de huérfanas). Se dispara el deploy para que se vea en vivo, porque las páginas de modelo son estáticas.
+- Documentado en `SISTEMA-DE-DISENO.md` sección 9.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (106)
 
 ### Contenido en Sanity y documentación — descripción de Financiamiento y pendiente de las demás secciones (sin cambios de código)
