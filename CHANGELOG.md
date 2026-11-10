@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (106)
+
+### Contenido en Sanity y documentación — descripción de Financiamiento y pendiente de las demás secciones (sin cambios de código)
+
+Raúl compartió la tarjeta de WhatsApp de `/financiamiento` y notó que el texto no era adecuado ("Toyota en Toyota Cuautitlán" repetido y una lista de nombres de planes). Eligió la opción 2 y se publicó directo en el documento `paginaFinanciamiento` (campo `seoDescripcion`): "Conoce los planes de financiamiento y arrendamiento Toyota y elige el que mejor se adapte a ti. Cotiza en Toyota Cuautitlán." (124 caracteres). La página regenera cada 60 s, sin deploy. Se anota en `PROYECTO.md` (bloque H.7) y en Obsidian que las demás secciones (Servicio, Contacto, Promociones, Cotización, Catálogo, Inicio) deben llenar su campo de descripción cuando sean definitivas; hoy llevan un texto genérico escrito en el código.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (105)
 
 ### Añadido y cambiado — menú móvil a pantalla completa, logo oficial, favicon, imagen para compartir y cabecera de 80 px (rama `menu-pantalla-completa`)
