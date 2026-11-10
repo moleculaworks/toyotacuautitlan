@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (97)
+
+### Cambiado — se quita Gris (Woodland) del RAV4 HEV y se agrega Blanco Perlado al Corolla HEV
+
+- **RAV4 HEV:** se borró **Gris (Woodland)** (la ficha no lo lista; toyota.mx sí). Quedan 9 colores. Respaldo de los colores previos en el scratchpad de la sesión.
+- **Corolla HEV:** Raúl entregó el 360° de **Blanco Perlado** (16 ángulos de 1200×800 webp, fotos propias distintas al Blanco, en `Imagenes por Modelo/corolla-hev/360/blanco-perlado`). Se subieron a Sanity con la CLI y se insertó el color junto a Blanco: hex `#F0EDE8` con borde (el del Corolla). Esto revierte la decisión previa de no agregarlo (entrada 94), que se tomó porque las fotos de toyota.mx eran idénticas a las del Blanco; las de Raúl sí son distintas. El Corolla HEV queda con **6 colores, igual que su ficha 2027**. `disenoTexto` pasó de "cinco" a **"seis"** colores (Sanity y `JSON Modelos/`).
+Verificado en localhost: los 6 botones del Corolla HEV, Blanco y Blanco Perlado con fotos distintas, y el RAV4 HEV sin Gris (Woodland). `JSON Modelos/` de ambos sincronizados. Se ve en el sitio en vivo hasta el siguiente deploy.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (96)
 
 ### Agregado y cambiado — Blanco en el 360° de la Sienna HEV y se quita el Negro (queda con 6 colores)
