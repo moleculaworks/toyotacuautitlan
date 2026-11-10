@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
   // No anunciar el framework en la cabecera X-Powered-By.
   poweredByHeader: false,
   images: {
+    // 75 es el valor por defecto (todo el sitio); 85 se usa solo en el hero de las páginas
+    // de sección (SectionHero), que lleva fotos con personas y necesita más calidad.
+    qualities: [75, 85],
     remotePatterns: [
       {
         protocol: "https",

@@ -26,6 +26,7 @@
 - [x] Cotización (/cotizacion) — formulario validado
 - [x] Cita de servicio (/cita-de-servicio) — formulario validado
 - [x] Contacto (/contacto) — datos + mapa
+- [~] Financiamiento (/financiamiento) — construida el 10 de noviembre de 2026 con textos editables en Sanity (documento "Página: Financiamiento"), hero heredado del modelo y móvil con las reglas del sitio. Imágenes ya cargadas en Sanity (10 nov 2026). Íconos de la franja gris ya definitivos (6, CHANGELOG 101). **Pendiente:** ajustar el peso de las tarjetas si Raúl lo decide y subirla a `main`. Ver `CHANGELOG.md` (100).
 
 ### Formularios
 - [x] Validación con Zod (cotización y cita)

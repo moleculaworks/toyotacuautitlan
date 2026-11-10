@@ -80,8 +80,10 @@ a todo el sitio desde `app/layout.tsx` (clase en el `<body>`):
 ToyotaType, así que el navegador los aproxima ("faux bold"), lo que se puede
 ver ligeramente distinto entre navegadores y sistemas operativos.
 
-`font-black` está reservado para un solo caso: el titular gigante del Hero de
-cada modelo (ej. "COROLLA" en la portada). Todo lo demás —encabezados de
+`font-black` está reservado para un solo caso: el titular gigante del Hero (`h1`)
+de cada modelo (ej. "COROLLA" en la portada) y, desde el 10 de noviembre de 2026,
+el `h1` del hero de las páginas de sección (ej. "FINANCIAMIENTO"), que heredan
+ese mismo hero. Todo lo demás —encabezados de
 sección, labels, botones, texto de formularios— usa `font-semibold`. Si algo
 "se siente" como que necesita más peso que `font-semibold` pero no es un
 titular de Hero, no uses `font-black` ahí — pregunta primero, para no
@@ -234,7 +236,7 @@ modelo (`motor`, `pasajeros`, `traccion`, `tecnologia`, `capacidad-carga`,
 sep de 2026 por no usarse en ningún modelo; `remolque` se eliminó ese día
 y volvió el 24 de oct de 2026 con diseño nuevo, a partir de un ejemplo de
 Raúl: bola de enganche con collarín abierto sobre un soporte cerrado, para
-la capacidad de arrastre del Sequoia HEV y futuros Tacoma/Tundra) — el componente no está atado a
+la capacidad de arrastre del Sequoia HEV y futuros Tacoma/Tundra). **Desde el 10 de nov de 2026 el diccionario tiene 6 íconos más, 17 en total, para la franja de beneficios de Financiamiento** (`rapidez`, `tranquilidad`, `proteccion`, `comodidad`, `confianza`, `flexibilidad`), dibujados a partir de la referencia de Raúl con el mismo trazo (1.0, lado mayor de 19 en la cuadrícula de 24). **No están en la lista `caracteristicas.icono` de los modelos**: se eligen desde el campo `icono` de cada beneficio en "Página: Financiamiento" (Studio). Si un beneficio no tiene ícono, la página muestra `IconoGenerico` como respaldo — el componente no está atado a
 esa barra específica, cualquier sección puede importar `HighlightIcon` y
 pasar un `nombre` de la lista.
 
@@ -257,6 +259,28 @@ La tabla de Transmisión / Rendimiento de combustible (`#rendimiento` en `app/mo
 - **4 o más filas (hoy solo la Tacoma, desde el 9 de noviembre de 2026):** versión compacta. La aclaración va **en la misma línea** que la transmisión (`flex-wrap`, así una aclaración larga baja sola a la línea siguiente), espacio de 14 px arriba y abajo, interlineado del número de 40 px (fila de 68 px) y encabezado de 12 px de espacio (50 px). El número rojo conserva sus 32 px. En móvil el espacio horizontal baja de 24 a 16 px para que la aclaración quepa junto a "AT".
 
 Si otro modelo llega a 4 filas, usa la versión compacta sin cambios; si se quiere que aplique también a 3 filas, el límite está en `rendimientoCompacto` (`rendimientoFilas.length >= 4`).
+
+---
+
+## 9. Páginas de sección (Financiamiento, Servicio, etc.)
+
+Acordado el 10 de noviembre de 2026 con Financiamiento, la primera página que no
+es de modelo. Las secciones diseñadas fuera del sitio (ej. en Claude Design) se
+**adaptan a este sistema**, no al revés: se reutilizan los valores existentes y
+lo que el diseño trae fuera de ellos se consulta antes de construirlo.
+
+| Bloque | Cómo se resuelve |
+|---|---|
+| Hero | `components/ui/SectionHero.tsx`: copia exacta del hero de modelo (altura `clamp(420px,42vw,560px)`, degradado blanco, columna del 46%, `h1` font-black uppercase, subtítulo semibold). Sin categoría, precio ni botón. Imágenes 1920×680 (escritorio) y 1600×1200 (móvil). |
+| Calidad de imagen del hero | `SectionHero` pide `quality: 85` (el resto del sitio usa 75). Declarado en `next.config.ts` → `images.qualities: [75, 85]`. |
+| Introducción y textos de contenido | Párrafo con `clamp(16px,1.2vw,18px)`, interlineado 1.7. Es el tamaño de todo el texto corrido de la página: descripción de las tarjetas (negro `#1a1a1a`) y textos de beneficios (gris `#555`). Las viñetas de "Ver detalles" van un escalón abajo: 16 px fijo, gris `#555` |
+| Títulos de sección | `h2` `clamp(28px,4vw,44px)` semibold, **sin etiqueta roja encima** (los modelos la llevan, las páginas de sección no) |
+| Tarjetas con "Ver detalles" | `components/financiamiento/PlanCard.tsx` (nuevo): foto 3.5:1, `h3`, línea roja corta, texto y despliegue con viñetas. Solo usa valores de las tarjetas de "Modelos similares". |
+| Franja gris de beneficios | `bg-toyota-gray`, 3 columnas (2 en tablet, 1 en móvil), ícono + `h3` + texto |
+| Íconos de beneficios | **Temporales**: `components/ui/IconoGenerico.tsx` marca la posición. Los definitivos se dibujan uno por uno con referencia de Raúl, mismo trazo (1.0) y render (36px) que `HighlightIcon.tsx`. |
+| CTA final | Mismo patrón que el cierre de los modelos (`bg-black`, `h2`, frase, botón `invert-black`) |
+| Breakpoint | `desktop:` / `max-desktop:` (880px), el del hero heredado, en toda la página. Para las páginas sin SectionHero rige la regla de la sección 1. |
+| Textos | Editables en Sanity (documento único "Página: ..."), con regeneración cada 60 s (`revalidate = 60`). Imágenes opcionales en Sanity con placeholder local mientras no se suban. |
 
 ## Pendientes (a propósito, no resueltos hoy)
 

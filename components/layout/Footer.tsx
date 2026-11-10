@@ -4,6 +4,7 @@ const links = {
   Vehículos: [
     { label: "Todos los modelos", href: "/modelos" },
     { label: "Promociones", href: "/promociones" },
+    { label: "Financiamiento", href: "/financiamiento" },
     { label: "Cotizar", href: "/cotizacion" },
   ],
   Servicios: [

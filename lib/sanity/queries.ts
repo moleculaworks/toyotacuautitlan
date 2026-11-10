@@ -124,3 +124,21 @@ export async function getConfiguracion() {
     }
   `)
 }
+
+// Página de sección /financiamiento (documento único, id fijo: paginaFinanciamiento)
+export async function getPaginaFinanciamiento() {
+  return client.fetch(groq`
+    *[_type == "paginaFinanciamiento" && _id == "paginaFinanciamiento"][0] {
+      heroTitulo, heroSubtitulo, heroAlt, intro, seoDescripcion,
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      planesTitulo, planesDestacado, planesTexto,
+      planes[] { _key, titulo, descripcion, detalles, imagenAlt, imagen { asset->{ url } } },
+      arrendamientosTitulo, arrendamientosDestacado, arrendamientosTexto,
+      arrendamientos[] { _key, titulo, descripcion, detalles, imagenAlt, imagen { asset->{ url } } },
+      beneficiosTitulo,
+      beneficios[] { _key, titulo, texto, icono },
+      ctaTitulo, ctaTexto, ctaBoton, ctaEnlace
+    }
+  `)
+}

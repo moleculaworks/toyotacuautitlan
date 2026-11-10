@@ -10,6 +10,7 @@ import type { Modelo } from "@/types";
 
 const navLinks = [
   { label: "Promociones", href: "/promociones" },
+  { label: "Financiamiento", href: "/financiamiento" },
   { label: "Servicio", href: "/cita-de-servicio" },
   { label: "Contacto", href: "/contacto" },
 ];

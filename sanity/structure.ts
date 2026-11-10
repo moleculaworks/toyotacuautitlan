@@ -7,5 +7,11 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('modelo').title('Modelos'),
       S.documentTypeListItem('promocion').title('Promociones'),
       S.divider(),
+      // Páginas de sección: un solo documento por página (sin lista, no se pueden duplicar)
+      S.listItem()
+        .title('Página: Financiamiento')
+        .id('paginaFinanciamiento')
+        .child(S.document().schemaType('paginaFinanciamiento').documentId('paginaFinanciamiento')),
+      S.divider(),
       S.documentTypeListItem('configuracion').title('Configuración del sitio'),
     ])
