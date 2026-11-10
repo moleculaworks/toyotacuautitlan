@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (87)
+
+### Agregado — fichas técnicas (PDF) subidas a Sanity y conectadas a los botones de los 24 modelos
+
+Cierra el pendiente de las fichas (campo `fichasTecnicas` y botones ya existían desde CHANGELOG 65 y 66; faltaban los archivos). **27 PDF** (los 24 modelos, con dos fichas en Tacoma HEV, 4Runner HEV y Tundra HEV) subidos con la CLI de Sanity y vinculados a cada modelo: en los 9 modelos que ya tenían entradas registradas sin archivo (Hilux, Hiace, Tacoma, GR Yaris, GR Corolla, Sequoia HEV, y las dos fichas de Tacoma HEV, 4Runner HEV y Tundra HEV) solo se adjuntó el archivo a su entrada; a los 15 restantes se les creó la entrada con su nombre. Publicado directo, como acordado para cambios de contenido pedidos explícitamente.
+**Antes de subirlas, Raúl pidió unificar los nombres** y se adoptó el estilo de Toyota: `Ficha_Tecnica_<MODELO>_<AA>_web.pdf`, con el nombre del modelo como se llama en el sitio, en mayúsculas y sin abreviaturas (`YARIS_HB` pasó a `YARIS_HATCHBACK`, `YARIS_SD` a `YARIS_SEDAN`, `SIENNA` a `SIENNA_HEV`, `SEQUOIA` a `SEQUOIA_HEV`) y con `Ficha_Tecnica_` siempre con T mayúscula (dos archivos traían `tecnica`). 7 archivos renombrados, el registro "nombre original → nombre nuevo" quedó en Obsidian (`nombres-fichas-tecnicas.md`). Para Corolla y Corolla HEV había una ficha `_26` y una `_27`: toyota.mx enlaza hoy las `_27`, así que se usaron esas y las dos `_26` se movieron a la Papelera.
+Verificado: las 27 URL de Sanity responden 200 como PDF y con el tamaño correcto, y en las 24 páginas locales los 27 botones llevan enlace a su PDF y **ninguno conserva `href="#"`**. Sin cambios de código. El sitio en vivo muestra los botones con este push.
+Pendientes que dejó este trabajo: Corolla y Corolla HEV están publicados como modelo 2026 y su ficha vigente es 2027 (comparar el contenido); el Tundra HEV en toyota.mx todavía enlaza `Ficha_tecnica_TUNDRA_HV_25_web.pdf`, más antigua que la que usamos; y los archivos de esta tanda deben revisarse en la próxima auditoría de huérfanos.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (86)
 
 ### Corregido — precios de 4 modelos alineados con toyota.mx
