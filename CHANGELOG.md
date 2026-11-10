@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (99)
+
+### Mantenimiento — cuarta depuración de imágenes huérfanas en Sanity (76 borradas)
+
+A pedido de Raúl se auditaron las imágenes sin referencia en Sanity y se borraron **76** (2.5 MB): Negro 360° del Corolla (16), del Corolla HEV (16) y de la Sienna HEV (18), Mostaza 360° del Prius (16), Azul 360° anterior de la Tacoma (8), y los destacados anteriores del Prius y de la Tacoma (1 y 1). Antes de borrar se confirmó que ninguna tenía referencias (consulta `count(*[references(^._id)]) == 0`) y la lista coincidía con las 76 auditadas. Resultado: **2,645 imágenes en uso y 0 huérfanas**. Sin cambios de código.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (98)
 
 ### Cambiado — Azul Humo en la Tacoma (reemplaza al Azul) y en la Tacoma HEV (nuevo), y nueva imagen del destacado de la Tacoma
