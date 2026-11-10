@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (91)
+
+### Cambiado — nueva imagen del destacado del Prius
+
+A pedido de Raúl se reemplazó la imagen del destacado del **Prius** (`prius-destacado.webp`, destacado "Conectividad · Connected Technologies") por una mano sosteniendo un teléfono con la app de Toyota abierta en un Prius ("Remoto", "Mantén pulsado para activar"). 1200×800, 36 KB (antes 188 KB). Publicado directo en Sanity, sin cambios de código; el sitio en vivo la muestra con este push. La imagen anterior quedó sin referencias en Sanity (pendiente de la próxima auditoría de huérfanas).
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (90)
 
 ### Documentación — resumen priorizado de lo que falta, con el catálogo de 24 modelos completo
