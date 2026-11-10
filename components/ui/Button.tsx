@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
+// REGLA DE HOVER (10 nov 2026, acordada con Raúl): los botones RELLENOS (primary, invert-red,
+// invert-black) cambian de tono de forma suave (más oscuro o gris claro); los de CONTORNO
+// (secondary, outline-hero) se rellenan de negro con texto blanco. Nunca cambian de color de
+// marca al pasar el cursor. Los enlaces de texto se subrayan.
 // Botón compartido de todo el sitio. Los 5 `variant` de abajo son los
 // tratamientos de color/hover reales ya usados en las páginas de modelo
 // (ver SISTEMA-DE-DISENO.md, sección 5) — no inventar un sexto sin
@@ -16,11 +20,11 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary: 'bg-toyota-red text-white hover:bg-toyota-red-dark',
   // Acción secundaria emparejada con un primario — ej. "Manéjalo". Contorno negro, invierte a relleno negro.
   secondary: 'border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white',
-  // CTA aislado sobre fondo claro — ej. "Ver versiones y precios" en el Hero. Contorno negro, invierte a rojo.
-  'outline-hero': 'border-2 border-foreground text-foreground hover:bg-toyota-red hover:border-toyota-red hover:text-white',
-  // Botón blanco sobre fondo rojo de marca (ej. sección CTA intermedia). Invierte a negro.
-  'invert-red': 'bg-white text-toyota-red hover:bg-foreground hover:text-white',
-  // Botón blanco sobre fondo negro (ej. sección CTA final). Invierte a gris claro.
+  // CTA aislado sobre fondo claro — ej. "Ver versiones y precios" en el Hero. Contorno negro, se rellena de negro.
+  'outline-hero': 'border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white',
+  // Botón blanco sobre fondo rojo de marca (ej. sección CTA intermedia). Se atenúa a gris claro.
+  'invert-red': 'bg-white text-toyota-red hover:bg-[#EBEBEB]',
+  // Botón blanco sobre fondo negro (ej. sección CTA final). Se atenúa a gris claro.
   'invert-black': 'bg-white text-black hover:bg-[#EBEBEB]',
 }
 

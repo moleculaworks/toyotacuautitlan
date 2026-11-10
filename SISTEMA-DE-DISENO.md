@@ -132,9 +132,11 @@ marca se hace en un solo archivo, no se busca y reemplaza en todo el repo.
 |---|---|---|
 | `primary` | `bg-toyota-red text-white hover:bg-toyota-red-dark` | Acción principal — "Cotízalo", "Descargar Ficha Técnica". Relleno rojo de marca. Cuando un modelo tiene varias fichas (ej. 4Runner HEV), se muestra un `primary` por ficha ("Ficha Técnica <versión>"), lado a lado en escritorio y apilados en móvil (`max-desktop:flex-col`). |
 | `secondary` | `border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white` | Acción alternativa emparejada con un primario — "Manéjalo". Contorno negro, invierte a relleno negro. |
-| `outline-hero` | `border-2 border-foreground text-foreground hover:bg-toyota-red hover:border-toyota-red hover:text-white` | CTA aislado sobre fondo claro — "Ver versiones y precios" en el Hero. Contorno negro, invierte a rojo. |
-| `invert-red` | `bg-white text-toyota-red hover:bg-foreground hover:text-white` | Botón blanco sobre fondo rojo de marca — CTA intermedio ("¿Listo para dar el siguiente paso?"). |
+| `outline-hero` | `border-[1.5px] border-foreground text-foreground hover:bg-foreground hover:text-white` | CTA aislado sobre fondo claro — "Ver versiones y precios" en el Hero. Contorno negro, se rellena de negro. |
+| `invert-red` | `bg-white text-toyota-red hover:bg-[#EBEBEB]` | Botón blanco sobre fondo rojo de marca — CTA intermedio ("¿Listo para dar el siguiente paso?"). |
 | `invert-black` | `bg-white text-black hover:bg-[#EBEBEB]` | Botón blanco sobre fondo negro — CTA final ("¿Listo para estrenar tu [Modelo]?"). |
+
+**Regla de hover (acordada el 10 de noviembre de 2026):** los botones **rellenos** (`primary`, `invert-red`, `invert-black`) cambian de tono de forma suave (más oscuro o gris claro `#EBEBEB`); los de **contorno** (`secondary`, `outline-hero`) se rellenan de negro con texto blanco. Ningún botón cambia a otro color de marca al pasar el cursor. Los enlaces de texto ("Ver detalles", "Ver modelo") se subrayan. Tamaño de texto de los botones: solo 14 px (`text-sm`) o 16 px (`text-base`), nunca más. Contorno de `secondary` y `outline-hero`: 1.5 px en ambos.
 
 **El componente NO impone tamaño de texto, padding ni tracking** — eso se
 pasa vía `className` en cada uso, porque hoy varía por contexto y no está
@@ -165,11 +167,12 @@ vez de `text-sm`. Las dos apariciones ya comparten ese tamaño (corregido el
 **Pendiente de decisión (no es un error, es una inconsistencia sin
 resolver, detectada el 20 de septiembre de 2026):** el padding de estos dos
 botones no es idéntico entre sí (`px-11 py-[18px]` en el intermedio,
-`px-14 py-5` en el final) y su tratamiento de hover tampoco (invierte a
-negro/blanco vs. a un gris claro fijo `#EBEBEB`). No se unificó todavía
-porque cambiaría el aspecto visual de una pieza ya publicada — antes de
-tocarlo, confirmar con Raúl si se homologan a un solo tamaño/hover o si la
-diferencia es intencional por el contraste de fondo (rojo vs. negro).
+`px-14 py-5` en el final). **El hover ya se unificó el 10 de noviembre de
+2026** (ambos pasan a gris claro `#EBEBEB`, ver la regla de hover más
+arriba). El padding no se unificó todavía porque cambiaría el aspecto
+visual de una pieza ya publicada — antes de tocarlo, confirmar con Raúl si
+se homologa a un solo tamaño o si la diferencia es intencional por el
+contraste de fondo (rojo vs. negro).
 
 ---
 
@@ -278,7 +281,7 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 | Tarjetas con "Ver detalles" | `components/financiamiento/PlanCard.tsx` (nuevo): foto 3.5:1, `h3`, línea roja corta, texto y despliegue con viñetas. Solo usa valores de las tarjetas de "Modelos similares". |
 | Franja gris de beneficios | `bg-toyota-gray`, 3 columnas (2 en tablet, 1 en móvil), ícono + `h3` + texto |
 | Íconos de beneficios | **Temporales**: `components/ui/IconoGenerico.tsx` marca la posición. Los definitivos se dibujan uno por uno con referencia de Raúl, mismo trazo (1.0) y render (36px) que `HighlightIcon.tsx`. |
-| CTA final | Mismo patrón que el cierre de los modelos (`bg-black`, `h2`, frase, botón `invert-black`) |
+| CTA | Sin franja de cierre (se quitó el 10 nov 2026: el negro se fundía con el pie de página). Cada tarjeta lleva un botón "Cotizar ahora" (`primary`, ancho completo, `text-base`: los botones del sitio solo usan 14 px o 16 px, nunca más) al final de sus viñetas, con `href="#"` hasta que exista el formulario |
 | Breakpoint | `desktop:` / `max-desktop:` (880px), el del hero heredado, en toda la página. Para las páginas sin SectionHero rige la regla de la sección 1. |
 | Textos | Editables en Sanity (documento único "Página: ..."), con regeneración cada 60 s (`revalidate = 60`). Imágenes opcionales en Sanity con placeholder local mientras no se suban. |
 

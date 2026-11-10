@@ -137,8 +137,7 @@ export async function getPaginaFinanciamiento() {
       arrendamientosTitulo, arrendamientosDestacado, arrendamientosTexto,
       arrendamientos[] { _key, titulo, descripcion, detalles, imagenAlt, imagen { asset->{ url } } },
       beneficiosTitulo,
-      beneficios[] { _key, titulo, texto, icono },
-      ctaTitulo, ctaTexto, ctaBoton, ctaEnlace
+      beneficios[] { _key, titulo, texto, icono }
     }
   `)
 }

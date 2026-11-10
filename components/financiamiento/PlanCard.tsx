@@ -1,7 +1,10 @@
 'use client'
 
 import Image from 'next/image'
+import Button from '@/components/ui/Button'
 import { useId } from 'react'
+
+const ENLACE_COTIZAR = '#'
 
 export type PlanCardData = {
   titulo: string
@@ -81,6 +84,13 @@ export default function PlanCard({
             </li>
           ))}
         </ul>
+        {/* Cotizar: lleva a un formulario que todavía no existe; hasta entonces href="#", igual que
+            los botones "Cotízalo" de las versiones de los modelos. Cambiar ENLACE_COTIZAR cuando exista. */}
+        <div className="mt-5">
+          <Button href={ENLACE_COTIZAR} variant="primary" className="w-full text-center text-base py-3.5">
+            Cotizar ahora
+          </Button>
+        </div>
       </div>
     </div>
   )

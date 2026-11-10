@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Button from '@/components/ui/Button'
 import SectionHero from '@/components/ui/SectionHero'
 import HighlightIcon from '@/components/ui/HighlightIcon'
 import IconoGenerico from '@/components/ui/IconoGenerico'
@@ -24,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Estructura de la página de sección (acordado 10 nov 2026): hereda del modelo el
-// hero, el ancho (max-w-7xl), los h2, la franja gris y el CTA final negro. Sin
+// hero, el ancho (max-w-7xl), los h2, la franja gris. El cierre con CTA se quitó (10 nov): cada plan lleva su botón Cotizar. Sin
 // etiquetas rojas sobre los títulos. Breakpoint único: desktop (880px), el mismo
 // del hero de modelo, para que toda la página cambie de layout al mismo punto.
 const contenedor = 'max-w-7xl mx-auto px-6 max-desktop:px-4'
@@ -104,22 +103,6 @@ export default async function FinanciamientoPage() {
         </div>
       </section>
 
-      {/* CTA final: mismo patrón que el cierre de las páginas de modelo (§ 8) */}
-      <section id="final-cta" className="bg-black py-20 max-desktop:py-[52px]">
-        <div className={`${contenedor} text-center flex flex-col items-center gap-4`}>
-          <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] desktop:whitespace-nowrap">
-            {p.ctaTitulo}
-          </h2>
-          {p.ctaTexto && (
-            <p className="text-[clamp(15px,1.8vw,18px)] text-white/60 max-w-[440px] leading-[1.6]">{p.ctaTexto}</p>
-          )}
-          <div className="mt-2">
-            <Button href={p.ctaEnlace || '/contacto'} variant="invert-black" className="px-14 py-5 text-base tracking-[.3px]">
-              {p.ctaBoton}
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
