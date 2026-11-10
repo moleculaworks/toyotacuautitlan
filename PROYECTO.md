@@ -67,11 +67,13 @@ Los 24 modelos están publicados con precios iguales a toyota.mx, las 27 fichas 
 1. **Revalidación Sanity a sitio en vivo** (aplazada a propósito el 15 de septiembre): las páginas de modelo son HTML estático, así que cada cambio de contenido necesita un deploy. El 9 de noviembre dio dos desfases: el deploy leyó datos viejos del CDN de Sanity (3 botones de ficha quedaron sin enlace; se resolvió con un commit vacío). Una revalidación automática (webhook de Sanity o revalidación por demanda) lo evitaría. Mientras tanto: esperar unos minutos entre parchar Sanity y hacer push, y verificar todas las páginas en producción (ver la memoria `feedback_cdn_sanity_antes_de_desplegar`).
 2. Vista previa de borradores ya publicados (Draft Mode de Next.js).
 3. Actualización masiva de precios y datos por CSV o Google Sheets (futuro).
+4. **"Modelos similares"** (al final de cada página de modelo): hoy muestra tres modelos según el campo `orden` de Sanity (99 o vacío), o sea casi al azar. Opcional: mostrar los de categoría o precio más cercano. El resto de los listados (menú, acordeón móvil y catálogo) ya se ordena por precio. Preguntarle a Raúl antes de tocarlo.
 
 **E. Mantenimiento que hay que repetir** (los métodos están guardados en la memoria de Claude)
 1. **Precios contra toyota.mx:** repetir de vez en cuando y antes de cualquier campaña (Toyota subió 4 modelos sin avisar el 9 de noviembre).
 2. **Fichas nuevas:** cuando Toyota publique una ficha de otro año modelo, comparar contra lo publicado y actualizar el campo `anio` (ahora interno). Casos abiertos: toyota.mx todavía enlaza para el Tundra HEV la ficha `TUNDRA_HV_25`, más antigua que la que usamos; y la página de Corolla en toyota.mx aún muestra el equipo de 2026 (sin Connected Services ni la antena de aleta de tiburón de la ficha 2027), así que revisar de nuevo cuando la actualicen.
-3. **Auditoría de imágenes huérfanas** después de reemplazar imágenes o subir archivos (la del 9 de noviembre dejó 0 de 2,629 imágenes).
+3. **Auditoría de imágenes huérfanas** después de reemplazar imágenes o subir archivos (la del 9 de noviembre dejó 0 de 2,629 imágenes; desde entonces se reemplazó el destacado del Prius y su imagen anterior quedó huérfana, así que hay 1 pendiente de borrar en la próxima ronda).
+4. **Orden del menú por precio:** ya se reordena solo al cambiar un precio (sale de `precioDesde`). Si toyota.mx cambiara su criterio de orden o agregara categorías, revisar `lib/categorias.ts` y `getModelos()`; ver Obsidian `navegacion-menu-modelos.md`.
 
 **F. Decisiones abiertas de Raúl**
 1. **Qué modelos vende realmente Cuautitlán:** los 24 son el catálogo completo de toyota.mx y la propia nota del proyecto dice que la agencia real probablemente vende un subconjunto (Oaxaca, por ejemplo, no tiene GR Yaris ni RAV4 PHEV). Confirmar con la agencia y ocultar los que no venda.
