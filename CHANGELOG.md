@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-09 — Raúl (Claude Sonnet 5.5) (82)
+
+### Agregado — GR Yaris publicado en Sanity (23 de 24 modelos)
+
+Vigésimo tercer modelo (slug `gr-yaris`, documento `gr-yaris-modelo`), el primero de la categoría **Toyota Gazoo Racing**, año 2027 (ficha MY27). **Una sola versión**, "Aero Performance Package", $898,200 M.N. (la tabla técnica de la ficha la llama "Circuit Package" y el equipo y la Tabla A "Aero Performance Package"; manda el nombre del sitio). Con una sola versión la sección va centrada y sin carrusel.
+Motor 1.6 L de 3 cilindros con turbo e intercooler, **296 HP y 295 lb-pie**, transmisión manual de 6 velocidades, tracción **GR-FOUR con bloqueo de diferencial (LSD)** y modos NORMAL, ECO y SPORT. Barra de íconos: Motor "Turbo · 296 HP", Transmisión "Manual · 6 vel.", Tracción "GR-FOUR 4WD" y Modos de manejo "3 modos". Rendimiento en una fila, MT 13.80 km/l.
+Destacado **"Desempeño"** ("Un 1.6 L que se siente de más") con una foto del cockpit (palanca manual, volante GR y asientos deportivos); se descartaron "Tracción" y "Aerodinámica" (esta última ya la cubre la galería exterior y es el tema de toyota.mx). No se usaron los "5.2 seg" de toyota.mx porque no dice el rango.
+Toyota Safety Sense con **solo 4 componentes** (PCS, LKA, LTA y AHB, sin la Alerta de Cambio de Carril) y control de crucero con radar "High Speed Range"; se anotó tal cual en vez de igualarlo a otros modelos.
+**3 colores** (Blanco `#F5F5F5` con borde, Gris `#45474B` y Rojo `#BD0C28`, los tres reutilizados) con **35 ángulos de 360°** cada uno, no 16 (así los sirve toyota.mx; en los tres hay 2 o 3 fotogramas traseros casi iguales). **Galería solo exterior** (6 imágenes): el GR Yaris no tiene galería interior en toyota.mx y el sitio oculta la pestaña "Interior" si no hay fotos.
+117 imágenes subidas con la CLI de Sanity (105 de 360°, 6 de galería, 5 sueltas y 1 de versión con fondo transparente); los heros ya venían ligeros (108 y 113 KB) y no se comprimieron. Una ficha técnica registrada sin archivo ("GR Yaris"). Publicado con confirmación de Raúl y revisado en local (14 imágenes sin rotas, sin errores en consola); el sitio en vivo lo muestra con este push. Ruta de toyota.mx: `/modelos/gr/gr-yaris/`.
+
 ## 2026-11-09 — Raúl (Claude Sonnet 5.5) (81)
 
 ### Agregado — Tacoma HEV publicada en Sanity (22 de 24 modelos)
