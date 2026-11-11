@@ -49,7 +49,7 @@ export default async function ModelosPage({
                   ? '/modelos'
                   : `/modelos?categoria=${encodeURIComponent(cat.value)}`
               }
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
+              className={`px-4 py-1.5 text-sm font-semibold border transition-colors ${
                 (categoria ?? 'todos') === cat.value
                   ? 'bg-toyota-red text-white border-toyota-red'
                   : 'bg-white text-foreground border-gray-200 hover:border-toyota-red hover:text-toyota-red'

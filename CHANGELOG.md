@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (115)
+
+### Cambiado — pastillas de acceso rápido y filtros del catálogo con esquinas rectas
+
+Los accesos rápidos de `/postventa/precios` (Kilometrado, Frenos, RAV4 PHEV, GR y Supra) y los filtros de categoría de `/modelos` pasan de `rounded-full` a esquinas rectas (mismo borde gris, texto y hover rojo; el filtro activo sigue en rojo). Motivo: eran la única excepción a la regla de "sin esquinas redondeadas" en botones, y junto al botón rojo de cita desentonaban. Aprobado por Raúl tras verlo en local. `SISTEMA-DE-DISENO.md` (sección 11 y las notas de homologación) actualizado. Los demás `rounded-full` que quedan son círculos (flechas de carrusel, barras y puntos indicadores); la etiqueta de `/promociones` (provisional) se decidirá aparte.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (114)
 
 ### Cambiado — las URL de la sección pasan de `/servicio/…` a `/postventa/…`

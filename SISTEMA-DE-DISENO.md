@@ -305,7 +305,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Notas y excepciones:** un solo desplegable por sección, **"Ver notas y excepciones"** (botón rojo 15 px, cerrado por defecto, panel gris a todo el ancho con viñetas rojas, texto de 14 px). No hay listas de notas visibles ni línea de vigencia en la parte principal del bloque. Las notas compartidas por varios modelos van una sola vez, al final del bloque.
 - **Filas de modelo:** kilometrado a la izquierda, frenos a la derecha, notas debajo; apiladas en móvil y tableta (menos de 880 px). Es automático para cualquier bloque que tenga tabla de kilometrado y de frenos. El renglón de detalle bajo el título de tabla solo se reserva si la tabla vecina lo trae.
 - **Tarjetas de frenos:** 4 por fila desde 1280 px, 3 entre 880 y 1279 px, 2 en móvil (cada una de unos 166 px a 375 px, con 12 px de relleno lateral en móvil); un grupo largo de modelos puede ocupar dos columnas. El precio queda alineado abajo aunque los títulos tengan distinto largo.
-- **Accesos rápidos:** pastillas con el estilo de los filtros del catálogo, una por bloque.
+- **Accesos rápidos:** una caja por bloque con el estilo de los filtros del catálogo (borde gris fino, texto 14 px semibold, hover rojo), **de esquinas rectas** (10 nov 2026). A la derecha en escritorio, y debajo en móvil, va el botón `primary` "Agenda tu cita de servicio".
 - **Probado y descartado:** limitar el ancho de la tabla de kilometrado y ponerla junto a los frenos; convertir los frenos en tabla con encabezado de dos niveles (no convenció, se revirtió).
 - **Franjas de cita:** dos franjas rojas con botón blanco (copia de la CTA intermedia de los modelos), una en medio (después de los dos primeros bloques) y otra al final, antes del pie. No se usa la franja negra al final (se funde con el pie oscuro) ni botones sueltos sobre fondo blanco (se ven aislados). Textos en Sanity (grupo "Franjas de cita"); sin prometer confirmaciones ni procesos no definidos.
 - **Tarjeta de frenos sin nombre de modelo** (filas de modelo): sin relleno superior (9 px sobre "4 ruedas", 17 px abajo); con nombre, el relleno de siempre.
@@ -366,7 +366,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
   reales migrados a `<Button>`, tarjetas a `border border-[#E8E8E8]` sin
   sombra ni redondeo, textos de `#EB0A1E`/`#1A1A1A` a `text-toyota-red`/
   `text-foreground`. Verificado visualmente en las 5 páginas antes de
-  subir. **No se tocó:** los `rounded-full` de pills/badges/indicadores
+  subir. **No se tocó:** los `rounded-full` de pills/badges/indicadores (los filtros de categoría del catálogo y los accesos rápidos de Precios de servicio dejaron de ser pills el 10 nov 2026: hoy son rectos)
   circulares (etiqueta de promoción, bullets de lista, flechas de
   carrusel) — es una convención distinta (chips/indicadores), no la
   esquina recta de botones y tarjetas que sí se documentó aquí; tampoco
@@ -393,8 +393,8 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
   sin pasar por ninguna ronda anterior: **`Footer.tsx`** (fondo y logo con
   hex directo) y **`app/modelos/page.tsx`** (título y pills de filtro de
   categoría con hex directo). Ninguno tenía esquinas mal usadas — el
-  catálogo solo usa `rounded-full` en los pills de filtro, que ya es la
-  convención aceptada de chip. Corregido: `bg-[#1A1A1A]` → `bg-toyota-dark`,
+  catálogo solo usa `rounded-full` en los pills de filtro, que entonces era la
+  convención aceptada de chip (desde el 10 nov 2026 son rectos). Corregido: `bg-[#1A1A1A]` → `bg-toyota-dark`,
   `text-[#EB0A1E]` → `text-toyota-red`, `text-[#1A1A1A]` → `text-foreground`.
   Verificado por estilos computados (`getComputedStyle`) en vez de captura
   de pantalla — el panel del navegador estaba oculto ese turno — mismos

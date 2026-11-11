@@ -158,7 +158,7 @@ export default async function PreciosServicioPage() {
                   <a
                     key={b._key}
                     href={`#${anclaDe(b.acceso || b.titulo)}`}
-                    className="px-4 py-1.5 rounded-full text-sm font-semibold border bg-white text-foreground border-gray-200 hover:border-toyota-red hover:text-toyota-red transition-colors"
+                    className="px-4 py-1.5 text-sm font-semibold border bg-white text-foreground border-gray-200 hover:border-toyota-red hover:text-toyota-red transition-colors"
                   >
                     {b.acceso || b.titulo}
                   </a>
