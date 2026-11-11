@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (116)
+
+### Cambiado — imágenes hero nuevas de Precios de servicio y de Financiamiento (contenido en Sanity, sin cambios de código)
+
+- **Precios de servicio** (`paginaPreciosServicio`): primer hero real (antes placeholder gris): un técnico de Toyota Cuautitlán revisando el nivel de aceite en el taller. Escritorio 2880×1020 y móvil 2400×1800 (WebP, desde `Secciones/Postventa/precios-de-servicio/Imagenes/servicio-hero-*.webp`). Texto alternativo: "Técnico de Toyota Cuautitlán revisando el nivel de aceite del motor en el taller de servicio" (antes decía solo "Precios de servicio").
+- **Financiamiento** (`paginaFinanciamiento`): reemplaza el hero de escritorio y el móvil (`Secciones/Financiamiento/imagenes/financiamiento-hero-*.webp`, mismas medidas). Misma escena (asesor entregando las llaves a una clienta en la sala), por lo que el texto alternativo no cambia.
+- Subidas con la CLI de Sanity y publicadas directo; verificado en producción (la página regenera cada 60 s, sin deploy). **2 imágenes huérfanas nuevas** (los hero anteriores de Financiamiento: `f4e9fc08…` escritorio y `2a8491ad…` móvil); con ellas son **9** para la próxima auditoría. La carpeta local `Secciones/Servicio/` ahora se llama `Secciones/Postventa/`.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (115)
 
 ### Cambiado — pastillas de acceso rápido y filtros del catálogo con esquinas rectas
