@@ -276,7 +276,7 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 
 | Bloque | Cómo se resuelve |
 |---|---|
-| Hero | `components/ui/SectionHero.tsx`: copia exacta del hero de modelo (altura `clamp(420px,42vw,560px)`, degradado blanco, columna del 46%, `h1` font-black uppercase, subtítulo semibold). Sin categoría, precio ni botón. Imágenes 1920×680 (escritorio) y 1600×1200 (móvil). |
+| Hero | `components/ui/SectionHero.tsx`: copia exacta del hero de modelo (altura `clamp(420px,42vw,560px)`, degradado blanco, columna del 46%, `h1` font-black uppercase, subtítulo semibold). Opción `degradadoAmplio` (apagada por defecto): degradado blanco más largo (35 %/52 %/68 % en vez de 25 %/40 %/55 %) para títulos muy largos; hoy solo la usa Planes y Arrendamientos ("ARRENDAMIENTOS" se perdía sobre la foto). Sin categoría, precio ni botón. Imágenes 1920×680 (escritorio) y 1600×1200 (móvil). |
 | Calidad de imagen del hero | `SectionHero` pide `quality: 85` (el resto del sitio usa 75). Declarado en `next.config.ts` → `images.qualities: [75, 85]`. |
 | Introducción y textos de contenido | Párrafo con `clamp(16px,1.2vw,18px)`, interlineado 1.7. Es el tamaño de todo el texto corrido de la página: descripción de las tarjetas (negro `#1a1a1a`) y textos de beneficios (gris `#555`). Las viñetas de "Ver detalles" van un escalón abajo: 16 px fijo, gris `#555` |
 | Títulos de sección | `h2` `clamp(28px,4vw,44px)` semibold, **sin etiqueta roja encima** (los modelos la llevan, las páginas de sección no) |

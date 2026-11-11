@@ -14,9 +14,12 @@ type Props = {
   imagenDesktop: string
   imagenMobile?: string
   alt: string
+  // Degradado blanco más largo (solo escritorio) para títulos muy largos, como "Planes y Arrendamientos":
+  // por defecto está apagado y el hero queda igual que siempre.
+  degradadoAmplio?: boolean
 }
 
-export default function SectionHero({ titulo, subtitulo, imagenDesktop, imagenMobile, alt }: Props) {
+export default function SectionHero({ titulo, subtitulo, imagenDesktop, imagenMobile, alt, degradadoAmplio = false }: Props) {
   // quality 85 (el sitio usa 75 por defecto): el hero de sección lleva personas y se nota más la compresión
   const common = { alt, sizes: '100vw', priority: true, quality: 85 }
   const mobileSrcSet = imagenMobile
@@ -39,7 +42,9 @@ export default function SectionHero({ titulo, subtitulo, imagenDesktop, imagenMo
         <div
           className="absolute inset-0 pointer-events-none max-desktop:hidden"
           style={{
-            background: 'linear-gradient(to right, #fff 25%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0) 55%)',
+            background: degradadoAmplio
+              ? 'linear-gradient(to right, #fff 35%, rgba(255,255,255,0.5) 52%, rgba(255,255,255,0) 68%)'
+              : 'linear-gradient(to right, #fff 25%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0) 55%)',
           }}
         />
       </div>

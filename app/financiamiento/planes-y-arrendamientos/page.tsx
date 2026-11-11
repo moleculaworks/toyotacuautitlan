@@ -55,6 +55,7 @@ export default async function FinanciamientoPage() {
         imagenDesktop={p.heroDesktop?.asset?.url || placeholders.heroDesktop}
         imagenMobile={p.heroMobile?.asset?.url || placeholders.heroMobile}
         alt={p.heroAlt || p.heroTitulo}
+        degradadoAmplio
       />
 
       <section id="intro" className="bg-white py-10 max-desktop:pt-0">

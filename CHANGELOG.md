@@ -5,6 +5,13 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (121)
+
+### Cambiado — degradado más largo en el hero de Planes y Arrendamientos (sin afectar a las demás páginas)
+
+- La palabra "ARRENDAMIENTOS" (a 72 px llega casi al 55 % del ancho) caía donde el degradado blanco del hero ya era transparente, sobre el brazo y la camisa del asesor, y se perdía. `SectionHero.tsx` recibe una opción nueva **`degradadoAmplio`** (apagada por defecto): con ella el degradado pasa de "blanco hasta 25 %, 50 % en 40 %, transparente en 55 %" a **"blanco hasta 35 %, 50 % en 52 %, transparente en 68 %"**. Solo `app/financiamiento/planes-y-arrendamientos/page.tsx` la enciende; Precios de servicio, Refacciones, las páginas provisionales y los 24 modelos (que tienen su propio hero) quedan idénticos. Solo escritorio: en móvil no hay degradado.
+- Costo visible: el auto del fondo se desvanece un poco más, casi imperceptible porque ya estaba muy difuminado.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (120)
 
 ### Cambiado — menú más legible (texto, espacio, WhatsApp, Seminuevos y Protección extendida)
