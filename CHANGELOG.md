@@ -5,6 +5,14 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (122)
+
+### Corregido — "Modelos similares" se veía más grande y descuadrado en móvil (los 24 modelos)
+
+- **Síntoma (captura de Raúl):** en móvil y tableta, las tarjetas del carrusel "Modelos similares" se salían de la pantalla y el texto aparecía cortado ("Sedán compacto de 1.5L y 105 HP, con versiones ma…").
+- **Causa:** las tarjetas llevaban `max-desktop:min-w-[80vw] max-desktop:flex-shrink-0` dentro de un contenedor `flex overflow-x-auto`. Con solo un ancho mínimo, el ancho real de cada tarjeta lo decidía su texto más largo sin partir (ancho "máximo del contenido"): en el Yaris Hatchback a 375 px medían 465, 514 y 445 px.
+- **Arreglo:** una línea en `app/modelos/[slug]/page.tsx`, `max-desktop:min-w-[80vw]` pasa a **`max-desktop:w-[80vw]`** (ancho fijo, `flex-shrink-0` se conserva). Ahora miden 300 px a 375 px, el texto se parte en dos renglones y se asoma la siguiente tarjeta. Escritorio no cambia (el carrusel solo existe en móvil y tableta). Se buscó el mismo patrón en el resto del sitio y no hay más casos.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (121)
 
 ### Cambiado — degradado más largo en el hero de Planes y Arrendamientos (sin afectar a las demás páginas)

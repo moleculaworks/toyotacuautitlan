@@ -633,7 +633,7 @@ export default async function ModeloPage({
               {otrosModelos.map((m: Modelo) => (
                 <div
                   key={m.slug.current}
-                  className="bg-white border border-[#E8E8E8] flex flex-col max-desktop:min-w-[80vw] max-desktop:flex-shrink-0"
+                  className="bg-white border border-[#E8E8E8] flex flex-col max-desktop:w-[80vw] max-desktop:flex-shrink-0"
                 >
                   <div className="relative aspect-[16/9] bg-toyota-gray overflow-hidden">
                     {m.imagenTarjeta?.asset?.url && (
