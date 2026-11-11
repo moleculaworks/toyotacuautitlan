@@ -1,12 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import IconoExterno from "@/components/ui/IconoExterno";
+import { URL_PROTECCION_EXTENDIDA } from "@/lib/enlaces";
 
-const links = {
+type EnlacePie = { label: string; href: string; externo?: boolean };
+const links: Record<string, EnlacePie[]> = {
   Vehículos: [
     { label: "Todos los modelos", href: "/modelos" },
     { label: "Promociones", href: "/promociones" },
     { label: "Planes y Arrendamientos", href: "/financiamiento/planes-y-arrendamientos" },
     { label: "Seguros", href: "/financiamiento/seguros" },
+    { label: "Comonuevos", href: "/seminuevos/comonuevos" },
+    { label: "Catálogo de seminuevos", href: "/seminuevos/catalogo" },
+    { label: "Protección extendida", href: URL_PROTECCION_EXTENDIDA, externo: true },
     { label: "Cotizar", href: "/cotizacion" },
   ],
   Servicios: [
@@ -46,12 +52,24 @@ export default function Footer() {
               <ul className="space-y-2">
                 {items.map((item) => (
                   <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-sm text-gray-400 hover:text-white transition-colors"
-                    >
-                      {item.label}
-                    </Link>
+                    {item.externo ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
+                      >
+                        {item.label}
+                        <IconoExterno size={12} />
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="text-sm text-gray-400 hover:text-white transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

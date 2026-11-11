@@ -23,7 +23,7 @@ export default function ModelosMegaMenu({
       : modelos.filter((m) => m.categoria === activa)
 
   return (
-    <div className="grid grid-cols-[260px_1fr] gap-8">
+    <div className="grid grid-cols-[300px_1fr] gap-8">
       {/* Categorías */}
       <div>
         {CATEGORIAS_MENU.map((cat) => {
@@ -33,7 +33,7 @@ export default function ModelosMegaMenu({
               key={cat.value}
               onMouseEnter={() => setActiva(cat.value)}
               onFocus={() => setActiva(cat.value)}
-              className={`w-full flex items-center justify-between text-left py-5 border-b border-[#EDEDED] text-[15px] font-semibold transition-colors ${
+              className={`w-full flex items-center justify-between text-left py-6 border-b border-[#EDEDED] text-[15px] font-semibold transition-colors ${
                 isActive ? 'text-toyota-red' : 'text-foreground hover:text-toyota-red'
               }`}
             >
@@ -65,7 +65,7 @@ export default function ModelosMegaMenu({
             Próximamente en esta categoría.
           </div>
         ) : (
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-x-6 gap-y-8">
             {filtrados.map((modelo) => (
               <Link
                 key={modelo._id}
@@ -84,10 +84,10 @@ export default function ModelosMegaMenu({
                     />
                   ) : null}
                 </div>
-                <p className="mt-2.5 text-[15px] font-semibold text-foreground group-hover:text-toyota-red transition-colors">
+                <p className="mt-3 text-[15px] font-semibold text-foreground group-hover:text-toyota-red transition-colors">
                   {modelo.nombre}
                 </p>
-                <p className="text-sm font-normal text-[#555] mt-0.5">
+                <p className="text-sm font-normal text-[#555] mt-1">
                   Desde ${modelo.precioDesde.toLocaleString('es-MX')} M.N.
                 </p>
               </Link>

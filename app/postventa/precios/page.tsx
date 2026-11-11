@@ -181,7 +181,7 @@ export default async function PreciosServicioPage() {
           <Fragment key={b._key}>
           <section
             id={anclaDe(b.acceso || b.titulo)}
-            className="bg-white border-t border-[#E8E8E8] pt-12 max-desktop:pt-10 pb-12 max-desktop:pb-10 scroll-mt-16 lg:scroll-mt-20"
+            className="bg-white border-t border-[#E8E8E8] pt-12 max-desktop:pt-10 pb-12 max-desktop:pb-10 scroll-mt-16 xl:scroll-mt-20"
           >
             <div className={contenedor}>
               <h2 className={h2}>{b.titulo}</h2>

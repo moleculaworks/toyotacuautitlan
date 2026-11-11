@@ -31,11 +31,12 @@ type Ventaja = { _key: string; titulo: string; texto: string; icono?: string }
 // "5512345678" -> "55 1234 5678"
 const formatoNumero = (n: string) => `${n.slice(0, 2)} ${n.slice(2, 6)} ${n.slice(6)}`
 
-// El tipo define el enlace y el estilo del botón: WhatsApp lleva el botón rojo; Teléfono, el de contorno.
+// El tipo define el enlace; los dos botones llevan el mismo estilo (rojo, `primary`): son canales de igual
+// peso y ninguno es el preferido (acordado con Raúl, 10 nov 2026).
 const propiedadesCanal = (c: Canal) =>
   c.tipo === 'whatsapp'
     ? { href: `https://wa.me/52${c.numero}`, externo: true, variante: 'primary' as const }
-    : { href: `tel:${c.numero}`, externo: false, variante: 'secondary' as const }
+    : { href: `tel:${c.numero}`, externo: false, variante: 'primary' as const }
 
 export default async function RefaccionesPage() {
   const p = await getPaginaRefacciones()

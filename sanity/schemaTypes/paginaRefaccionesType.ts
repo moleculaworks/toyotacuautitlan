@@ -67,7 +67,7 @@ export const paginaRefaccionesType = defineType({
       name: 'canales',
       title: 'Formas de contacto',
       description:
-        'Se muestran en tarjetas, una junto a la otra. El tipo define el ícono, el enlace y el estilo del botón: WhatsApp lleva el botón rojo y Teléfono el botón de contorno.',
+        'Se muestran en tarjetas, una junto a la otra. El tipo define el ícono y el enlace (llamada o WhatsApp); los dos botones llevan el mismo estilo.',
       type: 'array',
       group: 'contacto',
       of: [
