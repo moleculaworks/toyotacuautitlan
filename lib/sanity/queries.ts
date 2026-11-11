@@ -167,3 +167,17 @@ export async function getPaginaPreciosServicio() {
     }
   `)
 }
+
+export async function getPaginaRefacciones() {
+  return client.fetch(groq`
+    *[_type == "paginaRefacciones" && _id == "paginaRefacciones"][0] {
+      heroTitulo, heroSubtitulo, heroAlt, introDestacado, intro, seoDescripcion,
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      contactoTitulo,
+      canales[] { _key, tipo, titulo, numero, texto, boton },
+      ventajasTitulo,
+      ventajas[] { _key, titulo, texto, icono }
+    }
+  `)
+}

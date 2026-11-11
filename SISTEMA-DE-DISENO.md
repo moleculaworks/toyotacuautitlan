@@ -319,7 +319,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 
 - **Tarjetas de contacto:** `border border-[#E8E8E8]`, sin sombra ni redondeo; ícono de 48 px arriba (`telefono` / `whatsapp`), título 18 px semibold, número en rojo (`clamp(24px,3vw,32px)`), texto de apoyo y botón a todo el ancho (WhatsApp `primary`, teléfono `secondary`). El ícono va arriba y no junto al número a propósito: sigue el patrón de las franjas de beneficios y evita un tamaño más.
 - **Ventajas:** 4 columnas (2×2 en tableta, 1 en móvil), mismo patrón que los beneficios de Financiamiento (icono 48 px, título 18 px, texto `clamp(16px,1.2vw,18px)`), título del `h2` sin tope de ancho para que quepa en una línea en escritorio.
-- **Pendiente:** los números son **ficticios** (`55 0000 0000`, constantes al inicio del archivo) y los textos viven en el código, no en Sanity.
+- **Datos:** todo se edita en Sanity (documento único "Página: Refacciones", `revalidate = 60`). Las tarjetas se definen por `tipo` (Teléfono o WhatsApp) y un número de 10 dígitos; el sitio arma el formato, el enlace, el ícono y el estilo del botón. **Pendiente:** los números siguen siendo ficticios (`55 0000 0000`); ponerlos reales en el Studio, pestaña Contacto.
 
 ## Pendientes (a propósito, no resueltos hoy)
 

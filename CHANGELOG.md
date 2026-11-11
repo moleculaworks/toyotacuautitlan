@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (118)
+
+### Cambiado — los textos de Refacciones pasan a Sanity (documento "Página: Refacciones")
+
+- **Esquema nuevo** `sanity/schemaTypes/paginaRefaccionesType.ts` (documento único `paginaRefacciones`, registrado en `schemaTypes/index.ts` y en `sanity/structure.ts` junto a Financiamiento y Precios de servicio). Tres grupos: **Portada** (título, subtítulo, imágenes de hero de escritorio y móvil, texto alternativo, primera frase en negrita y texto del párrafo de invitación, descripción para Google de máx. 160 caracteres), **Contacto** (título de la sección y 1 a 2 tarjetas) y **Ventajas** (título de la franja y lista de ventajas con título, texto e ícono).
+- **Tarjetas de contacto por tipo:** cada una tiene `tipo` (Teléfono o WhatsApp), título, `numero` (exactamente 10 dígitos, validado), texto de apoyo y texto del botón. La página formatea el número ("55 1234 5678") y arma sola el enlace (`tel:` o `https://wa.me/52…`), el ícono y el estilo del botón (WhatsApp `primary`, Teléfono `secondary`).
+- **Ícono de cada ventaja** elegido de una lista (seguridad, engranes, velocímetro, sello, protección, confianza); si falta, se muestra `IconoGenerico`.
+- **Consulta** `getPaginaRefacciones()` en `lib/sanity/queries.ts` y página `app/postventa/refacciones/page.tsx` reescrita para leer de ahí (`revalidate = 60`, descripción para Google desde `seoDescripcion`; si el documento no existe, 404). Las imágenes de `public/images/postventa/` quedan como respaldo si no hay una subida.
+- **Contenido cargado** con los textos que estaban en el código, y las dos imágenes de hero subidas a Sanity (`image-8b67f01c…` escritorio y `image-48d2e851…` móvil). Se comprobó que un cambio de número en Sanity se refleja en la página (prueba y restauración).
+- **Los números siguen siendo ficticios (`5500000000`).** Para poner los reales: Studio, "Página: Refacciones", pestaña Contacto.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (117)
 
 ### Añadido — página de Refacciones, íconos nuevos y íconos de 48 px en las franjas de beneficios
