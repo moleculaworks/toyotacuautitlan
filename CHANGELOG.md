@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (125)
+
+### Cambiado — respaldo de regeneración de 60 s a 1 hora, y lista de pasos para conectar el dominio propio
+
+- **`revalidate` ahora es 3600 (1 hora) y se declara solo en `app/layout.tsx`.** Con el aviso automático de Sanity (CHANGELOG 124) los cambios llegan en segundos; el respaldo solo cubre el caso de que un aviso fallara. Se subió porque el cliente de Sanity ya no usa la CDN y regenerar cada minuto habría multiplicado las consultas con mucho tráfico. Se quitó el `revalidate = 60` propio de Planes y Arrendamientos, Precios de servicio y Refacciones (quedaban en 60 por separado): ahora heredan el del layout, un solo lugar para cambiarlo.
+- **Comprobado en producción tras el cambio:** ida 5 s y vuelta 4 s con el respaldo en una hora (el aviso hace todo el trabajo); las tres páginas que tenían su propio valor también se actualizan; dirección real restaurada.
+- **Costo asumido:** si un aviso fallara, el cambio tardaría hasta una hora en verse (mientras tanto, volver a publicar en Sanity o pedir un deploy lo corrige).
+- **`PROYECTO.md`, sección "Dominio":** lista ordenada de lo que hay que hacer antes, durante y después de conectar `toyotacuautitlan.com.mx` (coordinar con el servidor actual y no tocar el correo, qué páginas salen públicas, redirecciones 301 si hay tráfico, DNS y SSL en Vercel, cambiar la URL del webhook de Sanity, `robots.ts` y sitemap, imagen para compartir, CORS del Studio, redirigir la URL de Vercel, Search Console). Copia en Obsidian `pendientes-del-proyecto.md`.
+- **Archivos:** `app/layout.tsx`, `app/postventa/precios/page.tsx`, `app/postventa/refacciones/page.tsx`, `app/financiamiento/planes-y-arrendamientos/page.tsx`. Commit `f9457a2`.
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (124)
 
 ### Añadido — aviso automático de Sanity al sitio (webhook): los cambios se ven en segundos
@@ -16,7 +26,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - **`lib/sanity/client.ts`: `useCdn: false`.** Con la CDN, la regeneración todavía podía leer el dato anterior (una prueba tardó 75 s en la vuelta). Se consulta solo al regenerar una página, no en cada visita.
 - **Medición real en producción** (cambio de la dirección en Sanity y restauración): con el aviso y la CDN apagada, ida 4 s y vuelta menos de 1 s medible; con el aviso pero con CDN, ida 8 s y vuelta 75 s; sin aviso, ida 11 s y vuelta 290 s. El `revalidate = 60` queda como respaldo por si un aviso fallara.
 - **Prueba local:** sin firma 401, firma falsa 401, firma buena 200.
-- **Pendiente de decidir:** con CDN apagada y `revalidate = 60` las consultas a Sanity pueden crecer con mucho tráfico; ahora que hay aviso, se puede subir el respaldo (por ejemplo a 3600 s).
+- **Respaldo:** se subió a 1 hora en el CHANGELOG 125 (por el volumen de consultas sin CDN).
 - **Archivos:** `app/api/revalidate/route.ts` (nuevo), `lib/sanity/client.ts`. Commits `a44f5ba` y `8288542`.
 
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (123)
