@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (114)
+
+### Cambiado — las URL de la sección pasan de `/servicio/…` a `/postventa/…`
+
+Para que la dirección coincida con el nombre del menú (Postventa): `app/servicio/` se renombra `app/postventa/`, y las páginas quedan en `/postventa/precios`, `/postventa/refacciones` y `/postventa/acciones-de-servicio`. Se actualizan los enlaces del menú (`Navbar.tsx`) y del pie (`Footer.tsx`). **Redirección permanente (308)** en `next.config.ts`: cualquier `/servicio/…` lleva a su `/postventa/…`, para no dejar rotos enlaces guardados o compartidos. La carpeta de componentes también pasa de `components/servicio/` a `components/postventa/` (4 importaciones en `app/postventa/precios/page.tsx`), para que todo lo que organiza la sección lleve el mismo nombre. El documento de Sanity `paginaPreciosServicio` y los componentes con nombre propio (`TablaKilometrado`, `TarjetasFrenos`, `NotasServicio`) conservan el nombre porque describen la página "Precios de servicio", no la sección; renombrar el tipo obligaría a migrar el documento. Las menciones de la ruta en `PROYECTO.md` y `SISTEMA-DE-DISENO.md` se actualizaron; las entradas anteriores de este archivo conservan la ruta vieja porque describen lo que se hizo entonces.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (113)
 
 ### Añadido — botón "Agenda tu cita de servicio" junto a los accesos rápidos de Precios de servicio

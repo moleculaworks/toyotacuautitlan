@@ -18,9 +18,9 @@ const navLinksAntes = [
 ];
 const navLinksDespues = [{ label: "Contacto", href: "/contacto" }];
 const SERVICIO_LINKS = [
-  { label: "Precios de servicio", href: "/servicio/precios" },
-  { label: "Refacciones", href: "/servicio/refacciones" },
-  { label: "Acciones de servicio", href: "/servicio/acciones-de-servicio" },
+  { label: "Precios de servicio", href: "/postventa/precios" },
+  { label: "Refacciones", href: "/postventa/refacciones" },
+  { label: "Acciones de servicio", href: "/postventa/acciones-de-servicio" },
 ];
 
 function FilaMovil({ link, onNavigate }: { link: { label: string; href: string }; onNavigate: () => void }) {

@@ -297,7 +297,7 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 
 ## 11. Sección Servicio: Precios de servicio (10 de noviembre de 2026)
 
-Reglas acordadas con Raúl para las tablas de precios (`components/servicio/`, `app/servicio/precios/page.tsx`); sirven de base para cualquier tabla de precios futura.
+Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, `app/postventa/precios/page.tsx`); sirven de base para cualquier tabla de precios futura.
 
 - **Precio estándar:** **18 px en escritorio y 16 px en móvil**, semibold, rojo `#EB0A1E`. Igual en las tablas de kilometrado y en las tarjetas de frenos (no mezclar tamaños).
 - **Kilometraje / intervalo:** peso normal (400), 16 px; los encabezados y los precios van en negritas (600).

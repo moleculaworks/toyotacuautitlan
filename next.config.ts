@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // La sección se llamaba /servicio y pasó a /postventa (10 nov 2026): se conservan los enlaces
+  // viejos (permanentes) por si alguien guardó o compartió alguno.
+  async redirects() {
+    return [{ source: "/servicio/:path*", destination: "/postventa/:path*", permanent: true }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-// Página /servicio/precios (documento único, sin lista: ver sanity/structure.ts).
+// Página /postventa/precios (documento único, sin lista: ver sanity/structure.ts).
 // TODO se edita aquí, en cualquier momento (los precios, las notas legales y las
 // vigencias cambian a fin de año y a veces a medio año). La página se regenera sola
 // cada 60 s, sin deploy. Sin guion largo (—) en ningún texto, ver SISTEMA-DE-DISENO.md
