@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (110)
+
+### Documentación — estado del proyecto y trampas conocidas antes de compactar (sin cambios de código)
+
+`PROYECTO.md` (bloque H) actualiza el siguiente trabajo sugerido (Refacciones, luego Contacto y `configuracion`, Promociones e Inicio), el estado del entorno (`main` en `95720d9`, sin ramas pendientes), la descripción para compartir de las secciones (Financiamiento y Precios de servicio ya la tienen) y suma el punto H.9 con los pendientes abiertos y las trampas conocidas: no correr `prettier --write` (el repo no tiene configuración y reescribe archivos enteros), los conteos engañosos de GROQ con `count(a[].b[filtro])`, el bloqueo falso de comandos bash largos, las capturas atrasadas del navegador integrado tras `scroll_to`, esperar despliegues con Monitor y borrar los scripts temporales de Sanity. La nota `pendientes-del-proyecto` de Obsidian y la memoria de Claude se sincronizaron.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (109)
 
 ### Añadido — franjas rojas de cita en Precios de servicio y ajuste de las tarjetas de frenos sin nombre
