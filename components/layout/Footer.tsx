@@ -11,6 +11,7 @@ const links = {
   Servicios: [
     { label: "Precios de servicio", href: "/servicio/precios" },
     { label: "Refacciones", href: "/servicio/refacciones" },
+    { label: "Acciones de servicio", href: "/servicio/acciones-de-servicio" },
     { label: "Cita de servicio", href: "/cita-de-servicio" },
     { label: "Contacto", href: "/contacto" },
   ],

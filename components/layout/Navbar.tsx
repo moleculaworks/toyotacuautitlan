@@ -20,6 +20,7 @@ const navLinksDespues = [{ label: "Contacto", href: "/contacto" }];
 const SERVICIO_LINKS = [
   { label: "Precios de servicio", href: "/servicio/precios" },
   { label: "Refacciones", href: "/servicio/refacciones" },
+  { label: "Acciones de servicio", href: "/servicio/acciones-de-servicio" },
 ];
 
 function FilaMovil({ link, onNavigate }: { link: { label: string; href: string }; onNavigate: () => void }) {
@@ -183,7 +184,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
                   servicioOpen ? "text-toyota-red" : "text-foreground hover:text-toyota-red"
                 }`}
               >
-                Servicio
+                Postventa
               </button>
 
               {servicioOpen && (

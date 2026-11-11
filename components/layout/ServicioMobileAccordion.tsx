@@ -40,7 +40,7 @@ export default function ServicioMobileAccordion({
           abierto ? 'text-toyota-red' : 'text-foreground'
         }`}
       >
-        Servicio
+        Postventa
         <Chevron open={abierto} />
       </button>
 

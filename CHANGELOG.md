@@ -5,6 +5,13 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (111)
+
+### Cambiado — menú "Postventa" con "Acciones de servicio" y un solo subtítulo "EXCEPCIONES:" en las notas del kilometrado
+
+- **Menú:** el grupo "Servicio" pasa a llamarse **Postventa** (escritorio y acordeón móvil; `Navbar.tsx`, `ServicioMobileAccordion.tsx`). Su desplegable queda con Precios de servicio, Refacciones y **Acciones de servicio** (`/servicio/acciones-de-servicio`, página provisional con el mismo patrón que Refacciones: hero con imagen placeholder y "Estamos preparando esta sección."). El pie de página suma el enlace en la columna "Servicios". Las rutas siguen bajo `/servicio/`.
+- **Notas del kilometrado general:** las 7 excepciones repetían la palabra "EXCEPCIONES:". Ahora hay una sola línea "EXCEPCIONES:" (nota nueva en Sanity, bloque "Servicio kilometrado") y las 7 notas van sin el prefijo. `NotasServicio.tsx`: una nota de hasta 24 caracteres que termina en ":" se muestra como subtítulo (semibold, sin viñeta, alineado con las viñetas). Los otros bloques no tenían ese problema.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (110)
 
 ### Documentación — estado del proyecto y trampas conocidas antes de compactar (sin cambios de código)

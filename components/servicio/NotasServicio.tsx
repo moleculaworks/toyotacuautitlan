@@ -35,11 +35,23 @@ export default function NotasServicio({ notas }: { notas?: string[] | null }) {
       </button>
       <div id={panelId} hidden={!abierto} className="mt-2">
         <ul className="bg-toyota-gray py-4 pl-9 pr-5 list-disc marker:text-toyota-red flex flex-col gap-2.5">
-          {notas.map((n, i) => (
-            <li key={i} className="text-sm text-[#555] leading-[1.6]">
-              {n}
-            </li>
-          ))}
+          {notas.map((n, i) => {
+            // Una nota corta que termina en ":" (ej. "EXCEPCIONES:") es un subtítulo de las
+            // notas que le siguen: sin viñeta y en semibold, para no repetir la palabra en cada una.
+            const subtitulo = n.length <= 24 && n.trim().endsWith(':')
+            return (
+              <li
+                key={i}
+                className={
+                  subtitulo
+                    ? 'list-none -ml-4 pt-1 text-sm font-semibold text-[#1a1a1a] leading-[1.6]'
+                    : 'text-sm text-[#555] leading-[1.6]'
+                }
+              >
+                {n}
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>
