@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (112)
+
+### Cambiado — título más corto en el cierre de Financiamiento (contenido en Sanity, sin cambios de código)
+
+El título de la franja de beneficios de `/financiamiento` (campo `beneficiosTitulo` del documento "Página: Financiamiento") pasa de "¿Por qué te conviene financiar la compra de tu Toyota con nosotros?" a **"¿Por qué financiar la compra de tu Toyota con nosotros?"**. Ya publicado en Sanity y verificado en producción (la página regenera cada 60 s, sin deploy). No había copia del texto en el código ni en los documentos.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (111)
 
 ### Cambiado — menú "Postventa" con "Acciones de servicio" y un solo subtítulo "EXCEPCIONES:" en las notas del kilometrado
