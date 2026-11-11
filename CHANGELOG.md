@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (113)
+
+### Añadido — botón "Agenda tu cita de servicio" junto a los accesos rápidos de Precios de servicio
+
+En `/servicio/precios`, el botón `primary` (16 px) se suma a la fila de las pastillas de acceso rápido (Kilometrado, Frenos, RAV4 PHEV, GR y Supra): a la derecha en escritorio y, en móvil, en su propia línea a todo el ancho debajo de las pastillas. Usa el mismo texto de las franjas rojas (campo `franjaBoton` de Sanity, respaldo `BOTON_CITA`) y el mismo destino, `ENLACE_CITA = '#'` (pendiente: formulario de cita o WhatsApp de servicio). Ya son tres botones de cita en la página: arriba, franja del medio y franja final.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (112)
 
 ### Cambiado — título más corto en el cierre de Financiamiento (contenido en Sanity, sin cambios de código)

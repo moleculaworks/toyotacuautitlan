@@ -149,19 +149,30 @@ export default async function PreciosServicioPage() {
 
           {/* Acceso rápido a cada bloque: la página es larga. Usa el estilo de los botones de
               filtro del catálogo (pastilla con borde que se pone roja al pasar el cursor). */}
-          {bloques.length > 1 && (
-            <nav aria-label="Secciones de la página" className="mt-6 flex flex-wrap gap-2">
-              {bloques.map((b) => (
-                <a
-                  key={b._key}
-                  href={`#${anclaDe(b.acceso || b.titulo)}`}
-                  className="px-4 py-1.5 rounded-full text-sm font-semibold border bg-white text-foreground border-gray-200 hover:border-toyota-red hover:text-toyota-red transition-colors"
-                >
-                  {b.acceso || b.titulo}
-                </a>
-              ))}
-            </nav>
-          )}
+          {/* Botón de cita en la misma franja: a la derecha en escritorio (las pastillas a la
+              izquierda) y, en móvil, en su propia línea a todo el ancho bajo las pastillas. */}
+          <div className="mt-6 flex max-desktop:flex-col items-center max-desktop:items-stretch justify-between gap-x-6 gap-y-4">
+            {bloques.length > 1 && (
+              <nav aria-label="Secciones de la página" className="flex flex-wrap gap-2">
+                {bloques.map((b) => (
+                  <a
+                    key={b._key}
+                    href={`#${anclaDe(b.acceso || b.titulo)}`}
+                    className="px-4 py-1.5 rounded-full text-sm font-semibold border bg-white text-foreground border-gray-200 hover:border-toyota-red hover:text-toyota-red transition-colors"
+                  >
+                    {b.acceso || b.titulo}
+                  </a>
+                ))}
+              </nav>
+            )}
+            <Button
+              href={ENLACE_CITA}
+              variant="primary"
+              className="flex-shrink-0 text-base py-3 px-8 whitespace-nowrap"
+            >
+              {textoBoton}
+            </Button>
+          </div>
         </div>
       </section>
 
