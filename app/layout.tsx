@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { getModelos, getConfiguracion } from "@/lib/sanity/queries";
 import { SITE_URL } from "@/lib/site";
+import { datosContacto } from "@/lib/contacto";
 import { buildAutoDealerJsonLd } from "@/lib/structured-data";
 import JsonLd from "@/components/JsonLd";
 
@@ -23,6 +24,12 @@ const IMAGEN_COMPARTIR_URL = `${
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "https://toyotacuautitlan.vercel.app"
 }/images/toyota-cuautitlan-compartir.jpg`;
+
+// Regeneración automática cada 60 s para TODAS las páginas que cuelgan de este layout (modelos, inicio,
+// provisionales...): el menú y el pie leen el teléfono y los WhatsApp de Sanity ("Configuración del sitio"),
+// así un cambio ahí llega a todo el sitio sin esperar un deploy. Las páginas que ya declaran su propio
+// valor (Planes y Arrendamientos, Precios de servicio, Refacciones) siguen igual.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: {
@@ -58,13 +65,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const modelos = await getModelos();
-  const configuracion = await getConfiguracion();
+  const contacto = datosContacto(await getConfiguracion());
 
   return (
     <html lang="es-MX" className={`${geist.variable} h-full antialiased`}>
       <body className={`${toyotaType.className} min-h-full flex flex-col bg-background text-foreground`}>
-        <JsonLd data={buildAutoDealerJsonLd(configuracion)} />
-        <Navbar modelos={modelos} />
+        <JsonLd data={buildAutoDealerJsonLd(contacto)} />
+        <Navbar modelos={modelos} contacto={contacto} />
         <main className="flex-1 pt-16 xl:pt-20">{children}</main>
         <Footer />
       </body>

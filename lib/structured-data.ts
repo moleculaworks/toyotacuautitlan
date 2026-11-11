@@ -1,26 +1,23 @@
 import { SITE_URL } from '@/lib/site'
-import type { Configuracion } from '@/types'
+import type { DatosContacto } from '@/lib/contacto'
 
 // Arma los objetos JSON-LD (Schema.org) del sitio. No se renderiza nada
 // aquí directamente — ver components/JsonLd.tsx para el <script> que los
 // inyecta. Mismo criterio que el resto del sitio: un campo solo se incluye
 // si el dato ya existe en Sanity, nunca se inventa un valor de relleno.
 
-export function buildAutoDealerJsonLd(configuracion: Configuracion | null) {
+export function buildAutoDealerJsonLd(contacto: DatosContacto) {
   return {
     '@context': 'https://schema.org',
     '@type': 'AutoDealer',
     name: 'Toyota Cuautitlán',
     url: SITE_URL,
-    ...(configuracion?.telefono && { telephone: configuracion.telefono }),
-    ...(configuracion?.email && { email: configuracion.email }),
-    ...(configuracion?.direccion && {
-      address: { '@type': 'PostalAddress', streetAddress: configuracion.direccion },
-    }),
-    ...(configuracion?.googleMapsUrl && { hasMap: configuracion.googleMapsUrl }),
-    ...((configuracion?.facebook || configuracion?.instagram) && {
-      sameAs: [configuracion.facebook, configuracion.instagram].filter(Boolean),
-    }),
+    telephone: `+52${contacto.telefono}`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: contacto.direccion.replace(/\n+/g, ', '),
+      addressCountry: 'MX',
+    },
   }
 }
 

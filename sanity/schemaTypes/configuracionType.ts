@@ -1,5 +1,10 @@
 import { defineField, defineType } from 'sanity'
 
+// Configuración del sitio (documento único, sin lista: ver sanity/structure.ts).
+// Hoy solo guarda los datos de contacto que ya son DEFINITIVOS (10 nov 2026): teléfono, los dos WhatsApp
+// y la dirección. Horario, correo, redes, extensiones y otros números siguen en revisión: se agregan
+// aquí cuando estén definidos. Lo leen el menú (teléfono y WhatsApp) y los datos estructurados para Google.
+
 export const configuracionType = defineType({
   name: 'configuracion',
   title: 'Configuración del sitio',
@@ -7,66 +12,35 @@ export const configuracionType = defineType({
   fields: [
     defineField({
       name: 'telefono',
-      title: 'Teléfono principal',
+      title: 'Teléfono principal (10 dígitos, sin espacios ni guiones)',
+      description: 'Ejemplo: 5558706655. El sitio lo muestra como "55 5870 6655" y arma solo el enlace de llamada.',
       type: 'string',
-      validation: (r) => r.required(),
+      validation: (r) =>
+        r.required().regex(/^\d{10}$/, { name: '10 dígitos' }).error('Escribe exactamente 10 dígitos, sin espacios ni guiones.'),
     }),
     defineField({
-      name: 'telefonoWhatsApp',
-      title: 'WhatsApp (con código de país, ej: 5255...)',
+      name: 'whatsappVentas',
+      title: 'WhatsApp de Ventas (10 dígitos, sin espacios ni guiones)',
+      description: 'Ejemplo: 5536728897. El sitio arma solo el enlace de WhatsApp (con la lada 52).',
       type: 'string',
+      validation: (r) =>
+        r.required().regex(/^\d{10}$/, { name: '10 dígitos' }).error('Escribe exactamente 10 dígitos, sin espacios ni guiones.'),
     }),
     defineField({
-      name: 'email',
-      title: 'Email de contacto',
+      name: 'whatsappServicio',
+      title: 'WhatsApp de Servicio (10 dígitos, sin espacios ni guiones)',
+      description: 'Ejemplo: 5545844859. El sitio arma solo el enlace de WhatsApp (con la lada 52).',
       type: 'string',
+      validation: (r) =>
+        r.required().regex(/^\d{10}$/, { name: '10 dígitos' }).error('Escribe exactamente 10 dígitos, sin espacios ni guiones.'),
     }),
     defineField({
       name: 'direccion',
-      title: 'Dirección',
+      title: 'Dirección física',
+      description: 'Un salto de línea parte la dirección en dos renglones.',
       type: 'text',
-      rows: 2,
-    }),
-    defineField({
-      name: 'horario',
-      title: 'Horario de atención',
-      type: 'string',
-      placeholder: 'Lun-Sab 9:00-19:00 | Dom 10:00-15:00',
-    }),
-    defineField({
-      name: 'googleMapsUrl',
-      title: 'URL de Google Maps',
-      type: 'url',
-    }),
-    defineField({
-      name: 'facebook',
-      title: 'Facebook URL',
-      type: 'url',
-    }),
-    defineField({
-      name: 'instagram',
-      title: 'Instagram URL',
-      type: 'url',
-    }),
-    defineField({
-      name: 'bannersHomepage',
-      title: 'Banners del hero (homepage)',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true } },
-            { name: 'titulo', title: 'Título', type: 'string' },
-            { name: 'subtitulo', title: 'Subtítulo', type: 'string' },
-            { name: 'ctaTexto', title: 'Texto del botón', type: 'string' },
-            { name: 'ctaUrl', title: 'URL del botón', type: 'string' },
-          ],
-          preview: {
-            select: { title: 'titulo', media: 'imagen' },
-          },
-        },
-      ],
+      rows: 3,
+      validation: (r) => r.required(),
     }),
   ],
   preview: {

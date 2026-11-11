@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (123)
+
+### Añadido — "Configuración del sitio" en Sanity (teléfono, WhatsApp y dirección) y regeneración automática de todo el sitio
+
+- **Alcance acordado con Raúl:** solo los datos de contacto DEFINITIVOS. Contacto, Cotización y Cita de servicio son páginas de muestra (no revisadas) y **no se tocaron**; horario, correo, redes, extensiones y otros números siguen en revisión y se agregarán cuando estén definidos.
+- **Esquema `configuracion` reducido a 4 campos** (`sanity/schemaTypes/configuracionType.ts`): `telefono`, `whatsappVentas` y `whatsappServicio` (10 dígitos, validados, sin espacios ni guiones) y `direccion` (dos renglones). Se quitaron los campos que nadie usaba (horario, correo, redes, mapa, banners de Inicio). Ahora es **documento único** sin lista (`sanity/structure.ts`, `_id: configuracion`). **Documento creado y publicado** con: teléfono 55 5870 6655, WhatsApp Ventas 55 3672 8897, WhatsApp Servicio 55 4584 4859 y la dirección "Autopista México – Querétaro Km. 37.5 / Esq. Calzada de Guadalupe Col. Fracc. Industrial Cuamatla, Cuautitlán Izcalli, México. C.P. 54730".
+- **Dónde se usa:** el menú (ícono de teléfono del móvil, desplegable de WhatsApp de escritorio y botones "Ventas" y "Servicio" del móvil) lee de Sanity vía `datosContacto()` (`lib/contacto.ts`), que arma el formato "55 1234 5678" y los enlaces `tel:` y `wa.me/52…`. Los datos estructurados de Google (JSON-LD de la agencia, `lib/structured-data.ts`) llevan el teléfono (+52) y la dirección. **Respaldo:** si el documento no existe o un número no tiene 10 dígitos, se usan los mismos valores en `lib/contacto.ts`. Se comprobó con una prueba de ida y vuelta (se cambió el WhatsApp de Servicio en Sanity, el menú lo mostró y se restauró).
+- **Regeneración automática de todo el sitio (cierra el pendiente de revalidación):** `export const revalidate = 60` en `app/layout.tsx`. Aplica a todas las páginas que cuelgan del layout (los 24 modelos, inicio, provisionales...); las que ya declaraban 60 s siguen igual. Antes, un cambio hecho en Sanity llegaba a las páginas estáticas solo con un deploy nuevo.
+- La dirección todavía no se muestra en ninguna página (solo en los datos para Google): decidir con Raúl si va en el pie de página.
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (122)
 
 ### Corregido — "Modelos similares" se veía más grande y descuadrado en móvil (los 24 modelos)

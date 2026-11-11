@@ -33,18 +33,7 @@ export interface Promocion {
 
 export interface Configuracion {
   telefono?: string
-  telefonoWhatsApp?: string
-  email?: string
+  whatsappVentas?: string
+  whatsappServicio?: string
   direccion?: string
-  horario?: string
-  googleMapsUrl?: string
-  facebook?: string
-  instagram?: string
-  bannersHomepage?: {
-    titulo?: string
-    subtitulo?: string
-    ctaTexto?: string
-    ctaUrl?: string
-    imagen?: { asset: { url: string; metadata: { lqip: string } } }
-  }[]
 }

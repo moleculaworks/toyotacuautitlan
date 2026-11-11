@@ -11,6 +11,7 @@ import HighlightIcon from "@/components/ui/HighlightIcon";
 import IconoExterno from "@/components/ui/IconoExterno";
 import { URL_PROTECCION_EXTENDIDA } from "@/lib/enlaces";
 import type { Modelo } from "@/types";
+import { formatoTelefono, type DatosContacto } from "@/lib/contacto";
 
 // Orden del menú: Modelos (mega menú), y luego ITEMS_MENU en este orden. Un elemento con `links` es un
 // GRUPO (encabezado SIN página propia que solo despliega sus páginas); uno con `href` es un enlace directo.
@@ -104,7 +105,7 @@ function GrupoEscritorio({ label, links }: { label: string; links: { label: stri
 // "WhatsApp" queda para lectores de pantalla), junto a "Cotizar". Se quitó el texto porque el menú ya no
 // cabe con él. Despliega dos opciones (ventas y servicio), mismo patrón de desplegable que Financiamiento
 // y Postventa.
-function WhatsAppEscritorio() {
+function WhatsAppEscritorio({ contacto }: { contacto: DatosContacto }) {
   const [abierto, setAbierto] = useState(false);
   const temporizador = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -118,8 +119,8 @@ function WhatsAppEscritorio() {
   }
 
   const opciones = [
-    { label: "Ventas", numero: WHATSAPP_VENTAS_NUMERO, href: WHATSAPP_VENTAS_HREF },
-    { label: "Servicio", numero: WHATSAPP_SERVICIO_NUMERO, href: WHATSAPP_SERVICIO_HREF },
+    { label: "Ventas", numero: contacto.whatsappVentas, href: contacto.whatsappVentasHref },
+    { label: "Servicio", numero: contacto.whatsappServicio, href: contacto.whatsappServicioHref },
   ];
 
   return (
@@ -161,7 +162,7 @@ function WhatsAppEscritorio() {
                   {o.label}
                 </span>
                 <span className="block text-[15px] font-semibold text-foreground group-hover:text-toyota-red transition-colors">
-                  {formatoNumero(o.numero)}
+                  {formatoTelefono(o.numero)}
                 </span>
               </a>
             ))}
@@ -200,19 +201,8 @@ function FilaMovil({
   );
 }
 
-// Datos de contacto del menú. El teléfono es el mismo que /contacto (escrito a mano); cuando exista el
-// documento `configuracion` en Sanity, el origen de estos datos cambia ahí.
-const TELEFONO_HREF = "tel:5558706655";
-// WhatsApp de ventas y de servicio (números reales, 10 nov 2026). Los usan el desplegable de escritorio y los
-// botones del menú móvil.
-const WHATSAPP_VENTAS_NUMERO = "5536728897";
-const WHATSAPP_SERVICIO_NUMERO = "5545844859";
-const WHATSAPP_VENTAS_HREF = `https://wa.me/52${WHATSAPP_VENTAS_NUMERO}`;
-const WHATSAPP_SERVICIO_HREF = `https://wa.me/52${WHATSAPP_SERVICIO_NUMERO}`;
-// "5512345678" -> "55 1234 5678"
-const formatoNumero = (n: string) => `${n.slice(0, 2)} ${n.slice(2, 6)} ${n.slice(6)}`;
-
-export default function Navbar({ modelos }: { modelos: Modelo[] }) {
+// `contacto` sale del documento "Configuración del sitio" de Sanity (con respaldo en lib/contacto.ts).
+export default function Navbar({ modelos, contacto }: { modelos: Modelo[]; contacto: DatosContacto }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modelosOpen, setModelosOpen] = useState(false);
@@ -341,7 +331,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
 
           {/* CTA */}
           <div className="hidden xl:flex items-center gap-5">
-            <WhatsAppEscritorio />
+            <WhatsAppEscritorio contacto={contacto} />
             <Button href="/cotizacion" variant="primary" className="px-5 py-2.5 text-base">
               Cotizar
             </Button>
@@ -349,7 +339,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
 
           {/* Móvil: teléfono a la derecha (mismo ancho que la hamburguesa para que el logo quede centrado) */}
           <a
-            href={TELEFONO_HREF}
+            href={contacto.telefonoHref}
             className="xl:hidden p-2 text-foreground"
             aria-label="Llamar a Toyota Cuautitlán"
           >
@@ -384,10 +374,10 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
               Cotizar
             </Button>
             <div className="grid grid-cols-2 gap-3">
-              <Button href={WHATSAPP_VENTAS_HREF} external variant="secondary" icon={<HighlightIcon nombre="whatsapp" size={26} />} iconPosition="left" className="gap-2 py-3 text-base">
+              <Button href={contacto.whatsappVentasHref} external variant="secondary" icon={<HighlightIcon nombre="whatsapp" size={26} />} iconPosition="left" className="gap-2 py-3 text-base">
                 Ventas
               </Button>
-              <Button href={WHATSAPP_SERVICIO_HREF} external variant="secondary" icon={<HighlightIcon nombre="whatsapp" size={26} />} iconPosition="left" className="gap-2 py-3 text-base">
+              <Button href={contacto.whatsappServicioHref} external variant="secondary" icon={<HighlightIcon nombre="whatsapp" size={26} />} iconPosition="left" className="gap-2 py-3 text-base">
                 Servicio
               </Button>
             </div>

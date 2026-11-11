@@ -21,5 +21,8 @@ export const structure: StructureResolver = (S) =>
         .id('paginaRefacciones')
         .child(S.document().schemaType('paginaRefacciones').documentId('paginaRefacciones')),
       S.divider(),
-      S.documentTypeListItem('configuracion').title('Configuración del sitio'),
+      S.listItem()
+        .title('Configuración del sitio')
+        .id('configuracion')
+        .child(S.document().schemaType('configuracion').documentId('configuracion')),
     ])

@@ -112,15 +112,11 @@ export async function getPromocionesDestacadas() {
 }
 
 // Configuración
+// Configuración del sitio (documento único, id fijo: configuracion). Solo datos de contacto definitivos.
 export async function getConfiguracion() {
   return client.fetch(groq`
-    *[_type == "configuracion"][0] {
-      telefono, telefonoWhatsApp, email, direccion, horario,
-      googleMapsUrl, facebook, instagram,
-      bannersHomepage[] {
-        titulo, subtitulo, ctaTexto, ctaUrl,
-        imagen { asset->{ url, metadata { lqip } } }
-      }
+    *[_id == "configuracion"][0] {
+      telefono, whatsappVentas, whatsappServicio, direccion
     }
   `)
 }
