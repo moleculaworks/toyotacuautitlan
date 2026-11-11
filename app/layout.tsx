@@ -25,11 +25,11 @@ const IMAGEN_COMPARTIR_URL = `${
     : "https://toyotacuautitlan.vercel.app"
 }/images/toyota-cuautitlan-compartir.jpg`;
 
-// Regeneración automática cada 60 s para TODAS las páginas que cuelgan de este layout (modelos, inicio,
-// provisionales...): el menú y el pie leen el teléfono y los WhatsApp de Sanity ("Configuración del sitio"),
-// así un cambio ahí llega a todo el sitio sin esperar un deploy. Las páginas que ya declaran su propio
-// valor (Planes y Arrendamientos, Precios de servicio, Refacciones) siguen igual.
-export const revalidate = 60;
+// Respaldo de regeneración: TODAS las páginas que cuelgan de este layout (modelos, inicio, provisionales,
+// Planes y Arrendamientos, Precios de servicio, Refacciones...) se regeneran como mínimo cada hora. El
+// cambio normal llega en segundos por el aviso de Sanity (app/api/revalidate); esto solo cubre el caso
+// de que un aviso fallara. Es el ÚNICO lugar donde se declara: las páginas no llevan su propio valor.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: {

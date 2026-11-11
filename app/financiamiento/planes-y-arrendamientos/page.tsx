@@ -8,9 +8,8 @@ import type { PlanCardData } from '@/components/financiamiento/PlanCard'
 import { getPaginaFinanciamiento } from '@/lib/sanity/queries'
 import { placeholders } from '@/lib/data/financiamiento'
 
-// Los textos se editan en Sanity ("Página: Financiamiento"). Se regenera cada 60 s,
-// así un cambio hecho en el Studio se ve sin esperar un deploy.
-export const revalidate = 60
+// Los textos se editan en Sanity ("Página: Financiamiento"). Se actualiza sola al publicar
+// (aviso en app/api/revalidate; respaldo en app/layout.tsx), sin esperar un deploy.
 
 export async function generateMetadata(): Promise<Metadata> {
   const p = await getPaginaFinanciamiento()

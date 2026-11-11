@@ -11,8 +11,7 @@ import { anclaDe } from '@/components/postventa/formato'
 import { placeholders } from '@/lib/data/financiamiento'
 
 // Los precios, las notas y las vigencias se editan en Sanity en cualquier momento; la página
-// se regenera sola cada 60 s (sin deploy).
-export const revalidate = 60
+// se actualiza sola al publicar (aviso en app/api/revalidate; respaldo en app/layout.tsx), sin deploy.
 
 export async function generateMetadata(): Promise<Metadata> {
   const p = await getPaginaPreciosServicio()

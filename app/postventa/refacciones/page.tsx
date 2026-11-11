@@ -7,9 +7,8 @@ import IconoGenerico from '@/components/ui/IconoGenerico'
 import HighlightIcon, { TAMANO_ICONO_BENEFICIOS } from '@/components/ui/HighlightIcon'
 
 // Los textos, el contacto y las ventajas se editan en Sanity ("Página: Refacciones", documento único).
-// Regenera cada 60 s, sin deploy. Las imágenes de public/images/postventa/ son el respaldo si no hay
-// una subida en Sanity.
-export const revalidate = 60
+// Se actualiza sola al publicar en Sanity, sin deploy (aviso en app/api/revalidate; respaldo en app/layout.tsx).
+// Las imágenes de public/images/postventa/ son el respaldo si no hay una subida en Sanity.
 
 export async function generateMetadata(): Promise<Metadata> {
   const p = await getPaginaRefacciones()
