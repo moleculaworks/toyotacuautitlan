@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (117)
+
+### Añadido — página de Refacciones, íconos nuevos y íconos de 48 px en las franjas de beneficios
+
+- **`/postventa/refacciones` (antes provisional):** hero con imágenes de Raúl (`public/images/postventa/refacciones-hero-desktop.webp` y `-mobile.webp`, 2880×1020 y 2400×1800), texto de invitación a contactar, sección **"Cotiza tus refacciones"** con tarjetas de **Teléfono** y **WhatsApp** (número en rojo, texto de apoyo y botón: "Llamar ahora" `secondary`, "Escribir por WhatsApp" `primary`) y, al final, la franja gris **"Por qué elegir refacciones originales"** con 4 ventajas en 4 columnas (2×2 en tableta, 1 en móvil). Orden decidido con Raúl: el contacto va justo después del texto de invitación y las ventajas cierran como refuerzo. Texto de invitación con "(VIN)". **Los números son ficticios (`55 0000 0000`)** y los textos viven en el código, no en Sanity (pendiente de Raúl: números reales y decidir si pasan a Sanity). El comentario al inicio del archivo lo advierte.
+- **Íconos nuevos en `HighlightIcon.tsx`** (de 17 a 22), todos de referencias de Raúl: `engranes` (dos engranes sin tocarse), `velocimetro`, `sello` (medalla con estrella), `telefono` (auricular sólido con dos ondas, contorno extraído de la referencia) y `whatsapp` (globo con trazo 1.25 y auricular relleno, como el logo). `seguridad` se reutiliza en "Calidad y confianza". **Excepción documentada a "sin relleno"** solo para los íconos de contacto.
+- **Tamaño de íconos:** `HighlightIcon` e `IconoGenerico` aceptan `size` (36 por defecto, que conserva la barra de destacados de los 24 modelos, verificado con `/modelos/hilux`). Las franjas de beneficios de **Financiamiento** y las ventajas y tarjetas de contacto de **Refacciones** usan **48 px** (`TAMANO_ICONO_BENEFICIOS`, una sola constante).
+- **Documentación:** `SISTEMA-DE-DISENO.md` (sección 7 de íconos y nueva sección 12 de Refacciones) y `PROYECTO.md` (H.10). La página local `/preview-iconos` (no se sube) lista los 22 íconos.
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (116)
 
 ### Cambiado — imágenes hero nuevas de Precios de servicio y de Financiamiento (contenido en Sanity, sin cambios de código)

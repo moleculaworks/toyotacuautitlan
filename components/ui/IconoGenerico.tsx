@@ -1,11 +1,11 @@
 // ÍCONO DE RESPALDO. Se muestra solo cuando un elemento no tiene ícono elegido en el Studio
 // (ej. un beneficio nuevo cuyo ícono todavía no se dibuja). Los íconos de marca viven en
 // HighlightIcon.tsx (trazo 1.0, render 36px, rojo de marca).
-export default function IconoGenerico() {
+export default function IconoGenerico({ size = 36 }: { size?: number }) {
   return (
     <svg
-      width={36}
-      height={36}
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       stroke="var(--toyota-red)"

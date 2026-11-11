@@ -243,6 +243,8 @@ la capacidad de arrastre del Sequoia HEV y futuros Tacoma/Tundra). **Desde el 10
 esa barra específica, cualquier sección puede importar `HighlightIcon` y
 pasar un `nombre` de la lista.
 
+**10 nov 2026: el diccionario llega a 22 íconos** con los de la franja de ventajas y las tarjetas de contacto de Refacciones, todos a partir de referencias de Raúl: `seguridad` (ya existía, se reutiliza para "Calidad y confianza"), `engranes` (dos engranes que no se tocan, 8 y 6 dientes), `velocimetro`, `sello` (medalla con estrella y dos cintas), `telefono` y `whatsapp`. **Tamaño:** `HighlightIcon` y `IconoGenerico` aceptan `size` (36 px por defecto, que es el de la barra de destacados de los modelos); las franjas de beneficios/ventajas de Financiamiento y Refacciones y las tarjetas de contacto usan **48 px** (`TAMANO_ICONO_BENEFICIOS`, una sola constante). El trazo vive en unidades del viewBox, así que escala con el ícono. **Excepción a "sin relleno":** `telefono` (auricular sólido con dos ondas, contornos extraídos de la referencia de Raúl) y el auricular de `whatsapp` (relleno, como el logo de la plataforma; el globo lleva trazo 1.25 en vez de 1.0). Son los únicos íconos con relleno y se reservan para los canales de contacto. Los íconos de un solo trazo se dibujan con `strokeWidth` 1.0 y esquinas redondeadas como el resto; los detalles que a 36 px dejarían aberturas de menos de 1 px se simplifican (se descartó un apretón de manos con nudillos por eso).
+
 **Otros SVG puntuales del sitio no pasan por este componente** (ej. el
 check rojo de "Características Generales" en `page.tsx`, la flecha del
 Hero, el ícono de descarga de "Ficha Técnica") — son de un solo uso, con
@@ -280,7 +282,7 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 | Títulos de sección | `h2` `clamp(28px,4vw,44px)` semibold, **sin etiqueta roja encima** (los modelos la llevan, las páginas de sección no) |
 | Tarjetas con "Ver detalles" | `components/financiamiento/PlanCard.tsx` (nuevo): foto 3.5:1, `h3`, línea roja corta, texto y despliegue con viñetas. Solo usa valores de las tarjetas de "Modelos similares". |
 | Franja gris de beneficios | `bg-toyota-gray`, 3 columnas (2 en tablet, 1 en móvil), ícono + `h3` + texto |
-| Íconos de beneficios | **Temporales**: `components/ui/IconoGenerico.tsx` marca la posición. Los definitivos se dibujan uno por uno con referencia de Raúl, mismo trazo (1.0) y render (36px) que `HighlightIcon.tsx`. |
+| Íconos de beneficios | `components/ui/IconoGenerico.tsx` solo marca la posición de un ícono aún no dibujado. Los definitivos se dibujan uno por uno con referencia de Raúl, mismo trazo (1.0), a 48 px en las franjas de beneficios y ventajas. |
 | CTA | Sin franja de cierre (se quitó el 10 nov 2026: el negro se fundía con el pie de página). Cada tarjeta lleva un botón "Cotizar ahora" (`primary`, ancho completo, `text-base`: los botones del sitio solo usan 14 px o 16 px, nunca más) al final de sus viñetas, con `href="#"` hasta que exista el formulario |
 | Separadores entre secciones blancas | La **línea fina gris** `border-t border-[#E8E8E8]` (de borde a borde) arriba de cada sección blanca que sigue a otra blanca, como en las páginas de modelo. En móvil, **línea roja corta** (28×2 px, la de las tarjetas) **centrada** entre el subtítulo del hero y el párrafo introductorio; en escritorio no se muestra. En el párrafo introductorio de los modelos, el relleno superior en móvil es 0 (`max-desktop:pt-0`): del botón del hero al párrafo quedan 44 px. |
 | Breakpoint | `desktop:` / `max-desktop:` (880px), el del hero heredado, en toda la página. Para las páginas sin SectionHero rige la regla de la sección 1. |
@@ -309,7 +311,15 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Probado y descartado:** limitar el ancho de la tabla de kilometrado y ponerla junto a los frenos; convertir los frenos en tabla con encabezado de dos niveles (no convenció, se revirtió).
 - **Franjas de cita:** dos franjas rojas con botón blanco (copia de la CTA intermedia de los modelos), una en medio (después de los dos primeros bloques) y otra al final, antes del pie. No se usa la franja negra al final (se funde con el pie oscuro) ni botones sueltos sobre fondo blanco (se ven aislados). Textos en Sanity (grupo "Franjas de cita"); sin prometer confirmaciones ni procesos no definidos.
 - **Tarjeta de frenos sin nombre de modelo** (filas de modelo): sin relleno superior (9 px sobre "4 ruedas", 17 px abajo); con nombre, el relleno de siempre.
-- **Menú:** "Servicio" es un grupo sin página propia; desplegable sencillo en escritorio (`Navbar.tsx`) y acordeón en móvil (`ServicioMobileAccordion.tsx`).
+- **Menú:** "Postventa" (antes "Servicio"; desde el 10 nov 2026 las URL son `/postventa/…`) es un grupo sin página propia; desplegable sencillo en escritorio (`Navbar.tsx`) y acordeón en móvil (`ServicioMobileAccordion.tsx`).
+
+## 12. Sección Postventa: Refacciones (10 de noviembre de 2026)
+
+`app/postventa/refacciones/page.tsx`. Hero heredado (`SectionHero`, imágenes en `public/images/postventa/refacciones-hero-*.webp`), texto de invitación (primera frase en semibold), luego **"Cotiza tus refacciones"** con dos tarjetas de contacto y al final la franja gris **"Por qué elegir refacciones originales"**. Orden acordado con Raúl: el contacto va justo después del texto que invita a escribir o llamar, y las ventajas cierran como refuerzo (antes iban primero y el contacto quedaba lejos).
+
+- **Tarjetas de contacto:** `border border-[#E8E8E8]`, sin sombra ni redondeo; ícono de 48 px arriba (`telefono` / `whatsapp`), título 18 px semibold, número en rojo (`clamp(24px,3vw,32px)`), texto de apoyo y botón a todo el ancho (WhatsApp `primary`, teléfono `secondary`). El ícono va arriba y no junto al número a propósito: sigue el patrón de las franjas de beneficios y evita un tamaño más.
+- **Ventajas:** 4 columnas (2×2 en tableta, 1 en móvil), mismo patrón que los beneficios de Financiamiento (icono 48 px, título 18 px, texto `clamp(16px,1.2vw,18px)`), título del `h2` sin tope de ancho para que quepa en una línea en escritorio.
+- **Pendiente:** los números son **ficticios** (`55 0000 0000`, constantes al inicio del archivo) y los textos viven en el código, no en Sanity.
 
 ## Pendientes (a propósito, no resueltos hoy)
 

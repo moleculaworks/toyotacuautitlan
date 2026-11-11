@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import SectionHero from '@/components/ui/SectionHero'
-import HighlightIcon from '@/components/ui/HighlightIcon'
+import HighlightIcon, { TAMANO_ICONO_BENEFICIOS } from '@/components/ui/HighlightIcon'
 import IconoGenerico from '@/components/ui/IconoGenerico'
 import PlanGrid from '@/components/financiamiento/PlanGrid'
 import type { PlanCardData } from '@/components/financiamiento/PlanCard'
@@ -95,7 +95,7 @@ export default async function FinanciamientoPage() {
           <div className="mt-12 max-desktop:mt-9 grid grid-cols-3 max-desktop:grid-cols-2 max-sm:grid-cols-1 gap-x-10 gap-y-10">
             {(p.beneficios ?? []).map((b: { _key: string; titulo: string; texto: string; icono?: string }) => (
               <div key={b._key} className="flex flex-col gap-3">
-                {b.icono ? <HighlightIcon nombre={b.icono} /> : <IconoGenerico />}
+                {b.icono ? <HighlightIcon nombre={b.icono} size={TAMANO_ICONO_BENEFICIOS} /> : <IconoGenerico size={TAMANO_ICONO_BENEFICIOS} />}
                 <h3 className="text-lg font-semibold text-foreground tracking-tight">{b.titulo}</h3>
                 <p className="text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{b.texto}</p>
               </div>

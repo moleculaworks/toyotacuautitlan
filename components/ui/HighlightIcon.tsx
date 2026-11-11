@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { cloneElement, isValidElement, type ReactElement, type ReactNode } from 'react'
 
 // Set de íconos de línea para la barra de datos destacados (debajo del Hero,
 // en cada página de modelo). Vive en código — no se sube como imagen por
@@ -78,6 +78,44 @@ const icons: Record<string, ReactNode> = {
     <svg {...commonProps}>
       <path d="M10.55 2.81 13.45 2.81 13.73 4.8 15.87 5.69 17.47 4.48 19.52 6.53 18.31 8.13 19.2 10.27 21.19 10.55 21.19 13.45 19.2 13.73 18.31 15.87 19.52 17.47 17.47 19.52 15.87 18.31 13.73 19.2 13.45 21.19 10.55 21.19 10.27 19.2 8.13 18.31 6.53 19.52 4.48 17.47 5.69 15.87 4.8 13.73 2.81 13.45 2.81 10.55 4.8 10.27 5.69 8.13 4.48 6.53 6.53 4.48 8.13 5.69 10.27 4.8Z" />
       <circle cx="12" cy="12" r="4" />
+    </svg>
+  ),
+  engranes: (
+    <svg {...commonProps}>
+      <path d="M13.16 9.28 14.09 10.36 13.71 11.29 12.28 11.4 11.4 12.28 11.29 13.71 10.36 14.09 9.28 13.16 8.03 13.16 6.94 14.09 6.02 13.71 5.91 12.28 5.03 11.4 3.6 11.29 3.22 10.36 4.15 9.28 4.15 8.03 3.22 6.94 3.6 6.02 5.03 5.91 5.91 5.03 6.02 3.6 6.94 3.22 8.03 4.15 9.28 4.15 10.36 3.22 11.29 3.6 11.4 5.03 12.28 5.91 13.71 6.02 14.09 6.94 13.16 8.03Z" />
+      <path d="M13.47 15.1 12.99 13.69 13.69 12.99 15.1 13.47 16.11 13.2 17.08 12.08 18.05 12.34 18.33 13.79 19.07 14.53 20.52 14.82 20.78 15.78 19.67 16.76 19.39 17.77 19.88 19.17 19.17 19.88 17.77 19.39 16.76 19.67 15.78 20.78 14.82 20.52 14.53 19.07 13.79 18.33 12.34 18.05 12.08 17.08 13.2 16.11Z" />
+      <circle cx="8.65" cy="8.65" r="2.1" />
+      <circle cx="16.43" cy="16.43" r="1.65" />
+    </svg>
+  ),
+  velocimetro: (
+    <svg {...commonProps}>
+      <path d="M3.32 18.68A9.5 9.5 0 1 1 20.68 18.68" />
+      <path d="M12 5.32V7.6M5.64 7.76 7.12 9.4M18.36 7.76 16.88 9.4M2.64 13.17 4.81 13.55M21.36 13.17 19.19 13.55" />
+      <circle cx="12" cy="14.82" r="1.6" />
+      <path d="M13.11 13.67 15.82 10.86" />
+    </svg>
+  ),
+  sello: (
+    <svg {...commonProps}>
+      <circle cx="12" cy="9.2" r="7" />
+      <path d="M12.0 5.7 12.85 8.03 15.33 8.12 13.38 9.65 14.06 12.03 12.0 10.65 9.94 12.03 10.62 9.65 8.67 8.12 11.15 8.03Z" />
+      <path d="M8.6 15.3 7.2 21.6 9.5 20.4 11 21.8 11.7 16.2" />
+      <path d="M15.4 15.3 16.8 21.6 14.5 20.4 13 21.8 12.3 16.2" />
+    </svg>
+  ),
+  // Íconos de contacto: EXCEPCIÓN a "sin relleno" (10 nov 2026). El auricular es sólido, como el logo de WhatsApp.
+  telefono: (
+    <svg {...commonProps} fill="var(--toyota-red)" stroke="none">
+      <path d="M12.37 2.05L13.19 2.16L14.17 2.42L15.66 3.01L16.56 3.48L17.38 4.02L18.13 4.6L18.87 5.29L19.57 6.07L20.41 7.24L20.88 8.07L21.42 9.28L21.8 10.45L21.97 11.27L21.88 11.39L21.33 11.48L20.63 11.59L20.49 11.54L19.97 9.75L19.22 8.22L18.27 6.89L17.23 5.85L15.97 4.92L14.99 4.38L13.7 3.87L12.18 3.49L12.15 3.33Z" />
+      <path d="M5.21 3.93L5.72 4.0L6.27 4.32L8.69 6.74L9.09 7.28L9.2 7.64L9.2 7.99L9.01 8.54L8.77 8.85L7.29 10.34L7.17 10.53L7.15 10.69L7.56 11.55L8.27 12.61L9.29 13.82L10.18 14.72L11.86 16.06L12.57 16.49L13.35 16.85L13.59 16.75L15.03 15.31L15.46 14.98L16.05 14.78L16.56 14.85L16.87 15.0L17.23 15.27L19.77 17.85L19.99 18.24L20.07 18.63L20.02 19.03L19.9 19.34L19.57 19.77L17.93 21.41L17.58 21.65L17.11 21.86L16.44 21.99L15.89 21.99L14.92 21.86L14.25 21.7L13.43 21.42L12.22 20.89L10.26 19.78L9.32 19.14L8.11 18.18L7.09 17.26L6.35 16.48L4.86 14.68L3.8 13.08L2.82 11.16L2.42 10.1L2.16 9.2L2.01 8.22L2.0 7.64L2.14 6.85L2.31 6.46L2.55 6.11L4.39 4.29L4.82 4.03Z" />
+      <path d="M12.17 6.05L13.19 6.24L14.29 6.69L15.31 7.33L16.32 8.26L16.81 8.89L17.23 9.59L17.5 10.14L17.81 11.08L17.88 11.6L17.26 11.75L16.56 11.87L16.45 11.83L16.14 10.85L15.82 10.18L15.34 9.48L14.64 8.76L14.13 8.37L13.47 7.98L11.98 7.49L11.95 7.28Z" />
+    </svg>
+  ),
+  whatsapp: (
+    <svg {...commonProps}>
+      <path strokeWidth={1.25} d="M7.25 20.23L2.88 21.12L3.94 17.03A9.5 9.5 0 1 1 7.25 20.23Z" />
+      <path d="M8.12 7.27L8.99 7.27L9.23 7.43L9.41 7.72L10.23 9.82L10.12 10.17L9.46 11.08L9.42 11.34L9.89 12.13L10.7 13.07L11.91 14.01L12.82 14.48L13.22 14.61L13.39 14.58L13.6 14.43L14.49 13.39L14.74 13.31L15.13 13.43L16.88 14.27L17.14 14.46L17.22 14.65L17.21 15.0L17.0 15.79L16.53 16.33L15.74 16.78L14.92 16.96L14.09 16.91L13.04 16.6L11.6 15.97L10.6 15.32L9.6 14.48L8.58 13.39L7.58 12.04L7.1 11.17L6.81 10.25L6.78 9.29L7.0 8.47L7.57 7.64L7.86 7.39Z" fill="var(--toyota-red)" stroke="none" />
     </svg>
   ),
   maletero: (
@@ -171,7 +209,13 @@ const icons: Record<string, ReactNode> = {
   ),
 }
 
-export default function HighlightIcon({ nombre }: { nombre?: string }) {
+// Tamaño de los íconos de las franjas de beneficios/ventajas de las páginas de sección
+// (Financiamiento, Refacciones): 48 px. La barra de destacados de los modelos conserva los 36 px.
+export const TAMANO_ICONO_BENEFICIOS = 48
+
+export default function HighlightIcon({ nombre, size = 36 }: { nombre?: string; size?: number }) {
   if (!nombre || !icons[nombre]) return null
-  return icons[nombre]
+  const icono = icons[nombre]
+  // El trazo está en unidades del viewBox, así que escala junto con el ícono.
+  return size === 36 || !isValidElement(icono) ? icono : cloneElement(icono as ReactElement<{ width: number; height: number }>, { width: size, height: size })
 }
