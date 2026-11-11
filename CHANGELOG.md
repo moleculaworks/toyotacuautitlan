@@ -5,6 +5,20 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (124)
+
+### Añadido — aviso automático de Sanity al sitio (webhook): los cambios se ven en segundos
+
+- **Qué hace:** cuando se publica, cambia o borra contenido en Sanity (no borradores), Sanity avisa al sitio y éste regenera todas sus páginas al momento. Antes dependía del `revalidate = 60` y de la CDN de Sanity (de ~10 s a 5–10 min).
+- **Ruta nueva `app/api/revalidate/route.ts`:** acepta solo llamadas POST firmadas por Sanity con un secreto compartido (`parseBody` de `next-sanity/webhook`, que además espera a que Sanity termine de propagar el cambio). Sin firma o con firma falsa responde 401; sin secreto configurado responde 500 (nunca queda abierta). Si la firma es válida ejecuta `revalidatePath('/', 'layout')` (todas las páginas, cada una se regenera en su próxima visita).
+- **Secreto:** variable `SANITY_REVALIDATE_SECRET` creada en Vercel (tipo sensible, Production y Preview) y en el `.env.local` local. Es la primera llave secreta del proyecto.
+- **Webhook en Sanity:** "Regenerar sitio al publicar" (id `UIsupdIwqZDIwP9R`, proyecto `tuhugumb`, dataset `production`), POST a `https://toyotacuautitlan.vercel.app/api/revalidate`, eventos crear/actualizar/borrar, sin borradores, filtro `!(_type match "sanity.*")`, carga `{_id, _type}`. **Al conectar el dominio propio hay que cambiar la URL del webhook** (en sanity.io/manage → API → Webhooks).
+- **`lib/sanity/client.ts`: `useCdn: false`.** Con la CDN, la regeneración todavía podía leer el dato anterior (una prueba tardó 75 s en la vuelta). Se consulta solo al regenerar una página, no en cada visita.
+- **Medición real en producción** (cambio de la dirección en Sanity y restauración): con el aviso y la CDN apagada, ida 4 s y vuelta menos de 1 s medible; con el aviso pero con CDN, ida 8 s y vuelta 75 s; sin aviso, ida 11 s y vuelta 290 s. El `revalidate = 60` queda como respaldo por si un aviso fallara.
+- **Prueba local:** sin firma 401, firma falsa 401, firma buena 200.
+- **Pendiente de decidir:** con CDN apagada y `revalidate = 60` las consultas a Sanity pueden crecer con mucho tráfico; ahora que hay aviso, se puede subir el respaldo (por ejemplo a 3600 s).
+- **Archivos:** `app/api/revalidate/route.ts` (nuevo), `lib/sanity/client.ts`. Commits `a44f5ba` y `8288542`.
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (123)
 
 ### Añadido — "Configuración del sitio" en Sanity (teléfono, WhatsApp y dirección) y regeneración automática de todo el sitio

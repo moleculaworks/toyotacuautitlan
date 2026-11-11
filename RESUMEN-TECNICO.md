@@ -184,6 +184,8 @@ Estos dos valores **no son secretos** (el prefijo `NEXT_PUBLIC_` significa que q
 
 **Cómo compartirlo con un nuevo colaborador:** copiar y pegar ese mismo contenido en un archivo nuevo llamado `.env.local` dentro de la raíz del proyecto en su máquina (no existe automáticamente al clonar, hay que crearlo a mano cada vez).
 
+**Una llave secreta (desde el 11 de noviembre de 2026):** `SANITY_REVALIDATE_SECRET`, la clave compartida entre Vercel (variable de entorno sensible, Production y Preview) y el webhook de Sanity "Regenerar sitio al publicar"; la ruta `app/api/revalidate` solo acepta llamadas firmadas con ella. Para probar la ruta en local hay que agregarla también al `.env.local` (pedírsela a Raúl; no se comparte por chat ni se sube a GitHub). Para cambiarla: actualizar la misma cadena en Vercel y en el webhook, y redesplegar.
+
 **No hay ninguna otra llave secreta en este momento** — no hay API keys de CRM, no hay tokens de pago, no hay credenciales de terceros. El día que se conecte un CRM o cualquier otro servicio, ese será el momento de empezar a manejar variables verdaderamente sensibles, y ahí sí será clave no compartirlas por canales inseguros.
 
 ## Seguridad y dependencias (actualizado el 9 de noviembre de 2026)
