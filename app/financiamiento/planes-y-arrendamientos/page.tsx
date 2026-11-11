@@ -15,7 +15,7 @@ export const revalidate = 60
 export async function generateMetadata(): Promise<Metadata> {
   const p = await getPaginaFinanciamiento()
   return {
-    title: 'Financiamiento',
+    title: 'Planes y Arrendamientos',
     description:
       p?.seoDescripcion ||
       'Planes de financiamiento y arrendamiento Toyota en Toyota Cuautitlán.',

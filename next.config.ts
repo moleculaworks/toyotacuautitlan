@@ -26,9 +26,14 @@ const nextConfig: NextConfig = {
     ],
   },
   // La sección se llamaba /servicio y pasó a /postventa (10 nov 2026): se conservan los enlaces
-  // viejos (permanentes) por si alguien guardó o compartió alguno.
+  // viejos (permanentes) por si alguien guardó o compartió alguno. "Financiamiento" ya no tiene
+  // página propia: /financiamiento lleva a Planes y Arrendamientos (redirección temporal, para
+  // poder darle otro uso a esa URL más adelante).
   async redirects() {
-    return [{ source: "/servicio/:path*", destination: "/postventa/:path*", permanent: true }];
+    return [
+      { source: "/servicio/:path*", destination: "/postventa/:path*", permanent: true },
+      { source: "/financiamiento", destination: "/financiamiento/planes-y-arrendamientos", permanent: false },
+    ];
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

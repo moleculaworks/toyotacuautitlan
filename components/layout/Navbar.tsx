@@ -5,23 +5,87 @@ import Link from "next/link";
 import Image from "next/image";
 import ModelosMegaMenu from "./ModelosMegaMenu";
 import ModelosMobileAccordion from "./ModelosMobileAccordion";
-import ServicioMobileAccordion from "./ServicioMobileAccordion";
+import GrupoMobileAccordion from "./GrupoMobileAccordion";
 import Button from "@/components/ui/Button";
 import type { Modelo } from "@/types";
 
-// Orden del menú: Modelos, Promociones, Financiamiento, Servicio (grupo sin página propia),
-// Contacto. "Servicio" despliega SERVICIO_LINKS (10 nov 2026); la página /cita-de-servicio
-// (formulario de muestra) ya no está en el menú.
-const navLinksAntes = [
-  { label: "Promociones", href: "/promociones" },
-  { label: "Financiamiento", href: "/financiamiento" },
-];
+// Orden del menú: Modelos, Promociones, Financiamiento (grupo), Postventa (grupo), Contacto.
+// Financiamiento y Postventa son encabezados SIN página propia: solo despliegan sus páginas
+// (GRUPOS_MENU, 10 nov 2026). La página /cita-de-servicio (formulario de muestra) ya no está en el menú.
+const navLinksAntes = [{ label: "Promociones", href: "/promociones" }];
 const navLinksDespues = [{ label: "Contacto", href: "/contacto" }];
-const SERVICIO_LINKS = [
-  { label: "Precios de servicio", href: "/postventa/precios" },
-  { label: "Refacciones", href: "/postventa/refacciones" },
-  { label: "Acciones de servicio", href: "/postventa/acciones-de-servicio" },
+const GRUPOS_MENU = [
+  {
+    label: "Financiamiento",
+    links: [
+      { label: "Planes y Arrendamientos", href: "/financiamiento/planes-y-arrendamientos" },
+      { label: "Seguros", href: "/financiamiento/seguros" },
+    ],
+  },
+  {
+    label: "Postventa",
+    links: [
+      { label: "Precios de servicio", href: "/postventa/precios" },
+      { label: "Refacciones", href: "/postventa/refacciones" },
+      { label: "Acciones de servicio", href: "/postventa/acciones-de-servicio" },
+    ],
+  },
 ];
+
+// Desplegable sencillo de escritorio para un grupo del menú (sin página propia).
+function GrupoEscritorio({ label, links }: { label: string; links: { label: string; href: string }[] }) {
+  const [abierto, setAbierto] = useState(false);
+  const temporizador = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function abrir() {
+    if (temporizador.current) clearTimeout(temporizador.current);
+    setAbierto(true);
+  }
+
+  function programarCierre() {
+    temporizador.current = setTimeout(() => setAbierto(false), 150);
+  }
+
+  return (
+    <div
+      className="relative h-16 lg:h-20 flex items-center"
+      onMouseEnter={abrir}
+      onMouseLeave={programarCierre}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) setAbierto(false);
+      }}
+    >
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={abierto}
+        onClick={() => setAbierto((v) => !v)}
+        className={`text-sm font-semibold transition-colors ${
+          abierto ? "text-toyota-red" : "text-foreground hover:text-toyota-red"
+        }`}
+      >
+        {label}
+      </button>
+
+      {abierto && (
+        <div className="absolute left-1/2 -translate-x-1/2 top-full">
+          <div className="bg-white border border-[#EEE] shadow-xl py-2 min-w-[220px]">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setAbierto(false)}
+                className="block px-5 py-3 text-sm font-semibold text-foreground hover:text-toyota-red transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function FilaMovil({ link, onNavigate }: { link: { label: string; href: string }; onNavigate: () => void }) {
   return (
@@ -50,9 +114,7 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modelosOpen, setModelosOpen] = useState(false);
-  const [servicioOpen, setServicioOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const closeTimerServicio = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -82,15 +144,6 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
 
   function scheduleCloseModelos() {
     closeTimer.current = setTimeout(() => setModelosOpen(false), 150);
-  }
-
-  function openServicio() {
-    if (closeTimerServicio.current) clearTimeout(closeTimerServicio.current);
-    setServicioOpen(true);
-  }
-
-  function scheduleCloseServicio() {
-    closeTimerServicio.current = setTimeout(() => setServicioOpen(false), 150);
   }
 
   return (
@@ -166,44 +219,10 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
               </Link>
             ))}
 
-            {/* Servicio: grupo sin página propia, desplegable sencillo con sus páginas */}
-            <div
-              className="relative h-16 lg:h-20 flex items-center"
-              onMouseEnter={openServicio}
-              onMouseLeave={scheduleCloseServicio}
-              onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicioOpen(false);
-              }}
-            >
-              <button
-                type="button"
-                aria-haspopup="true"
-                aria-expanded={servicioOpen}
-                onClick={() => setServicioOpen((v) => !v)}
-                className={`text-sm font-semibold transition-colors ${
-                  servicioOpen ? "text-toyota-red" : "text-foreground hover:text-toyota-red"
-                }`}
-              >
-                Postventa
-              </button>
-
-              {servicioOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full">
-                  <div className="bg-white border border-[#EEE] shadow-xl py-2 min-w-[220px]">
-                    {SERVICIO_LINKS.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setServicioOpen(false)}
-                        className="block px-5 py-3 text-sm font-semibold text-foreground hover:text-toyota-red transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Financiamiento y Postventa: grupos sin página propia, desplegable con sus páginas */}
+            {GRUPOS_MENU.map((g) => (
+              <GrupoEscritorio key={g.label} label={g.label} links={g.links} />
+            ))}
 
             {navLinksDespues.map((link) => (
               <Link
@@ -244,7 +263,9 @@ export default function Navbar({ modelos }: { modelos: Modelo[] }) {
             {navLinksAntes.map((link) => (
               <FilaMovil key={link.href} link={link} onNavigate={() => setMenuOpen(false)} />
             ))}
-            <ServicioMobileAccordion links={SERVICIO_LINKS} onNavigate={() => setMenuOpen(false)} />
+            {GRUPOS_MENU.map((g) => (
+              <GrupoMobileAccordion key={g.label} label={g.label} links={g.links} onNavigate={() => setMenuOpen(false)} />
+            ))}
             {navLinksDespues.map((link) => (
               <FilaMovil key={link.href} link={link} onNavigate={() => setMenuOpen(false)} />
             ))}

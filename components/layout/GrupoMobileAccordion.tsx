@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-// "Servicio" es un grupo del menú SIN página propia (10 nov 2026): despliega sus páginas.
+// Grupo del menú SIN página propia ("Financiamiento" y "Postventa", 10 nov 2026): despliega sus páginas.
 // Mismo patrón y mismas medidas que el acordeón de Modelos (fila de 16 px semibold con flecha,
-// sub-filas con sangría de 8 px). Las opciones salen de SERVICIO_LINKS (Navbar.tsx).
+// sub-filas con sangría de 8 px). Las opciones salen de GRUPOS_MENU (Navbar.tsx).
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
@@ -21,10 +21,12 @@ function Chevron({ open }: { open: boolean }) {
   )
 }
 
-export default function ServicioMobileAccordion({
+export default function GrupoMobileAccordion({
+  label,
   links,
   onNavigate,
 }: {
+  label: string
   links: { label: string; href: string }[]
   onNavigate: () => void
 }) {
@@ -40,7 +42,7 @@ export default function ServicioMobileAccordion({
           abierto ? 'text-toyota-red' : 'text-foreground'
         }`}
       >
-        Postventa
+        {label}
         <Chevron open={abierto} />
       </button>
 

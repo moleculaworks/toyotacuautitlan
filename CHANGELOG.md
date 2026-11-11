@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-10 — Raúl (Claude Sonnet 5.5) (119)
+
+### Cambiado — "Financiamiento" pasa a ser un grupo del menú, con "Planes y Arrendamientos" y "Seguros"
+
+- **Menú (escritorio y móvil) y pie de página:** "Financiamiento" ya no es un enlace, solo el encabezado de un desplegable (igual que "Postventa") con dos opciones: **Planes y Arrendamientos** y **Seguros**. Orden del menú: Modelos, Promociones, Financiamiento (grupo), Postventa (grupo), Contacto. En el pie, la columna de Vehículos trae las dos opciones en lugar de "Financiamiento".
+- **Código del menú unificado:** `Navbar.tsx` define una sola lista `GRUPOS_MENU` (Financiamiento y Postventa) y el desplegable de escritorio es un componente (`GrupoEscritorio`). El acordeón móvil pasó de `ServicioMobileAccordion.tsx` a `GrupoMobileAccordion.tsx` y recibe el `label`. Un tercer grupo se agrega solo con sumarlo a la lista.
+- **Planes y Arrendamientos = la página que era Financiamiento**, sin cambios de contenido (mismo documento de Sanity "Página: Financiamiento"). URL nueva `/financiamiento/planes-y-arrendamientos` (carpeta `app/financiamiento/planes-y-arrendamientos/`); título de la pestaña "Planes y Arrendamientos". **`/financiamiento` redirige (307, temporal) a esa URL**, a propósito temporal para poder darle otro uso a `/financiamiento` más adelante (`next.config.ts`).
+- **Hero en Sanity (publicado directo):** título "Planes y Arrendamientos" (antes "Financiamiento") y subtítulo "Conoce las alternativas para / estrenar y elige la tuya." (dos renglones; el contenedor del subtítulo mide 340 px y admite unos 31 caracteres por renglón: con tres renglones o con un renglón de más de 31 caracteres se veía mal).
+- **Seguros (provisional):** `app/financiamiento/seguros/page.tsx`, hero con las imágenes de reserva y "Estamos preparando esta sección.", mismo patrón que Acciones de servicio. El contenido se define después.
+- **Pendientes:** contenido y diseño de Seguros; el documento de Sanity se sigue llamando "Página: Financiamiento" en el Studio (renombrarlo es opcional).
+
 ## 2026-11-10 — Raúl (Claude Sonnet 5.5) (118)
 
 ### Cambiado — los textos de Refacciones pasan a Sanity (documento "Página: Refacciones")
