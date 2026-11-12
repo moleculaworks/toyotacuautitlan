@@ -5,6 +5,15 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (128)
+
+### Cambiado — limpieza de ramas: solo queda `main`, local y en GitHub
+
+- **Se borraron las 45 ramas locales y las 20 de GitHub**, todas ya fusionadas a `main` (se comprobó con `git branch --merged` y `--no-merged`: ninguna tenía trabajo sin integrar; el contenido y el historial de commits se conservan). Borrado seguro (`git branch -d`, que se niega a borrar una rama con trabajo sin fusionar). No cambia nada de lo publicado y no dispara despliegue.
+- **Para Beto:** si tiene en su computadora alguna de esas ramas, solo desaparecieron de GitHub; en su máquina quedan hasta que las borre (`git fetch --prune` limpia las referencias viejas). Para cada tarea nueva: rama desde `main` actualizado y, **al fusionar, borrar la rama (local y remota)** para que no se vuelvan a acumular.
+- **Ramas borradas en GitHub (20):** `agents-regla-consultar-sistema-diseno`, `auditoria-documentacion-22-agosto-tarde`, `auditoria-documentacion-desactualizada`, `base-diseno-iconos-tipografia-sitewide`, `corolla-pulido-imagenes-y-scroll-movil`, `corolla-schema-contenido-dinamico`, `flechas-navegacion-versiones-mobile`, `flechas-simetricas-versiones`, `jerarquia-encabezados-h1-h2-h3`, `migrar-corolla-a-sanity`, `modelo-secciones-condicionales-por-datos`, `quitar-campo-galeria-generico`, `quitar-degradado-versiones-mobile`, `reorganizar-documentacion-referencia-vs-estado`, `revision-ux-mobile-360-versiones-ctas`, `robots-txt-bloquear-indexacion-temporal`, `tarjetas-version-alineadas-mobile`, `textos-breves-versiones-exterior-galeria`, `visor-360-mas-grande`, `visor-360-tamano-y-nitidez`.
+- **Notas de Obsidian reordenadas** (11 nov): la carpeta del proyecto en la bóveda pasó de 17 notas sueltas a subcarpetas por tema, con `01 índice.md` como punto de entrada y un índice de prompts (`50 ✨ Prompts/00 prompts.md`). Solo afecta a la bóveda de Raúl; el contenido de las notas se conservó (las dos notas de sección, Financiamiento y Postventa, se reordenaron en estado, pendientes, decisiones e historial).
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (127)
 
 ### Añadido — sección Seguros (`/financiamiento/seguros`), con sus textos editables en Sanity y 4 íconos nuevos
