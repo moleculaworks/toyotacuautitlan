@@ -177,3 +177,19 @@ export async function getPaginaRefacciones() {
     }
   `)
 }
+
+export async function getPaginaSeguros() {
+  return client.fetch(groq`
+    *[_type == "paginaSeguros" && _id == "paginaSeguros"][0] {
+      heroTitulo, heroSubtitulo, heroAlt, introDestacado, intro, seoDescripcion,
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      ventajasTitulo,
+      ventajas[] { _key, titulo, texto, icono },
+      coberturasTitulo,
+      grupos[] { _key, titulo, coberturas[] { _key, titulo, texto } },
+      coberturasNota,
+      cierreTitulo, cierreTexto, cierreBoton, cierreEnlace
+    }
+  `)
+}

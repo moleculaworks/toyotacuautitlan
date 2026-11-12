@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (127)
+
+### Añadido — sección Seguros (`/financiamiento/seguros`), con sus textos editables en Sanity y 4 íconos nuevos
+
+- **Página construida** (antes provisional, `SeccionProvisional`): hero con las imágenes de Raúl, párrafo de invitación, franja gris "Por qué asegurar con Toyota Cuautitlán" (4 ventajas), "Qué cubre tu seguro" con las 12 coberturas agrupadas en 3 tarjetas (Tu Toyota, Tus ocupantes y terceros, Apoyo cuando lo necesitas) y una nota sobre las condiciones de la póliza, y cierre "Protege tu Toyota con el respaldo que necesitas" con el botón "Cotiza tu seguro". Partió de un Markdown de Raúl (`Secciones/Seguros/Seguros.md`) y de una propuesta de Claude revisada en localhost: textos en afirmativo (sin contraste retórico ni guion largo), cuarta ventaja "Atención de principio a fin", sin el asterisco del original (no tenía condición). Diseño en `SISTEMA-DE-DISENO.md` sección 13.
+- **Textos en Sanity:** documento único "Página: Seguros" (`paginaSeguros`, nuevo schema `sanity/schemaTypes/paginaSegurosType.ts`, registrado en `index.ts` y en `sanity/structure.ts`; consulta `getPaginaSeguros` en `lib/sanity/queries.ts`). Publicado el 11 nov con los textos aprobados y las dos imágenes del hero (1920 × 680 y 1600 × 1200). `public/images/seguros/` queda como respaldo. El schema pasa la validación de la CLI (0 errores, 0 advertencias).
+- **Botón "Cotiza tu seguro" sin destino** (decisión de Raúl: aún no se define): apunta a `#`, como los demás botones de cotizar. El campo opcional `cierreEnlace` del Studio permite definirlo después sin tocar código.
+- **Íconos nuevos** hechos con referencias de Raúl (método: leer los trazos, superponer sobre la referencia, revisar en `/preview-iconos`, "aplica"): `refacciones` (caja con engrane), `tecnicos` (persona con llave), `agencia` (pin) y `atencion` (audífonos). `HighlightIcon.tsx` pasa a 26 íconos (`SISTEMA-DE-DISENO.md` sección 7).
+- **Pendientes:** destino del botón; descripción para Google y para compartir ya cargada (opción B de Raúl, 147 caracteres: "Seguros para tu Toyota: cobertura de daños, robo, responsabilidad civil y asistencia vial, con refacciones originales. Cotiza en Toyota Cuautitlán."), falta probar la vista previa en WhatsApp tras el deploy; en pantallas de 1920 px o más se recorta un poco el cabello del papá del hero de escritorio (decisión de Raúl: se queda así). No incluye paquetes ni promociones de meses sin intereses (no estaban en el texto).
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (126)
 
 ### Cambiado — medida estándar del hero de las secciones: 1920 × 680 (escritorio) y 1600 × 1200 (móvil), exportados a calidad 80
