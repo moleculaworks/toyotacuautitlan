@@ -25,14 +25,14 @@ export const paginaRefaccionesType = defineType({
     }),
     defineField({
       name: 'heroDesktop',
-      title: 'Imagen de portada, escritorio (2880 × 1020 px, WebP)',
+      title: 'Imagen de portada, escritorio (1920 × 680 px, WebP)',
       description: 'Opcional. Si está vacía se usa la imagen incluida en el sitio.',
       type: 'image',
       group: 'portada',
     }),
     defineField({
       name: 'heroMobile',
-      title: 'Imagen de portada, móvil (2400 × 1800 px, WebP)',
+      title: 'Imagen de portada, móvil (1600 × 1200 px, WebP)',
       description: 'Opcional. Encuadre más vertical, no la misma imagen reducida.',
       type: 'image',
       group: 'portada',

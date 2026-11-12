@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-11 — Raúl (Claude Sonnet 5.5) (126)
+
+### Cambiado — medida estándar del hero de las secciones: 1920 × 680 (escritorio) y 1600 × 1200 (móvil), exportados a calidad 80
+
+- **Decisión de Raúl:** todos los heroes de página de sección (Financiamiento, Postventa, y las que siguen) se exportan a **1920 × 680 px** (escritorio) y **1600 × 1200 px** (móvil), WebP, calidad 80, sin canal alfa. Deja sin efecto la prueba de resolución mayor del 10 de noviembre (2880 × 1020 y 2400 × 1800): midiendo lo que recibe cada pantalla, la diferencia de nitidez es casi imperceptible (46 dB en retina) y para el móvil no hay diferencia medible. Es la medida que ya decían `SISTEMA-DE-DISENO.md` sección 9 y el código de `SectionHero`.
+- **Calidad de servido sin cambios:** `SectionHero` sigue pidiendo `quality: 85` al optimizador de imágenes; es independiente de la calidad de exportación del archivo (80).
+- **Imágenes reemplazadas en Sanity** (Raúl reexportó desde su PSD): "Página: Financiamiento", "Página: Precios de servicio" y "Página: Refacciones". Se subieron 6 imágenes nuevas (3 de 1920 × 680 y 3 de 1600 × 1200) y se cambiaron solo las referencias de imagen; textos y texto alternativo intactos. Verificado en local y en producción (el aviso automático de Sanity regeneró las páginas).
+- **Etiquetas del Studio corregidas** en `paginaRefaccionesType.ts` (decían 2880 × 1020 y 2400 × 1800; ahora 1920 × 680 y 1600 × 1200, igual que Financiamiento y Precios de servicio).
+- **Pendiente:** las 6 imágenes anteriores (2880 × 1020 y 2400 × 1800) quedaron sin ninguna referencia; borrarlas de Sanity cuando Raúl lo confirme.
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (125)
 
 ### Cambiado — respaldo de regeneración de 60 s a 1 hora, y lista de pasos para conectar el dominio propio
