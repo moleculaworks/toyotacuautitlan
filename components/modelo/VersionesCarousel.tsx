@@ -298,7 +298,7 @@ function VersionCard({
 
       {/* Sin destino todavía: las páginas/formularios de Cotización y Prueba
           de Manejo no están definidos (ver Obsidian:
-          formularios-cotizacion-y-prueba-de-manejo.md) */}
+          formularios-del-sitio.md) */}
       <div className="px-[22px] pb-5 flex flex-col gap-2">
         <Button href="#" variant="primary" className="w-full text-center text-sm py-3">
           Cotízalo

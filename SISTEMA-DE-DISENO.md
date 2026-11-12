@@ -315,7 +315,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Tarjetas de frenos:** 4 por fila desde 1280 px, 3 entre 880 y 1279 px, 2 en móvil (cada una de unos 166 px a 375 px, con 12 px de relleno lateral en móvil); un grupo largo de modelos puede ocupar dos columnas. El precio queda alineado abajo aunque los títulos tengan distinto largo.
 - **Accesos rápidos:** una caja por bloque con el estilo de los filtros del catálogo (borde gris fino, texto 14 px semibold, hover rojo), **de esquinas rectas** (10 nov 2026). A la derecha en escritorio, y debajo en móvil, va el botón `primary` "Agenda tu cita de servicio".
 - **Probado y descartado:** limitar el ancho de la tabla de kilometrado y ponerla junto a los frenos; convertir los frenos en tabla con encabezado de dos niveles (no convenció, se revirtió).
-- **Franjas de cita:** dos franjas rojas con botón blanco (copia de la CTA intermedia de los modelos), una en medio (después de los dos primeros bloques) y otra al final, antes del pie. No se usa la franja negra al final (se funde con el pie oscuro) ni botones sueltos sobre fondo blanco (se ven aislados). Textos en Sanity (grupo "Franjas de cita"); sin prometer confirmaciones ni procesos no definidos.
+- **Franjas de cita:** dos franjas rojas con botón blanco (copia de la CTA intermedia de los modelos), una en medio (después de los dos primeros bloques) y otra al final, antes del pie. No se usa la franja negra al final (se funde con el pie oscuro) ni botones sueltos sobre fondo blanco (se ven aislados). Textos en Sanity (grupo "Franjas de cita"); sin prometer confirmaciones ni procesos no definidos. Es el componente compartido `components/ui/FranjaCta.tsx`; también cierra Planes y Arrendamientos (12 nov 2026, grupo "Franja final" en Sanity, "¿No sabes qué plan elegir?").
 - **Tarjeta de frenos sin nombre de modelo** (filas de modelo): sin relleno superior (9 px sobre "4 ruedas", 17 px abajo); con nombre, el relleno de siempre.
 - **Menú:** "Postventa" (antes "Servicio"; desde el 10 nov 2026 las URL son `/postventa/…`) y "Financiamiento" (con Planes y Arrendamientos y Seguros, URL `/financiamiento/…`) son grupos sin página propia; lista `ITEMS_MENU` en `Navbar.tsx`, desplegable sencillo en escritorio (`GrupoEscritorio`) y acordeón en móvil (`GrupoMobileAccordion.tsx`). Subtítulo del hero: máximo unos 31 caracteres por renglón (contenedor de 340 px).
 
@@ -366,7 +366,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
   "Cotizar" (el componente `Button` ahora propaga `onClick` también en modo
   `href`, no solo en modo `<button>`).
   - **Los formularios (`CotizacionForm.tsx`/`CitaForm.tsx`) siguen siendo
-    muestras sin terminar** (ver `formularios-cotizacion-y-prueba-de-manejo.md`
+    muestras sin terminar** (ver `formularios-del-sitio.md`
     en Obsidian) — solo se corrigió el botón de submit a la marca real, no
     se tocaron los inputs (siguen con `rounded` y `focus:border-[#EB0A1E]`
     hardcodeado) para no invertir esfuerzo en una pieza que se reconstruye

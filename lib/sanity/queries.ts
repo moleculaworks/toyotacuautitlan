@@ -133,7 +133,8 @@ export async function getPaginaFinanciamiento() {
       arrendamientosTitulo, arrendamientosDestacado, arrendamientosTexto,
       arrendamientos[] { _key, titulo, descripcion, detalles, imagenAlt, imagen { asset->{ url } } },
       beneficiosTitulo,
-      beneficios[] { _key, titulo, texto, icono }
+      beneficios[] { _key, titulo, texto, icono },
+      franjaTitulo, franjaApoyo, franjaBoton
     }
   `)
 }

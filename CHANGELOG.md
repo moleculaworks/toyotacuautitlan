@@ -5,6 +5,23 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-12 — Raúl (Claude Sonnet 5.5) (129)
+
+### Añadido — franja roja final en Planes y Arrendamientos ("¿No sabes qué plan elegir?")
+
+- **Qué es:** una franja roja con botón blanco al final de `/financiamiento/planes-y-arrendamientos`, después de los beneficios y antes del pie, para quien no sabe qué plan elegir (los botones "Cotizar" de cada plan siguen). Texto de respaldo: título "¿No sabes qué plan elegir?", apoyo "Cuéntanos qué buscas y un asesor te ayuda a encontrar la mejor opción.", botón "Quiero asesoría". El botón apunta a `#` (`ENLACE_ASESORIA`) hasta que exista el formulario; entonces llevará a `/financiamiento/solicitud` con el plan "No lo sé, quiero asesoría" ya marcado.
+- **Por qué roja:** el 10 nov se había quitado la franja negra del cierre porque se fundía con el pie; la roja ya existe en el sitio (Precios de servicio y CTA intermedia de los modelos), destaca y no se mezcla con el pie ni con la franja gris de beneficios.
+- **Componente compartido nuevo `components/ui/FranjaCta.tsx`**, sacado de la función local `FranjaCita` de `app/postventa/precios/page.tsx`, que ahora lo importa (sin cambio visual: se verificaron títulos, botones, color y espaciado de las dos franjas).
+- **Studio:** nuevo grupo "Franja final" en "Página: Financiamiento" con `franjaTitulo`, `franjaApoyo` y `franjaBoton` (opcionales; consulta `getPaginaFinanciamiento` actualizada). **No se cargaron textos en Sanity**: en producción se ven los de respaldo del código hasta que se editen en el Studio.
+
+### Documentado — planeación de los 4 formularios (sin código)
+
+- Nota única de Obsidian `formularios-del-sitio.md` (fusionó la anterior `formularios-cotizacion-y-prueba-de-manejo`; las referencias a ese nombre en `PROYECTO.md`, `SISTEMA-DE-DISENO.md` y un comentario de `components/modelo/VersionesCarousel.tsx` se actualizaron al nombre nuevo; las entradas viejas de este CHANGELOG conservan el nombre antiguo porque son historial).
+- **Decisiones de Raúl (12 nov):** cuatro formularios separados (Cotización, Prueba de manejo, Financiamiento, Cita de servicio), cada uno en **página propia** (no ventana emergente) y con su **página de confirmación**. Direcciones: `/cotizacion` (se queda), `/prueba-de-manejo`, `/financiamiento/solicitud`, `/postventa/cita-de-servicio` (la actual `/cita-de-servicio` redirigirá a la nueva) y, para cada confirmación, la misma dirección más `/gracias`.
+- **Campos:** bloque común (nombre, apellido paterno y materno obligatorios, teléfono de 10 dígitos, correo, forma de contacto); Cotización con modelo y versión obligatorios; Prueba de manejo con modelo y "cuándo" (lo más pronto posible, la próxima semana, en 15 días) y horario (mañana, mediodía, tarde), sin calendario; Financiamiento con plan (planes y arrendamiento en dos bloques, más "No lo sé, quiero asesoría") y modelo y versión opcionales; Cita de servicio sin fecha ni horario, con modelo (más "Otro"), año, tipo de servicio y kilometraje. Listas de modelos alfabéticas. Aviso de privacidad con la frase "Al dar clic en X, aceptas…", sin casilla (el aviso aún no existe).
+- **Confirmación:** folio corto con prefijo (`COT-`, `PRU-`, `FIN-`, `SER-`) y caracteres al azar, nombre y apellido paterno, correo y teléfono ocultos en parte, vehículo y versión, y el mensaje "En breve un asesor se pondrá en contacto contigo". Campo oculto `origen` en cada envío para medir desde dónde llegó.
+- **Pendiente de definir:** a dónde llegan los envíos (correo o CRM), aviso de privacidad, destino del botón de Seguros. Nada de esto está construido.
+
 ## 2026-11-11 — Raúl (Claude Sonnet 5.5) (128)
 
 ### Cambiado — limpieza de ramas: solo queda `main`, local y en GitHub

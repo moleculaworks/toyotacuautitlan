@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import SectionHero from '@/components/ui/SectionHero'
 import HighlightIcon, { TAMANO_ICONO_BENEFICIOS } from '@/components/ui/HighlightIcon'
 import IconoGenerico from '@/components/ui/IconoGenerico'
+import FranjaCta from '@/components/ui/FranjaCta'
 import PlanGrid from '@/components/financiamiento/PlanGrid'
 import type { PlanCardData } from '@/components/financiamiento/PlanCard'
 import { getPaginaFinanciamiento } from '@/lib/sanity/queries'
@@ -21,8 +22,21 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
+// Destino de la franja final ("No sé qué plan elegir"). Todavía no hay formulario: queda en '#', igual que los
+// botones "Cotizar" de cada plan. Cuando exista /financiamiento/solicitud, llevará ahí con el plan "No lo sé,
+// quiero asesoría" ya marcado.
+const ENLACE_ASESORIA = '#'
+
+// Textos de la franja roja final: se editan en Sanity (grupo "Franja final"). Estos son el respaldo si un
+// campo está vacío. Sin prometer confirmaciones ni procesos que todavía no están definidos.
+const FRANJA = {
+  titulo: '¿No sabes qué plan elegir?',
+  apoyo: 'Cuéntanos qué buscas y un asesor te ayuda a encontrar la mejor opción.',
+  boton: 'Quiero asesoría',
+}
+
 // Estructura de la página de sección (acordado 10 nov 2026): hereda del modelo el
-// hero, el ancho (max-w-7xl), los h2, la franja gris. El cierre con CTA se quitó (10 nov): cada plan lleva su botón Cotizar. Sin
+// hero, el ancho (max-w-7xl), los h2, la franja gris. Cada plan lleva su botón Cotizar; al final, una franja roja general para quien no sabe qué plan elegir (propuesta 12 nov). Sin
 // etiquetas rojas sobre los títulos. Breakpoint único: desktop (880px), el mismo
 // del hero de modelo, para que toda la página cambie de layout al mismo punto.
 const contenedor = 'max-w-7xl mx-auto px-6 max-desktop:px-4'
@@ -104,6 +118,14 @@ export default async function FinanciamientoPage() {
         </div>
       </section>
 
+      {/* Franja del final, antes del pie de página: acceso general para quien no sabe qué plan elegir */}
+      <FranjaCta
+        id="asesoria"
+        titulo={p.franjaTitulo || FRANJA.titulo}
+        apoyo={p.franjaApoyo || FRANJA.apoyo}
+        boton={p.franjaBoton || FRANJA.boton}
+        href={ENLACE_ASESORIA}
+      />
     </div>
   )
 }
