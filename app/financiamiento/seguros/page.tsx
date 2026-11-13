@@ -24,6 +24,8 @@ const HERO_MOBILE = '/images/seguros/seguros-hero-mobile.webp'
 
 const contenedor = 'max-w-7xl mx-auto px-6 max-desktop:px-4'
 const h2 = 'text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] text-black leading-[1.05]'
+// Mismo título para las franjas oscuras (negro oficial `bg-toyota-dark`, 13 nov 2026)
+const h2Claro = h2.replace('text-black', 'text-white')
 
 type Ventaja = { _key: string; titulo: string; texto: string; icono?: string }
 type Cobertura = { _key: string; titulo: string; texto: string }
@@ -61,9 +63,9 @@ export default async function SegurosPage() {
         </div>
       </section>
 
-      <section id="por-que" className="bg-toyota-gray py-20 max-desktop:py-[52px]">
+      <section id="por-que" className="bg-toyota-dark py-20 max-desktop:py-[52px]">
         <div className={contenedor}>
-          <h2 className={h2}>{p.ventajasTitulo}</h2>
+          <h2 className={h2Claro}>{p.ventajasTitulo}</h2>
           <div className="mt-12 max-desktop:mt-9 grid grid-cols-4 max-desktop:grid-cols-2 max-sm:grid-cols-1 gap-x-10 gap-y-10">
             {ventajas.map((v) => (
               <div key={v._key} className="flex flex-col gap-3">
@@ -72,8 +74,8 @@ export default async function SegurosPage() {
                 ) : (
                   <IconoGenerico size={TAMANO_ICONO_BENEFICIOS} />
                 )}
-                <h3 className="text-lg font-semibold text-foreground tracking-tight">{v.titulo}</h3>
-                <p className="text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{v.texto}</p>
+                <h3 className="text-lg font-semibold text-white tracking-tight">{v.titulo}</h3>
+                <p className="text-[clamp(16px,1.2vw,18px)] text-white leading-[1.7]">{v.texto}</p>
               </div>
             ))}
           </div>

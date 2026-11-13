@@ -48,11 +48,13 @@ Tailwind vía `@theme inline`). Nunca escribir el hex a mano — usar la clase o
 | Token | Hex | Clase Tailwind | Uso |
 |---|---|---|---|
 | `--background` | `#FFFFFF` | `bg-background` | Fondo base del sitio |
-| `--foreground` | `#1A1A1A` | `text-foreground` / `bg-foreground` | Texto principal, negro casi puro |
+| `--foreground` | `#1A1A1A` | `text-foreground` | Texto principal (párrafos), negro casi puro. Ya no se usa para fondos de franja: para eso está `--toyota-dark` |
 | `--toyota-red` | `#EB0A1E` | `bg-toyota-red` / `text-toyota-red` / `border-toyota-red` | Rojo de marca — CTAs, acentos, íconos |
 | `--toyota-red-dark` | `#C5091A` | `hover:bg-toyota-red-dark` | Tono hover/presionado del rojo de marca |
-| `--toyota-dark` | `#1A1A1A` | `bg-toyota-dark` | Igual valor que `--foreground` (nota: duplicado bajo dos nombres, ver Pendientes) |
+| `--toyota-dark` | `#000000` | `bg-toyota-dark` | **Negro oficial del manual de marca (desde el 13 nov 2026; antes `#1A1A1A`).** Todos los fondos oscuros: pie de página, franja de Seguridad y franja final de los modelos, y las franjas oscuras de ventajas (Seguros, Comonuevos) |
 | `--toyota-gray` | `#F5F5F5` | `bg-toyota-gray` | Fondo gris de secciones alternas |
+
+**Negro (13 nov 2026, decisión de Raúl):** los **fondos** oscuros van en `#000` (`bg-toyota-dark`, el color que marca el manual de marca); los **títulos** ya iban en `#000` (`text-black`) y el **texto corrido** sigue en `#1A1A1A` (`text-foreground`), una jerarquía por tono. Sigue pendiente decidir si los párrafos también pasan a `#000` y si los negros de interfaz que usan `foreground` (relleno de los botones secundarios al pasar el cursor y las barras de desplazamiento del selector de colores y del carrusel de versiones) se unifican. **Regla de la franja oscura:** máximo una por página, nunca la última antes del pie de página ni pegada a una franja roja que cierre (se fundiría con el pie).
 
 Grises finos de UI (bordes, texto secundario — `#999`, `#888`, `#777`, `#666`,
 `#555`, `#DDD`, `#E0E0E0`, etc.) no están tokenizados a propósito: son valores
@@ -286,6 +288,7 @@ lo que el diseño trae fuera de ellos se consulta antes de construirlo.
 | Títulos de sección | `h2` `clamp(28px,4vw,44px)` semibold, **sin etiqueta roja encima** (los modelos la llevan, las páginas de sección no) |
 | Tarjetas con "Ver detalles" | `components/financiamiento/PlanCard.tsx` (nuevo): foto 3.5:1, `h3`, línea roja corta, texto y despliegue con viñetas. Solo usa valores de las tarjetas de "Modelos similares". |
 | Franja gris de beneficios | `bg-toyota-gray`, 3 columnas (2 en tablet, 1 en móvil), ícono + `h3` + texto |
+| Franja oscura de ventajas (13 nov 2026) | Misma estructura que la gris con `bg-toyota-dark` (`#000`), título, `h3` y texto en blanco; los íconos rojos no cambian y ganan contraste (de unos 3.8:1 a unos 4.6:1). La llevan **Seguros** ("Por qué asegurar") y **Comonuevos** ("Por qué elegir un Comonuevo"), en medio de la página. **Se probó en Planes y Arrendamientos y se descartó** (negro, franja roja y pie oscuro seguidos pesaban demasiado) y **no se aplica en Refacciones** (su franja de ventajas es la última antes del pie). Las demás franjas grises (cierre de Seguros, inspección de Comonuevos) se quedan como están |
 | Íconos de beneficios | `components/ui/IconoGenerico.tsx` solo marca la posición de un ícono aún no dibujado. Los definitivos se dibujan uno por uno con referencia de Raúl, mismo trazo (1.0), a 48 px en las franjas de beneficios y ventajas. |
 | CTA | Sin franja de cierre (se quitó el 10 nov 2026: el negro se fundía con el pie de página). Cada tarjeta lleva un botón "Cotizar ahora" (`primary`, ancho completo, `text-base`: los botones del sitio solo usan 14 px o 16 px, nunca más) al final de sus viñetas, con `href="#"` hasta que exista el formulario |
 | Separadores entre secciones blancas | La **línea fina gris** `border-t border-[#E8E8E8]` (de borde a borde) arriba de cada sección blanca que sigue a otra blanca, como en las páginas de modelo. En móvil, **línea roja corta** (28×2 px, la de las tarjetas) **centrada** entre el subtítulo del hero y el párrafo introductorio; en escritorio no se muestra. En el párrafo introductorio de los modelos, el relleno superior en móvil es 0 (`max-desktop:pt-0`): del botón del hero al párrafo quedan 44 px. |
@@ -331,18 +334,18 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 
 ## 13. Sección Seguros (11 de noviembre de 2026)
 
-`app/financiamiento/seguros/page.tsx`. Mismo patrón que Refacciones: hero heredado (`SectionHero`; las imágenes vigentes viven en Sanity y `public/images/seguros/` es el respaldo), párrafo de invitación con la primera frase en semibold, franja gris de 4 ventajas con ícono de 48 px, **"Qué cubre tu seguro"** y cierre.
+`app/financiamiento/seguros/page.tsx`. Mismo patrón que Refacciones: hero heredado (`SectionHero`; las imágenes vigentes viven en Sanity y `public/images/seguros/` es el respaldo), párrafo de invitación con la primera frase en semibold, franja oscura (`bg-toyota-dark`, desde el 13 nov 2026) de 4 ventajas con ícono de 48 px, **"Qué cubre tu seguro"** y cierre.
 
 - **Tarjetas de coberturas (patrón nuevo de lectura):** 3 tarjetas con `border border-[#E8E8E8]`, sin sombra ni redondeo, relleno `p-8` (`p-6` en móvil). Cada una lleva su título (`h3`, `clamp(20px,2.5vw,26px)` semibold, con la línea roja corta debajo) y la lista de coberturas: nombre (`h4`, 18 px semibold, primer uso de `h4` en el sitio) y explicación (`clamp(16px,1.2vw,18px)`, gris `#555`), separadas por una línea fina `border-t border-[#E8E8E8]`. 3 columnas en escritorio y 1 columna desde 880 px hacia abajo (a 900 px las tarjetas quedan estrechas pero legibles). Debajo, una nota chica opcional (16 px, gris `#555`) sobre condiciones de la póliza.
 - **Agrupación:** las 12 coberturas se agrupan en 3 tarjetas de 4 (Tu Toyota; Tus ocupantes y terceros; Apoyo cuando lo necesitas) para no mostrar una lista larga. Sin un ícono por cobertura (evita 12 íconos nuevos).
-- **Cierre:** franja gris (`bg-toyota-gray`) con título y texto a la izquierda y el botón `primary` a la derecha (en móvil se apilan y el botón ocupa el ancho completo). Sin franja negra, igual que el resto de las secciones.
+- **Cierre:** franja gris (`bg-toyota-gray`) con título y texto a la izquierda y el botón `primary` a la derecha (en móvil se apilan y el botón ocupa el ancho completo). Sin franja negra al cierre: se fundiría con el pie de página (la única franja oscura de la página es la de ventajas).
 - **Datos:** todo se edita en Sanity (documento único "Página: Seguros", `paginaSeguros`). Las ventajas llevan ícono elegible, los grupos y las coberturas son listas ordenables y la nota es opcional. El campo `cierreEnlace` define el destino del botón; mientras esté vacío el botón apunta a `#` (destino por definir, 11 nov 2026).
 
 ## 14. Sección Comonuevos (12 de noviembre de 2026)
 
 `app/seminuevos/comonuevos/page.tsx`. Mismo patrón de sección: hero heredado (`SectionHero`, imágenes en `public/images/comonuevos/`), párrafo de introducción con la primera frase en semibold (sin logo: junto al título se leía el nombre dos veces) y franjas alternadas blanco/gris.
 
-- **Ventajas con imagen (patrón nuevo):** franja gris con 3 columnas (1 en móvil); cada una lleva una imagen de **800 × 450 px** (WebP, 16:9; `sizes` 400 px en escritorio y 100vw en móvil), un `h3` y un texto. Es la variante con foto de la franja de ventajas con ícono; las columnas quedan del mismo alto. Los nombres siguen `comonuevos-ventaja-<tema>.webp`.
+- **Ventajas con imagen (patrón nuevo):** franja oscura (`bg-toyota-dark`, desde el 13 nov 2026, con título y textos en blanco) con 3 columnas (1 en móvil); cada una lleva una imagen de **800 × 450 px** (WebP, 16:9; `sizes` 400 px en escritorio y 100vw en móvil), un `h3` y un texto. Es la variante con foto de la franja de ventajas con ícono; las columnas quedan del mismo alto. Los nombres siguen `comonuevos-ventaja-<tema>.webp`.
 - **Requisitos:** 4 íconos de 48 px (4 columnas, 2 en tablet, 1 en móvil), mismo patrón que las ventajas de Seguros.
 - **Inspección:** franja gris con tres tarjetas (`border border-[#E8E8E8]`, `p-8`, línea roja corta bajo el `h3`, puntos con `h4` y filete fino), como las coberturas de Seguros. El encabezado usa la cuadrícula de 3 columnas y 24 px de separación de las tarjetas: título y texto en las dos primeras y el **logo de Comonuevos centrado sobre la tercera** (56 px de alto en escritorio; **centrado y de 48 px arriba del título en móvil**). Es el único lugar de la página donde va el logo como elemento propio (también aparece en la placa del auto del hero).
 - **Logo:** `public/images/comonuevos/comonuevos-logo.svg`, solo `viewBox`, rutas planas, rojo `#EB0A1E` (el del sitio) y texto negro, fondo transparente. Se carga con `next/image`, como el logo de la cabecera.
@@ -354,9 +357,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Header y Footer no están cerrados.** Son genéricos por ahora; el diseño
   final se define cuando haya más secciones del sitio construidas (nota del
   22 de agosto de 2026).
-- `--toyota-dark` y `--foreground` son el mismo hex (`#1A1A1A`) bajo dos
-  nombres distintos — no es un error funcional, pero podría consolidarse en
-  una sola variable más adelante.
+- ~~`--toyota-dark` y `--foreground` eran el mismo hex (`#1A1A1A`) bajo dos nombres~~ **Resuelto el 13 nov 2026:** `--toyota-dark` pasó a `#000000` (negro oficial para fondos) y `--foreground` se queda en `#1A1A1A` (texto). Queda abierto si el texto corrido también va en `#000`.
 - `app/layout.tsx` sigue cargando el font de Google "Geist", que no se usa en
   ningún lado (queda solo como variable CSS sin aplicar, ahora que ToyotaType
   es la fuente real del `<body>`) — evaluar si quitarlo del todo o si se

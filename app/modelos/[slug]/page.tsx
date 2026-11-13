@@ -392,7 +392,7 @@ export default async function ModeloPage({
 
       {/* § 4b · SEGURIDAD */}
       {mostrarSeguridad && (
-        <section id="seguridad" className="bg-foreground py-20 max-desktop:py-[52px]">
+        <section id="seguridad" className="bg-toyota-dark py-20 max-desktop:py-[52px]">
           <div className="max-w-7xl mx-auto px-6 max-desktop:px-4">
             <div className="mb-12">
               <span className="text-xs font-semibold tracking-[3px] text-toyota-red uppercase">
@@ -596,7 +596,7 @@ export default async function ModeloPage({
       )}
 
       {/* § 8 · CTA FINAL */}
-      <section id="final-cta" className="bg-black py-20 max-desktop:py-[52px]">
+      <section id="final-cta" className="bg-toyota-dark py-20 max-desktop:py-[52px]">
         <div className="max-w-7xl mx-auto px-6 max-desktop:px-4 text-center flex flex-col items-center gap-4">
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-semibold text-white tracking-[-.02em] leading-[1.08] desktop:whitespace-nowrap">
             ¿Listo para estrenar tu {nombreModelo}?

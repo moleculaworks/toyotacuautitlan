@@ -5,6 +5,16 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-13 — Raúl (Claude Sonnet 5.5) (132)
+
+### Cambiado — negro oficial `#000` en todos los fondos oscuros y franjas oscuras de ventajas en Seguros y Comonuevos
+
+- **Negro oficial:** `--toyota-dark` pasó de `#1A1A1A` a `#000000` (el negro que marca el manual de marca, decisión de Raúl). Los fondos oscuros ahora usan **todos** `bg-toyota-dark`: el pie de página (todas las páginas), la franja de **Seguridad** de los 24 modelos (antes `bg-foreground`), la franja final de los modelos (antes `bg-black`, ya era `#000`: sin cambio visual) y las dos franjas nuevas. `--foreground` se queda en `#1A1A1A` porque también es el color del texto corrido; los títulos ya iban en `#000` (`text-black`). Se midió en el navegador: pie, franjas y franja de Seguridad dan `rgb(0, 0, 0)`; las franjas grises (`#F5F5F5`) y la roja no cambian.
+- **Franjas oscuras de ventajas** (prueba de Raúl, para que el contenido no se vea tan plano): "Por qué asegurar con Toyota Cuautitlán" en **Seguros** y "Por qué elegir un Comonuevo" en **Comonuevos** pasan de gris a negro, con título, `h3` y texto en blanco; los íconos rojos se leen mejor (contraste de unos 3.8:1 a unos 4.6:1). Cada página queda con **una sola** franja oscura en medio. Las franjas grises del cierre de Seguros y de la inspección de Comonuevos no cambian (esta última lleva el logo con texto negro).
+- **Probado y descartado:** Planes y Arrendamientos (la franja de beneficios en negro seguida de la franja roja y del pie oscuro pesaba demasiado; se revirtió). **No se aplica en Refacciones**: su franja de ventajas es la última antes del pie y se fundiría con él.
+- **Regla** (en `SISTEMA-DE-DISENO.md`, sección 2 y sección 9): máximo una franja oscura por página, nunca la última antes del pie ni pegada a una franja roja que cierre.
+- **Pendiente:** decidir más adelante si el texto corrido también pasa a `#000` y si los negros de interfaz que usan `foreground` (relleno de los botones secundarios al pasar el cursor, barras de desplazamiento del selector de colores y del carrusel de versiones) se unifican. Afectaría a las 24 páginas de modelo.
+
 ## 2026-11-12 — Raúl (Claude Sonnet 5.5) (131)
 
 ### Cambiado — los textos de Comonuevos pasan a Sanity (documento único "Página: Comonuevos")

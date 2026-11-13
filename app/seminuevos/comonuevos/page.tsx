@@ -32,6 +32,8 @@ const IMAGENES_VENTAJAS = [
 
 const contenedor = 'max-w-7xl mx-auto px-6 max-desktop:px-4'
 const h2 = 'text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] text-black leading-[1.05]'
+// Mismo título para las franjas oscuras (negro oficial `bg-toyota-dark`, 13 nov 2026)
+const h2Claro = h2.replace('text-black', 'text-white')
 
 type Ventaja = { _key: string; titulo: string; texto: string; imagenAlt?: string; imagen?: { asset?: { url?: string } } }
 type Requisito = { _key: string; titulo: string; texto: string; icono?: string }
@@ -68,9 +70,9 @@ export default async function ComonuevosPage() {
         </div>
       </section>
 
-      <section id="ventajas" className="bg-toyota-gray py-20 max-desktop:py-[52px]">
+      <section id="ventajas" className="bg-toyota-dark py-20 max-desktop:py-[52px]">
         <div className={contenedor}>
-          <h2 className={h2}>{p.ventajasTitulo}</h2>
+          <h2 className={h2Claro}>{p.ventajasTitulo}</h2>
           <div className="mt-12 max-desktop:mt-9 grid grid-cols-3 max-desktop:grid-cols-1 gap-x-10 gap-y-10">
             {ventajas.map((v, i) => {
               const src = v.imagen?.asset?.url || IMAGENES_VENTAJAS[i]
@@ -86,8 +88,8 @@ export default async function ComonuevosPage() {
                       className="mb-2 h-auto w-full"
                     />
                   )}
-                  <h3 className="text-lg font-semibold text-foreground tracking-tight">{v.titulo}</h3>
-                  <p className="text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{v.texto}</p>
+                  <h3 className="text-lg font-semibold text-white tracking-tight">{v.titulo}</h3>
+                  <p className="text-[clamp(16px,1.2vw,18px)] text-white leading-[1.7]">{v.texto}</p>
                 </div>
               )
             })}
