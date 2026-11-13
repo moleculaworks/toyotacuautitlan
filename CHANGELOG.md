@@ -13,7 +13,8 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - **Qué se edita en el Studio:** portada (título, subtítulo, imágenes opcionales, texto alternativo, párrafo con frase en negrita, descripción para Google), franja "Por qué elegir" (título y 3 ventajas con imagen opcional y su texto alternativo), requisitos (título y 4 con ícono elegible de una lista de 10), franja de inspección (título, texto y los grupos con sus puntos) y cierre (título y las tarjetas con texto de botón y **destino del botón**, opcional: mientras esté vacío, `#`). El **logo de Comonuevos** y la cuadrícula siguen en el código (no se editan).
 - **Imágenes:** siguen en `public/images/comonuevos/` como respaldo; las del hero y de cada ventaja se pueden sustituir subiendo una en el Studio (las ventajas usan su imagen del sitio según la posición mientras no haya una subida).
 - **Verificación:** se comparó el HTML del sitio en vivo (textos en el código) con el de local (textos desde Sanity): el texto y las etiquetas son idénticos, sin cambio visual. Sin cambios de diseño.
-- **Pendiente:** la descripción para Google (`seoDescripcion`) quedó vacía a propósito, en espera de que Raúl elija una de tres propuestas; el destino de los botones sigue por definir.
+- **Descripción para Google y para compartir (`seoDescripcion`), cargada y publicada el 12 nov** con la opción A que eligió Raúl entre tres propuestas (138 caracteres, sin precio ni año): "Seminuevos certificados Toyota con garantía y más de 160 puntos de inspección. Compra o vende tu auto con Comonuevos en Toyota Cuautitlán.". Se lee en `generateMetadata`; no hizo falta desplegar.
+- **Pendiente:** el destino de los botones sigue por definir.
 
 ## 2026-11-12 — Raúl (Claude Sonnet 5.5) (130)
 
