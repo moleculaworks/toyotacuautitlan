@@ -5,6 +5,17 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-12 — Raúl (Claude Sonnet 5.5) (130)
+
+### Añadido — sección Comonuevos (`/seminuevos/comonuevos`), antes página provisional
+
+- **Página construida** (`app/seminuevos/comonuevos/page.tsx`, antes `SeccionProvisional`): hero con las imágenes de Raúl (escritorio 1920 × 680 y móvil 1600 × 1200: un Corolla blanco con el logo de Comonuevos en la placa), subtítulo de dos renglones ("Compra o vende con la misma confianza que un Toyota nuevo."), párrafo de introducción, franja gris "Por qué elegir un Comonuevo" con 3 ventajas con imagen (800 × 450, no con ícono), "Qué debe cumplir un auto para ser Comonuevo" con 4 requisitos con ícono, franja gris "Más de 160 puntos de inspección" con 3 tarjetas y cierre "¿Qué quieres hacer?" con dos tarjetas y su botón. Contenido tomado de toyotacuautitlan.com.mx/comonuevos y de toyota.mx, condensado y revisado en localhost con Raúl. Patrones reutilizados: `SectionHero`, franja gris de ventajas, tarjetas con borde y línea roja de Seguros, `Button primary`; sin valores nuevos de diseño.
+- **Logo de Comonuevos** (`public/images/comonuevos/comonuevos-logo.svg`) como **sello de la franja de inspección**: en escritorio, centrado sobre la tercera tarjeta (misma cuadrícula de 3 columnas, 24 px de separación); en móvil, centrado arriba del título. Rojo igualado al del sitio (`#EB0A1E`; el original venía en `#EC1E31`). No va en la introducción: junto al título "COMONUEVOS" se leía el nombre dos veces.
+- **3 íconos nuevos en `components/ui/HighlightIcon.tsx`** (el diccionario llega a **29**): `distribuidor` (agencia con toldo y puerta), `mantenimiento` (llave de boca en U cruzada con una herramienta, 3 trazos) e `inspeccion` (portapapeles con tres casillas, 4 trazos). Dibujados a partir de las referencias de Raúl con el método de siempre (trazo 1.0, remates redondos, sin relleno, lado mayor de 19, 48 px en la franja de requisitos). El velocímetro de "Hasta 150,000 km y 8 años" es el que ya existía. Referencias y trazos finales en `Secciones/Comonuevos/iconos/`.
+- **Textos en el código, no en Sanity** (por ahora): a diferencia de Seguros y Refacciones, esta sección no tiene documento en el Studio. Si se decide hacerla editable, se crea `paginaComonuevos`. Referencia de textos en `Secciones/Comonuevos/Comonuevos.md` y en Obsidian `seccion-comonuevos.md`.
+- **Garantía:** la tarjeta dice "3 años o 60,000 km a partir de la fecha de compra (o hasta que el odómetro marque 160,000 km)", con la redacción de toyota.mx (el aviso legal completo no está disponible) y la ortografía limpia ("ó" a "o", sin el "hasta" repetido).
+- **Pendientes:** los dos botones del cierre apuntan a `#` (destino por definir: formulario, teléfono o WhatsApp); `description` de la página sigue provisional ("Seminuevos Comonuevos en Toyota Cuautitlán."); horarios, cuando la agencia los envíe. El menú ("Seminuevos > Comonuevos") y el pie ya enlazaban a la página, así que desde este cambio muestra la sección real.
+
 ## 2026-11-12 — Raúl (Claude Sonnet 5.5) (129)
 
 ### Añadido — franja roja final en Planes y Arrendamientos ("¿No sabes qué plan elegir?")

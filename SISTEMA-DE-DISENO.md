@@ -247,6 +247,8 @@ pasar un `nombre` de la lista.
 
 **11 nov 2026: el diccionario llega a 26 íconos** con los 4 de la franja de ventajas de Seguros, dibujados uno por uno a partir de referencias de Raúl (método: leer los trazos de la referencia, comprobar la superposición, revisar en `/preview-iconos`, esperar "aplica"): `refacciones` (caja abierta con un engrane de 6 dientes encima, para "refacciones originales"), `tecnicos` (persona con una llave de boca abierta), `agencia` (pin de ubicación con anillo y base elíptica abierta arriba) y `atencion` (audífonos con brazo y micrófono). Trazo 1.0, remates redondos, sin relleno, lado mayor de 19 en la cuadrícula de 24, 48 px en la franja de ventajas.
 
+**12 nov 2026: el diccionario llega a 29 íconos** con los 3 nuevos de la franja de requisitos de Comonuevos, dibujados a partir de referencias de Raúl con el mismo método: `distribuidor` (agencia con toldo y puerta, un solo trazo), `mantenimiento` (llave de boca en U cruzada con una herramienta de boca abierta, 3 trazos; geometría construida limpia en un marco girado 45°) e `inspeccion` (portapapeles con tres casillas marcadas, 4 trazos). Trazo 1.0, remates redondos, sin relleno, lado mayor de 19 en la cuadrícula de 24, 48 px en la franja. En esa misma franja se reutiliza `velocimetro`. Referencias y trazos finales en `Secciones/Comonuevos/iconos/`.
+
 **Otros SVG puntuales del sitio no pasan por este componente** (ej. el
 check rojo de "Características Generales" en `page.tsx`, la flecha del
 Hero, el ícono de descarga de "Ficha Técnica") — son de un solo uso, con
@@ -335,6 +337,17 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Agrupación:** las 12 coberturas se agrupan en 3 tarjetas de 4 (Tu Toyota; Tus ocupantes y terceros; Apoyo cuando lo necesitas) para no mostrar una lista larga. Sin un ícono por cobertura (evita 12 íconos nuevos).
 - **Cierre:** franja gris (`bg-toyota-gray`) con título y texto a la izquierda y el botón `primary` a la derecha (en móvil se apilan y el botón ocupa el ancho completo). Sin franja negra, igual que el resto de las secciones.
 - **Datos:** todo se edita en Sanity (documento único "Página: Seguros", `paginaSeguros`). Las ventajas llevan ícono elegible, los grupos y las coberturas son listas ordenables y la nota es opcional. El campo `cierreEnlace` define el destino del botón; mientras esté vacío el botón apunta a `#` (destino por definir, 11 nov 2026).
+
+## 14. Sección Comonuevos (12 de noviembre de 2026)
+
+`app/seminuevos/comonuevos/page.tsx`. Mismo patrón de sección: hero heredado (`SectionHero`, imágenes en `public/images/comonuevos/`), párrafo de introducción con la primera frase en semibold (sin logo: junto al título se leía el nombre dos veces) y franjas alternadas blanco/gris.
+
+- **Ventajas con imagen (patrón nuevo):** franja gris con 3 columnas (1 en móvil); cada una lleva una imagen de **800 × 450 px** (WebP, 16:9; `sizes` 400 px en escritorio y 100vw en móvil), un `h3` y un texto. Es la variante con foto de la franja de ventajas con ícono; las columnas quedan del mismo alto. Los nombres siguen `comonuevos-ventaja-<tema>.webp`.
+- **Requisitos:** 4 íconos de 48 px (4 columnas, 2 en tablet, 1 en móvil), mismo patrón que las ventajas de Seguros.
+- **Inspección:** franja gris con tres tarjetas (`border border-[#E8E8E8]`, `p-8`, línea roja corta bajo el `h3`, puntos con `h4` y filete fino), como las coberturas de Seguros. El encabezado usa la cuadrícula de 3 columnas y 24 px de separación de las tarjetas: título y texto en las dos primeras y el **logo de Comonuevos centrado sobre la tercera** (56 px de alto en escritorio; **centrado y de 48 px arriba del título en móvil**). Es el único lugar de la página donde va el logo como elemento propio (también aparece en la placa del auto del hero).
+- **Logo:** `public/images/comonuevos/comonuevos-logo.svg`, solo `viewBox`, rutas planas, rojo `#EB0A1E` (el del sitio) y texto negro, fondo transparente. Se carga con `next/image`, como el logo de la cabecera.
+- **Cierre:** "¿Qué quieres hacer?" con dos tarjetas (borde, línea roja corta) y un botón `primary` de ancho completo en cada una, hoy a `#` (destino por definir).
+- **Datos:** los textos están en el código (sin documento de Sanity por ahora).
 
 ## Pendientes (a propósito, no resueltos hoy)
 
