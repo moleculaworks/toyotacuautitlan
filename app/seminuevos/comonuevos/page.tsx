@@ -1,134 +1,111 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
+import { getPaginaComonuevos } from '@/lib/sanity/queries'
 import SectionHero from '@/components/ui/SectionHero'
 import Button from '@/components/ui/Button'
+import IconoGenerico from '@/components/ui/IconoGenerico'
 import HighlightIcon, { TAMANO_ICONO_BENEFICIOS } from '@/components/ui/HighlightIcon'
 
-// Sección Comonuevos (12 nov 2026). Contenido tomado de toyotacuautitlan.com.mx/comonuevos y de toyota.mx,
-// condensado. Los textos viven aquí (sin documento en Sanity por ahora; si se quieren editar desde el Studio,
-// pasan a un documento único, como Seguros y Refacciones). Referencia: Secciones/Comonuevos/Comonuevos.md.
+// Los textos, las ventajas, los requisitos, los puntos de inspección y el cierre se editan en Sanity
+// ("Página: Comonuevos", documento único). Se actualiza sola al publicar, sin deploy (aviso en
+// app/api/revalidate; respaldo en app/layout.tsx). Las imágenes de public/images/comonuevos/ son el
+// respaldo si no hay una subida en Sanity; el logo de Comonuevos (sello de la franja de inspección)
+// vive aquí. Referencia de textos: Secciones/Comonuevos/Comonuevos.md.
 
-export const metadata: Metadata = {
-  title: 'Comonuevos',
-  description: 'Seminuevos Comonuevos en Toyota Cuautitlán.',
+export async function generateMetadata(): Promise<Metadata> {
+  const p = await getPaginaComonuevos()
+  return {
+    title: 'Comonuevos',
+    description: p?.seoDescripcion || 'Seminuevos Comonuevos en Toyota Cuautitlán.',
+  }
 }
 
-// Destino de los dos botones: por definir (formulario, WhatsApp o teléfono; Raúl lo consulta con el departamento).
-// Quedan en '#' hasta decidirlo.
-const ENLACE_COMPRAR = '#'
-const ENLACE_VENDER = '#'
+const HERO_DESKTOP = '/images/comonuevos/comonuevos-hero-desktop.webp'
+const HERO_MOBILE = '/images/comonuevos/comonuevos-hero-mobile.webp'
+// Imagen de respaldo de cada ventaja, por posición (garantía, profesionales, tranquilidad)
+const IMAGENES_VENTAJAS = [
+  '/images/comonuevos/comonuevos-ventaja-garantia.webp',
+  '/images/comonuevos/comonuevos-ventaja-profesionales.webp',
+  '/images/comonuevos/comonuevos-ventaja-tranquilidad.webp',
+]
 
 const contenedor = 'max-w-7xl mx-auto px-6 max-desktop:px-4'
 const h2 = 'text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] text-black leading-[1.05]'
 
-const VENTAJAS = [
-  { src: '/images/comonuevos/comonuevos-ventaja-garantia.webp', alt: 'Tablero de un Toyota seminuevo con el odómetro marcando 45,200 km', titulo: 'Garantía incluida', texto: '3 años o 60,000 km a partir de la fecha de compra (o hasta que el odómetro marque 160,000 km).' },
-  { src: '/images/comonuevos/comonuevos-ventaja-profesionales.webp', alt: 'Técnico de Toyota revisando el motor de un auto con una tableta de inspección', titulo: 'Respaldado por profesionales', texto: 'Un equipo técnico altamente capacitado y certificado garantiza el perfecto estado del auto.' },
-  { src: '/images/comonuevos/comonuevos-ventaja-tranquilidad.webp', alt: 'Mujer sonriente junto a un Toyota seminuevo con las llaves en la mano', titulo: 'Tranquilidad y confianza', texto: 'Compra un auto de la forma más segura y ahorra en ajustes, reparaciones y servicios viales.' },
-]
+type Ventaja = { _key: string; titulo: string; texto: string; imagenAlt?: string; imagen?: { asset?: { url?: string } } }
+type Requisito = { _key: string; titulo: string; texto: string; icono?: string }
+type Punto = { _key: string; titulo: string; texto: string }
+type GrupoInspeccion = { _key: string; titulo: string; puntos: Punto[] }
+type Accion = { _key: string; titulo: string; texto: string; boton: string; enlace?: string }
 
-const REQUISITOS = [
-  { icono: 'distribuidor', titulo: 'De un distribuidor autorizado', texto: 'Cualquier Toyota que haya sido comercializado en México por un distribuidor autorizado de Toyota Motor Sales de México.' },
-  { icono: 'velocimetro', titulo: 'Hasta 150,000 km y 8 años', texto: 'Con un máximo de 150,000 kilómetros en el odómetro y 8 años de antigüedad desde su comercialización.' },
-  { icono: 'mantenimiento', titulo: 'Mantenimientos al día', texto: 'Sus servicios se hicieron en tiempo y forma, de acuerdo con el manual del usuario.' },
-  { icono: 'inspeccion', titulo: 'Inspección de más de 160 puntos', texto: 'Aprobó la inspección mecánica y eléctrica completa, punto por punto.' },
-]
+export default async function ComonuevosPage() {
+  const p = await getPaginaComonuevos()
+  if (!p) notFound()
 
-const INSPECCION = [
-  {
-    titulo: 'Exterior y estructura',
-    puntos: [
-      { titulo: 'Apariencia exterior', texto: 'La carrocería no tiene abolladuras.' },
-      { titulo: 'Estructura y carrocería', texto: 'El marco y la parte inferior de la carrocería no tienen daños.' },
-      { titulo: 'Llantas y suspensión', texto: 'Las cuatro llantas son de la misma marca, modelo, tamaño, diseño, velocidad y capacidad de carga.' },
-    ],
-  },
-  {
-    titulo: 'Motor y manejo',
-    puntos: [
-      { titulo: 'Compartimento del motor', texto: 'El aceite, los frenos, el clutch, la dirección y los demás fluidos están en óptimas condiciones.' },
-      { titulo: 'Transmisión y cambios', texto: 'La transmisión y el clutch funcionan con suavidad.' },
-      { titulo: 'Sistema de frenado', texto: 'Las balatas conservan al menos el 50% de su vida útil.' },
-    ],
-  },
-  {
-    titulo: 'Interior y electrónica',
-    puntos: [
-      { titulo: 'Apariencia interior', texto: 'Los interiores de piel, vinilo, plástico, tapetes y tela no tienen hoyos, rasgaduras, manchas ni decoloraciones, ni un desgaste exagerado.' },
-      { titulo: 'Alarma y audio', texto: 'La alarma y el sistema de audio funcionan correctamente.' },
-      { titulo: 'Panel de instrumentos y sistema eléctrico', texto: 'El velocímetro y el odómetro funcionan correctamente.' },
-    ],
-  },
-]
+  const ventajas: Ventaja[] = p.ventajas ?? []
+  const requisitos: Requisito[] = p.requisitos ?? []
+  const grupos: GrupoInspeccion[] = p.inspeccionGrupos ?? []
+  const acciones: Accion[] = p.acciones ?? []
 
-const ACCIONES = [
-  {
-    id: 'comprar',
-    titulo: 'Compra un Comonuevo',
-    texto: 'Elige un Toyota seminuevo certificado, con garantía y a un precio accesible.',
-    boton: 'Comprar un Comonuevo',
-    href: ENLACE_COMPRAR,
-  },
-  {
-    id: 'vender',
-    titulo: 'Vende tu Toyota',
-    texto: 'Descubre si tu Toyota califica para el programa y estrena uno del año.',
-    boton: 'Vender mi Toyota',
-    href: ENLACE_VENDER,
-  },
-]
-
-export default function ComonuevosPage() {
   return (
     <div className="bg-background text-foreground antialiased">
       <SectionHero
-        titulo="Comonuevos"
-        subtitulo={'Compra o vende con la misma\nconfianza que un Toyota nuevo.'}
-        imagenDesktop="/images/comonuevos/comonuevos-hero-desktop.webp"
-        imagenMobile="/images/comonuevos/comonuevos-hero-mobile.webp"
-        alt="Comonuevos, seminuevos certificados Toyota"
+        titulo={p.heroTitulo}
+        subtitulo={p.heroSubtitulo}
+        imagenDesktop={p.heroDesktop?.asset?.url || HERO_DESKTOP}
+        imagenMobile={p.heroMobile?.asset?.url || HERO_MOBILE}
+        alt={p.heroAlt || p.heroTitulo}
       />
 
       <section id="intro" className="bg-white py-10 max-desktop:pt-0">
         <div className={contenedor}>
           <div className="desktop:hidden w-7 h-[2px] bg-toyota-red mb-5 mx-auto" />
           <p className="text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7]">
-            <strong className="font-semibold">Comonuevos es el programa de seminuevos certificados de Toyota. </strong>
-            Adquiere un Toyota seminuevo en perfectas condiciones de funcionamiento y a un precio accesible. Si ya
-            eres propietario de un Toyota, el programa también recibe tu seminuevo para que estrenes uno del año.
+            {p.introDestacado && <strong className="font-semibold">{p.introDestacado} </strong>}
+            {p.intro}
           </p>
         </div>
       </section>
 
       <section id="ventajas" className="bg-toyota-gray py-20 max-desktop:py-[52px]">
         <div className={contenedor}>
-          <h2 className={h2}>Por qué elegir un Comonuevo</h2>
+          <h2 className={h2}>{p.ventajasTitulo}</h2>
           <div className="mt-12 max-desktop:mt-9 grid grid-cols-3 max-desktop:grid-cols-1 gap-x-10 gap-y-10">
-            {VENTAJAS.map((v) => (
-              <div key={v.titulo} className="flex flex-col gap-3">
-                <Image
-                  src={v.src}
-                  alt={v.alt}
-                  width={800}
-                  height={450}
-                  sizes="(max-width: 880px) 100vw, 400px"
-                  className="mb-2 h-auto w-full"
-                />
-                <h3 className="text-lg font-semibold text-foreground tracking-tight">{v.titulo}</h3>
-                <p className="text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{v.texto}</p>
-              </div>
-            ))}
+            {ventajas.map((v, i) => {
+              const src = v.imagen?.asset?.url || IMAGENES_VENTAJAS[i]
+              return (
+                <div key={v._key} className="flex flex-col gap-3">
+                  {src && (
+                    <Image
+                      src={src}
+                      alt={v.imagenAlt || v.titulo}
+                      width={800}
+                      height={450}
+                      sizes="(max-width: 880px) 100vw, 400px"
+                      className="mb-2 h-auto w-full"
+                    />
+                  )}
+                  <h3 className="text-lg font-semibold text-foreground tracking-tight">{v.titulo}</h3>
+                  <p className="text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{v.texto}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       <section id="requisitos" className="bg-white pt-20 pb-20 max-desktop:pt-[52px] max-desktop:pb-[52px]">
         <div className={contenedor}>
-          <h2 className={h2}>Qué debe cumplir un auto para ser Comonuevo</h2>
+          <h2 className={h2}>{p.requisitosTitulo}</h2>
           <div className="mt-12 max-desktop:mt-9 grid grid-cols-4 max-desktop:grid-cols-2 max-sm:grid-cols-1 gap-x-10 gap-y-10">
-            {REQUISITOS.map((r) => (
-              <div key={r.titulo} className="flex flex-col gap-3">
-                <HighlightIcon nombre={r.icono} size={TAMANO_ICONO_BENEFICIOS} />
+            {requisitos.map((r) => (
+              <div key={r._key} className="flex flex-col gap-3">
+                {r.icono ? (
+                  <HighlightIcon nombre={r.icono} size={TAMANO_ICONO_BENEFICIOS} />
+                ) : (
+                  <IconoGenerico size={TAMANO_ICONO_BENEFICIOS} />
+                )}
                 <h3 className="text-lg font-semibold text-foreground tracking-tight">{r.titulo}</h3>
                 <p className="text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{r.texto}</p>
               </div>
@@ -142,10 +119,10 @@ export default function ComonuevosPage() {
           {/* Logo como sello de certificación: en escritorio, centrado sobre la tercera tarjeta (misma cuadrícula de 3 columnas); en móvil, centrado arriba del título */}
           <div className="flex flex-col-reverse items-start gap-6 desktop:grid desktop:grid-cols-3 desktop:items-end">
             <div className="desktop:col-span-2">
-              <h2 className={h2}>Más de 160 puntos de inspección</h2>
-              <p className="mt-4 text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7]">
-                Cada auto pasa por una revisión mecánica y eléctrica completa. Estos son algunos de los puntos que se revisan.
-              </p>
+              <h2 className={h2}>{p.inspeccionTitulo}</h2>
+              {p.inspeccionTexto && (
+                <p className="mt-4 text-[clamp(16px,1.2vw,18px)] text-[#1a1a1a] leading-[1.7]">{p.inspeccionTexto}</p>
+              )}
             </div>
             <Image
               src="/images/comonuevos/comonuevos-logo.svg"
@@ -156,15 +133,15 @@ export default function ComonuevosPage() {
             />
           </div>
           <div className="mt-12 max-desktop:mt-9 grid grid-cols-3 max-desktop:grid-cols-1 gap-6">
-            {INSPECCION.map((g) => (
-              <div key={g.titulo} className="border border-[#E8E8E8] bg-white p-8 max-desktop:p-6 flex flex-col">
+            {grupos.map((g) => (
+              <div key={g._key} className="border border-[#E8E8E8] bg-white p-8 max-desktop:p-6 flex flex-col">
                 <h3 className="text-[clamp(20px,2.5vw,26px)] font-semibold tracking-[-.02em] text-foreground leading-none">
                   {g.titulo}
                 </h3>
                 <div className="w-7 h-[2px] bg-toyota-red mt-3.5" />
                 <div className="mt-6 flex flex-col gap-5">
-                  {g.puntos.map((pt, i) => (
-                    <div key={pt.titulo} className={i > 0 ? 'border-t border-[#E8E8E8] pt-5' : ''}>
+                  {(g.puntos ?? []).map((pt, i) => (
+                    <div key={pt._key} className={i > 0 ? 'border-t border-[#E8E8E8] pt-5' : ''}>
                       <h4 className="text-lg font-semibold text-foreground tracking-tight leading-snug">{pt.titulo}</h4>
                       <p className="mt-1.5 text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{pt.texto}</p>
                     </div>
@@ -178,17 +155,23 @@ export default function ComonuevosPage() {
 
       <section id="acciones" className="bg-white pt-20 pb-20 max-desktop:pt-[52px] max-desktop:pb-[52px]">
         <div className={contenedor}>
-          <h2 className={h2}>¿Qué quieres hacer?</h2>
+          <h2 className={h2}>{p.cierreTitulo}</h2>
           <div className="mt-10 max-desktop:mt-8 grid grid-cols-2 max-desktop:grid-cols-1 gap-6">
-            {ACCIONES.map((a) => (
-              <div key={a.id} className="border border-[#E8E8E8] bg-white p-8 max-desktop:p-6 flex flex-col">
+            {acciones.map((a) => (
+              <div key={a._key} className="border border-[#E8E8E8] bg-white p-8 max-desktop:p-6 flex flex-col">
                 <h3 className="text-[clamp(20px,2.5vw,26px)] font-semibold tracking-[-.02em] text-foreground leading-none">
                   {a.titulo}
                 </h3>
                 <div className="w-7 h-[2px] bg-toyota-red mt-3.5" />
                 <p className="mt-5 text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{a.texto}</p>
                 <div className="mt-auto pt-6">
-                  <Button href={a.href} variant="primary" className="w-full text-center text-base py-3.5">
+                  {/* Destino por definir (formulario, teléfono o WhatsApp): mientras el campo esté vacío, `#` */}
+                  <Button
+                    href={a.enlace || '#'}
+                    external={/^https?:\/\//.test(a.enlace || '')}
+                    variant="primary"
+                    className="w-full text-center text-base py-3.5"
+                  >
                     {a.boton}
                   </Button>
                 </div>

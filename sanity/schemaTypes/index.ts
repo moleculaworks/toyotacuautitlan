@@ -7,6 +7,7 @@ import { paginaFinanciamientoType } from './paginaFinanciamientoType'
 import { paginaPreciosServicioType, tablaKilometradoType, tablaFrenosType } from './paginaPreciosServicioType'
 import { paginaRefaccionesType } from './paginaRefaccionesType'
 import { paginaSegurosType } from './paginaSegurosType'
+import { paginaComonuevosType } from './paginaComonuevosType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -19,5 +20,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     paginaPreciosServicioType,
     paginaRefaccionesType,
     paginaSegurosType,
+    paginaComonuevosType,
   ],
 }

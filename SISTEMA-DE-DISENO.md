@@ -347,7 +347,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Inspección:** franja gris con tres tarjetas (`border border-[#E8E8E8]`, `p-8`, línea roja corta bajo el `h3`, puntos con `h4` y filete fino), como las coberturas de Seguros. El encabezado usa la cuadrícula de 3 columnas y 24 px de separación de las tarjetas: título y texto en las dos primeras y el **logo de Comonuevos centrado sobre la tercera** (56 px de alto en escritorio; **centrado y de 48 px arriba del título en móvil**). Es el único lugar de la página donde va el logo como elemento propio (también aparece en la placa del auto del hero).
 - **Logo:** `public/images/comonuevos/comonuevos-logo.svg`, solo `viewBox`, rutas planas, rojo `#EB0A1E` (el del sitio) y texto negro, fondo transparente. Se carga con `next/image`, como el logo de la cabecera.
 - **Cierre:** "¿Qué quieres hacer?" con dos tarjetas (borde, línea roja corta) y un botón `primary` de ancho completo en cada una, hoy a `#` (destino por definir).
-- **Datos:** los textos están en el código (sin documento de Sanity por ahora).
+- **Datos:** todo se edita en Sanity (documento único "Página: Comonuevos", `paginaComonuevos`, desde el 12 nov 2026): portada, ventajas (con imagen opcional), requisitos (con ícono elegible), grupos de inspección y tarjetas del cierre con el destino de cada botón (`enlace`, opcional; vacío = `#`). El logo y la cuadrícula viven en el código.
 
 ## Pendientes (a propósito, no resueltos hoy)
 

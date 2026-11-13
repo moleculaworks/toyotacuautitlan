@@ -194,3 +194,21 @@ export async function getPaginaSeguros() {
     }
   `)
 }
+
+export async function getPaginaComonuevos() {
+  return client.fetch(groq`
+    *[_type == "paginaComonuevos" && _id == "paginaComonuevos"][0] {
+      heroTitulo, heroSubtitulo, heroAlt, introDestacado, intro, seoDescripcion,
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      ventajasTitulo,
+      ventajas[] { _key, titulo, texto, imagenAlt, imagen { asset->{ url } } },
+      requisitosTitulo,
+      requisitos[] { _key, titulo, texto, icono },
+      inspeccionTitulo, inspeccionTexto,
+      inspeccionGrupos[] { _key, titulo, puntos[] { _key, titulo, texto } },
+      cierreTitulo,
+      acciones[] { _key, titulo, texto, boton, enlace }
+    }
+  `)
+}
