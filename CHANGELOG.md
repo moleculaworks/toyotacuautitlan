@@ -5,6 +5,12 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-13 — Raúl (Claude Sonnet 5.5) (135)
+
+### Documentado — estado al cerrar la sesión del 12 y 13 de noviembre
+
+- Solo documentación: `PROYECTO.md` H.22 con el estado de cierre, los pendientes inmediatos en orden y cómo retomar; copia en Obsidian (`pendientes-del-proyecto`); memoria de Claude al día (pendientes, regla de que el sitio aún no es público, trampa del esquema de Sanity y nota de sesiones largas). Se borró la rama local `contacto-propuesta` (sin trabajo propio); en el repositorio solo queda `main`.
+
 ## 2026-11-13 — Raúl (Claude Sonnet 5.5) (134)
 
 ### Añadido — sección Contacto (`/contacto`) tipo directorio, con sus textos y horarios en Sanity
