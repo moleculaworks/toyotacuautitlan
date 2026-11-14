@@ -328,7 +328,7 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 
 `app/postventa/refacciones/page.tsx`. Hero heredado (`SectionHero`, imágenes en `public/images/postventa/refacciones-hero-*.webp`), texto de invitación (primera frase en semibold), luego **"Cotiza tus refacciones"** con dos tarjetas de contacto y al final la franja gris **"Por qué elegir refacciones originales"**. Orden acordado con Raúl: el contacto va justo después del texto que invita a escribir o llamar, y las ventajas cierran como refuerzo (antes iban primero y el contacto quedaba lejos).
 
-- **Tarjetas de contacto:** `border border-[#E8E8E8]`, sin sombra ni redondeo; ícono de 48 px arriba (`telefono` / `whatsapp`), título 18 px semibold, número en rojo (`clamp(24px,3vw,32px)`), texto de apoyo y botón a todo el ancho (los dos `primary`, en rojo: son canales de igual peso, 10 nov 2026). El ícono va arriba y no junto al número a propósito: sigue el patrón de las franjas de beneficios y evita un tamaño más.
+- **Tarjetas de contacto:** `border border-[#E8E8E8]`, sin sombra ni redondeo; título 18 px semibold, texto de apoyo y **un solo botón de contorno con el ícono y el número dentro** (`BotonContacto`, ver sección 15; desde el 13 nov 2026, antes ícono de 48 px arriba, número grande en rojo y botón rojo `primary` con verbo). Son canales de igual peso y por eso comparten estilo.
 - **Ventajas:** 4 columnas (2×2 en tableta, 1 en móvil), mismo patrón que los beneficios de Financiamiento (icono 48 px, título 18 px, texto `clamp(16px,1.2vw,18px)`), título del `h2` sin tope de ancho para que quepa en una línea en escritorio.
 - **Datos:** todo se edita en Sanity (documento único "Página: Refacciones", `revalidate = 60`). Las tarjetas se definen por `tipo` (Teléfono o WhatsApp) y un número de 10 dígitos; el sitio arma el formato, el enlace, el ícono y el estilo del botón. **Pendiente:** los números siguen siendo ficticios (`55 0000 0000`); ponerlos reales en el Studio, pestaña Contacto.
 
@@ -351,6 +351,23 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 - **Logo:** `public/images/comonuevos/comonuevos-logo.svg`, solo `viewBox`, rutas planas, rojo `#EB0A1E` (el del sitio) y texto negro, fondo transparente. Se carga con `next/image`, como el logo de la cabecera.
 - **Cierre:** "¿Qué quieres hacer?" con dos tarjetas (borde, línea roja corta) y un botón `primary` de ancho completo en cada una, hoy a `#` (destino por definir).
 - **Datos:** todo se edita en Sanity (documento único "Página: Comonuevos", `paginaComonuevos`, desde el 12 nov 2026): portada, ventajas (con imagen opcional), requisitos (con ícono elegible), grupos de inspección y tarjetas del cierre con el destino de cada botón (`enlace`, opcional; vacío = `#`). El logo y la cuadrícula viven en el código.
+
+## 15. Botón de contacto (13 de noviembre de 2026)
+
+`components/ui/BotonContacto.tsx`. El ícono (teléfono o WhatsApp, de `HighlightIcon`) y el número **son** el botón; no hay verbo visible. Lo usan Refacciones y Contacto, para que el mismo canal se vea y se comporte igual.
+
+| Propiedad | Valor |
+|---|---|
+| Estilo | `secondary` (contorno). Contorno porque el ícono es rojo y no se vería sobre un botón rojo; además, dos canales de igual peso no deben llevar un botón rojo que sugiera preferencia |
+| Ícono | 36 px (el de la barra de destacados), a la izquierda, con `gap-3` |
+| Número | `clamp(18px,1.4vw,20px)` semibold (**excepción** a la regla de botones de 14 o 16 px: aquí el número es el contenido; probados 16, 23 y 32) |
+| Extensión | Opcional: `Ext. <n>` a 16 px, peso normal, junto al número |
+| Alto | 59 px (lo marca el ícono con `py-2.5`) |
+| Teléfono | `tel:<10 dígitos>` y, con extensión, `tel:<10 dígitos>,,<extensión>`: cada coma es una pausa de unos 2 s; marca el número general, espera a que el conmutador conteste y teclea la extensión. Probar con el conmutador real desde un iPhone y un Android antes de publicar extensiones y ajustar a 1 o 3 comas. **Nunca publicar extensiones de marcador (`000`)** |
+| WhatsApp | `https://wa.me/52<10 dígitos>`, en pestaña nueva |
+| Lectores de pantalla | Visible y ícono con `aria-hidden`; frase completa en `sr-only`: "Llamar al número 55 5870 6655, extensión 123, de Ventas" |
+
+**Prácticas aplicadas:** el número es texto real y visible (en computadora, `tel:` casi nunca abre nada y la persona necesita leerlo); el formato es el mismo en todo el sitio (`55 5870 6655`); un solo enlace por canal (no se repite el número como enlace junto al botón).
 
 ## Pendientes (a propósito, no resueltos hoy)
 

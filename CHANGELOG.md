@@ -5,6 +5,18 @@ Registro cronológico de cambios relevantes al proyecto. Complementa a `PROYECTO
 
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## 2026-11-13 — Raúl (Claude Sonnet 5.5) (133)
+
+### Cambiado — Refacciones: el número con su ícono es el botón (componente compartido `BotonContacto`)
+
+- **Qué cambió** en las tarjetas de contacto de `/postventa/refacciones`: antes llevaban el ícono de 48 px arriba, el título, el número grande en rojo, un texto y un botón rojo (`primary`) con verbo ("Llamar ahora", "Escribir por WhatsApp"). Ahora llevan el título, el texto de apoyo y **un solo botón de contorno (`secondary`) con el ícono de 36 px a la izquierda y el número dentro** (18 a 20 px). Cada tarjeta queda unos 40 px más corta. Los enlaces son los mismos (`tel:` y `wa.me/52…`, este en pestaña nueva).
+- **Por qué (decisiones de Raúl, 13 nov):** los dos canales tienen el mismo peso y dos botones rojos apilados no existen en ningún lugar del sitio, así que van de contorno; el número vive en el botón y no se repite aparte; el ícono junto al número se lee como una sola pieza. El ícono es rojo, por eso el botón es de contorno (no se vería sobre rojo).
+- **Componente nuevo `components/ui/BotonContacto.tsx`**: tipo (`telefono` o `whatsapp`), número de 10 dígitos, extensión opcional y departamento opcional. Con extensión, el enlace es `tel:<número>,,<extensión>` (cada coma es una pausa de unos 2 s: marca el número general, espera a que el conmutador conteste y teclea la extensión; ajustar a una o tres comas tras probar con el conmutador real). Lo usa también Contacto (CHANGELOG 134).
+- **Lectores de pantalla:** el texto visible y el ícono se ocultan y se lee una frase completa ("Llamar ahora al número 55 0000 0000, extensión 123, de Ventas"). El texto del botón que se edita en Sanity ("Llamar ahora", "Escribir por WhatsApp") se conserva solo para esa frase.
+- **Excepción a la regla de botones de 14 o 16 px:** el número va a 18 a 20 px (`clamp(18px,1.4vw,20px)`), porque aquí el número es el contenido del botón. Se probaron 16 px (se veía chico), 32 px y 23 px (grandes). La extensión va a 16 px en peso normal para que quepa en pantallas de 360 px.
+- **Sin cambios de datos:** Sanity no se tocó. Los números de Refacciones siguen siendo marcadores (`55 0000 0000`) hasta que se pongan los reales en el Studio.
+- **Revisión:** escritorio (1440 px) y móvil (360 px), sin desbordes; botones de 59 px de alto; tipos sin errores.
+
 ## 2026-11-13 — Raúl (Claude Sonnet 5.5) (132)
 
 ### Cambiado — negro oficial `#000` en todos los fondos oscuros y franjas oscuras de ventajas en Seguros y Comonuevos

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getPaginaRefacciones } from '@/lib/sanity/queries'
 import SectionHero from '@/components/ui/SectionHero'
-import Button from '@/components/ui/Button'
+import BotonContacto from '@/components/ui/BotonContacto'
 import IconoGenerico from '@/components/ui/IconoGenerico'
 import HighlightIcon, { TAMANO_ICONO_BENEFICIOS } from '@/components/ui/HighlightIcon'
 
@@ -26,16 +26,6 @@ const h2 = 'text-[clamp(28px,4vw,44px)] font-semibold tracking-[-.02em] text-bla
 
 type Canal = { _key: string; tipo: 'telefono' | 'whatsapp'; titulo: string; numero: string; texto: string; boton: string }
 type Ventaja = { _key: string; titulo: string; texto: string; icono?: string }
-
-// "5512345678" -> "55 1234 5678"
-const formatoNumero = (n: string) => `${n.slice(0, 2)} ${n.slice(2, 6)} ${n.slice(6)}`
-
-// El tipo define el enlace; los dos botones llevan el mismo estilo (rojo, `primary`): son canales de igual
-// peso y ninguno es el preferido (acordado con Raúl, 10 nov 2026).
-const propiedadesCanal = (c: Canal) =>
-  c.tipo === 'whatsapp'
-    ? { href: `https://wa.me/52${c.numero}`, externo: true, variante: 'primary' as const }
-    : { href: `tel:${c.numero}`, externo: false, variante: 'primary' as const }
 
 export default async function RefaccionesPage() {
   const p = await getPaginaRefacciones()
@@ -68,24 +58,17 @@ export default async function RefaccionesPage() {
         <div className={contenedor}>
           <h2 className={h2}>{p.contactoTitulo}</h2>
           <div className="mt-10 max-desktop:mt-8 grid grid-cols-2 max-desktop:grid-cols-1 gap-6">
-            {canales.map((c) => {
-              const { href, externo, variante } = propiedadesCanal(c)
-              return (
-                <div key={c._key} className="border border-[#E8E8E8] bg-white p-8 max-desktop:p-6 flex flex-col">
-                  <HighlightIcon nombre={c.tipo} size={TAMANO_ICONO_BENEFICIOS} />
-                  <h3 className="mt-4 text-lg font-semibold text-foreground tracking-tight">{c.titulo}</h3>
-                  <p className="mt-2 text-[clamp(24px,3vw,32px)] font-semibold text-toyota-red tracking-[-.01em] leading-[1.1]">
-                    {formatoNumero(c.numero)}
-                  </p>
-                  <p className="mt-3 text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{c.texto}</p>
-                  <div className="mt-auto pt-6">
-                    <Button href={href} external={externo} variant={variante} className="w-full text-center text-base py-3.5">
-                      {c.boton}
-                    </Button>
-                  </div>
+            {canales.map((c) => (
+              <div key={c._key} className="border border-[#E8E8E8] bg-white p-8 max-desktop:p-6 flex flex-col">
+                <h3 className="text-lg font-semibold text-foreground tracking-tight">{c.titulo}</h3>
+                <p className="mt-3 text-[clamp(16px,1.2vw,18px)] text-[#555] leading-[1.7]">{c.texto}</p>
+                {/* El número con su ícono es el botón (BotonContacto, el mismo que usa Contacto). El texto del botón de
+                    Sanity se conserva solo para lectores de pantalla. */}
+                <div className="mt-auto pt-6">
+                  <BotonContacto tipo={c.tipo} numero={c.numero} accion={c.boton} />
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
