@@ -7,8 +7,9 @@ import { formatoTelefono } from '@/lib/contacto'
 // comporte igual en las dos páginas.
 // - Teléfono: `tel:` con el número y, si hay extensión, dos comas (cada coma es una pausa de unos 2 s: el teléfono
 //   marca el número general, espera a que el conmutador conteste y teclea la extensión). Sin extensión, solo marca el
-//   número. Ajustar a 1 o 3 comas tras probar con el conmutador real desde un iPhone y un Android. Nunca publicar
-//   extensiones de marcador (000): se teclearían en el conmutador de la agencia.
+//   número. Ajustar a 1 o 3 comas tras probar con el conmutador real desde un iPhone y un Android. Los marcadores
+//   (000) sirven mientras el sitio no sea público; antes del lanzamiento hay que poner las extensiones reales o
+//   dejar el campo vacío, porque se teclearían en el conmutador de la agencia.
 // - WhatsApp: `wa.me` con la lada 52, en pestaña nueva.
 // - Contorno porque el ícono es rojo y no se vería sobre un botón rojo.
 // - El número va a 18 a 20 px, un poco arriba del texto de la descripción (probados 16, 32, 23: 16 se veía chico y

@@ -212,3 +212,19 @@ export async function getPaginaComonuevos() {
     }
   `)
 }
+
+export async function getPaginaContacto() {
+  return client.fetch(groq`
+    *[_type == "paginaContacto" && _id == "paginaContacto"][0] {
+      heroTitulo, heroSubtitulo, heroAlt, introDestacado, intro, seoDescripcion,
+      heroDesktop { asset->{ url } },
+      heroMobile { asset->{ url } },
+      ubicacionTitulo, ubicacionNombre, mapaIncrustado, googleMapsEnlace, wazeEnlace,
+      directorioTitulo, directorioTexto,
+      departamentos[] {
+        _key, nombre, extension, canalWhatsapp, whatsappPropio,
+        horarios[] { _key, titulo, lineas[] { _key, dias, horas } }
+      }
+    }
+  `)
+}

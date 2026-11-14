@@ -363,11 +363,20 @@ Reglas acordadas con Raúl para las tablas de precios (`components/postventa/`, 
 | Número | `clamp(18px,1.4vw,20px)` semibold (**excepción** a la regla de botones de 14 o 16 px: aquí el número es el contenido; probados 16, 23 y 32) |
 | Extensión | Opcional: `Ext. <n>` a 16 px, peso normal, junto al número |
 | Alto | 59 px (lo marca el ícono con `py-2.5`) |
-| Teléfono | `tel:<10 dígitos>` y, con extensión, `tel:<10 dígitos>,,<extensión>`: cada coma es una pausa de unos 2 s; marca el número general, espera a que el conmutador conteste y teclea la extensión. Probar con el conmutador real desde un iPhone y un Android antes de publicar extensiones y ajustar a 1 o 3 comas. **Nunca publicar extensiones de marcador (`000`)** |
+| Teléfono | `tel:<10 dígitos>` y, con extensión, `tel:<10 dígitos>,,<extensión>`: cada coma es una pausa de unos 2 s; marca el número general, espera a que el conmutador conteste y teclea la extensión. Probar con el conmutador real desde un iPhone y un Android antes de publicar extensiones y ajustar a 1 o 3 comas. Los marcadores (`000`) sirven mientras el sitio no sea público; **antes del lanzamiento, poner las extensiones reales o vaciar el campo** |
 | WhatsApp | `https://wa.me/52<10 dígitos>`, en pestaña nueva |
 | Lectores de pantalla | Visible y ícono con `aria-hidden`; frase completa en `sr-only`: "Llamar al número 55 5870 6655, extensión 123, de Ventas" |
 
 **Prácticas aplicadas:** el número es texto real y visible (en computadora, `tel:` casi nunca abre nada y la persona necesita leerlo); el formato es el mismo en todo el sitio (`55 5870 6655`); un solo enlace por canal (no se repite el número como enlace junto al botón).
+
+## 16. Sección Contacto (13 de noviembre de 2026)
+
+`app/contacto/page.tsx`. Patrón de página de sección (hero heredado con la fachada real de la agencia, párrafo de introducción con la primera frase en semibold) y dos franjas: **"Dónde estamos"** (blanca) y **"Directorio por departamento"** (gris). Sin franja oscura: la gris cierra antes del pie.
+
+- **Dónde estamos:** cuadrícula de 5 columnas en escritorio (2 de texto y 3 de mapa; apilado en móvil). Texto: nombre y dirección (de "Configuración del sitio"), teléfono general en rojo `clamp(24px,3vw,32px)` con el ícono de teléfono de 36 px a la izquierda (es un enlace, no un botón), y los botones **Abrir en Google Maps** y **Abrir en Waze**, **los dos `secondary`** (canales de igual peso: uno rojo y otro de contorno sugeriría preferencia). Mapa: `iframe` de Google con borde `#E8E8E8` y alto mínimo de 420 px (320 en móvil), con la ficha exacta de la agencia. Ningún enlace de navegación deja elegir la app en todos los teléfonos, por eso un botón por aplicación.
+- **Directorio:** tarjetas como las de coberturas de Seguros (`border border-[#E8E8E8]`, `p-8`, `h3` con la línea roja corta), en cuadrícula de 2 columnas en escritorio y 1 en móvil. Cada tarjeta: horarios (renglón con los días a la izquierda y las horas en semibold a la derecha; grupos con título cuando hay más de uno, como "Taller" y "Citas de servicio") y, abajo, un `BotonContacto` por canal (sección 15). Sin horario, dice "Por confirmar".
+- **Teléfono:** siempre el general más la extensión de cada área; la extensión es opcional y mientras esté vacía el botón marca solo el número y no muestra "Ext.". Hoy llevan el marcador `000` (el sitio aún no es público); antes del lanzamiento, poner las reales o vaciar el campo.
+- **Datos:** textos, directorio y enlaces del mapa en Sanity ("Página: Contacto", `paginaContacto`); dirección, teléfono general y WhatsApp de Ventas y Servicio en "Configuración del sitio" (una sola fuente, también para el menú).
 
 ## Pendientes (a propósito, no resueltos hoy)
 

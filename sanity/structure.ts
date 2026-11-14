@@ -28,6 +28,10 @@ export const structure: StructureResolver = (S) =>
         .title('Página: Comonuevos')
         .id('paginaComonuevos')
         .child(S.document().schemaType('paginaComonuevos').documentId('paginaComonuevos')),
+      S.listItem()
+        .title('Página: Contacto')
+        .id('paginaContacto')
+        .child(S.document().schemaType('paginaContacto').documentId('paginaContacto')),
       S.divider(),
       S.listItem()
         .title('Configuración del sitio')
